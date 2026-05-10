@@ -1,0 +1,1423 @@
+{
+  "resourceType": "Bundle",
+  "id": "demo-marcus-reyes-bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:b25c93d4-a3bd-55ab-b44c-860769e9b4c7",
+      "resource": {
+        "resourceType": "Patient",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"
+          ]
+        },
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race",
+            "extension": [
+              {
+                "url": "ombCategory",
+                "valueCoding": {
+                  "system": "urn:oid:2.16.840.1.113883.6.238",
+                  "code": "2054-5",
+                  "display": "Black or African American"
+                }
+              },
+              {
+                "url": "text",
+                "valueString": "Black or African American"
+              }
+            ]
+          },
+          {
+            "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity",
+            "extension": [
+              {
+                "url": "ombCategory",
+                "valueCoding": {
+                  "system": "urn:oid:2.16.840.1.113883.6.238",
+                  "code": "2186-5",
+                  "display": "Not Hispanic or Latino"
+                }
+              },
+              {
+                "url": "text",
+                "valueString": "Not Hispanic or Latino"
+              }
+            ]
+          }
+        ],
+        "name": [
+          {
+            "use": "official",
+            "family": "Reyes",
+            "given": [
+              "Marcus",
+              "James"
+            ]
+          }
+        ],
+        "gender": "male",
+        "birthDate": "1962-09-04",
+        "address": [
+          {
+            "line": [
+              "1839 Garfield St"
+            ],
+            "city": "Boston",
+            "state": "MA",
+            "postalCode": "02118",
+            "country": "US"
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "555-318-6204",
+            "use": "mobile"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "Patient"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:888e090b-e621-55a8-b431-62ea537ca6e8",
+      "resource": {
+        "resourceType": "Encounter",
+        "status": "in-progress",
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "EMER",
+          "display": "emergency"
+        },
+        "type": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "50849002",
+                "display": "Emergency room admission"
+              }
+            ]
+          }
+        ],
+        "subject": {
+          "reference": "urn:uuid:b25c93d4-a3bd-55ab-b44c-860769e9b4c7"
+        },
+        "period": {
+          "start": "2026-05-09T14:08:00-04:00"
+        },
+        "reasonCode": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "386661006",
+                "display": "Fever"
+              }
+            ]
+          },
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "271594007",
+                "display": "Hypotension"
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "Encounter"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:97af6573-5a33-57f7-8409-a9622b9e177b",
+      "resource": {
+        "resourceType": "Encounter",
+        "status": "finished",
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "AMB",
+          "display": "ambulatory"
+        },
+        "subject": {
+          "reference": "urn:uuid:b25c93d4-a3bd-55ab-b44c-860769e9b4c7"
+        },
+        "period": {
+          "start": "2026-04-25T11:00:00-04:00",
+          "end": "2026-04-25T11:30:00-04:00"
+        },
+        "reasonCode": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "68566005",
+                "display": "Urinary tract infection"
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "Encounter"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:232aabf3-b944-5f5e-bdcd-5e1eebee394f",
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+              "code": "confirmed"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "encounter-diagnosis"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "68566005",
+              "display": "Urinary tract infection"
+            }
+          ],
+          "text": "Complicated UTI, suspected urosepsis"
+        },
+        "subject": {
+          "reference": "urn:uuid:b25c93d4-a3bd-55ab-b44c-860769e9b4c7"
+        },
+        "onsetDateTime": "2026-04-25",
+        "encounter": {
+          "reference": "urn:uuid:97af6573-5a33-57f7-8409-a9622b9e177b"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Condition"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:21c02b78-bd6c-53b9-a92e-324f7f9c2b1d",
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "problem-list-item"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "266569009",
+              "display": "Benign prostatic hyperplasia"
+            }
+          ],
+          "text": "Benign prostatic hyperplasia"
+        },
+        "subject": {
+          "reference": "urn:uuid:b25c93d4-a3bd-55ab-b44c-860769e9b4c7"
+        },
+        "onsetDateTime": "2018-02-11"
+      },
+      "request": {
+        "method": "POST",
+        "url": "Condition"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:b71498e0-5008-5936-9f50-e580da72dbc0",
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "problem-list-item"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "59621000",
+              "display": "Essential hypertension"
+            }
+          ],
+          "text": "Essential hypertension"
+        },
+        "subject": {
+          "reference": "urn:uuid:b25c93d4-a3bd-55ab-b44c-860769e9b4c7"
+        },
+        "onsetDateTime": "2015-06-22"
+      },
+      "request": {
+        "method": "POST",
+        "url": "Condition"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:24e2f80e-827f-5edb-9364-86d88a9f6560",
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5",
+              "display": "Body temperature"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "urn:uuid:b25c93d4-a3bd-55ab-b44c-860769e9b4c7"
+        },
+        "encounter": {
+          "reference": "urn:uuid:888e090b-e621-55a8-b431-62ea537ca6e8"
+        },
+        "effectiveDateTime": "2026-05-09T14:18:00-04:00",
+        "valueQuantity": {
+          "value": 39.4,
+          "unit": "Cel",
+          "system": "http://unitsofmeasure.org",
+          "code": "Cel"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:a1abfaa5-d67b-5982-8361-31309732bf3a",
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "urn:uuid:b25c93d4-a3bd-55ab-b44c-860769e9b4c7"
+        },
+        "encounter": {
+          "reference": "urn:uuid:888e090b-e621-55a8-b431-62ea537ca6e8"
+        },
+        "effectiveDateTime": "2026-05-09T14:18:00-04:00",
+        "valueQuantity": {
+          "value": 118,
+          "unit": "/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:bf0ba65f-0e4c-5219-ae2c-595abab1b481",
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "85354-9",
+              "display": "Blood pressure panel"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "urn:uuid:b25c93d4-a3bd-55ab-b44c-860769e9b4c7"
+        },
+        "encounter": {
+          "reference": "urn:uuid:888e090b-e621-55a8-b431-62ea537ca6e8"
+        },
+        "effectiveDateTime": "2026-05-09T14:18:00-04:00",
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8480-6",
+                  "display": "Systolic blood pressure"
+                }
+              ]
+            },
+            "valueQuantity": {
+              "value": 86,
+              "unit": "mm[Hg]"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8462-4",
+                  "display": "Diastolic blood pressure"
+                }
+              ]
+            },
+            "valueQuantity": {
+              "value": 50,
+              "unit": "mm[Hg]"
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:3e8ffa0a-c863-56ab-ab60-0230e5cb155e",
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "9279-1",
+              "display": "Respiratory rate"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "urn:uuid:b25c93d4-a3bd-55ab-b44c-860769e9b4c7"
+        },
+        "encounter": {
+          "reference": "urn:uuid:888e090b-e621-55a8-b431-62ea537ca6e8"
+        },
+        "effectiveDateTime": "2026-05-09T14:18:00-04:00",
+        "valueQuantity": {
+          "value": 26,
+          "unit": "/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:6ec81091-18d4-5886-a5ec-cbb99732beac",
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "59408-5",
+              "display": "Oxygen saturation"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "urn:uuid:b25c93d4-a3bd-55ab-b44c-860769e9b4c7"
+        },
+        "encounter": {
+          "reference": "urn:uuid:888e090b-e621-55a8-b431-62ea537ca6e8"
+        },
+        "effectiveDateTime": "2026-05-09T14:18:00-04:00",
+        "valueQuantity": {
+          "value": 91,
+          "unit": "%",
+          "system": "http://unitsofmeasure.org",
+          "code": "%"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:d54878c6-7c22-5eda-ab02-ad4382fd23da",
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "32693-4",
+              "display": "Lactate, plasma"
+            }
+          ],
+          "text": "Plasma lactate"
+        },
+        "subject": {
+          "reference": "urn:uuid:b25c93d4-a3bd-55ab-b44c-860769e9b4c7"
+        },
+        "encounter": {
+          "reference": "urn:uuid:888e090b-e621-55a8-b431-62ea537ca6e8"
+        },
+        "effectiveDateTime": "2026-05-09T14:35:00-04:00",
+        "valueQuantity": {
+          "value": 4.1,
+          "unit": "mmol/L",
+          "system": "http://unitsofmeasure.org",
+          "code": "mmol/L"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:24ec3c6d-618b-5221-80f0-fb45093c1c52",
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "6690-2",
+              "display": "Leukocytes [#/volume]"
+            }
+          ],
+          "text": "WBC"
+        },
+        "subject": {
+          "reference": "urn:uuid:b25c93d4-a3bd-55ab-b44c-860769e9b4c7"
+        },
+        "encounter": {
+          "reference": "urn:uuid:888e090b-e621-55a8-b431-62ea537ca6e8"
+        },
+        "effectiveDateTime": "2026-05-09T14:35:00-04:00",
+        "valueQuantity": {
+          "value": 17.8,
+          "unit": "10*3/uL",
+          "system": "http://unitsofmeasure.org",
+          "code": "10*3/uL"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:71e4de45-be71-58c4-8be9-f9ae8da67718",
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "2160-0",
+              "display": "Creatinine"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "urn:uuid:b25c93d4-a3bd-55ab-b44c-860769e9b4c7"
+        },
+        "encounter": {
+          "reference": "urn:uuid:888e090b-e621-55a8-b431-62ea537ca6e8"
+        },
+        "effectiveDateTime": "2026-05-09T14:35:00-04:00",
+        "valueQuantity": {
+          "value": 1.7,
+          "unit": "mg/dL",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dL"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:f4aee333-b65e-5b92-b18d-b5dd92af6b22",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "completed",
+        "intent": "order",
+        "subject": {
+          "reference": "urn:uuid:b25c93d4-a3bd-55ab-b44c-860769e9b4c7"
+        },
+        "encounter": {
+          "reference": "urn:uuid:97af6573-5a33-57f7-8409-a9622b9e177b"
+        },
+        "authoredOn": "2026-04-25T11:30:00-04:00",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "197517",
+              "display": "Ciprofloxacin 500 MG Oral Tablet"
+            }
+          ],
+          "text": "Ciprofloxacin 500 mg PO BID x 7 days"
+        },
+        "dosageInstruction": [
+          {
+            "text": "500 mg by mouth twice daily for 7 days."
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:4c685f47-91e3-5084-b5be-bbc32b877961",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "subject": {
+          "reference": "urn:uuid:b25c93d4-a3bd-55ab-b44c-860769e9b4c7"
+        },
+        "authoredOn": "2018-02-11",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "836369",
+              "display": "Tamsulosin hydrochloride 0.4 MG Oral Capsule"
+            }
+          ],
+          "text": "Tamsulosin 0.4 mg PO daily"
+        },
+        "dosageInstruction": [
+          {
+            "text": "0.4 mg by mouth once daily."
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:f8112d27-9f0d-5e0b-9c16-2aedf3a11c7e",
+      "resource": {
+        "resourceType": "Coverage",
+        "status": "active",
+        "beneficiary": {
+          "reference": "urn:uuid:b25c93d4-a3bd-55ab-b44c-860769e9b4c7"
+        },
+        "payor": [
+          {
+            "display": "Medicare Part B"
+          }
+        ],
+        "subscriberId": "1AB-CD2-EF34",
+        "class": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/coverage-class",
+                  "code": "plan"
+                }
+              ]
+            },
+            "value": "MED-B",
+            "name": "Original Medicare"
+          }
+        ],
+        "period": {
+          "start": "2025-09-01"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Coverage"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:b3ee4f69-e807-54a1-8d49-0f73714f70b9",
+      "resource": {
+        "resourceType": "AllergyIntolerance",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification",
+              "code": "confirmed"
+            }
+          ]
+        },
+        "type": "allergy",
+        "category": [
+          "medication"
+        ],
+        "criticality": "high",
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "294930007",
+              "display": "Allergy to penicillin"
+            }
+          ],
+          "text": "Penicillin allergy (urticaria + angioedema, 2018)"
+        },
+        "patient": {
+          "reference": "urn:uuid:b25c93d4-a3bd-55ab-b44c-860769e9b4c7"
+        },
+        "reaction": [
+          {
+            "manifestation": [
+              {
+                "coding": [
+                  {
+                    "system": "http://snomed.info/sct",
+                    "code": "126485001",
+                    "display": "Urticaria"
+                  }
+                ],
+                "text": "Urticaria with periorbital angioedema"
+              }
+            ],
+            "severity": "moderate"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "AllergyIntolerance"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:7e386b00-7935-5c76-8fed-504b1a1b7ff3",
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "9269-2",
+              "display": "Glasgow coma score total"
+            }
+          ],
+          "text": "GCS total"
+        },
+        "subject": {
+          "reference": "urn:uuid:b25c93d4-a3bd-55ab-b44c-860769e9b4c7"
+        },
+        "encounter": {
+          "reference": "urn:uuid:888e090b-e621-55a8-b431-62ea537ca6e8"
+        },
+        "effectiveDateTime": "2026-05-09T14:18:00-04:00",
+        "valueQuantity": {
+          "value": 13,
+          "unit": "{score}",
+          "system": "http://unitsofmeasure.org",
+          "code": "{score}"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:9305c693-82c2-5062-8bdc-fe5943e72f8d",
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "777-3",
+              "display": "Platelets [#/volume] in Blood"
+            }
+          ],
+          "text": "Platelet count"
+        },
+        "subject": {
+          "reference": "urn:uuid:b25c93d4-a3bd-55ab-b44c-860769e9b4c7"
+        },
+        "encounter": {
+          "reference": "urn:uuid:888e090b-e621-55a8-b431-62ea537ca6e8"
+        },
+        "effectiveDateTime": "2026-05-09T14:35:00-04:00",
+        "valueQuantity": {
+          "value": 142,
+          "unit": "10*3/uL",
+          "system": "http://unitsofmeasure.org",
+          "code": "10*3/uL"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:ddf20faf-8ae5-55ca-9c24-2139fbbebc41",
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "1975-2",
+              "display": "Bilirubin.total [Mass/volume] in Serum or Plasma"
+            }
+          ],
+          "text": "Total bilirubin"
+        },
+        "subject": {
+          "reference": "urn:uuid:b25c93d4-a3bd-55ab-b44c-860769e9b4c7"
+        },
+        "encounter": {
+          "reference": "urn:uuid:888e090b-e621-55a8-b431-62ea537ca6e8"
+        },
+        "effectiveDateTime": "2026-05-09T14:35:00-04:00",
+        "valueQuantity": {
+          "value": 1.4,
+          "unit": "mg/dL",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dL"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:0e6f6835-6048-5705-8fbb-9525a567776f",
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "630-4",
+              "display": "Bacteria identified in Urine by Culture"
+            }
+          ],
+          "text": "Urine culture (mid-stream)"
+        },
+        "subject": {
+          "reference": "urn:uuid:b25c93d4-a3bd-55ab-b44c-860769e9b4c7"
+        },
+        "encounter": {
+          "reference": "urn:uuid:888e090b-e621-55a8-b431-62ea537ca6e8"
+        },
+        "effectiveDateTime": "2026-05-09T16:42:00-04:00",
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "112283007",
+              "display": "Escherichia coli"
+            }
+          ],
+          "text": "Escherichia coli >100,000 CFU/mL (heavy growth)"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:6ccf3e84-737f-5f65-ae7a-99f910d7607c",
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "18864-9",
+              "display": "Ceftriaxone [Susceptibility]"
+            }
+          ],
+          "text": "Ceftriaxone susceptibility"
+        },
+        "subject": {
+          "reference": "urn:uuid:b25c93d4-a3bd-55ab-b44c-860769e9b4c7"
+        },
+        "encounter": {
+          "reference": "urn:uuid:888e090b-e621-55a8-b431-62ea537ca6e8"
+        },
+        "effectiveDateTime": "2026-05-09T16:42:00-04:00",
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "131196009",
+              "display": "Susceptible"
+            }
+          ],
+          "text": "S"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:86514a37-5264-5726-8090-8e1452d5fd5a",
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "18866-4",
+              "display": "Ciprofloxacin [Susceptibility]"
+            }
+          ],
+          "text": "Ciprofloxacin susceptibility"
+        },
+        "subject": {
+          "reference": "urn:uuid:b25c93d4-a3bd-55ab-b44c-860769e9b4c7"
+        },
+        "encounter": {
+          "reference": "urn:uuid:888e090b-e621-55a8-b431-62ea537ca6e8"
+        },
+        "effectiveDateTime": "2026-05-09T16:42:00-04:00",
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "30714006",
+              "display": "Resistant"
+            }
+          ],
+          "text": "R"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:1e3305d9-5194-5d88-b13a-86b2ea33ce1f",
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "18879-7",
+              "display": "Meropenem [Susceptibility]"
+            }
+          ],
+          "text": "Meropenem susceptibility"
+        },
+        "subject": {
+          "reference": "urn:uuid:b25c93d4-a3bd-55ab-b44c-860769e9b4c7"
+        },
+        "encounter": {
+          "reference": "urn:uuid:888e090b-e621-55a8-b431-62ea537ca6e8"
+        },
+        "effectiveDateTime": "2026-05-09T16:42:00-04:00",
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "131196009",
+              "display": "Susceptible"
+            }
+          ],
+          "text": "S"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:bdef20a3-ec57-5690-a4c5-9728d07e4d9d",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "status": "current",
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11506-3",
+              "display": "Progress note"
+            }
+          ],
+          "text": "ED hospitalist progress note (urosepsis admission)"
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/us/core/CodeSystem/us-core-documentreference-category",
+                "code": "clinical-note"
+              }
+            ]
+          }
+        ],
+        "subject": {
+          "reference": "urn:uuid:b25c93d4-a3bd-55ab-b44c-860769e9b4c7"
+        },
+        "context": {
+          "encounter": [
+            {
+              "reference": "urn:uuid:888e090b-e621-55a8-b431-62ea537ca6e8"
+            }
+          ]
+        },
+        "date": "2026-05-09T15:10:00-04:00",
+        "description": "ED hospitalist admission + day-1 progress note with full SOAP, ROS, PE, labs, imaging.",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "language": "en",
+              "title": "Admission progress note 2026-05-09",
+              "creation": "2026-05-09T15:10:00-04:00",
+              "data": "RUQgSE9TUElUQUxJU1QgQURNSVNTSU9OICsgREFZLTEgUFJPR1JFU1MgTk9URQpBdXRob3I6IEFpc2hhIFBhdGVsLCBNRCwgSW50ZXJuYWwgTWVkaWNpbmUgLyBIb3NwaXRhbGlzdApFbmNvdW50ZXI6IEVEIGFkbWlzc2lvbiAyMDI2LTA1LTA5LCB0cmFuc2l0aW9uZWQgdG8gSUNVIDIwMjYtMDUtMDkgMTY6MzAKUGF0aWVudDogTWFyY3VzIFJleWVzLCA2NHlvIEJsYWNrIG1hbGUKClJFQVNPTiBGT1IgQ09OU1VMVEFUSU9OOgpIb3NwaXRhbGlzdCBhZG1pc3Npb24gY29uc3VsdCByZXF1ZXN0ZWQgYnkgRUQgZm9yIHNldmVyZSBzZXBzaXMgZnJvbSBhIHVyaW5hcnkgc291cmNlIHdpdGggc2VwdGljLXNob2NrIHBoeXNpb2xvZ3ksIHJlY3VycmVudCBwb3N0IGEgcmVjZW50IG91dHBhdGllbnQgY2lwcm9mbG94YWNpbiBjb3Vyc2UuIFF1ZXN0aW9uOiBlbXBpcmljIGFudGliaW90aWMgcGxhbiB0aGF0IHJlc3BlY3RzIHRoZSBkb2N1bWVudGVkIHBlbmljaWxsaW4gYWxsZXJneSBhbmQgdGhlIGNpcHJvLXJlc2lzdGFuY2UgcGF0dGVybiwgcGx1cyBkaXNwb3NpdGlvbiBndWlkYW5jZSAoSUNVIHZzIGZsb29yKS4KCkNISUVGIENPTVBMQUlOVDoKUmlnb3JzIGFuZCBwcmVzeW5jb3BlIGF0IGhvbWUsIGZldmVyIHRvIDM5LjQgQywgaHlwb3RlbnNpb24gb24gRUQgYXJyaXZhbC4KCkhJU1RPUlkgT0YgUFJFU0VOVCBJTExORVNTOgpNci4gUmV5ZXMgaXMgYSA2NC15ZWFyLW9sZCBtYW4gd2l0aCBCUEggYW5kIGVzc2VudGlhbCBoeXBlcnRlbnNpb24gd2hvIHdhcyB0cmVhdGVkIDIgd2Vla3MgYWdvIGJ5IGhpcyBvdXRwYXRpZW50IGNsaW5pY2lhbiB3aXRoIGNpcHJvZmxveGFjaW4gNTAwIG1nIFBPIEJJRCBmb3IgNyBkYXlzIGZvciBhbiB1bmNvbXBsaWNhdGVkIFVUSSAoRS4gY29saSBvbiBwcmlvciBNU1UpLiBTeW1wdG9tcyBhYmF0ZWQgZm9yIHRoZSBkdXJhdGlvbiBvZiB0aGVyYXB5LiBBYm91dCA0OCBob3VycyBhZnRlciBoaXMgbGFzdCBjaXBybyBkb3NlIGhlIG5vdGljZWQgdXJpbmFyeSB1cmdlbmN5IGFuZCBhIGxvdy1ncmFkZSBmZXZlcjsgdGhpcyBtb3JuaW5nIGhlIGhhZCB0d28gZXBpc29kZXMgb2Ygcmlnb3JzIGFuZCBhIG5lYXItc3luY29wYWwgZXZlbnQgd2hlbiBzdGFuZGluZy4gSGUgZHJvdmUgaGltc2VsZiB0byB0aGUgRUQuIEhlIGRlbmllcyBkeXN1cmlhIG92ZXIgdGhlIGxhc3QgMjQgaG91cnMsIGRlbmllcyBoZW1hdHVyaWEsIGRlbmllcyBmbGFuayBwYWluLiBObyBuYXVzZWEsIG5vIHZvbWl0aW5nLiBIZSBoYXMgbm90IGJlZW4gYWJsZSB0byBtYWludGFpbiBvcmFsIGludGFrZSBzaW5jZSB0aGlzIG1vcm5pbmcuCgpQQVNUIE1FRElDQUwgSElTVE9SWToKLSBCZW5pZ24gcHJvc3RhdGljIGh5cGVycGxhc2lhLCBkaWFnbm9zZWQgMjAxOCwgb24gdGFtc3Vsb3NpbiAwLjQgbWcgUE8gZGFpbHkuCi0gRXNzZW50aWFsIGh5cGVydGVuc2lvbiwgZGlhZ25vc2VkIDIwMTUsIG9uIGxpc2lub3ByaWwgMjAgbWcgUE8gZGFpbHkuCi0gUmVjdXJyZW50IHVuY29tcGxpY2F0ZWQgVVRJLCBsYXN0IGVwaXNvZGUgMiB3ZWVrcyBhZ28uCi0gTm8gZGlhYmV0ZXMsIG5vIENLRCBiYXNlbGluZSwgbm8gY2hyb25pYyBpbW11bm9zdXBwcmVzc2lvbi4KClBBU1QgU1VSR0lDQUwgSElTVE9SWToKLSBUVVJQIGRlZmVycmVkIChCUEggbWFuYWdlZCBtZWRpY2FsbHksIGF3YWl0aW5nIHVyb2xvZ3kgZGVjaXNpb24pLgotIEluZ3VpbmFsIGhlcm5pYSByZXBhaXIgMjAwOS4KCkZBTUlMWSBISVNUT1JZOgpGYXRoZXI6IHByb3N0YXRlIGNhbmNlciBhdCBhZ2UgNzAsIGRpZWQgMjAxNC4gTW90aGVyOiBoeXBlcnRlbnNpb24sIGFsaXZlIGF0IDg1LiBObyBmYW1pbHkgaGlzdG9yeSBvZiBpbW11bm9kZWZpY2llbmN5IG9yIHJlY3VycmVudCBpbmZlY3Rpb25zLgoKU09DSUFMIEhJU1RPUlk6ClJldGlyZWQgcG9zdGFsIHdvcmtlci4gTGl2ZXMgd2l0aCB3aWZlLiBObyB0b2JhY2NvIGZvciAyMCB5ZWFycyAoZm9ybWVyIDE1IHBhY2steWVhcnMpLiBBbGNvaG9sOiAxLTIgYmVlcnMgcGVyIHdlZWsuIE5vIHJlY3JlYXRpb25hbCBkcnVncy4gTGl2ZXMgaW4gYSBzaW5nbGUtZmxvb3IgaG9tZSwgaW5kZXBlbmRlbnQgaW4gQURMcywgZHJpdmVzIGhpbXNlbGYuCgpBTExFUkdJRVM6ClBlbmljaWxsaW4gLS0gdXJ0aWNhcmlhICsgcGVyaW9yYml0YWwgYW5naW9lZGVtYSBhZnRlciBhIGNvdXJzZSBpbiAyMDE4LiBObyBjYXJiYXBlbmVtIG9yIHN1bGZhIGFsbGVyZ3kgb24gZmlsZS4KCk1FRElDQVRJT05TOgotIFRhbXN1bG9zaW4gMC40IG1nIFBPIGRhaWx5LgotIExpc2lub3ByaWwgMjAgbWcgUE8gZGFpbHkgKGhlbGQgb24gYWRtaXNzaW9uIGdpdmVuIHNlcHRpYyBzaG9jaykuCi0gQWNldGFtaW5vcGhlbiA1MDAgbWcgUE8gUFJOIGhlYWRhY2hlIChyYXJlIHVzZSkuCi0gTm8gYW50aWNvYWd1bGFudHMsIG5vIGltbXVub3N1cHByZXNzYW50cy4KClJFVklFVyBPRiBTWVNURU1TOgpDb25zdGl0dXRpb25hbDogcG9zaXRpdmUgZm9yIGZldmVycywgcmlnb3JzLCBmYXRpZ3VlLCBsaWdodGhlYWRlZG5lc3Mgb24gc3RhbmRpbmcuIE5lZ2F0aXZlIGZvciBuaWdodCBzd2VhdHMsIHdlaWdodCBsb3NzLgpIRUVOVDogbmVnYXRpdmUgZm9yIHNvcmUgdGhyb2F0LCBjb25nZXN0aW9uLCBwaG90b3Bob2JpYS4KQ2FyZGlvcHVsbW9uYXJ5OiBwb3NpdGl2ZSBmb3IgbWlsZCBkeXNwbmVhIG9uIHRoZSB3YXkgZnJvbSB0cmlhZ2UgdG8gdGhlIEVEIGJlZDsgbmVnYXRpdmUgZm9yIGNoZXN0IHBhaW4sIG9ydGhvcG5lYSwgaGVtb3B0eXNpcy4KR0k6IG5lZ2F0aXZlIGZvciBuYXVzZWEsIHZvbWl0aW5nLCBkaWFycmhlYSwgYWJkb21pbmFsIHBhaW4sIG1lbGVuYS4KR1U6IHBvc2l0aXZlIGZvciB1cmluYXJ5IHVyZ2VuY3kgb3ZlciA0OCBob3VyczsgbmVnYXRpdmUgZm9yIGR5c3VyaWEgdG9kYXksIGhlbWF0dXJpYSwgZmxhbmsgcGFpbi4KU2tpbjogbmVnYXRpdmUgZm9yIHJhc2gsIGxlc2lvbnMuCk5ldXJvOiBuZWdhdGl2ZSBmb3IgY29uZnVzaW9uLCBmb2NhbCB3ZWFrbmVzcywgaGVhZGFjaGUsIHNlaXp1cmUgYWN0aXZpdHkuCkVuZG9jcmluZTogbmVnYXRpdmUgZm9yIHBvbHl1cmlhLCBwb2x5ZGlwc2lhLgoKUEhZU0lDQUwgRVhBTUlOQVRJT046CkdlbmVyYWw6IGlsbC1hcHBlYXJpbmcsIG1pbGRseSBzb21ub2xlbnQgKEdDUyAxMyksIG9yaWVudGVkIHRvIHBlcnNvbiBhbmQgcGxhY2UgYnV0IHNsb3cgdG8gcmVjYWxsIGRhdGUuClZpdGFscyBvbiBhcnJpdmFsOiBUIDM5LjQgQyAob3JhbCksIEhSIDExOCwgQlAgODYvNTAgKE1BUCB+NjIpLCBSUiAyNiwgU3BPMiA5MSUgb24gcm9vbSBhaXIuCkhFRU5UOiBkcnkgbXVjb3VzIG1lbWJyYW5lcywgbm8gc2NsZXJhbCBpY3RlcnVzLCBubyBvcm9waGFyeW5nZWFsIGxlc2lvbnMuCk5lY2s6IHN1cHBsZSwgbm8gbHltcGhhZGVub3BhdGh5LCBubyBKVkQuCkNhcmRpYWM6IHRhY2h5Y2FyZGljLCByZWd1bGFyLCBubyBtdXJtdXJzLCBydWJzLCBvciBnYWxsb3BzOyBjYXBpbGxhcnkgcmVmaWxsIDQgc2Vjb25kcy4KUHVsbW9uYXJ5OiB0YWNoeXBuZWljLCBsdW5ncyBjbGVhciBiaWxhdGVyYWxseSB3aXRob3V0IHJhbGVzIG9yIHdoZWV6ZS4KQWJkb21lbjogc29mdCwgbm9uLXRlbmRlciwgbm9uLWRpc3RlbmRlZDsgc3VwcmFwdWJpYyB0ZW5kZXJuZXNzIG1pbGQgb24gZGVlcCBwYWxwYXRpb247IG5vIGZsYW5rIHRlbmRlcm5lc3M7IGJvd2VsIHNvdW5kcyBwcmVzZW50LgpHVTogZGVmZXJyZWQgKEZvbGV5IHBsYWNlZCwgZHJhaW5pbmcgY2xvdWR5IHVyaW5lKS4KRXh0cmVtaXRpZXM6IHdhcm0gYnV0IG1vdHRsZWQsIG5vIGVkZW1hLCBubyBjYWxmIHRlbmRlcm5lc3MuClNraW46IHdhcm0sIG5vIHJhc2gsIG5vIGFic2Nlc3MuCk5ldXJvOiBHQ1MgMTMgKEUzIFY0IE02KTsgY3JhbmlhbCBuZXJ2ZXMgZ3Jvc3NseSBpbnRhY3Q7IG5vIGZvY2FsIG1vdG9yIG9yIHNlbnNvcnkgZGVmaWNpdHM7IGdhaXQgZGVmZXJyZWQuCgpMQUJPUkFUT1JZOgpMYWN0YXRlIDQuMSBtbW9sL0wgKGRyYXduIDE0OjI1KS4gV0JDIDE3LjggdGhvdXNhbmQvdUwgd2l0aCA5MiUgbmV1dHJvcGhpbHMuIEhlbW9nbG9iaW4gMTMuMSwgcGxhdGVsZXRzIDE0MiB0aG91c2FuZC91TC4gU29kaXVtIDEzOCwgcG90YXNzaXVtIDQuNiwgY2hsb3JpZGUgMTAwLCBiaWNhcmJvbmF0ZSAxOCwgQlVOIDI4LCBjcmVhdGluaW5lIDEuNyAoYmFzZWxpbmUgMS4wIGZyb20gMjAyNi0wNC0xMiksIGdsdWNvc2UgMTQyLiBBU1QgMzgsIEFMVCAzMiwgYWxrYWxpbmUgcGhvc3BoYXRhc2UgOTYsIHRvdGFsIGJpbGlydWJpbiAxLjQuIElOUiAxLjEuClVyaW5hbHlzaXM6IGxldWtvY3l0ZSBlc3RlcmFzZSAzKywgbml0cml0ZXMgcG9zaXRpdmUsIGJhY3RlcmlhIG1hbnksIFdCQyA+IDEwMC9IUEYuCk1pZC1zdHJlYW0gdXJpbmUgY3VsdHVyZTogRXNjaGVyaWNoaWEgY29saSwgPiAxMDAsMDAwIENGVS9tTC4KU3VzY2VwdGliaWxpdHkgKHVyaW5lIGlzb2xhdGUpOiBjZWZ0cmlheG9uZSBTLCBjZWZ0YXppZGltZSBTLCBnZW50YW1pY2luIFMsIG1lcm9wZW5lbSBTLCBjaXByb2Zsb3hhY2luIFIsIFRNUC1TTVggUiwgRVNCTCBwaGVub3R5cGUgbm90IHlldCBmaW5hbGl6ZWQuCkJsb29kIGN1bHR1cmVzIHggMjogcGVuZGluZyBhdCB0aW1lIG9mIG5vdGUgKGRyYXduIDE0OjMwLCBub3QgeWV0ID4gMjRoIGluY3ViYXRpb24pLgpQcm9jYWxjaXRvbmluOiA2LjQgbmcvbUwuCgpJTUFHSU5HOgpDVCBhYmRvbWVuICsgcGVsdmlzIHdpdGhvdXQgY29udHJhc3QgKGNyZWF0aW5pbmUgZWxldmF0ZWQsIGNvbnRyYXN0IGRlZmVycmVkKTogbWlsZCBiaWxhdGVyYWwgaHlkcm9uZXBocm9zaXMgd2l0aG91dCBvYnZpb3VzIG9ic3RydWN0aW5nIHN0b25lLCBwcm9zdGF0ZSBlbmxhcmdlZCAoY29uc2lzdGVudCB3aXRoIGtub3duIEJQSCksIG5vIHBlcmluZXBocmljIGNvbGxlY3Rpb24sIG5vIGFic2Nlc3MuIE5vIGFjdXRlIGludHJhLWFiZG9taW5hbCBwYXRob2xvZ3kgYmV5b25kIHRoZSBwcm9zdGF0ZSBmaW5kaW5nLgpDWFI6IGNsZWFyLCBubyBpbmZpbHRyYXRlLCBubyBlZmZ1c2lvbi4KCkFTU0VTU01FTlQgQU5EIFBMQU46CjEuIFNldmVyZSBzZXBzaXMgZnJvbSBhIHVyaW5hcnkgc291cmNlLCB3aXRoIHNlcHRpYy1zaG9jayBwaHlzaW9sb2d5IChTZXBzaXMtMyk6IE1BUCA8IDY1IGFmdGVyIDMwIG1ML2tnIGNyeXN0YWxsb2lkLCBsYWN0YXRlID4gNCwgb3JnYW4tZHlzZnVuY3Rpb24gaW4gcmVuYWwgKENyIDEuNyB2cyAxLjAgYmFzZWxpbmUpLCByZXNwaXJhdG9yeSAoU3BPMiA5MSBvbiByb29tIGFpciksIGFuZCBjYXJkaW92YXNjdWxhciAodmFzb3ByZXNzb3ItZGVwZW5kZW50IE1BUCA8IDY1KS4gU09GQSBlc3RpbWF0ZWQgNy4gU291cmNlOiByZWN1cnJlbnQgRS4gY29saSB1cmluYXJ5IGluZmVjdGlvbiBzZWVkZWQgYnkgQlBILXJlbGF0ZWQgcmVzaWR1YWwgdXJpbmUuIEVhcmxpZXIgY2lwcm9mbG94YWNpbiA3LWRheSBjb3Vyc2UgdW5tYXNrZWQgcmVzaXN0YW5jZTsgY2lwcm8gbm93IGNvbmZpcm1lZCBSIG9uIGN1bHR1cmUuCiAgIFBsYW46IGNlZnRyaWF4b25lIDIgZyBJViBxMjRoIHN0YXJ0ZWQgMTQ6NTUgKEVTQkwgbm90IGZpbmFsaXplZCAtLSBpZiBFU0JMIGZsYWcgcmV0dXJucyBwb3NpdGl2ZSwgc3dpdGNoIHRvIG1lcm9wZW5lbSAxIGcgSVYgcThoKTsgYXZvaWQgcGlwLXRhem8gYW5kIGFtb3hpY2lsbGluIChwZW5pY2lsbGluIGFsbGVyZ3kpLiBOb3JlcGluZXBocmluZSB0aXRyYXRpb24gdG8gTUFQID49IDY1IGlmIGh5cG90ZW5zaW9uIHBlcnNpc3RzIHBvc3QtZmx1aWRzLiBJQ1UgYWRtaXNzaW9uLgoyLiBBY3V0ZSBraWRuZXkgaW5qdXJ5LCBLRElHTyBzdGFnZSAxIChDciAxLjcgdnMgMS4wIGJhc2VsaW5lKS4gUHJlLXJlbmFsIGNvbXBvbmVudCAoc2Vwc2lzICsgZGVoeWRyYXRpb24pIG1vc3QgbGlrZWx5OyBvYnN0cnVjdGl2ZSBjb21wb25lbnQgcG9zc2libGUgZ2l2ZW4gQlBIICsgYmlsYXRlcmFsIGh5ZHJvbmVwaHJvc2lzIG9uIENULgogICBQbGFuOiBob2xkIGxpc2lub3ByaWwgKEFDRS1pICsgQUtJKS4gUmVuYWwgZnVuY3Rpb24gcTEyaC4gRm9sZXkgYWxyZWFkeSBpbiBwbGFjZTsgaWYgaHlkcm9uZXBocm9zaXMgd29yc2VucywgdXJvbG9neSBjb25zdWx0IGZvciBjeXN0b3Njb3BpYyBkZWNvbXByZXNzaW9uLgozLiBIeXBveGVtaWMgcmVzcGlyYXRvcnkgZHlzZnVuY3Rpb24gKFNwTzIgOTEgb24gcm9vbSBhaXIsIFJSIDI2KSAtLSBhdHRyaWJ1dGVkIHRvIHNlcHNpcy1yZWxhdGVkIHdvcmsgb2YgYnJlYXRoaW5nIHJhdGhlciB0aGFuIHByaW1hcnkgcHVsbW9uYXJ5IHByb2Nlc3MgKGNsZWFyIENYUikuCiAgIFBsYW46IDIgTC9taW4gbmFzYWwgY2FubnVsYSB0byBrZWVwIFNwTzIgPj0gOTQsIHJlY2hlY2sgQUJHIGlmIG5vIGltcHJvdmVtZW50Lgo0LiBQZW5pY2lsbGluIGFsbGVyZ3kgKHVydGljYXJpYSArIGFuZ2lvZWRlbWEgMjAxOCkuIFJpc2s6IGNyb3NzLXJlYWN0aXZpdHkgd2l0aCBjZXBoYWxvc3BvcmlucyBpcyA8IDElIGZvciBjZWZ0cmlheG9uZTsgY2xlYXJlZCBmb3IgY2VmdHJpYXhvbmUgdXNlIGFmdGVyIGF0dGVuZGluZyByZXZpZXcuIENhcmJhcGVuZW1zIGFjY2VwdGFibGUgYXMgc2Vjb25kLWxpbmUuCgpQTEFOIChvcGVyYXRpb25hbCk6Ci0gSG91ci0xIHNlcHNpcyBidW5kbGUgY29tcGxldGUgKGN1bHR1cmVzIGRyYXduLCBsYWN0YXRlIG1lYXN1cmVkLCAzMCBtTC9rZyBjcnlzdGFsbG9pZCBib2x1cyBkZWxpdmVyZWQsIGFudGliaW90aWNzIHN0YXJ0ZWQpLgotIFRyZW5kIGxhY3RhdGUgYXQgMiBob3VycyBhbmQgNCBob3Vycy4KLSBJQ1UgYWRtaXNzaW9uIGZvciB2YXNvcHJlc3NvciBzdXBwb3J0IGFuZCBjb250aW51b3VzIG1vbml0b3JpbmcuCi0gRGFpbHkgU09GQSByZWFzc2Vzc21lbnQuCi0gVXJvbG9neSBjb25zdWx0IHRvbW9ycm93IG1vcm5pbmcgdG8gcGxhbiBwb3N0LWFjdXRlIHByb3N0YXRlIG1hbmFnZW1lbnQuCi0gSVYtdG8tUE8gYW50aWJpb3RpYyBzd2l0Y2ggZGVmZXJyZWQgdW50aWwgYWZlYnJpbGUgMjRoLCBvZmYgdmFzb3ByZXNzb3JzLCBhbmQgdG9sZXJhdGluZyBvcmFsIGludGFrZS4KClJFQ09NTUVOREFUSU9OUzoKLSBDb250aW51ZSBjZWZ0cmlheG9uZSBJViB0aHJvdWdoIGRheSA1IHRoZW4gcmVhc3Nlc3MgbmFycm93aW5nIGJhc2VkIG9uIGZpbmFsIHN1c2NlcHRpYmlsaXR5IChkZS1lc2NhbGF0ZSB0byBuaXRyb2Z1cmFudG9pbiAxMDAgbWcgUE8gQklEIGZvciBjb21wbGV0aW9uIGlmIHVuY29tcGxpY2F0ZWQgdXJpbmFyeSBkaXNlYXNlIGFuZCBjcmVhdGluaW5lIHJlY292ZXJzKS4KLSBVcm9sb2d5IGV2YWx1YXRpb24gZm9yIGRlZmluaXRpdmUgQlBIIG1hbmFnZW1lbnQgKFRVUlAgdnMgY29tYmluZWQgYWxwaGEtYmxvY2tlciArIDUtYWxwaGEtcmVkdWN0YXNlIGluaGliaXRvcikgdG8gcHJldmVudCBhbm90aGVyIHNlZWRlZCBVVEkuCi0gUmUtaW1hZ2Ugd2l0aCByZW5hbCB1bHRyYXNvdW5kIGF0IDQ4IGhvdXJzIHRvIGNvbmZpcm0gbm8gd29yc2VuaW5nIGh5ZHJvbmVwaHJvc2lzLgoKQ2xpbmljaWFuIHNpZ25hdHVyZTogRHIuIEFpc2hhIFBhdGVsLCBNRAo="
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "DocumentReference"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:15760204-f246-58a0-ac0f-99cbcd12bc72",
+      "resource": {
+        "resourceType": "CarePlan",
+        "status": "active",
+        "intent": "plan",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "734163000",
+                "display": "Care plan"
+              }
+            ],
+            "text": "Inpatient sepsis care plan"
+          }
+        ],
+        "title": "Urosepsis inpatient management plan",
+        "subject": {
+          "reference": "urn:uuid:b25c93d4-a3bd-55ab-b44c-860769e9b4c7"
+        },
+        "encounter": {
+          "reference": "urn:uuid:888e090b-e621-55a8-b431-62ea537ca6e8"
+        },
+        "period": {
+          "start": "2026-05-09T15:10:00-04:00"
+        },
+        "addresses": [
+          {
+            "reference": "urn:uuid:9e7835ab-264d-50bb-93e3-523a08744e2e"
+          }
+        ],
+        "activity": [
+          {
+            "detail": {
+              "status": "in-progress",
+              "description": "Continue ceftriaxone 2 g IV q24h for definitive therapy; maintain through hospital day 5 then reassess for IV-to-PO step-down based on culture-driven narrowing and clinical response."
+            }
+          },
+          {
+            "detail": {
+              "status": "in-progress",
+              "description": "Avoid piperacillin-tazobactam and amoxicillin given documented penicillin allergy (urticaria + periorbital angioedema 2018, high criticality)."
+            }
+          },
+          {
+            "detail": {
+              "status": "in-progress",
+              "description": "Avoid ciprofloxacin given culture-confirmed resistance on the May 2026 mid-stream urine isolate."
+            }
+          },
+          {
+            "detail": {
+              "status": "in-progress",
+              "description": "Norepinephrine titration to MAP >= 65 mmHg if hypotension persists after 30 mL/kg crystalloid bolus."
+            }
+          },
+          {
+            "detail": {
+              "status": "in-progress",
+              "description": "Repeat lactate at hour 2 and trend creatinine q12h; escalate to ICU continuous monitoring."
+            }
+          },
+          {
+            "detail": {
+              "status": "scheduled",
+              "description": "Urology consult to evaluate the BPH-driven post-void residual that likely seeded the recurrent E. coli urosepsis."
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "CarePlan"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:9e7835ab-264d-50bb-93e3-523a08744e2e",
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+              "code": "provisional"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "encounter-diagnosis"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "10001005",
+              "display": "Bacterial sepsis"
+            },
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10-cm",
+              "code": "A41.51",
+              "display": "Sepsis due to Escherichia coli"
+            }
+          ],
+          "text": "Suspected urosepsis (urinary source) with septic shock"
+        },
+        "subject": {
+          "reference": "urn:uuid:b25c93d4-a3bd-55ab-b44c-860769e9b4c7"
+        },
+        "encounter": {
+          "reference": "urn:uuid:888e090b-e621-55a8-b431-62ea537ca6e8"
+        },
+        "onsetDateTime": "2026-05-09",
+        "severity": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "24484000",
+              "display": "Severe"
+            }
+          ]
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Condition"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:e7c1a4a0-1234-5af6-8c9d-aaaa11112222",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "status": "current",
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "18842-5",
+              "display": "Discharge summary"
+            }
+          ],
+          "text": "Hospital discharge summary"
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/us/core/CodeSystem/us-core-documentreference-category",
+                "code": "clinical-note"
+              }
+            ]
+          }
+        ],
+        "subject": {
+          "reference": "urn:uuid:b25c93d4-a3bd-55ab-b44c-860769e9b4c7"
+        },
+        "context": {
+          "encounter": [
+            {
+              "reference": "urn:uuid:888e090b-e621-55a8-b431-62ea537ca6e8"
+            }
+          ]
+        },
+        "date": "2026-05-14T11:30:00-04:00",
+        "description": "Hospital discharge summary with hospital course, discharge disposition, follow-up plan, patient instructions.",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "language": "en",
+              "title": "Hospital discharge summary 2026-05-14",
+              "creation": "2026-05-14T11:30:00-04:00",
+              "data": "RElTQ0hBUkdFIFNVTU1BUlkKQXV0aG9yOiBBaXNoYSBQYXRlbCwgTUQsIEludGVybmFsIE1lZGljaW5lIC8gSG9zcGl0YWxpc3QKUGF0aWVudDogTWFyY3VzIFJleWVzLCA2NHlvIEJsYWNrIG1hbGUKQWRtaXNzaW9uOiAyMDI2LTA1LTA5IDE0OjA4IChFRCkgLT4gSUNVIDIwMjYtMDUtMDkgMTY6MzAgLT4gRmxvb3IgMjAyNi0wNS0xMSAxMDowMApEaXNjaGFyZ2U6IDIwMjYtMDUtMTQgMTE6MzAKClJFQVNPTiBGT1IgQURNSVNTSU9OOgpTZXZlcmUgc2Vwc2lzIGZyb20gYSB1cmluYXJ5IHNvdXJjZSB3aXRoIHNlcHRpYy1zaG9jayBwaHlzaW9sb2d5IGluIGEgcGF0aWVudCB3aXRoIHJlY3VycmVudCBFLiBjb2xpIFVUSSBvbiBhIGJhY2tkcm9wIG9mIGJlbmlnbiBwcm9zdGF0aWMgaHlwZXJwbGFzaWEuCgpIT1NQSVRBTCBDT1VSU0U6Ck1yLiBSZXllcyB3YXMgYWRtaXR0ZWQgZnJvbSB0aGUgRUQgaW4gc2VwdGljIHNob2NrIHdpdGggTUFQIDYyLCBsYWN0YXRlIDQuMSwgYW5kIENyIDEuNyAoYmFzZWxpbmUgMS4wKS4gVGhlIGhvdXItMSBzZXBzaXMgYnVuZGxlIHdhcyBjb21wbGV0ZWQgaW4gdGhlIEVELiBIZSByZWNlaXZlZCAzMCBtTC9rZyBjcnlzdGFsbG9pZCBib2x1cyBhbmQgc3RhcnRlZCBjZWZ0cmlheG9uZSAyIGcgSVYgcTI0aCBhdCAxNDo1NSBhZnRlciBibG9vZCBhbmQgdXJpbmUgY3VsdHVyZXMgd2VyZSBkcmF3bi4gTm9yZXBpbmVwaHJpbmUgd2FzIHRpdHJhdGVkIHRvIGEgdGFyZ2V0IE1BUCA+PSA2NSBzdGFydGluZyBhdCAxNTozMCBhbmQgd2VhbmVkIG9mZiBieSAyMDI2LTA1LTExIGF0IDA4OjAwLiBMYWN0YXRlIGNsZWFyZWQgZnJvbSA0LjEgdG8gMS42IG92ZXIgdGhlIGZpcnN0IDggaG91cnMuIEhlIHdhcyBhZG1pdHRlZCB0byB0aGUgSUNVIGZvciB2YXNvcHJlc3NvciBzdXBwb3J0IGFuZCBjb250aW51b3VzIG1vbml0b3JpbmcuIFRoZSBtaWQtc3RyZWFtIHVyaW5lIGN1bHR1cmUgY29uZmlybWVkIEVzY2hlcmljaGlhIGNvbGkgPiAxMDAsMDAwIENGVS9tTCB3aXRoIHN1c2NlcHRpYmlsaXR5IHRvIGNlZnRyaWF4b25lLCBjZWZ0YXppZGltZSwgZ2VudGFtaWNpbiwgYW5kIG1lcm9wZW5lbTsgcmVzaXN0YW5jZSB0byBjaXByb2Zsb3hhY2luIGFuZCBUTVAtU01YLiBCbG9vZCBjdWx0dXJlcyAoeDIpIGZpbmFsaXplZCBhcyBubyBncm93dGggYXQgNSBkYXlzLiBFU0JMIHBoZW5vdHlwZSB3YXMgbmVnYXRpdmUsIHNvIGNlZnRyaWF4b25lIHdhcyBjb250aW51ZWQgdGhyb3VnaCBob3NwaXRhbCBkYXkgNS4gSGUgY29tcGxldGVkIGFuIGFkZGl0aW9uYWwgNy1kYXkgY291cnNlIG9mIG5pdHJvZnVyYW50b2luIDEwMCBtZyBQTyBCSUQgYXQgaG9tZSBmb3IgdG90YWwgYW50aWJpb3RpYyBjb3ZlcmFnZSBvZiAxMiBkYXlzLgpSZW5hbCBmdW5jdGlvbiByZWNvdmVyZWQ6IGNyZWF0aW5pbmUgcmV0dXJuZWQgdG8gMS4wIGJ5IGhvc3BpdGFsIGRheSA0LiBMaXNpbm9wcmlsIHdhcyByZXN0YXJ0ZWQgYXQgMTAgbWcgUE8gZGFpbHkgb24gZGF5IDUgd2l0aCBhIHBsYW4gdG8gdXAtdGl0cmF0ZSB0byAyMCBtZyBpbiB0aGUgb3V0cGF0aWVudCBzZXR0aW5nIG9uY2UgcmVuYWwgZnVuY3Rpb24gd2FzIHN0YWJsZS4gQmlsYXRlcmFsIG1pbGQgaHlkcm9uZXBocm9zaXMgb24gQ1Qgd2FzIHJlYXNzZXNzZWQgYnkgcmVuYWwgdWx0cmFzb3VuZCBvbiBkYXkgMyBhbmQgc2hvd2VkIHJlc29sdXRpb24uIFVyb2xvZ3kgZXZhbHVhdGVkIHRoZSBwYXRpZW50IG9uIGRheSA0IGFuZCBhZ3JlZWQgd2l0aCBjb250aW51ZWQgbWVkaWNhbCBtYW5hZ2VtZW50IG9mIEJQSCAoY29tYmluYXRpb24gdGFtc3Vsb3NpbiArIGZpbmFzdGVyaWRlKSBhcyBhbiBvdXRwYXRpZW50LCB3aXRoIFRVUlAgaGVsZCBpbiByZXNlcnZlIGlmIHN5bXB0b21zIHJlY3VyLgpObyBjb21wbGljYXRpb25zIGR1cmluZyBob3NwaXRhbGl6YXRpb24uIE5vIG5ldyBhcnJoeXRobWlhcy4gTm8gdHJhbnNmdXNpb25zIHJlcXVpcmVkLiBObyBjYXRoZXRlci1yZWxhdGVkIGNvbXBsaWNhdGlvbnM7IEZvbGV5IGRpc2NvbnRpbnVlZCBvbiBkYXkgNCB3aXRoIGEgc3VjY2Vzc2Z1bCB2b2lkaW5nIHRyaWFsLgoKRElTQ0hBUkdFIERJQUdOT1NFUzoKMS4gU2V2ZXJlIHNlcHNpcyBmcm9tIHVyaW5hcnkgc291cmNlLCByZXNvbHZlZC4KMi4gU2VwdGljIHNob2NrLCByZXNvbHZlZC4KMy4gQWN1dGUga2lkbmV5IGluanVyeSAoS0RJR08gc3RhZ2UgMSkgc2Vjb25kYXJ5IHRvIHNlcHNpcywgcmVzb2x2ZWQuCjQuIFJlY3VycmVudCBFLiBjb2xpIHVyaW5hcnkgdHJhY3QgaW5mZWN0aW9uLgo1LiBCZW5pZ24gcHJvc3RhdGljIGh5cGVycGxhc2lhLgo2LiBFc3NlbnRpYWwgaHlwZXJ0ZW5zaW9uLgo3LiBQZW5pY2lsbGluIGFsbGVyZ3kgKHVydGljYXJpYSArIGFuZ2lvZWRlbWEpLgoKRElTQ0hBUkdFIERJU1BPU0lUSU9OOgpob21lX3dpdGhfY2FyZSAoaG9tZSB3aXRoIGhvbWUtaGVhbHRoIG51cnNpbmcgZm9yIGZpcnN0IElWLXRvLVBPIHRyYW5zaXRpb24gYW5kIEJQL0NyIG1vbml0b3JpbmcgYXQgZGF5IDcpLgoKRElTQ0hBUkdFIE1FRElDQVRJT05TOgotIE5pdHJvZnVyYW50b2luIDEwMCBtZyBQTyBCSUQgZm9yIDcgbW9yZSBkYXlzIChzdGFydGVkIDIwMjYtMDUtMTIgdG8gY29tcGxldGUgMTItZGF5IHRvdGFsIGFudGliaW90aWMgY291cnNlKS4KLSBUYW1zdWxvc2luIDAuNCBtZyBQTyBkYWlseSwgY29udGludWUuCi0gRmluYXN0ZXJpZGUgNSBtZyBQTyBkYWlseSwgbmV3IChhZGRlZCBieSB1cm9sb2d5IGZvciBCUEgpLgotIExpc2lub3ByaWwgMTAgbWcgUE8gZGFpbHksIHJlc3RhcnRlZCAod2FzIDIwIG1nIHByZS1hZG1pc3Npb247IHVwLXRpdHJhdGlvbiBkZWZlcnJlZCB0byBvdXRwYXRpZW50IFBDUCBhdCAxLXdlZWsgdmlzaXQpLgotIEFjZXRhbWlub3BoZW4gNTAwIG1nIFBPIGV2ZXJ5IDYgaG91cnMgUFJOLCBtYXggMyBnIHBlciBkYXkgKHJlbmFsLWZyaWVuZGx5IGRvc2UpLgoKUEFUSUVOVCBJTlNUUlVDVElPTlM6Ci0gVGFrZSBuaXRyb2Z1cmFudG9pbiB3aXRoIGZvb2QgYXQgdGhlIHNhbWUgdGltZSBlYWNoIG1vcm5pbmcgYW5kIGV2ZW5pbmc7IGZpbmlzaCB0aGUgZnVsbCA3LWRheSBjb3Vyc2UgZXZlbiBpZiB5b3UgZmVlbCBiZXR0ZXIuCi0gRHJpbmsgYXQgbGVhc3QgOCBjdXBzIG9mIHdhdGVyIHBlciBkYXkgdG8gZmx1c2ggdGhlIHVyaW5hcnkgdHJhY3Q7IGF2b2lkIGJsYWRkZXIgaXJyaXRhbnRzIChjYWZmZWluZSwgYWxjb2hvbCkuCi0gV2F0Y2ggZm9yIHRoZSBmb2xsb3dpbmcgcmV0dXJuLXRvLUVEIHJlZCBmbGFnczogZmV2ZXIgYWJvdmUgMzguMyBDLCByaWdvcnMsIGZsYW5rIHBhaW4sIHNldmVyZSBiYWNrIHBhaW4sIGJsb29kIGluIHVyaW5lLCBkZWNyZWFzZWQgdXJpbmUgb3V0cHV0LCBjaGVzdCBwYWluLCBzaG9ydG5lc3Mgb2YgYnJlYXRoLCBvciBuZXcgY29uZnVzaW9uLgotIERvIG5vdCBsaWZ0IG1vcmUgdGhhbiAxMCBwb3VuZHMgZm9yIHRoZSBmaXJzdCAzIGRheXMgYXQgaG9tZTsgcmVzdW1lIG5vcm1hbCBhY3Rpdml0eSBncmFkdWFsbHkgYXMgdG9sZXJhdGVkLgotIFRha2UgYmxvb2QgcHJlc3N1cmUgZWFjaCBtb3JuaW5nIGF0IGhvbWU7IGlmIHN5c3RvbGljID4gMTYwIG9yIDwgMTAwIG9uIHR3byBjb25zZWN1dGl2ZSByZWFkaW5ncywgY2FsbCBQQ1AuCi0gQ29udGludWUgdG8gYXZvaWQgcGVuaWNpbGxpbi1jbGFzcyBhbnRpYmlvdGljczsgdGhlIG5ldyBhbnRpYmlvdGljIChuaXRyb2Z1cmFudG9pbikgaXMgc2FmZS4KCkZPTExPVy1VUCBQTEFOOgotIFByaW1hcnkgY2FyZSB2aXNpdCB3aXRoIERyLiBMaXUgKFBDUCkgd2l0aGluIDcgZGF5cyBvZiBkaXNjaGFyZ2UgZm9yIGJsb29kIHByZXNzdXJlIGNoZWNrLCBjcmVhdGluaW5lIHJlY2hlY2ssIGFuZCBsaXNpbm9wcmlsIHVwLXRpdHJhdGlvbi4KLSBVcm9sb2d5IGZvbGxvdy11cCBpbiA0IHdlZWtzIHRvIHJlYXNzZXNzIEJQSCBzeW1wdG9tcyBvbiBjb21iaW5lZCB0YW1zdWxvc2luICsgZmluYXN0ZXJpZGU7IFRVUlAgZGlzY3Vzc2VkIGFzIGZ1dHVyZSBvcHRpb24uCi0gSG9tZS1oZWFsdGggbnVyc2luZyB2aXNpdHMgb24gZGF5cyAxLCAzLCBhbmQgNSBmb3Igdml0YWwtc2lnbiBhbmQgYWRoZXJlbmNlIGNoZWNrcy4KLSBSZXBlYXQgdXJpbmUgY3VsdHVyZSBhdCB0aGUgZW5kIG9mIHRoZSBuaXRyb2Z1cmFudG9pbiBjb3Vyc2UgdG8gY29uZmlybSBjbGVhcmFuY2UuCi0gUGhhcm1hY3k6IG1lZGljYXRpb24gcmVjb25jaWxpYXRpb24gYWxyZWFkeSBjb21wbGV0ZWQgYXQgZGlzY2hhcmdlIHdpdGggdGhlIHBhdGllbnQncyB3aWZlIHByZXNlbnQuCgpSRUNPTU1FTkRBVElPTlMgRk9SIFBDUDoKLSBSZXN0YXJ0IGZ1bGwtZG9zZSBsaXNpbm9wcmlsICgyMCBtZyBQTyBkYWlseSkgb25jZSBvdXRwYXRpZW50IGNyZWF0aW5pbmUgY29uZmlybWVkIGF0IGJhc2VsaW5lICgxLjAgKy8tIDAuMSkgb24gdGhlIDEtd2VlayByZWNoZWNrLgotIERvY3VtZW50IHRoZSBwZW5pY2lsbGluIGFsbGVyZ3kgZW50cnkgYXMgY29uZmlybWVkICh1cnRpY2FyaWEgKyBhbmdpb2VkZW1hKSBhbmQgYWRkIGNpcHJvZmxveGFjaW4gcmVzaXN0YW5jZSBub3RlIHRvIHRoZSBjaGFydCBzbyBpdCBpbmZvcm1zIGZ1dHVyZSBlbXBpcmljIGNvdmVyYWdlLgotIENvbnNpZGVyIHNjcmVlbmluZyBmb3IgZGlhYmV0ZXMgZ2l2ZW4gdGhlIGhpc3Rvcnkgb2YgcmVjdXJyZW50IFVUSSBhbmQgdGhlIG5ldyBmaW5hc3RlcmlkZSAoSGJBMWMgYXQgbmV4dCB2aXNpdCkuCgpDbGluaWNpYW4gc2lnbmF0dXJlOiBEci4gQWlzaGEgUGF0ZWwsIE1ECg=="
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "DocumentReference"
+      }
+    }
+  ]
+}

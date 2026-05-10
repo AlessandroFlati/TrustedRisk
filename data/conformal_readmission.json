@@ -1,0 +1,21 @@
+{
+  "calibrated_at_iso": "2026-04-30T06:15:55.340908+00:00",
+  "n_total": 5000,
+  "n_calibration_per_track": 2500,
+  "target_coverage": 0.9,
+  "binary_one_minus_p": {
+    "quantile_threshold": 0.766,
+    "empirical_coverage_calibration": 0.9156,
+    "empirical_coverage_validation": 0.9156
+  },
+  "abs_residual": {
+    "quantile_threshold": 0.0812,
+    "empirical_coverage_calibration": 0.9004,
+    "empirical_coverage_validation": 0.8884
+  },
+  "rationale": "Synthetic IID Beta-Binomial cohort matching the W1 5-bin calibration marginals; 5,000 samples; 50/50 calibration/validation split. Validation-fold coverage is the marginal guarantee the runtime promises.",
+  "references": [
+    "Vovk V, Gammerman A, Shafer G. Algorithmic Learning in a Random World. 2nd ed. Springer (2022).",
+    "Angelopoulos AN, Bates S. arXiv:2107.07511 (2022)."
+  ]
+}

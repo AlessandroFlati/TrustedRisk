@@ -1,0 +1,1907 @@
+{
+  "bundle_id": "ed_acute",
+  "tool": "compute_clinical_deterioration_score",
+  "n_cases": 50,
+  "cases": [
+    {
+      "name": "news2_case_000",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 33,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 128,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 91,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 87,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 38.95337136702636,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "V",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_001",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 14,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 79,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 98,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 140,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 36.8871575283857,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "A",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_002",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 22,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 87,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 98,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 114,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 37.199653219753436,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "A",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_003",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 13,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 70,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 98,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 136,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 37.08743287251467,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "A",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_004",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 16,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 63,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 97,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 116,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 37.36559872749091,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "A",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_005",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 19,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 74,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 99,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 138,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 36.63082560810694,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "A",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_006",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 13,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 66,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 97,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 111,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 36.67413473310569,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "A",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_007",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 18,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 77,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 97,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 133,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 37.44872163103557,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "A",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_008",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 15,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 94,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 98,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 116,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 37.292687118984766,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "A",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_009",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 28,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 122,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 92,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 81,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 38.9995447971191,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "V",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_010",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 15,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 70,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 98,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 114,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 36.598441564719764,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "A",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_011",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 33,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 133,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 90,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 90,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 39.19161285089733,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "V",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_012",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 15,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 92,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 98,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 113,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 37.48781380981636,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "A",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_013",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 33,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 131,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 90,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 88,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 39.13423972469029,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "V",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_014",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 30,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 136,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 90,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 93,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 38.661137710037565,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "V",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_015",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 34,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 127,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 89,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 94,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 38.75540377261611,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "P",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_016",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 12,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 69,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 99,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 114,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 37.21742712240199,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "A",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_017",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 22,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 62,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 99,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 136,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 36.363565014786516,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "A",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_018",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 18,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 67,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 95,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 138,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 37.31699679082079,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "A",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_019",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 16,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 67,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 97,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 120,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 36.637963131763144,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "A",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_020",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 19,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 85,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 95,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 139,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 36.734596740775935,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "A",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_021",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 22,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 60,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 99,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 116,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 36.425002411011725,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "A",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_022",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 32,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 123,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 90,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 87,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 38.616746905564256,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "P",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_023",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 29,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 134,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 91,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 90,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 38.922526672515566,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "V",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_024",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 16,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 74,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 96,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 145,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 37.33281964072815,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "A",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_025",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 20,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 81,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 99,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 124,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 36.461117989205704,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "A",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_026",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 21,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 66,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 95,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 111,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 36.473433389656456,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "A",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_027",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 19,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 88,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 97,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 113,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 36.46974558184819,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "A",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_028",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 12,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 68,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 97,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 140,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 36.604215911442644,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "A",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_029",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 30,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 130,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 92,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 94,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 39.15524601204548,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "P",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_030",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 16,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 93,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 98,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 140,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 36.324575439411674,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "A",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_031",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 35,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 137,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 88,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 83,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 38.52064934494739,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "V",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_032",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 17,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 62,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 95,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 113,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 36.49558672668564,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "A",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_033",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 33,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 122,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 89,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 90,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 39.393689482861824,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "V",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_034",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 18,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 88,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 99,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 116,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 37.402975624403254,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "A",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_035",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 33,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 129,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 89,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 88,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 38.80683217182623,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "V",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_036",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 21,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 80,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 96,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 123,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 36.70881158372708,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "A",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_037",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 20,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 89,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 99,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 114,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 36.6259271496091,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "A",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_038",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 18,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 87,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 98,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 132,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 37.12901948345852,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "A",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_039",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 13,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 61,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 99,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 117,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 37.00228565447653,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "A",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_040",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 29,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 132,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 88,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 81,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 39.012221790236254,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "V",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_041",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 14,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 61,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 96,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 144,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 36.30580437371957,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "A",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_042",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 19,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 60,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 98,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 122,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 36.32471732861122,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "A",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_043",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 18,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 90,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 97,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 128,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 37.33875873248987,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "A",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_044",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 21,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 94,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 96,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 110,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 36.59879165222056,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "A",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_045",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 18,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 89,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 96,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 119,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 36.8696950349711,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "A",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_046",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 21,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 75,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 99,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 113,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 36.4708984865163,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "A",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_047",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 13,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 94,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 96,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 142,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 37.414490015112996,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "A",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_048",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 21,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 78,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 97,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 125,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 36.566846233667846,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "A",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "news2_case_049",
+      "input": {
+        "vital_signs": [
+          {
+            "type": "respiratory_rate",
+            "value": 30,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "heart_rate",
+            "value": 122,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "spo2",
+            "value": 91,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "systolic_bp",
+            "value": 82,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "temperature",
+            "value": 39.37629245928522,
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          },
+          {
+            "type": "consciousness",
+            "value": "P",
+            "observed_at": "2026-04-28T14:09:26.846688+00:00"
+          }
+        ]
+      },
+      "schema_only": true
+    }
+  ]
+}

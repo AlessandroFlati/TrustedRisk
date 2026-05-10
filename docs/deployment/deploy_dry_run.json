@@ -1,0 +1,153 @@
+{
+  "captured_at_iso": "2026-04-30 07:43 UTC",
+  "n_services": 18,
+  "n_ok": 18,
+  "n_fail": 0,
+  "duplicate_service_names": [],
+  "rows": [
+    {
+      "service_name": "trustedrisk-mcp",
+      "agent_module": "mcp_server.server:build_http_app",
+      "import_ok": true,
+      "healthz_status": 200,
+      "agent_card_status": 200,
+      "error": null
+    },
+    {
+      "service_name": "trustedrisk-discharge",
+      "agent_module": "apps.specialist_discharge.server:app",
+      "import_ok": true,
+      "healthz_status": 200,
+      "agent_card_status": 200,
+      "error": null
+    },
+    {
+      "service_name": "trustedrisk-acute",
+      "agent_module": "apps.specialist_acute.server:app",
+      "import_ok": true,
+      "healthz_status": 200,
+      "agent_card_status": 200,
+      "error": null
+    },
+    {
+      "service_name": "trustedrisk-evidence",
+      "agent_module": "apps.specialist_evidence.server:app",
+      "import_ok": true,
+      "healthz_status": 200,
+      "agent_card_status": 200,
+      "error": null
+    },
+    {
+      "service_name": "trustedrisk-population",
+      "agent_module": "apps.specialist_population.server:app",
+      "import_ok": true,
+      "healthz_status": 200,
+      "agent_card_status": 200,
+      "error": null
+    },
+    {
+      "service_name": "trustedrisk-pedi-mh",
+      "agent_module": "apps.specialist_pedi_mh.server:app",
+      "import_ok": true,
+      "healthz_status": 200,
+      "agent_card_status": 200,
+      "error": null
+    },
+    {
+      "service_name": "trustedrisk-pa",
+      "agent_module": "apps.specialist_pa.server:app",
+      "import_ok": true,
+      "healthz_status": 200,
+      "agent_card_status": 200,
+      "error": null
+    },
+    {
+      "service_name": "trustedrisk-scribe",
+      "agent_module": "apps.specialist_scribe.server:app",
+      "import_ok": true,
+      "healthz_status": 200,
+      "agent_card_status": 200,
+      "error": null
+    },
+    {
+      "service_name": "trustedrisk-patient",
+      "agent_module": "apps.specialist_patient.server:app",
+      "import_ok": true,
+      "healthz_status": 200,
+      "agent_card_status": 200,
+      "error": null
+    },
+    {
+      "service_name": "trustedrisk-coder",
+      "agent_module": "apps.specialist_coder.server:app",
+      "import_ok": true,
+      "healthz_status": 200,
+      "agent_card_status": 200,
+      "error": null
+    },
+    {
+      "service_name": "trustedrisk-pgx",
+      "agent_module": "apps.specialist_pgx.server:app",
+      "import_ok": true,
+      "healthz_status": 200,
+      "agent_card_status": 200,
+      "error": null
+    },
+    {
+      "service_name": "trustedrisk-preadmit",
+      "agent_module": "apps.specialist_preadmit.server:app",
+      "import_ok": true,
+      "healthz_status": 200,
+      "agent_card_status": 200,
+      "error": null
+    },
+    {
+      "service_name": "trustedrisk-quality",
+      "agent_module": "apps.specialist_quality.server:app",
+      "import_ok": true,
+      "healthz_status": 200,
+      "agent_card_status": 200,
+      "error": null
+    },
+    {
+      "service_name": "trustedrisk-pophealth",
+      "agent_module": "apps.specialist_pophealth.server:app",
+      "import_ok": true,
+      "healthz_status": 200,
+      "agent_card_status": 200,
+      "error": null
+    },
+    {
+      "service_name": "trustedrisk-appeals",
+      "agent_module": "apps.specialist_appeals.server:app",
+      "import_ok": true,
+      "healthz_status": 200,
+      "agent_card_status": 200,
+      "error": null
+    },
+    {
+      "service_name": "trustedrisk-multimodal",
+      "agent_module": "apps.specialist_multimodal.server:app",
+      "import_ok": true,
+      "healthz_status": 200,
+      "agent_card_status": 200,
+      "error": null
+    },
+    {
+      "service_name": "trustedrisk-composer",
+      "agent_module": "apps.composer.server:app",
+      "import_ok": true,
+      "healthz_status": 200,
+      "agent_card_status": 200,
+      "error": null
+    },
+    {
+      "service_name": "trustedrisk-cds-hooks",
+      "agent_module": "apps.cds_hooks.server:app",
+      "import_ok": true,
+      "healthz_status": 200,
+      "agent_card_status": 404,
+      "error": null
+    }
+  ]
+}

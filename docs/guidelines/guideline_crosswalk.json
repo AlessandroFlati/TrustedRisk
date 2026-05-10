@@ -1,0 +1,1167 @@
+{
+  "n_rows": 145,
+  "n_tools_total": 145,
+  "n_with_specific_guideline": 61,
+  "rows": [
+    {
+      "tool_name": "compute_antibiotic_de_escalation",
+      "bundle": "antimicrobial",
+      "guideline_source": "IDSA / ATS clinical guidelines",
+      "guideline_url": "https://www.idsociety.org/practice-guideline/practice-guidelines/",
+      "year": 2024,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_empiric_antibiotic_selection",
+      "bundle": "antimicrobial",
+      "guideline_source": "IDSA / ATS clinical guidelines",
+      "guideline_url": "https://www.idsociety.org/practice-guideline/practice-guidelines/",
+      "year": 2024,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_coding_audit",
+      "bundle": "auto_coding",
+      "guideline_source": "ICD-10-CM Official Guidelines + AMA CPT",
+      "guideline_url": "https://www.cms.gov/medicare/coding-billing/icd-10-codes",
+      "year": 2024,
+      "level_of_evidence": "Level I - operational policy"
+    },
+    {
+      "tool_name": "compute_cpt_suggest",
+      "bundle": "auto_coding",
+      "guideline_source": "ICD-10-CM Official Guidelines + AMA CPT",
+      "guideline_url": "https://www.cms.gov/medicare/coding-billing/icd-10-codes",
+      "year": 2024,
+      "level_of_evidence": "Level I - operational policy"
+    },
+    {
+      "tool_name": "compute_hcpcs_suggest",
+      "bundle": "auto_coding",
+      "guideline_source": "ICD-10-CM Official Guidelines + AMA CPT",
+      "guideline_url": "https://www.cms.gov/medicare/coding-billing/icd-10-codes",
+      "year": 2024,
+      "level_of_evidence": "Level I - operational policy"
+    },
+    {
+      "tool_name": "compute_icd10_suggest",
+      "bundle": "auto_coding",
+      "guideline_source": "ICD-10-CM Official Guidelines + AMA CPT",
+      "guideline_url": "https://www.cms.gov/medicare/coding-billing/icd-10-codes",
+      "year": 2024,
+      "level_of_evidence": "Level I - operational policy"
+    },
+    {
+      "tool_name": "compute_cha2ds2_vasc",
+      "bundle": "cardiology_depth",
+      "guideline_source": "Lip et al. 2010 - refined stroke risk in non-valvular AF",
+      "guideline_url": "https://doi.org/10.1378/chest.09-1584",
+      "year": 2010,
+      "level_of_evidence": "Level I - large cohort + ESC 2020"
+    },
+    {
+      "tool_name": "compute_grace_acs_score",
+      "bundle": "cardiology_depth",
+      "guideline_source": "GRACE Investigators 2003 / 2014",
+      "guideline_url": "https://doi.org/10.1136/heart.89.7.755",
+      "year": 2014,
+      "level_of_evidence": "Level I - large registry"
+    },
+    {
+      "tool_name": "compute_has_bled",
+      "bundle": "cardiology_depth",
+      "guideline_source": "Pisters et al. 2010 - HAS-BLED score",
+      "guideline_url": "https://doi.org/10.1378/chest.10-0134",
+      "year": 2010,
+      "level_of_evidence": "Level I - prospective derivation"
+    },
+    {
+      "tool_name": "compute_timi_acs_score",
+      "bundle": "cardiology_depth",
+      "guideline_source": "Antman et al. 2000 - TIMI risk score for UA/NSTEMI",
+      "guideline_url": "https://doi.org/10.1001/jama.284.7.835",
+      "year": 2000,
+      "level_of_evidence": "Level I - derivation + validation"
+    },
+    {
+      "tool_name": "compute_clinical_ner",
+      "bundle": "chart_intelligence",
+      "guideline_source": "AHRQ NLP guidelines for clinical text",
+      "guideline_url": "https://digital.ahrq.gov/",
+      "year": 2024,
+      "level_of_evidence": "Level II - methodological"
+    },
+    {
+      "tool_name": "compute_negation_temporal",
+      "bundle": "chart_intelligence",
+      "guideline_source": "AHRQ NLP guidelines for clinical text",
+      "guideline_url": "https://digital.ahrq.gov/",
+      "year": 2024,
+      "level_of_evidence": "Level II - methodological"
+    },
+    {
+      "tool_name": "compute_structure_discharge_summary",
+      "bundle": "chart_intelligence",
+      "guideline_source": "AHRQ NLP guidelines for clinical text",
+      "guideline_url": "https://digital.ahrq.gov/",
+      "year": 2024,
+      "level_of_evidence": "Level II - methodological"
+    },
+    {
+      "tool_name": "compute_admission_hnp_draft",
+      "bundle": "clinical_documentation",
+      "guideline_source": "Joint Commission documentation standards",
+      "guideline_url": "https://www.jointcommission.org/standards/",
+      "year": 2024,
+      "level_of_evidence": "Level I - operational policy"
+    },
+    {
+      "tool_name": "compute_consult_letter_draft",
+      "bundle": "clinical_documentation",
+      "guideline_source": "Joint Commission documentation standards",
+      "guideline_url": "https://www.jointcommission.org/standards/",
+      "year": 2024,
+      "level_of_evidence": "Level I - operational policy"
+    },
+    {
+      "tool_name": "compute_discharge_summary_draft",
+      "bundle": "clinical_documentation",
+      "guideline_source": "Joint Commission documentation standards",
+      "guideline_url": "https://www.jointcommission.org/standards/",
+      "year": 2024,
+      "level_of_evidence": "Level I - operational policy"
+    },
+    {
+      "tool_name": "compute_progress_note_draft",
+      "bundle": "clinical_documentation",
+      "guideline_source": "Joint Commission documentation standards",
+      "guideline_url": "https://www.jointcommission.org/standards/",
+      "year": 2024,
+      "level_of_evidence": "Level I - operational policy"
+    },
+    {
+      "tool_name": "compute_care_gap_detector",
+      "bundle": "clinical_workflow",
+      "guideline_source": "AHRQ National Quality Forum measures",
+      "guideline_url": "https://www.qualityforum.org/Measures_Reports_Tools.aspx",
+      "year": 2024,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_medication_adherence_predictor",
+      "bundle": "clinical_workflow",
+      "guideline_source": "AHRQ National Quality Forum measures",
+      "guideline_url": "https://www.qualityforum.org/Measures_Reports_Tools.aspx",
+      "year": 2024,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_order_set",
+      "bundle": "clinical_workflow",
+      "guideline_source": "AHRQ National Quality Forum measures",
+      "guideline_url": "https://www.qualityforum.org/Measures_Reports_Tools.aspx",
+      "year": 2024,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_prom_influence",
+      "bundle": "clinical_workflow",
+      "guideline_source": "AHRQ National Quality Forum measures",
+      "guideline_url": "https://www.qualityforum.org/Measures_Reports_Tools.aspx",
+      "year": 2024,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_resolve_patient_from_query",
+      "bundle": "context_resolution",
+      "guideline_source": "SMART on FHIR + SHARP launch context",
+      "guideline_url": "https://hl7.org/fhir/smart-app-launch/",
+      "year": 2022,
+      "level_of_evidence": "Level I - standards body"
+    },
+    {
+      "tool_name": "compute_counterfactual_explanation",
+      "bundle": "core_discharge",
+      "guideline_source": "AHRQ HCUP HRRP cohort",
+      "guideline_url": "https://www.hcup-us.ahrq.gov/reports/statbriefs/sb248.jsp",
+      "year": 2019,
+      "level_of_evidence": "Level III - retrospective cohort"
+    },
+    {
+      "tool_name": "compute_decision_utility",
+      "bundle": "core_discharge",
+      "guideline_source": "AHRQ HCUP HRRP cohort",
+      "guideline_url": "https://www.hcup-us.ahrq.gov/reports/statbriefs/sb248.jsp",
+      "year": 2019,
+      "level_of_evidence": "Level III - retrospective cohort"
+    },
+    {
+      "tool_name": "compute_discharge_counseling",
+      "bundle": "core_discharge",
+      "guideline_source": "AHRQ HCUP HRRP cohort",
+      "guideline_url": "https://www.hcup-us.ahrq.gov/reports/statbriefs/sb248.jsp",
+      "year": 2019,
+      "level_of_evidence": "Level III - retrospective cohort"
+    },
+    {
+      "tool_name": "compute_fairness_audit",
+      "bundle": "core_discharge",
+      "guideline_source": "AHRQ HCUP HRRP cohort",
+      "guideline_url": "https://www.hcup-us.ahrq.gov/reports/statbriefs/sb248.jsp",
+      "year": 2019,
+      "level_of_evidence": "Level III - retrospective cohort"
+    },
+    {
+      "tool_name": "compute_lab_trend_analysis",
+      "bundle": "core_discharge",
+      "guideline_source": "AHRQ HCUP HRRP cohort",
+      "guideline_url": "https://www.hcup-us.ahrq.gov/reports/statbriefs/sb248.jsp",
+      "year": 2019,
+      "level_of_evidence": "Level III - retrospective cohort"
+    },
+    {
+      "tool_name": "compute_medication_reconciliation",
+      "bundle": "core_discharge",
+      "guideline_source": "AHRQ HCUP HRRP cohort",
+      "guideline_url": "https://www.hcup-us.ahrq.gov/reports/statbriefs/sb248.jsp",
+      "year": 2019,
+      "level_of_evidence": "Level III - retrospective cohort"
+    },
+    {
+      "tool_name": "compute_readmission_risk",
+      "bundle": "core_discharge",
+      "guideline_source": "AHRQ HCUP Statistical Brief #248 (HRRP cohort)",
+      "guideline_url": "https://www.hcup-us.ahrq.gov/reports/statbriefs/sb248.jsp",
+      "year": 2019,
+      "level_of_evidence": "Level III - retrospective cohort"
+    },
+    {
+      "tool_name": "detect_phi",
+      "bundle": "core_discharge",
+      "guideline_source": "AHRQ HCUP HRRP cohort",
+      "guideline_url": "https://www.hcup-us.ahrq.gov/reports/statbriefs/sb248.jsp",
+      "year": 2019,
+      "level_of_evidence": "Level III - retrospective cohort"
+    },
+    {
+      "tool_name": "detect_polypharmacy_concerns",
+      "bundle": "core_discharge",
+      "guideline_source": "AHRQ HCUP HRRP cohort",
+      "guideline_url": "https://www.hcup-us.ahrq.gov/reports/statbriefs/sb248.jsp",
+      "year": 2019,
+      "level_of_evidence": "Level III - retrospective cohort"
+    },
+    {
+      "tool_name": "ground_claim",
+      "bundle": "core_discharge",
+      "guideline_source": "AHRQ HCUP HRRP cohort",
+      "guideline_url": "https://www.hcup-us.ahrq.gov/reports/statbriefs/sb248.jsp",
+      "year": 2019,
+      "level_of_evidence": "Level III - retrospective cohort"
+    },
+    {
+      "tool_name": "compute_apache_ii_score",
+      "bundle": "critical_care",
+      "guideline_source": "Knaus et al. 1985 - APACHE II severity of disease",
+      "guideline_url": "https://doi.org/10.1097/00003246-198510000-00009",
+      "year": 1985,
+      "level_of_evidence": "Level I - large cohort"
+    },
+    {
+      "tool_name": "compute_meld_score",
+      "bundle": "critical_care",
+      "guideline_source": "Kamath et al. 2007 - MELD-Na update",
+      "guideline_url": "https://doi.org/10.1056/NEJMoa0801209",
+      "year": 2007,
+      "level_of_evidence": "Level I - validation cohort"
+    },
+    {
+      "tool_name": "compute_rifle_aki_classification",
+      "bundle": "critical_care",
+      "guideline_source": "ADQI Group 2004 - RIFLE consensus",
+      "guideline_url": "https://doi.org/10.1186/cc2872",
+      "year": 2004,
+      "level_of_evidence": "Level I - international consensus"
+    },
+    {
+      "tool_name": "compute_sofa_score",
+      "bundle": "critical_care",
+      "guideline_source": "Singer et al. 2016 - Sepsis-3 + Vincent 1996 SOFA",
+      "guideline_url": "https://doi.org/10.1001/jama.2016.0287",
+      "year": 2016,
+      "level_of_evidence": "Level I - international consensus"
+    },
+    {
+      "tool_name": "compute_charlson_elixhauser_index",
+      "bundle": "data_normalization",
+      "guideline_source": "Quan et al. 2005 + van Walraven 2009",
+      "guideline_url": "https://doi.org/10.1097/01.mlr.0000182534.19832.83",
+      "year": 2009,
+      "level_of_evidence": "Level I - cohort validation"
+    },
+    {
+      "tool_name": "compute_normalize_observations",
+      "bundle": "data_normalization",
+      "guideline_source": "Regenstrief LOINC + RxNorm + UMLS Metathesaurus",
+      "guideline_url": "https://www.nlm.nih.gov/research/umls/index.html",
+      "year": 2024,
+      "level_of_evidence": "Level I - standards body"
+    },
+    {
+      "tool_name": "compute_rxnorm_ddi_lookup",
+      "bundle": "data_normalization",
+      "guideline_source": "Regenstrief LOINC + RxNorm + UMLS Metathesaurus",
+      "guideline_url": "https://www.nlm.nih.gov/research/umls/index.html",
+      "year": 2024,
+      "level_of_evidence": "Level I - standards body"
+    },
+    {
+      "tool_name": "compute_umls_concept_map",
+      "bundle": "data_normalization",
+      "guideline_source": "Regenstrief LOINC + RxNorm + UMLS Metathesaurus",
+      "guideline_url": "https://www.nlm.nih.gov/research/umls/index.html",
+      "year": 2024,
+      "level_of_evidence": "Level I - standards body"
+    },
+    {
+      "tool_name": "compute_differential_diagnosis_ranker",
+      "bundle": "diagnosis",
+      "guideline_source": "USMLE / NEJM diagnostic reasoning curricula",
+      "guideline_url": "https://www.nejm.org/medical-articles/case-records-of-the-massachusetts-general-hospital",
+      "year": 2024,
+      "level_of_evidence": "Level II - editorial"
+    },
+    {
+      "tool_name": "compute_expected_value_of_intervention",
+      "bundle": "economics",
+      "guideline_source": "AHRQ HCUP cost data + ICER value-based pricing",
+      "guideline_url": "https://www.hcup-us.ahrq.gov/",
+      "year": 2024,
+      "level_of_evidence": "Level I - operational"
+    },
+    {
+      "tool_name": "compute_fairness_advanced",
+      "bundle": "economics",
+      "guideline_source": "AHRQ HCUP cost data + ICER value-based pricing",
+      "guideline_url": "https://www.hcup-us.ahrq.gov/",
+      "year": 2024,
+      "level_of_evidence": "Level I - operational"
+    },
+    {
+      "tool_name": "compute_admission_triage",
+      "bundle": "ed_acute",
+      "guideline_source": "AHRQ ED triage standards + RCP NEWS2",
+      "guideline_url": "https://www.rcplondon.ac.uk/projects/outputs/national-early-warning-score-news-2",
+      "year": 2017,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_clinical_deterioration_score",
+      "bundle": "ed_acute",
+      "guideline_source": "RCP NEWS2 (2017)",
+      "guideline_url": "https://www.rcplondon.ac.uk/projects/outputs/national-early-warning-score-news-2",
+      "year": 2017,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_dka_severity",
+      "bundle": "endocrine_acute",
+      "guideline_source": "ADA Position Statement 2009 + ISPAD 2018",
+      "guideline_url": "https://doi.org/10.1111/pedi.12701",
+      "year": 2018,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_inpatient_glycemic_control",
+      "bundle": "endocrine_acute",
+      "guideline_source": "ADA Standards of Care",
+      "guideline_url": "https://diabetesjournals.org/care/issue/47/Supplement_1",
+      "year": 2024,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_adrenal_insufficiency_workup",
+      "bundle": "endocrinology_advanced",
+      "guideline_source": "Endocrine Society + ATA + AACE composite",
+      "guideline_url": "https://www.endocrine.org/clinical-practice-guidelines",
+      "year": 2024,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_hypocalcemia_severity",
+      "bundle": "endocrinology_advanced",
+      "guideline_source": "Endocrine Society + ATA + AACE composite",
+      "guideline_url": "https://www.endocrine.org/clinical-practice-guidelines",
+      "year": 2024,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_thyroid_management",
+      "bundle": "endocrinology_advanced",
+      "guideline_source": "ATA 2014 + ETA 2013 hypothyroidism guidelines",
+      "guideline_url": "https://doi.org/10.1089/thy.2014.0028",
+      "year": 2014,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_clinical_trials_matcher",
+      "bundle": "external_knowledge",
+      "guideline_source": "PubMed + ClinicalTrials.gov + NIH RePORTER",
+      "guideline_url": "https://pubmed.ncbi.nlm.nih.gov/",
+      "year": 2024,
+      "level_of_evidence": "Level I - primary literature"
+    },
+    {
+      "tool_name": "compute_drug_pricing",
+      "bundle": "external_knowledge",
+      "guideline_source": "PubMed + ClinicalTrials.gov + NIH RePORTER",
+      "guideline_url": "https://pubmed.ncbi.nlm.nih.gov/",
+      "year": 2024,
+      "level_of_evidence": "Level I - primary literature"
+    },
+    {
+      "tool_name": "compute_nih_reporter_search",
+      "bundle": "external_knowledge",
+      "guideline_source": "PubMed + ClinicalTrials.gov + NIH RePORTER",
+      "guideline_url": "https://pubmed.ncbi.nlm.nih.gov/",
+      "year": 2024,
+      "level_of_evidence": "Level I - primary literature"
+    },
+    {
+      "tool_name": "compute_pubmed_search",
+      "bundle": "external_knowledge",
+      "guideline_source": "PubMed + ClinicalTrials.gov + NIH RePORTER",
+      "guideline_url": "https://pubmed.ncbi.nlm.nih.gov/",
+      "year": 2024,
+      "level_of_evidence": "Level I - primary literature"
+    },
+    {
+      "tool_name": "compute_write_decision_to_fhir",
+      "bundle": "fhir_writeback",
+      "guideline_source": "HL7 FHIR R4 write-back transactions",
+      "guideline_url": "https://www.hl7.org/fhir/http.html",
+      "year": 2022,
+      "level_of_evidence": "Level I - standards body"
+    },
+    {
+      "tool_name": "compute_fib4_liver_fibrosis",
+      "bundle": "gi_hepatology_depth",
+      "guideline_source": "Sterling et al. 2006 - FIB-4 derivation",
+      "guideline_url": "https://doi.org/10.1002/hep.21178",
+      "year": 2006,
+      "level_of_evidence": "Level I - cohort validation"
+    },
+    {
+      "tool_name": "compute_glasgow_blatchford_ugib",
+      "bundle": "gi_hepatology_depth",
+      "guideline_source": "Blatchford et al. 2000 - GBS validation",
+      "guideline_url": "https://doi.org/10.1016/S0140-6736(00)02816-6",
+      "year": 2000,
+      "level_of_evidence": "Level I - prospective"
+    },
+    {
+      "tool_name": "compute_maddrey_alcoholic_hepatitis",
+      "bundle": "gi_hepatology_depth",
+      "guideline_source": "Maddrey et al. 1978 + AASLD 2019 update",
+      "guideline_url": "https://doi.org/10.1002/hep.30866",
+      "year": 2019,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_rome_iv_ibs",
+      "bundle": "gi_hepatology_depth",
+      "guideline_source": "Rome IV Foundation 2016",
+      "guideline_url": "https://theromefoundation.org/rome-iv/",
+      "year": 2016,
+      "level_of_evidence": "Level I - international consensus"
+    },
+    {
+      "tool_name": "compute_ecog_performance_status",
+      "bundle": "heme_onc_depth",
+      "guideline_source": "Oken et al. 1982 - ECOG criteria",
+      "guideline_url": "https://doi.org/10.1097/00000421-198212000-00014",
+      "year": 1982,
+      "level_of_evidence": "Level I - clinical scoring"
+    },
+    {
+      "tool_name": "compute_ipss_r_mds_score",
+      "bundle": "heme_onc_depth",
+      "guideline_source": "Greenberg et al. 2012 - IPSS-R",
+      "guideline_url": "https://doi.org/10.1182/blood-2012-03-420489",
+      "year": 2012,
+      "level_of_evidence": "Level I - international consensus"
+    },
+    {
+      "tool_name": "compute_iss_myeloma_staging",
+      "bundle": "heme_onc_depth",
+      "guideline_source": "Greipp et al. 2005 + IMWG 2015 (R-ISS)",
+      "guideline_url": "https://doi.org/10.1200/JCO.2005.04.242",
+      "year": 2015,
+      "level_of_evidence": "Level I - international consensus"
+    },
+    {
+      "tool_name": "compute_karnofsky_performance",
+      "bundle": "heme_onc_depth",
+      "guideline_source": "Karnofsky & Burchenal 1949",
+      "guideline_url": "",
+      "year": 1949,
+      "level_of_evidence": "Level II - clinical scoring"
+    },
+    {
+      "tool_name": "compute_aki_kdigo_stage",
+      "bundle": "imaging",
+      "guideline_source": "KDIGO Clinical Practice Guideline for AKI",
+      "guideline_url": "https://kdigo.org/wp-content/uploads/2016/10/KDIGO-2012-AKI-Guideline-English.pdf",
+      "year": 2012,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_contrast_safety_check",
+      "bundle": "imaging",
+      "guideline_source": "ACR Manual on Contrast Media v2024 + Davenport 2020",
+      "guideline_url": "https://www.acr.org/Clinical-Resources/Contrast-Manual",
+      "year": 2024,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_hiv_management_tier",
+      "bundle": "infectious_disease",
+      "guideline_source": "IDSA / Surviving Sepsis Campaign",
+      "guideline_url": "https://www.survivingsepsis.org/",
+      "year": 2024,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_lactate_clearance",
+      "bundle": "infectious_disease",
+      "guideline_source": "Surviving Sepsis Campaign 2021",
+      "guideline_url": "https://doi.org/10.1097/CCM.0000000000005337",
+      "year": 2021,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_qsofa_score",
+      "bundle": "infectious_disease",
+      "guideline_source": "Sepsis-3 (JAMA 2016)",
+      "guideline_url": "https://doi.org/10.1001/jama.2016.0287",
+      "year": 2016,
+      "level_of_evidence": "Level I - international consensus"
+    },
+    {
+      "tool_name": "compute_tb_risk_screen",
+      "bundle": "infectious_disease",
+      "guideline_source": "IDSA / Surviving Sepsis Campaign",
+      "guideline_url": "https://www.survivingsepsis.org/",
+      "year": 2024,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_appeal_escalation_path",
+      "bundle": "insurance_appeals",
+      "guideline_source": "ERISA + ACA external review + state insurance commissioner",
+      "guideline_url": "https://www.dol.gov/agencies/ebsa/laws-and-regulations/laws/erisa",
+      "year": 2024,
+      "level_of_evidence": "Level I - statutory"
+    },
+    {
+      "tool_name": "compute_appeal_letter_draft",
+      "bundle": "insurance_appeals",
+      "guideline_source": "ERISA + ACA external review + state insurance commissioner",
+      "guideline_url": "https://www.dol.gov/agencies/ebsa/laws-and-regulations/laws/erisa",
+      "year": 2024,
+      "level_of_evidence": "Level I - statutory"
+    },
+    {
+      "tool_name": "compute_denial_letter_parse",
+      "bundle": "insurance_appeals",
+      "guideline_source": "ERISA + ACA external review + state insurance commissioner",
+      "guideline_url": "https://www.dol.gov/agencies/ebsa/laws-and-regulations/laws/erisa",
+      "year": 2024,
+      "level_of_evidence": "Level I - statutory"
+    },
+    {
+      "tool_name": "compute_ccda_document_parse",
+      "bundle": "legacy_ehr_parsers",
+      "guideline_source": "HL7 C-CDA R2.1 Implementation Guide",
+      "guideline_url": "https://www.hl7.org/implement/standards/product_brief.cfm?product_id=492",
+      "year": 2018,
+      "level_of_evidence": "Level I - standards body"
+    },
+    {
+      "tool_name": "compute_hl7v2_message_parse",
+      "bundle": "legacy_ehr_parsers",
+      "guideline_source": "HL7 v2.x Standard, Chapter 3 (Patient Administration)",
+      "guideline_url": "https://www.hl7.org/implement/standards/product_brief.cfm?product_id=185",
+      "year": 2007,
+      "level_of_evidence": "Level I - standards body"
+    },
+    {
+      "tool_name": "compute_psychiatric_admission_decision",
+      "bundle": "mental_health",
+      "guideline_source": "C-SSRS + APA practice guidelines",
+      "guideline_url": "https://www.psychiatry.org/psychiatrists/practice/clinical-practice-guidelines",
+      "year": 2024,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_suicide_risk_assessment",
+      "bundle": "mental_health",
+      "guideline_source": "C-SSRS + APA practice guidelines",
+      "guideline_url": "https://www.psychiatry.org/psychiatrists/practice/clinical-practice-guidelines",
+      "year": 2024,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_cox_proportional_hazards",
+      "bundle": "model_research",
+      "guideline_source": "Cox 1972 - Regression models and life-tables",
+      "guideline_url": "https://doi.org/10.1111/j.2517-6161.1972.tb00899.x",
+      "year": 1972,
+      "level_of_evidence": "Level I - methodological"
+    },
+    {
+      "tool_name": "compute_ensemble_stacking",
+      "bundle": "model_research",
+      "guideline_source": "Wolpert 1992 - Stacked generalization",
+      "guideline_url": "https://doi.org/10.1016/S0893-6080(05)80023-1",
+      "year": 1992,
+      "level_of_evidence": "Level I - methodological"
+    },
+    {
+      "tool_name": "compute_shap_attribution",
+      "bundle": "model_research",
+      "guideline_source": "Lundberg & Lee 2017 - A unified approach to interpreting model predictions",
+      "guideline_url": "https://arxiv.org/abs/1705.07874",
+      "year": 2017,
+      "level_of_evidence": "Level I - methodological"
+    },
+    {
+      "tool_name": "compute_dicom_sr_ingest",
+      "bundle": "multimodal",
+      "guideline_source": "AHA/ACC/HRS QT analysis + DICOM SR Part-3",
+      "guideline_url": "https://www.dicomstandard.org/current",
+      "year": 2024,
+      "level_of_evidence": "Level I - standards body"
+    },
+    {
+      "tool_name": "compute_ecg_qt_analyzer",
+      "bundle": "multimodal",
+      "guideline_source": "AHA/ACC/HRS QT analysis + DICOM SR Part-3",
+      "guideline_url": "https://www.dicomstandard.org/current",
+      "year": 2024,
+      "level_of_evidence": "Level I - standards body"
+    },
+    {
+      "tool_name": "compute_dialysis_initiation_decision",
+      "bundle": "nephrology",
+      "guideline_source": "STARRT-AKI 2020 + KDIGO 2012",
+      "guideline_url": "https://doi.org/10.1056/NEJMoa2000741",
+      "year": 2020,
+      "level_of_evidence": "Level I - RCT"
+    },
+    {
+      "tool_name": "compute_hauser_ambulation_index",
+      "bundle": "neurology_depth",
+      "guideline_source": "Hauser et al. 1983 - Ambulation Index",
+      "guideline_url": "https://doi.org/10.1212/WNL.33.11.1444",
+      "year": 1983,
+      "level_of_evidence": "Level II - clinical scoring"
+    },
+    {
+      "tool_name": "compute_hunt_hess_sah",
+      "bundle": "neurology_depth",
+      "guideline_source": "Hunt-Hess scale (1968) + Connolly et al. 2012 AHA/ASA",
+      "guideline_url": "https://doi.org/10.1161/STR.0b013e3182587839",
+      "year": 2012,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_ich_score",
+      "bundle": "neurology_depth",
+      "guideline_source": "Hemphill et al. 2001 - ICH score",
+      "guideline_url": "https://doi.org/10.1161/01.STR.32.4.891",
+      "year": 2001,
+      "level_of_evidence": "Level I - prospective derivation"
+    },
+    {
+      "tool_name": "compute_modified_rankin",
+      "bundle": "neurology_depth",
+      "guideline_source": "Quinn et al. 2009 - mRS reliability validation",
+      "guideline_url": "https://doi.org/10.1161/STROKEAHA.108.541128",
+      "year": 2009,
+      "level_of_evidence": "Level I - international consensus"
+    },
+    {
+      "tool_name": "compute_apgar_score",
+      "bundle": "ob_peds_advanced",
+      "guideline_source": "Apgar 1953 + AAP/ACOG 2015 reaffirmation",
+      "guideline_url": "https://doi.org/10.1542/peds.2015-2651",
+      "year": 2015,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_bell_nec_stage",
+      "bundle": "ob_peds_advanced",
+      "guideline_source": "Bell et al. 1978 (modified Bell + Walsh 1986)",
+      "guideline_url": "https://doi.org/10.1542/peds.78.3.460",
+      "year": 1986,
+      "level_of_evidence": "Level I - large cohort"
+    },
+    {
+      "tool_name": "compute_bilirubin_nomogram",
+      "bundle": "ob_peds_advanced",
+      "guideline_source": "AAP 2022 - Hyperbilirubinemia clinical practice guideline",
+      "guideline_url": "https://doi.org/10.1542/peds.2022-058859",
+      "year": 2022,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_bishop_induction_score",
+      "bundle": "ob_peds_advanced",
+      "guideline_source": "Bishop 1964 + ACOG 2009",
+      "guideline_url": "https://www.acog.org/clinical/clinical-guidance",
+      "year": 2009,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_delirium_screening_cam",
+      "bundle": "obstetric_geriatric",
+      "guideline_source": "Inouye et al. 1990 - Confusion Assessment Method",
+      "guideline_url": "https://doi.org/10.7326/0003-4819-113-12-941",
+      "year": 1990,
+      "level_of_evidence": "Level I - validation"
+    },
+    {
+      "tool_name": "compute_falls_risk_morse",
+      "bundle": "obstetric_geriatric",
+      "guideline_source": "Morse et al. 1989 - Morse Falls Scale",
+      "guideline_url": "https://doi.org/10.1037/t02948-000",
+      "year": 1989,
+      "level_of_evidence": "Level I - validation"
+    },
+    {
+      "tool_name": "compute_maternal_early_warning",
+      "bundle": "obstetric_geriatric",
+      "guideline_source": "Singh et al. 2012 - MEOWS",
+      "guideline_url": "https://doi.org/10.1111/j.1365-2044.2011.06916.x",
+      "year": 2012,
+      "level_of_evidence": "Level I - validation"
+    },
+    {
+      "tool_name": "compute_preeclampsia_assessment",
+      "bundle": "obstetric_geriatric",
+      "guideline_source": "ACOG 2020 Practice Bulletin 222",
+      "guideline_url": "https://doi.org/10.1097/AOG.0000000000003891",
+      "year": 2020,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_chemo_dose_adjustment",
+      "bundle": "oncology",
+      "guideline_source": "NCCN Clinical Practice Guidelines in Oncology",
+      "guideline_url": "https://www.nccn.org/guidelines/category_1",
+      "year": 2024,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_oncology_treatment_response",
+      "bundle": "oncology",
+      "guideline_source": "NCCN Clinical Practice Guidelines in Oncology",
+      "guideline_url": "https://www.nccn.org/guidelines/category_1",
+      "year": 2024,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_treatment_selection",
+      "bundle": "oncology",
+      "guideline_source": "NCCN Clinical Practice Guidelines in Oncology",
+      "guideline_url": "https://www.nccn.org/guidelines/category_1",
+      "year": 2024,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_caregiver_summary",
+      "bundle": "patient_facing",
+      "guideline_source": "AHRQ Re-engineered Discharge (RED) toolkit",
+      "guideline_url": "https://www.ahrq.gov/patient-safety/settings/hospital/red/toolkit/index.html",
+      "year": 2017,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_patient_faq",
+      "bundle": "patient_facing",
+      "guideline_source": "AHRQ Re-engineered Discharge (RED) toolkit",
+      "guideline_url": "https://www.ahrq.gov/patient-safety/settings/hospital/red/toolkit/index.html",
+      "year": 2017,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_translate_discharge_counseling",
+      "bundle": "patient_facing",
+      "guideline_source": "AHRQ Re-engineered Discharge (RED) toolkit",
+      "guideline_url": "https://www.ahrq.gov/patient-safety/settings/hospital/red/toolkit/index.html",
+      "year": 2017,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_caregiver_handoff",
+      "bundle": "patient_qa",
+      "guideline_source": "AHRQ Re-engineered Discharge (RED) + health-literacy",
+      "guideline_url": "https://www.ahrq.gov/patient-safety/settings/hospital/red/toolkit/index.html",
+      "year": 2017,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_discharge_qa",
+      "bundle": "patient_qa",
+      "guideline_source": "AHRQ Re-engineered Discharge (RED) + health-literacy",
+      "guideline_url": "https://www.ahrq.gov/patient-safety/settings/hospital/red/toolkit/index.html",
+      "year": 2017,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_medication_what_if",
+      "bundle": "patient_qa",
+      "guideline_source": "AHRQ Re-engineered Discharge (RED) + health-literacy",
+      "guideline_url": "https://www.ahrq.gov/patient-safety/settings/hospital/red/toolkit/index.html",
+      "year": 2017,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_pediatric_early_warning",
+      "bundle": "pediatric",
+      "guideline_source": "Brighton/Monaghan PEWS (2005, validated 2017)",
+      "guideline_url": "https://doi.org/10.1542/peds.2017-2966",
+      "year": 2017,
+      "level_of_evidence": "Level I - large cohort"
+    },
+    {
+      "tool_name": "compute_weight_based_dosing",
+      "bundle": "pediatric",
+      "guideline_source": "AAP Bright Futures + Brighton/Monaghan PEWS",
+      "guideline_url": "https://www.aap.org/en/practice-management/policies",
+      "year": 2024,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_ariscat_pulmonary_risk",
+      "bundle": "peri_op_risk",
+      "guideline_source": "Canet et al. 2010 - ARISCAT",
+      "guideline_url": "https://doi.org/10.1097/ALN.0b013e3181fc6e0a",
+      "year": 2010,
+      "level_of_evidence": "Level I - prospective"
+    },
+    {
+      "tool_name": "compute_caprini_vte_risk",
+      "bundle": "peri_op_risk",
+      "guideline_source": "Caprini 2005 - VTE risk assessment model",
+      "guideline_url": "https://doi.org/10.1016/j.jvs.2009.03.027",
+      "year": 2005,
+      "level_of_evidence": "Level I - validation cohort"
+    },
+    {
+      "tool_name": "compute_rcri_cardiac_risk",
+      "bundle": "peri_op_risk",
+      "guideline_source": "Lee et al. 1999 - Revised Cardiac Risk Index",
+      "guideline_url": "https://doi.org/10.1161/01.CIR.100.10.1043",
+      "year": 1999,
+      "level_of_evidence": "Level I - prospective derivation"
+    },
+    {
+      "tool_name": "compute_pgx_dose_adjustment",
+      "bundle": "pharmacogenomics",
+      "guideline_source": "CPIC Clinical Pharmacogenetics Implementation Consortium",
+      "guideline_url": "https://cpicpgx.org/guidelines/",
+      "year": 2024,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_pgx_drug_alternatives",
+      "bundle": "pharmacogenomics",
+      "guideline_source": "CPIC Clinical Pharmacogenetics Implementation Consortium",
+      "guideline_url": "https://cpicpgx.org/guidelines/",
+      "year": 2024,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_pgx_eligibility_check",
+      "bundle": "pharmacogenomics",
+      "guideline_source": "CPIC Clinical Pharmacogenetics Implementation Consortium",
+      "guideline_url": "https://cpicpgx.org/guidelines/",
+      "year": 2024,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_outbreak_heatmap",
+      "bundle": "population_health",
+      "guideline_source": "CDC NSSP + ACIP recommendations",
+      "guideline_url": "https://www.cdc.gov/nssp/",
+      "year": 2024,
+      "level_of_evidence": "Level I - operational policy"
+    },
+    {
+      "tool_name": "compute_syndromic_surveillance",
+      "bundle": "population_health",
+      "guideline_source": "CDC NSSP + ACIP recommendations",
+      "guideline_url": "https://www.cdc.gov/nssp/",
+      "year": 2024,
+      "level_of_evidence": "Level I - operational policy"
+    },
+    {
+      "tool_name": "compute_vaccine_reminder_cohort",
+      "bundle": "population_health",
+      "guideline_source": "CDC NSSP + ACIP recommendations",
+      "guideline_url": "https://www.cdc.gov/nssp/",
+      "year": 2024,
+      "level_of_evidence": "Level I - operational policy"
+    },
+    {
+      "tool_name": "compute_symptom_followup_questions",
+      "bundle": "preadmit_triage",
+      "guideline_source": "ACEP red-flag + AHRQ self-care triage",
+      "guideline_url": "https://www.acep.org/patient-care/clinical-policies",
+      "year": 2024,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_symptom_red_flag_check",
+      "bundle": "preadmit_triage",
+      "guideline_source": "ACEP red-flag + AHRQ self-care triage",
+      "guideline_url": "https://www.acep.org/patient-care/clinical-policies",
+      "year": 2024,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_when_to_seek_care",
+      "bundle": "preadmit_triage",
+      "guideline_source": "ACEP red-flag + AHRQ self-care triage",
+      "guideline_url": "https://www.acep.org/patient-care/clinical-policies",
+      "year": 2024,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_pa_appeal_likelihood",
+      "bundle": "prior_authorization",
+      "guideline_source": "AMA PA reform + AHIP Fast PASS",
+      "guideline_url": "https://www.ama-assn.org/practice-management/sustainability/prior-authorization-reform-resources",
+      "year": 2024,
+      "level_of_evidence": "Level I - operational policy"
+    },
+    {
+      "tool_name": "compute_pa_evidence_pack",
+      "bundle": "prior_authorization",
+      "guideline_source": "AMA PA reform + AHIP Fast PASS",
+      "guideline_url": "https://www.ama-assn.org/practice-management/sustainability/prior-authorization-reform-resources",
+      "year": 2024,
+      "level_of_evidence": "Level I - operational policy"
+    },
+    {
+      "tool_name": "compute_pa_letter_draft",
+      "bundle": "prior_authorization",
+      "guideline_source": "AMA PA reform + AHIP Fast PASS",
+      "guideline_url": "https://www.ama-assn.org/practice-management/sustainability/prior-authorization-reform-resources",
+      "year": 2024,
+      "level_of_evidence": "Level I - operational policy"
+    },
+    {
+      "tool_name": "compute_pa_payer_rules_match",
+      "bundle": "prior_authorization",
+      "guideline_source": "AMA PA reform + AHIP Fast PASS",
+      "guideline_url": "https://www.ama-assn.org/practice-management/sustainability/prior-authorization-reform-resources",
+      "year": 2024,
+      "level_of_evidence": "Level I - operational policy"
+    },
+    {
+      "tool_name": "compute_care_gap_priority_ranking",
+      "bundle": "quality_stars",
+      "guideline_source": "CMS Star Rating Methodology + NCQA HEDIS",
+      "guideline_url": "https://www.cms.gov/medicare/health-plans/medicareadvtgspecratestats/medicareadvantagepartcandd",
+      "year": 2024,
+      "level_of_evidence": "Level I - operational policy"
+    },
+    {
+      "tool_name": "compute_quality_measures_aggregate",
+      "bundle": "quality_stars",
+      "guideline_source": "CMS Star Rating Methodology + NCQA HEDIS",
+      "guideline_url": "https://www.cms.gov/medicare/health-plans/medicareadvtgspecratestats/medicareadvantagepartcandd",
+      "year": 2024,
+      "level_of_evidence": "Level I - operational policy"
+    },
+    {
+      "tool_name": "compute_stars_rating_forecast",
+      "bundle": "quality_stars",
+      "guideline_source": "CMS Star Rating Methodology + NCQA HEDIS",
+      "guideline_url": "https://www.cms.gov/medicare/health-plans/medicareadvtgspecratestats/medicareadvantagepartcandd",
+      "year": 2024,
+      "level_of_evidence": "Level I - operational policy"
+    },
+    {
+      "tool_name": "compute_causal_treatment_effect",
+      "bundle": "research_design",
+      "guideline_source": "BMJ N-of-1 trials methodology + ICH-GCP",
+      "guideline_url": "https://www.bmj.com/content/336/7637/152",
+      "year": 2008,
+      "level_of_evidence": "Level I - methodological"
+    },
+    {
+      "tool_name": "compute_n_of_1_trial_design",
+      "bundle": "research_design",
+      "guideline_source": "BMJ N-of-1 trials methodology + ICH-GCP",
+      "guideline_url": "https://www.bmj.com/content/336/7637/152",
+      "year": 2008,
+      "level_of_evidence": "Level I - methodological"
+    },
+    {
+      "tool_name": "compute_acr_eular_ra_classification",
+      "bundle": "rheumatology",
+      "guideline_source": "ACR/EULAR 2010 RA classification criteria",
+      "guideline_url": "https://doi.org/10.1002/art.27584",
+      "year": 2010,
+      "level_of_evidence": "Level I - international consensus"
+    },
+    {
+      "tool_name": "compute_asdas_axspa",
+      "bundle": "rheumatology",
+      "guideline_source": "ASAS - ASDAS validation 2009",
+      "guideline_url": "https://doi.org/10.1136/ard.2008.094870",
+      "year": 2009,
+      "level_of_evidence": "Level I - validation"
+    },
+    {
+      "tool_name": "compute_das28_rheumatoid_arthritis",
+      "bundle": "rheumatology",
+      "guideline_source": "Prevoo et al. 1995 - DAS28 derivation",
+      "guideline_url": "https://doi.org/10.1002/art.1780380107",
+      "year": 1995,
+      "level_of_evidence": "Level I - validation cohort"
+    },
+    {
+      "tool_name": "compute_dn4_neuropathic_pain",
+      "bundle": "sleep_pain",
+      "guideline_source": "Bouhassira et al. 2005 - DN4",
+      "guideline_url": "https://doi.org/10.1016/j.pain.2004.12.010",
+      "year": 2005,
+      "level_of_evidence": "Level I - validation"
+    },
+    {
+      "tool_name": "compute_epworth_sleepiness_scale",
+      "bundle": "sleep_pain",
+      "guideline_source": "Johns 1991 - Epworth scale",
+      "guideline_url": "https://doi.org/10.1093/sleep/14.6.540",
+      "year": 1991,
+      "level_of_evidence": "Level I - validation cohort"
+    },
+    {
+      "tool_name": "compute_stop_bang_osa_screen",
+      "bundle": "sleep_pain",
+      "guideline_source": "Chung et al. 2008 - STOP-BANG questionnaire",
+      "guideline_url": "https://doi.org/10.1097/ALN.0b013e31816d83e4",
+      "year": 2008,
+      "level_of_evidence": "Level I - prospective"
+    },
+    {
+      "tool_name": "compute_diabetic_retinopathy_severity",
+      "bundle": "specialty_clinics",
+      "guideline_source": "AAD / AAO / ATS composite",
+      "guideline_url": "https://www.aad.org/member/clinical-quality/guidelines",
+      "year": 2024,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_lesion_triage",
+      "bundle": "specialty_clinics",
+      "guideline_source": "AAD / AAO / ATS composite",
+      "guideline_url": "https://www.aad.org/member/clinical-quality/guidelines",
+      "year": 2024,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_pft_interpretation",
+      "bundle": "specialty_clinics",
+      "guideline_source": "AAD / AAO / ATS composite",
+      "guideline_url": "https://www.aad.org/member/clinical-quality/guidelines",
+      "year": 2024,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_acs_disposition_decision",
+      "bundle": "stroke_acs",
+      "guideline_source": "AHA/ACC + AHA/ASA composite",
+      "guideline_url": "https://professional.heart.org/en/guidelines-and-statements",
+      "year": 2024,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_heart_score",
+      "bundle": "stroke_acs",
+      "guideline_source": "Six et al. 2008 - HEART score for chest pain",
+      "guideline_url": "https://doi.org/10.1097/HCO.0b013e328329caa6",
+      "year": 2008,
+      "level_of_evidence": "Level I - prospective validation"
+    },
+    {
+      "tool_name": "compute_stroke_severity",
+      "bundle": "stroke_acs",
+      "guideline_source": "NIH Stroke Scale (NINDS 1989, AHA/ASA 2019)",
+      "guideline_url": "https://www.stroke.org/-/media/stroke-files/nihss.pdf",
+      "year": 2019,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_stroke_thrombolysis_eligibility",
+      "bundle": "stroke_acs",
+      "guideline_source": "AHA/ASA 2019 - Guidelines for the Early Management of Acute Ischemic Stroke",
+      "guideline_url": "https://doi.org/10.1161/STR.0000000000000211",
+      "year": 2019,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_epts_recipient_score",
+      "bundle": "transplant",
+      "guideline_source": "OPTN/UNOS EPTS calculator (2014)",
+      "guideline_url": "https://optn.transplant.hrsa.gov/data/allocation-calculators/epts-calculator/",
+      "year": 2014,
+      "level_of_evidence": "Level I - operational"
+    },
+    {
+      "tool_name": "compute_immunosuppression_dose_check",
+      "bundle": "transplant",
+      "guideline_source": "OPTN/UNOS allocation policy + KDIGO transplantation",
+      "guideline_url": "https://optn.transplant.hrsa.gov/policies-bylaws/policies/",
+      "year": 2024,
+      "level_of_evidence": "Level I - operational policy"
+    },
+    {
+      "tool_name": "compute_kdpi_kidney_donor",
+      "bundle": "transplant",
+      "guideline_source": "OPTN/UNOS KDPI calculator (2014)",
+      "guideline_url": "https://optn.transplant.hrsa.gov/data/allocation-calculators/kdpi-calculator/",
+      "year": 2014,
+      "level_of_evidence": "Level I - operational"
+    },
+    {
+      "tool_name": "compute_imaging_appropriateness",
+      "bundle": "trauma_critical",
+      "guideline_source": "ACR Appropriateness Criteria + Choosing Wisely",
+      "guideline_url": "https://www.acr.org/Clinical-Resources/ACR-Appropriateness-Criteria",
+      "year": 2024,
+      "level_of_evidence": "Level I - clinical guideline"
+    },
+    {
+      "tool_name": "compute_massive_transfusion_protocol",
+      "bundle": "trauma_critical",
+      "guideline_source": "PROPPR 2015 + CRASH-2 2010",
+      "guideline_url": "https://doi.org/10.1001/jama.2015.12",
+      "year": 2015,
+      "level_of_evidence": "Level I - RCT"
+    },
+    {
+      "tool_name": "compute_trauma_severity_score",
+      "bundle": "trauma_critical",
+      "guideline_source": "Baker et al. 1974 (ISS) + Champion 1989 (RTS)",
+      "guideline_url": "",
+      "year": 1989,
+      "level_of_evidence": "Level I - international convention"
+    }
+  ]
+}

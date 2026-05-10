@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "_comment": [
+    "Example OAuth client registry for TrustedRisk multi-tenant deployment.",
+    "Copy to oauth_clients.json and replace the example secrets before enabling OAuth.",
+    "",
+    "client_secret_hash format is `sha256:<hex>`. Generate one with:",
+    "  python -c \"from mcp_server.oauth import OAuthClient; print(OAuthClient.hash_secret('YOUR-SECRET'))\"",
+    "",
+    "allowed_fhir_servers is the multi-tenant isolation guard: a client with",
+    "tenant=tenant-a CANNOT use its bearer token to query tenant-b's FHIR endpoint",
+    "(see test_oauth.py::test_middleware_blocks_cross_tenant_fhir).",
+    "",
+    "An empty allowed_fhir_servers list means *wildcard* — used for trusted",
+    "internal clients only.",
+    "",
+    "Recognised scopes (clients SHOULD request only what they need):",
+    "  discharge.read     — invoke compute_readmission_risk + utility",
+    "  discharge.execute  — same plus medication_reconciliation + fairness_audit",
+    "  phi.scan           — invoke detect_phi only",
+    "  grounding.read     — invoke ground_claim only"
+  ],
+  "clients": [
+    {
+      "client_id": "tenant-a-orchestrator",
+      "client_secret_hash": "sha256:REPLACE_ME_with_actual_hash",
+      "tenant": "tenant-a",
+      "allowed_scopes": ["discharge.read", "discharge.execute", "phi.scan", "grounding.read"],
+      "allowed_fhir_servers": ["https://tenant-a.fhir.example.com/baseR4"]
+    },
+    {
+      "client_id": "tenant-b-discharge-bot",
+      "client_secret_hash": "sha256:REPLACE_ME_with_actual_hash",
+      "tenant": "tenant-b",
+      "allowed_scopes": ["discharge.read", "phi.scan"],
+      "allowed_fhir_servers": ["https://tenant-b.fhir.example.com/baseR4"]
+    },
+    {
+      "client_id": "internal-trustedrisk-self-test",
+      "client_secret_hash": "sha256:REPLACE_ME_with_actual_hash",
+      "tenant": "internal",
+      "allowed_scopes": ["discharge.read", "discharge.execute", "phi.scan", "grounding.read"],
+      "allowed_fhir_servers": []
+    }
+  ]
+}

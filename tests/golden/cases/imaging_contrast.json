@@ -1,0 +1,66 @@
+{
+  "tool": "multi_tool",
+  "cases": [
+    {
+      "name": "imaging_pe_high_risk_picks_ctpa",
+      "tool": "compute_imaging_appropriateness",
+      "input": {
+        "clinical_scenario": "suspected_pe_high_risk",
+        "patient_age": 58
+      },
+      "expected_subset": {
+        "abstain_recommended": false
+      },
+      "expected_top_pick_contains": "pulmonary angiography"
+    },
+    {
+      "name": "imaging_lbp_no_imaging",
+      "tool": "compute_imaging_appropriateness",
+      "input": {
+        "clinical_scenario": "acute_lbp_no_red_flag", "patient_age": 45
+      },
+      "expected_top_pick_contains": "no imaging"
+    },
+    {
+      "name": "imaging_unknown_scenario_abstains",
+      "tool": "compute_imaging_appropriateness",
+      "input": {"clinical_scenario": "made_up_xyz"},
+      "expected_subset": {"abstain_recommended": true}
+    },
+    {
+      "name": "contrast_severe_renal_blocked",
+      "tool": "compute_contrast_safety_check",
+      "input": {
+        "contrast_type": "iodinated_iv", "egfr_ml_min": 20
+      },
+      "expected_subset": {
+        "proceed_with_contrast": false,
+        "contrast_induced_nephropathy_risk": "contraindicated"
+      }
+    },
+    {
+      "name": "contrast_metformin_low_egfr",
+      "tool": "compute_contrast_safety_check",
+      "input": {
+        "contrast_type": "iodinated_iv", "egfr_ml_min": 45,
+        "on_metformin": true
+      },
+      "expected_subset": {
+        "metformin_hold_recommended": true,
+        "metformin_hold_duration_hours": 48
+      }
+    },
+    {
+      "name": "contrast_gadolinium_pregnant_blocked",
+      "tool": "compute_contrast_safety_check",
+      "input": {
+        "contrast_type": "gadolinium_iv", "egfr_ml_min": 80,
+        "pregnant": true
+      },
+      "expected_subset": {
+        "proceed_with_contrast": false,
+        "pregnancy_caution": true
+      }
+    }
+  ]
+}

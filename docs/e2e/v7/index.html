@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>TrustedRisk - E2E Showcase v7</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+            Helvetica, Arial, sans-serif; margin: 24px;
+            background:#0d1117; color:#c9d1d9; max-width: 1200px; }
+  h1, h2, h3 { color: #58a6ff; }
+  h2 { border-bottom: 1px solid #30363d; padding-bottom: 4px; }
+  details { margin: 6px 0; padding: 6px 12px;
+              background:#161b22; border:1px solid #30363d;
+              border-radius:4px; }
+  summary { cursor: pointer; color:#79c0ff; font-weight:600; }
+  table { border-collapse: collapse; margin: 8px 0; font-size: 13px; }
+  th, td { border: 1px solid #30363d; padding: 4px 8px;
+            text-align: left; vertical-align: top; }
+  th { background: #161b22; }
+  pre { background:#0a0f15; color:#e6edf3; padding: 6px;
+          border-radius:4px; overflow-x:auto; max-width: 100%;
+          font-size: 12px; }
+  .pill { display:inline-block; background:#1f6feb; color:#fff;
+            padding:1px 8px; border-radius:12px; font-size:11px;
+            margin-right:4px; }
+  .latency { color:#8b949e; font-size:11px; }
+</style></head>
+<body>
+<h1>TrustedRisk - E2E Showcase v7</h1>
+<p class=latency>Generated 2026-05-10 10:35 UTC - 8 scenarios, 53 tool calls,
+16 distinct bundles touched.</p>
+<h2>Scenario index</h2><table><thead><tr><th>Scenario</th><th>Tool calls</th><th>Bundles</th></tr></thead><tbody><tr><td>S1 - ICU Sepsis cascade</td><td>6</td><td>critical_care, infectious_disease</td></tr><tr><td>S2 - Cardiology AFib + ACS rule-out</td><td>5</td><td>cardiology_depth, stroke_acs</td></tr><tr><td>S3 - Heme/Onc staging</td><td>4</td><td>heme_onc_depth</td></tr><tr><td>S4 - Peri-op rheumatology pre-arthroplasty</td><td>6</td><td>peri_op_risk, rheumatology</td></tr><tr><td>S5 - Neuro emergency triage</td><td>5</td><td>neurology_depth, stroke_acs</td></tr><tr><td>S6 - OB/Peds advanced</td><td>4</td><td>ob_peds_advanced</td></tr><tr><td>S7 - GI/Hepatology + ID screen</td><td>6</td><td>gi_hepatology_depth, infectious_disease</td></tr><tr><td>S8 - Outpatient panel + research models + EHR ingest</td><td>17</td><td>endocrinology_advanced, legacy_ehr_parsers, model_research, sleep_pain, specialty_clinics, transplant</td></tr></tbody></table><p>Bundles covered (16): cardiology_depth, critical_care, endocrinology_advanced, gi_hepatology_depth, heme_onc_depth, infectious_disease, legacy_ehr_parsers, model_research, neurology_depth, ob_peds_advanced, peri_op_risk, rheumatology, sleep_pain, specialty_clinics, stroke_acs, transplant.</p>
+<h2>S1 - ICU Sepsis cascade</h2><p>62y M presents with altered mentation, RR 28, SBP 86. Lactate 4.2 mmol/L on arrival, 3.1 mmol/L at 2h. Pipeline: qSOFA -&gt; lactate clearance -&gt; SOFA -&gt; APACHE II -&gt; MELD (liver) -&gt; RIFLE (kidney).</p><p><span class=pill>critical_care</span> <span class=pill>infectious_disease</span></p><details><summary>compute_qsofa_score <span class=pill>infectious_disease</span> <span class=latency>0.015 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;altered_mentation_gcs_lt_15&quot;: true,
+  &quot;respiratory_rate_ge_22&quot;: true,
+  &quot;systolic_bp_le_100&quot;: true
+}</pre><h3>Outputs</h3><pre>{
+  &quot;score&quot;: 3,
+  &quot;sepsis_likely&quot;: true,
+  &quot;icu_screening_indicated&quot;: true,
+  &quot;rationale&quot;: &quot;qSOFA 3/3; sepsis likely = True; ICU screening = True.&quot;,
+  &quot;references&quot;: [
+    &quot;Singer M et al. JAMA 2016;315(8):762-774.&quot;
+  ]
+}</pre></details><details><summary>compute_lactate_clearance <span class=pill>infectious_disease</span> <span class=latency>0.008 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;initial_lactate_mmol_l&quot;: 4.2,
+  &quot;repeat_lactate_mmol_l&quot;: 3.1
+}</pre><h3>Outputs</h3><pre>{
+  &quot;initial_lactate_mmol_l&quot;: 4.2,
+  &quot;repeat_lactate_mmol_l&quot;: 3.1,
+  &quot;clearance_pct&quot;: 26.19,
+  &quot;target_met&quot;: true,
+  &quot;rationale&quot;: &quot;Initial lactate 4.20 -&gt; 3.10 mmol/L; clearance 26.2%; target \u2265 10% met = True.&quot;,
+  &quot;references&quot;: [
+    &quot;Nguyen HB et al. Crit Care Med 2004;32:1637-42.&quot;
+  ]
+}</pre></details><details><summary>compute_sofa_score <span class=pill>critical_care</span> <span class=latency>0.019 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;pao2_fio2_ratio&quot;: 210,
+  &quot;mechanical_ventilation&quot;: true,
+  &quot;platelets_thousands_per_uL&quot;: 110,
+  &quot;bilirubin_mg_dl&quot;: 1.5,
+  &quot;mean_arterial_pressure_mmHg&quot;: 62,
+  &quot;pressors_doses&quot;: {
+    &quot;norepinephrine&quot;: 0.08
+  },
+  &quot;glasgow_coma_scale&quot;: 12,
+  &quot;creatinine_mg_dl&quot;: 2.1,
+  &quot;suspected_infection&quot;: true
+}</pre><h3>Outputs</h3><pre>{
+  &quot;respiratory_points&quot;: 2,
+  &quot;coagulation_points&quot;: 1,
+  &quot;liver_points&quot;: 1,
+  &quot;cardiovascular_points&quot;: 1,
+  &quot;cns_points&quot;: 2,
+  &quot;renal_points&quot;: 2,
+  &quot;sofa_total&quot;: 9,
+  &quot;sepsis_3_dysfunction&quot;: true,
+  &quot;estimated_mortality_pct&quot;: 33.0,
+  &quot;rationale&quot;: &quot;SOFA total 9 (resp 2 + coag 1 + liver 1 + cardio 1 + CNS 2 + renal 2); \u0394 vs baseline +9; Sepsis-3 organ dysfunction = True; estimated ICU mortality 33.0%.&quot;,
+  &quot;references&quot;: [
+    &quot;Vincent JL et al. Intensive Care Med 1996;22:707-710.&quot;,
+    &quot;Singer M et al. JAMA 2016;315(8):801-810. (Sepsis-3)&quot;
+  ],
+  &quot;abstain_recommended&quot;: false,
+  &quot;abstain_reason&quot;: null
+}</pre></details><details><summary>compute_apache_ii_score <span class=pill>critical_care</span> <span class=latency>0.017 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;age&quot;: 62,
+  &quot;temperature_c&quot;: 39.1,
+  &quot;mean_arterial_pressure_mmHg&quot;: 62,
+  &quot;heart_rate&quot;: 128,
+  &quot;respiratory_rate&quot;: 28,
+  &quot;fio2&quot;: 0.5,
+  &quot;pao2&quot;: 72,
+  &quot;arterial_ph&quot;: 7.28,
+  &quot;serum_sodium_mmol_l&quot;: 135,
+  &quot;serum_potassium_mmol_l&quot;: 4.6,
+  &quot;serum_creatinine_mg_dl&quot;: 2.1,
+  &quot;hematocrit_pct&quot;: 33,
+  &quot;wbc_thousands_per_uL&quot;: 18,
+  &quot;glasgow_coma_scale&quot;: 12,
+  &quot;acute_renal_failure&quot;: true,
+  &quot;immunocompromised&quot;: false
+}</pre><h3>Outputs</h3><pre>{
+  &quot;aps_score&quot;: 20,
+  &quot;age_points&quot;: 3,
+  &quot;chronic_health_points&quot;: 0,
+  &quot;apache_ii_total&quot;: 23,
+  &quot;predicted_mortality_pct&quot;: 40.0,
+  &quot;severity_tier&quot;: &quot;severe&quot;,
+  &quot;icu_admission_recommended&quot;: true,
+  &quot;rationale&quot;: &quot;APACHE II total 23 (APS 20 + age 3 + chronic 0); predicted mortality 40.0%; severity severe; ICU admission recommended.&quot;,
+  &quot;references&quot;: [
+    &quot;Knaus WA et al. APACHE II. Crit Care Med 1985;13:818-829.&quot;
+  ],
+  &quot;abstain_recommended&quot;: false,
+  &quot;abstain_reason&quot;: null
+}</pre></details><details><summary>compute_meld_score <span class=pill>critical_care</span> <span class=latency>0.02 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;bilirubin_mg_dl&quot;: 1.5,
+  &quot;creatinine_mg_dl&quot;: 2.1,
+  &quot;inr&quot;: 1.5,
+  &quot;sodium_mmol_l&quot;: 135
+}</pre><h3>Outputs</h3><pre>{
+  &quot;bilirubin_mg_dl&quot;: 1.5,
+  &quot;creatinine_mg_dl&quot;: 2.1,
+  &quot;inr&quot;: 1.5,
+  &quot;sodium_mmol_l&quot;: 135.0,
+  &quot;on_dialysis&quot;: false,
+  &quot;meld_classic&quot;: 20,
+  &quot;meld_na&quot;: 21,
+  &quot;estimated_3mo_mortality_pct&quot;: 19.6,
+  &quot;severity_tier&quot;: &quot;high&quot;,
+  &quot;transplant_eligibility_threshold_met&quot;: true,
+  &quot;rationale&quot;: &quot;MELD 20 / MELD-Na 21; 3-mo mortality 19.6%; tier high; UNOS listing-eligible = True.&quot;,
+  &quot;references&quot;: [
+    &quot;Kamath PS et al. Hepatology 2001;33:464-470.&quot;,
+    &quot;Kim WR et al. NEJM 2008;359:1018-1026. (MELD-Na)&quot;,
+    &quot;OPTN MELD policy.&quot;
+  ],
+  &quot;abstain_recommended&quot;: false,
+  &quot;abstain_reason&quot;: null
+}</pre></details><details><summary>compute_rifle_aki_classification <span class=pill>critical_care</span> <span class=latency>0.01 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;serum_creatinine_baseline_mg_dl&quot;: 1.0,
+  &quot;serum_creatinine_current_mg_dl&quot;: 2.1,
+  &quot;urine_output_ml_per_kg_per_hour&quot;: 0.4
+}</pre><h3>Outputs</h3><pre>{
+  &quot;serum_creatinine_baseline_mg_dl&quot;: 1.0,
+  &quot;serum_creatinine_current_mg_dl&quot;: 2.1,
+  &quot;creatinine_ratio&quot;: 2.1,
+  &quot;urine_output_ml_per_kg_per_hour&quot;: 0.4,
+  &quot;rifle_class&quot;: &quot;injury&quot;,
+  &quot;aki_etiology_clue&quot;: &quot;Unspecified&quot;,
+  &quot;nephrology_consult_recommended&quot;: true,
+  &quot;rationale&quot;: &quot;Creatinine 1.00 -&gt; 2.10 (ratio 2.10); urine output 0.4; RIFLE = injury; etiology clue = &#x27;Unspecified&#x27;.&quot;,
+  &quot;references&quot;: [
+    &quot;Bellomo R et al. ADQI Workgroup. Crit Care 2004;8:R204-12.&quot;
+  ],
+  &quot;abstain_recommended&quot;: false,
+  &quot;abstain_reason&quot;: null
+}</pre></details>
+<h2>S2 - Cardiology AFib + ACS rule-out</h2><p>74y F with paroxysmal AFib + chest pain. CHA2DS2-VASc + HAS-BLED for AC decision; HEART + TIMI + GRACE for the ACS workup.</p><p><span class=pill>cardiology_depth</span> <span class=pill>stroke_acs</span></p><details><summary>compute_cha2ds2_vasc <span class=pill>cardiology_depth</span> <span class=latency>0.007 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;age&quot;: 74,
+  &quot;sex_female&quot;: true,
+  &quot;congestive_heart_failure&quot;: false,
+  &quot;hypertension&quot;: true,
+  &quot;diabetes_mellitus&quot;: true,
+  &quot;stroke_tia_thromboembolism_history&quot;: false,
+  &quot;vascular_disease&quot;: true
+}</pre><h3>Outputs</h3><pre>{
+  &quot;score&quot;: 5,
+  &quot;annual_stroke_risk_pct&quot;: 6.7,
+  &quot;anticoagulation_recommendation&quot;: &quot;anticoagulation_recommended&quot;,
+  &quot;rationale&quot;: &quot;CHA\u2082DS\u2082-VASc 5; annual stroke risk 6.7%; recommendation = anticoagulation_recommended.&quot;,
+  &quot;references&quot;: [
+    &quot;Lip GYH et al. Chest 2010;137(2):263-272.&quot;
+  ]
+}</pre></details><details><summary>compute_has_bled <span class=pill>cardiology_depth</span> <span class=latency>0.01 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;hypertension_uncontrolled_sbp_gt_160&quot;: true,
+  &quot;abnormal_renal_function&quot;: false,
+  &quot;age_gt_65&quot;: true,
+  &quot;drugs_concomitant_antiplatelet_or_nsaid&quot;: false
+}</pre><h3>Outputs</h3><pre>{
+  &quot;score&quot;: 2,
+  &quot;bleeding_risk_pct&quot;: 1.9,
+  &quot;bleeding_tier&quot;: &quot;moderate&quot;,
+  &quot;modifiable_factors&quot;: [
+    &quot;Tighten BP control (target SBP &lt; 140)&quot;
+  ],
+  &quot;rationale&quot;: &quot;HAS-BLED 2; major bleeding risk 1.9%/yr; tier = moderate. Modifiable factors: 1.&quot;,
+  &quot;references&quot;: [
+    &quot;Pisters R et al. Chest 2010;138(5):1093-1100.&quot;
+  ]
+}</pre></details><details><summary>compute_heart_score <span class=pill>stroke_acs</span> <span class=latency>0.016 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;history_descriptor&quot;: &quot;moderately_suspicious&quot;,
+  &quot;ecg_descriptor&quot;: &quot;non_specific_repolarisation&quot;,
+  &quot;age&quot;: 74,
+  &quot;risk_factors_count&quot;: 3,
+  &quot;known_atherosclerotic_disease&quot;: true,
+  &quot;troponin_times_uln&quot;: 0.0
+}</pre><h3>Outputs</h3><pre>{
+  &quot;patient_id&quot;: null,
+  &quot;history_points&quot;: 1,
+  &quot;ecg_points&quot;: 0,
+  &quot;age_points&quot;: 2,
+  &quot;risk_factors_points&quot;: 2,
+  &quot;troponin_points&quot;: 0,
+  &quot;total_score&quot;: 5,
+  &quot;risk_band&quot;: &quot;moderate&quot;,
+  &quot;estimated_30d_mace_risk_pct&quot;: 16.6,
+  &quot;rationale&quot;: &quot;HEART score = 5/10 (moderate risk; ~16.6% 30-day MACE). H=1 (history: moderately_suspicious); E=0 (ECG: non_specific_repolarisation); A=2 (age 74); R=2 (risk factors count=3, known CAD/CVA/PAD=True); T=0 (troponin \u00d7 ULN = 0.00). Disposition typically: ED observation with serial troponin.&quot;,
+  &quot;references&quot;: [
+    &quot;Six AJ et al. Chest pain in the emergency room: value of the HEART score. Neth Heart J 2008;16:191-196.&quot;,
+    &quot;Backus BE et al. A prospective validation of the HEART score for chest pain patients at the emergency department. Int J Cardiol 2013;168:2153.&quot;
+  ],
+  &quot;abstain_recommended&quot;: false,
+  &quot;abstain_reason&quot;: null
+}</pre></details><details><summary>compute_timi_acs_score <span class=pill>cardiology_depth</span> <span class=latency>0.006 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;age_ge_65&quot;: true,
+  &quot;three_or_more_cad_risk_factors&quot;: true,
+  &quot;known_cad_50_pct_stenosis&quot;: false,
+  &quot;aspirin_use_in_last_7_days&quot;: true,
+  &quot;severe_anginal_episodes_in_last_24h&quot;: true,
+  &quot;st_deviation_ge_0_5_mm&quot;: false,
+  &quot;elevated_cardiac_markers&quot;: false
+}</pre><h3>Outputs</h3><pre>{
+  &quot;score&quot;: 4,
+  &quot;fourteen_day_mace_pct&quot;: 19.9,
+  &quot;risk_tier&quot;: &quot;moderate&quot;,
+  &quot;rationale&quot;: &quot;TIMI 4; 14-day MACE risk 19.9%; tier = moderate.&quot;,
+  &quot;references&quot;: [
+    &quot;Antman EM et al. JAMA 2000;284(7):835-842.&quot;
+  ]
+}</pre></details><details><summary>compute_grace_acs_score <span class=pill>cardiology_depth</span> <span class=latency>0.007 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;age&quot;: 74,
+  &quot;heart_rate&quot;: 98,
+  &quot;systolic_bp&quot;: 128,
+  &quot;creatinine_mg_dl&quot;: 1.2,
+  &quot;killip_class&quot;: 1,
+  &quot;cardiac_arrest_at_admission&quot;: false,
+  &quot;st_segment_deviation&quot;: false,
+  &quot;elevated_cardiac_enzymes&quot;: false
+}</pre><h3>Outputs</h3><pre>{
+  &quot;score&quot;: 134,
+  &quot;estimated_in_hospital_mortality_pct&quot;: 5.5,
+  &quot;risk_tier&quot;: &quot;moderate&quot;,
+  &quot;rationale&quot;: &quot;GRACE 134; estimated in-hospital mortality 5.5%; tier = moderate.&quot;,
+  &quot;references&quot;: [
+    &quot;Granger CB et al. Arch Intern Med 2003;163:2345-53.&quot;
+  ]
+}</pre></details>
+<h2>S3 - Heme/Onc staging</h2><p>67y M, IgG kappa myeloma + intermediate-risk MDS. ISS, IPSS-R, ECOG, Karnofsky.</p><p><span class=pill>heme_onc_depth</span></p><details><summary>compute_iss_myeloma_staging <span class=pill>heme_onc_depth</span> <span class=latency>0.006 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;serum_beta2_microglobulin_mg_l&quot;: 4.8,
+  &quot;serum_albumin_g_dl&quot;: 3.2
+}</pre><h3>Outputs</h3><pre>{
+  &quot;iss_stage&quot;: &quot;II&quot;,
+  &quot;median_overall_survival_months&quot;: 44,
+  &quot;rationale&quot;: &quot;\u03b2\u2082-microglobulin 4.80 mg/L; albumin 3.2 g/dL -&gt; ISS II; median OS 44 months.&quot;,
+  &quot;references&quot;: [
+    &quot;Greipp PR et al. JCO 2005;23:3412-20.&quot;
+  ]
+}</pre></details><details><summary>compute_ipss_r_mds_score <span class=pill>heme_onc_depth</span> <span class=latency>0.011 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;cytogenetic_category&quot;: &quot;intermediate&quot;,
+  &quot;bm_blast_pct&quot;: 4.5,
+  &quot;hemoglobin_g_dl&quot;: 9.5,
+  &quot;platelets_thousands_per_uL&quot;: 85,
+  &quot;anc_thousands_per_uL&quot;: 1.1
+}</pre><h3>Outputs</h3><pre>{
+  &quot;cytogenetic_points&quot;: 2.0,
+  &quot;bm_blast_points&quot;: 1.0,
+  &quot;hb_points&quot;: 1.0,
+  &quot;plt_points&quot;: 0.5,
+  &quot;anc_points&quot;: 0.0,
+  &quot;total_score&quot;: 4.5,
+  &quot;ipss_r_category&quot;: &quot;intermediate&quot;,
+  &quot;median_overall_survival_years&quot;: 3.0,
+  &quot;rationale&quot;: &quot;IPSS-R total 4.5 (cyto 2 + blasts 1 + Hb 1 + Plt 0.5 + ANC 0); category intermediate; median OS ~ 3.0 years.&quot;,
+  &quot;references&quot;: [
+    &quot;Greenberg PL et al. Blood 2012;120(12):2454-65.&quot;
+  ]
+}</pre></details><details><summary>compute_ecog_performance_status <span class=pill>heme_onc_depth</span> <span class=latency>0.004 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;grade&quot;: 2
+}</pre><h3>Outputs</h3><pre>{
+  &quot;grade&quot;: 2,
+  &quot;description&quot;: &quot;Ambulatory + capable of self-care, &gt; 50% waking hours up&quot;,
+  &quot;chemotherapy_eligibility&quot;: true,
+  &quot;rationale&quot;: &quot;ECOG 2: Ambulatory + capable of self-care, &gt; 50% waking hours up. Chemotherapy eligibility = True.&quot;,
+  &quot;references&quot;: [
+    &quot;Oken MM et al. AJCO 1982;5:649-655.&quot;
+  ]
+}</pre></details><details><summary>compute_karnofsky_performance <span class=pill>heme_onc_depth</span> <span class=latency>0.006 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;score&quot;: 70
+}</pre><h3>Outputs</h3><pre>{
+  &quot;score&quot;: 70,
+  &quot;description&quot;: &quot;Cares for self but unable to carry on normal activity&quot;,
+  &quot;care_setting&quot;: &quot;self_care_with_assistance&quot;,
+  &quot;ecog_equivalent&quot;: 2,
+  &quot;rationale&quot;: &quot;Karnofsky 70: Cares for self but unable to carry on normal activity; ECOG-equivalent 2.&quot;,
+  &quot;references&quot;: [
+    &quot;Karnofsky DA, Burchenal JH. 1949.&quot;
+  ]
+}</pre></details>
+<h2>S4 - Peri-op rheumatology pre-arthroplasty</h2><p>62y F seropositive RA on methotrexate + prednisone. Pre-op work-up before elective right total knee arthroplasty: DAS28, ASDAS, ACR/EULAR + RCRI + ARISCAT + Caprini.</p><p><span class=pill>peri_op_risk</span> <span class=pill>rheumatology</span></p><details><summary>compute_das28_rheumatoid_arthritis <span class=pill>rheumatology</span> <span class=latency>0.005 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;tender_joint_count_28&quot;: 8,
+  &quot;swollen_joint_count_28&quot;: 6,
+  &quot;esr_mm_per_hour&quot;: 42,
+  &quot;patient_global_assessment_vas_100&quot;: 55
+}</pre><h3>Outputs</h3><pre>{
+  &quot;das28_score&quot;: 5.66,
+  &quot;activity_tier&quot;: &quot;high&quot;,
+  &quot;biologic_eligibility_threshold_met&quot;: true,
+  &quot;rationale&quot;: &quot;DAS28-ESR 5.66; activity = high; biologic step-up threshold met = True.&quot;,
+  &quot;references&quot;: [
+    &quot;Prevoo MLL et al. Arthritis Rheum 1995;38:44-48.&quot;
+  ]
+}</pre></details><details><summary>compute_asdas_axspa <span class=pill>rheumatology</span> <span class=latency>0.005 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;back_pain_vas_0_10&quot;: 4.5,
+  &quot;duration_morning_stiffness_vas_0_10&quot;: 5.0,
+  &quot;patient_global_vas_0_10&quot;: 5.5,
+  &quot;peripheral_pain_swelling_vas_0_10&quot;: 4.0,
+  &quot;crp_mg_l&quot;: 12.0
+}</pre><h3>Outputs</h3><pre>{
+  &quot;asdas_score&quot;: 3.21,
+  &quot;activity_tier&quot;: &quot;high&quot;,
+  &quot;biologic_step_up_indicated&quot;: true,
+  &quot;rationale&quot;: &quot;ASDAS-CRP 3.21; tier = high; biologic step-up = True.&quot;,
+  &quot;references&quot;: [
+    &quot;Lukas C et al. Ann Rheum Dis 2009;68:18-24.&quot;
+  ]
+}</pre></details><details><summary>compute_acr_eular_ra_classification <span class=pill>rheumatology</span> <span class=latency>0.004 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;n_small_joints_involved&quot;: 8,
+  &quot;n_large_joints_involved&quot;: 2,
+  &quot;rf_or_acpa_positive&quot;: true,
+  &quot;rf_or_acpa_high_titre&quot;: true,
+  &quot;elevated_crp_or_esr&quot;: true,
+  &quot;symptom_duration_weeks_ge_6&quot;: true
+}</pre><h3>Outputs</h3><pre>{
+  &quot;joint_points&quot;: 3,
+  &quot;serology_points&quot;: 3,
+  &quot;acute_phase_points&quot;: 1,
+  &quot;duration_points&quot;: 1,
+  &quot;total_score&quot;: 8,
+  &quot;classification_met&quot;: true,
+  &quot;rationale&quot;: &quot;Joint 3 + serology 3 + APR 1 + duration 1 = 8/10; RA classification met = True.&quot;,
+  &quot;references&quot;: [
+    &quot;Aletaha D et al. ACR/EULAR. Ann Rheum Dis 2010;69:1580-1588.&quot;
+  ]
+}</pre></details><details><summary>compute_rcri_cardiac_risk <span class=pill>peri_op_risk</span> <span class=latency>0.004 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;high_risk_surgery&quot;: false,
+  &quot;history_ischemic_heart_disease&quot;: false,
+  &quot;history_congestive_heart_failure&quot;: false,
+  &quot;history_cerebrovascular_disease&quot;: false,
+  &quot;insulin_dependent_diabetes&quot;: false,
+  &quot;creatinine_gt_2_mg_dl&quot;: false
+}</pre><h3>Outputs</h3><pre>{
+  &quot;score&quot;: 0,
+  &quot;cardiac_risk_pct&quot;: 0.4,
+  &quot;risk_tier&quot;: &quot;low&quot;,
+  &quot;cardiac_consult_recommended&quot;: false,
+  &quot;rationale&quot;: &quot;RCRI 0/6; MACE risk 0.4%; tier = low; cardiac consult = False.&quot;,
+  &quot;references&quot;: [
+    &quot;Lee TH et al. Circulation 1999;100:1043-9.&quot;
+  ]
+}</pre></details><details><summary>compute_ariscat_pulmonary_risk <span class=pill>peri_op_risk</span> <span class=latency>0.005 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;age&quot;: 62,
+  &quot;preop_spo2_pct&quot;: 96.0,
+  &quot;surgical_incision_site&quot;: &quot;lower_extremity&quot;,
+  &quot;surgical_duration_hours&quot;: 1.5,
+  &quot;respiratory_infection_last_month&quot;: false
+}</pre><h3>Outputs</h3><pre>{
+  &quot;score&quot;: 3,
+  &quot;pulmonary_risk_pct&quot;: 1.6,
+  &quot;risk_tier&quot;: &quot;low&quot;,
+  &quot;rationale&quot;: &quot;ARISCAT 3; pulmonary complication risk 1.6%; tier = low.&quot;,
+  &quot;references&quot;: [
+    &quot;Canet J et al. Anesthesiology 2010;113:1338-1350.&quot;
+  ]
+}</pre></details><details><summary>compute_caprini_vte_risk <span class=pill>peri_op_risk</span> <span class=latency>0.004 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;age&quot;: 62,
+  &quot;bmi_gt_25&quot;: true,
+  &quot;major_surgery_planned&quot;: true,
+  &quot;history_vte&quot;: false,
+  &quot;active_malignancy&quot;: false
+}</pre><h3>Outputs</h3><pre>{
+  &quot;score&quot;: 5,
+  &quot;vte_risk_tier&quot;: &quot;highest&quot;,
+  &quot;prophylaxis_recommendation&quot;: &quot;Combined prophylaxis with extended duration \u2265 4 weeks.&quot;,
+  &quot;rationale&quot;: &quot;Caprini score 5; VTE risk tier = highest; recommendation: Combined prophylaxis with extended duration \u2265 4 weeks.&quot;,
+  &quot;references&quot;: [
+    &quot;Caprini JA. Semin Thromb Hemost 1991;17 Suppl 3:304-12.&quot;
+  ]
+}</pre></details>
+<h2>S5 - Neuro emergency triage</h2><p>Two patients: SAH grade-III on imaging; spontaneous ICH with GCS 11 and 35 mL volume. NIHSS for the SAH patient + Hunt-Hess + ICH score + modified Rankin + Hauser.</p><p><span class=pill>neurology_depth</span> <span class=pill>stroke_acs</span></p><details><summary>compute_stroke_severity <span class=pill>stroke_acs</span> <span class=latency>0.038 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;item_scores&quot;: {
+    &quot;facial_palsy&quot;: 2,
+    &quot;motor_arm_left&quot;: 3,
+    &quot;motor_arm_right&quot;: 0,
+    &quot;motor_leg_left&quot;: 2,
+    &quot;motor_leg_right&quot;: 0,
+    &quot;language&quot;: 2,
+    &quot;dysarthria&quot;: 1,
+    &quot;extinction_inattention&quot;: 1,
+    &quot;level_of_consciousness&quot;: 1,
+    &quot;loc_questions&quot;: 1,
+    &quot;loc_commands&quot;: 1,
+    &quot;gaze&quot;: 1,
+    &quot;visual_fields&quot;: 1,
+    &quot;ataxia&quot;: 1,
+    &quot;sensory&quot;: 1
+  },
+  &quot;last_known_well_minutes_ago&quot;: 120
+}</pre><h3>Outputs</h3><pre>{
+  &quot;patient_id&quot;: null,
+  &quot;score_total&quot;: 13,
+  &quot;items&quot;: [
+    {
+      &quot;item&quot;: &quot;loc_responsiveness&quot;,
+      &quot;points&quot;: 0,
+      &quot;rationale&quot;: &quot;loc_responsiveness: 0 (normal/no deficit)&quot;
+    },
+    {
+      &quot;item&quot;: &quot;loc_questions&quot;,
+      &quot;points&quot;: 1,
+      &quot;rationale&quot;: &quot;loc_questions: 1 (deficit present)&quot;
+    },
+    {
+      &quot;item&quot;: &quot;loc_commands&quot;,
+      &quot;points&quot;: 1,
+      &quot;rationale&quot;: &quot;loc_commands: 1 (deficit present)&quot;
+    },
+    {
+      &quot;item&quot;: &quot;best_gaze&quot;,
+      &quot;points&quot;: 0,
+      &quot;rationale&quot;: &quot;best_gaze: 0 (normal/no deficit)&quot;
+    },
+    {
+      &quot;item&quot;: &quot;visual_fields&quot;,
+      &quot;points&quot;: 1,
+      &quot;rationale&quot;: &quot;visual_fields: 1 (deficit present)&quot;
+    },
+    {
+      &quot;item&quot;: &quot;facial_palsy&quot;,
+      &quot;points&quot;: 2,
+      &quot;rationale&quot;: &quot;facial_palsy: 2 (deficit present)&quot;
+    },
+    {
+      &quot;item&quot;: &quot;motor_arm_left&quot;,
+      &quot;points&quot;: 3,
+      &quot;rationale&quot;: &quot;motor_arm_left: 3 (deficit present)&quot;
+    },
+    {
+      &quot;item&quot;: &quot;motor_arm_right&quot;,
+      &quot;points&quot;: 0,
+      &quot;rationale&quot;: &quot;motor_arm_right: 0 (normal/no deficit)&quot;
+    },
+    {
+      &quot;item&quot;: &quot;motor_leg_left&quot;,
+      &quot;points&quot;: 2,
+      &quot;rationale&quot;: &quot;motor_leg_left: 2 (deficit present)&quot;
+    },
+    {
+      &quot;item&quot;: &quot;motor_leg_right&quot;,
+      &quot;points&quot;: 0,
+      &quot;rationale&quot;: &quot;motor_leg_right: 0 (normal/no deficit)&quot;
+    },
+    {
+      &quot;item&quot;: &quot;limb_ataxia&quot;,
+      &quot;points&quot;: 0,
+      &quot;rationale&quot;: &quot;limb_ataxia: 0 (normal/no deficit)&quot;
+    },
+    {
+      &quot;item&quot;: &quot;sensory&quot;,
+      &quot;points&quot;: 1,
+      &quot;rationale&quot;: &quot;sensory: 1 (deficit present)&quot;
+    },
+    {
+      &quot;item&quot;: &quot;best_language&quot;,
+      &quot;points&quot;: 0,
+      &quot;rationale&quot;: &quot;best_language: 0 (normal/no deficit)&quot;
+    },
+    {
+      &quot;item&quot;: &quot;dysarthria&quot;,
+      &quot;points&quot;: 1,
+      &quot;rationale&quot;: &quot;dysarthria: 1 (deficit present)&quot;
+    },
+    {
+      &quot;item&quot;: &quot;extinction_inattention&quot;,
+      &quot;points&quot;: 1,
+      &quot;rationale&quot;: &quot;extinction_inattention: 1 (deficit present)&quot;
+    }
+  ],
+  &quot;severity_tier&quot;: &quot;moderate&quot;,
+  &quot;lvo_suspected&quot;: true,
+  &quot;recommended_response&quot;: &quot;endovascular_thrombectomy_evaluation&quot;,
+  &quot;rationale&quot;: &quot;NIHSS total = 13 (moderate tier). LVO suspected: NIHSS \u22656 with cortical signs (gaze / language / neglect / visual field cuts) -- anterior-circulation large-vessel occlusion is a high pre-test probability. Top contributing items: motor_arm_left=+3, facial_palsy=+2, motor_leg_left=+2, loc_questions=+1, loc_commands=+1. Last-known-well: 120 min ago. Recommended response: endovascular_thrombectomy_evaluation.&quot;,
+  &quot;references&quot;: [
+    &quot;Brott T et al. Measurements of acute cerebral infarction: a clinical examination scale. Stroke 1989;20:864-870.&quot;,
+    &quot;AHA/ASA 2019 Guidelines for the Early Management of Patients with Acute Ischemic Stroke (Powers WJ et al., Stroke 2019;50:e344).&quot;
+  ]
+}</pre></details><details><summary>compute_hunt_hess_sah <span class=pill>neurology_depth</span> <span class=latency>0.003 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;grade&quot;: 3
+}</pre><h3>Outputs</h3><pre>{
+  &quot;grade&quot;: 3,
+  &quot;description&quot;: &quot;Drowsy with mild focal deficit&quot;,
+  &quot;surgical_eligibility&quot;: &quot;guarded&quot;,
+  &quot;estimated_mortality_pct&quot;: 37.0,
+  &quot;rationale&quot;: &quot;Hunt-Hess grade 3: Drowsy with mild focal deficit; surgical eligibility = guarded; estimated mortality 37%.&quot;,
+  &quot;references&quot;: [
+    &quot;Hunt WE, Hess RM. J Neurosurg 1968;28:14-20.&quot;
+  ]
+}</pre></details><details><summary>compute_ich_score <span class=pill>neurology_depth</span> <span class=latency>0.003 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;glasgow_coma_scale&quot;: 11,
+  &quot;ich_volume_ml&quot;: 35,
+  &quot;intraventricular_hemorrhage&quot;: true,
+  &quot;infratentorial_origin&quot;: false,
+  &quot;age_ge_80&quot;: false
+}</pre><h3>Outputs</h3><pre>{
+  &quot;score&quot;: 3,
+  &quot;estimated_30d_mortality_pct&quot;: 72.0,
+  &quot;icu_admission_recommended&quot;: true,
+  &quot;rationale&quot;: &quot;ICH score 3; GCS pts 1; 30-d mortality 72%; ICU = True.&quot;,
+  &quot;references&quot;: [
+    &quot;Hemphill JC et al. Stroke 2001;32:891-7.&quot;
+  ]
+}</pre></details><details><summary>compute_modified_rankin <span class=pill>neurology_depth</span> <span class=latency>0.003 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;grade&quot;: 3
+}</pre><h3>Outputs</h3><pre>{
+  &quot;grade&quot;: 3,
+  &quot;description&quot;: &quot;Moderate disability -- needs some help, walks unaided&quot;,
+  &quot;independent_living&quot;: false,
+  &quot;rationale&quot;: &quot;mRS grade 3: Moderate disability -- needs some help, walks unaided; independent living = False.&quot;,
+  &quot;references&quot;: [
+    &quot;Rankin J. Scott Med J 1957;2(5):200-15.&quot;
+  ]
+}</pre></details><details><summary>compute_hauser_ambulation_index <span class=pill>neurology_depth</span> <span class=latency>0.003 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;grade&quot;: 4
+}</pre><h3>Outputs</h3><pre>{
+  &quot;grade&quot;: 4,
+  &quot;description&quot;: &quot;Requires bilateral support to walk 25 ft (\u2264 20 s)&quot;,
+  &quot;rationale&quot;: &quot;Hauser grade 4: Requires bilateral support to walk 25 ft (\u2264 20 s).&quot;,
+  &quot;references&quot;: [
+    &quot;Hauser SL et al. NEJM 1983;308:173-180.&quot;
+  ]
+}</pre></details>
+<h2>S6 - OB/Peds advanced</h2><p>G1P0 at 39w admitted for elective induction; preterm neonate at 28w with suspected NEC; term neonate at 60h of life with TSB 13.5.</p><p><span class=pill>ob_peds_advanced</span></p><details><summary>compute_bishop_induction_score <span class=pill>ob_peds_advanced</span> <span class=latency>0.004 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;cervical_dilation_cm&quot;: 2.0,
+  &quot;cervical_effacement_pct&quot;: 50,
+  &quot;fetal_station&quot;: -2,
+  &quot;cervical_consistency&quot;: &quot;medium&quot;,
+  &quot;cervical_position&quot;: &quot;anterior&quot;
+}</pre><h3>Outputs</h3><pre>{
+  &quot;score&quot;: 6,
+  &quot;favourable_for_induction&quot;: false,
+  &quot;rationale&quot;: &quot;Bishop score 6; favourable for induction = False (threshold \u2265 8).&quot;,
+  &quot;references&quot;: [
+    &quot;Bishop EH. Obstet Gynecol 1964;24:266-8.&quot;
+  ]
+}</pre></details><details><summary>compute_apgar_score <span class=pill>ob_peds_advanced</span> <span class=latency>0.004 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;one_min_appearance&quot;: 1,
+  &quot;one_min_pulse&quot;: 2,
+  &quot;one_min_grimace&quot;: 1,
+  &quot;one_min_activity&quot;: 1,
+  &quot;one_min_respiration&quot;: 1,
+  &quot;five_min_appearance&quot;: 2,
+  &quot;five_min_pulse&quot;: 2,
+  &quot;five_min_grimace&quot;: 2,
+  &quot;five_min_activity&quot;: 2,
+  &quot;five_min_respiration&quot;: 2
+}</pre><h3>Outputs</h3><pre>{
+  &quot;score_1_min&quot;: 6,
+  &quot;score_5_min&quot;: 10,
+  &quot;severity&quot;: &quot;normal&quot;,
+  &quot;nicu_evaluation_indicated&quot;: false,
+  &quot;rationale&quot;: &quot;Apgar 1-min 6; 5-min 10; severity = normal; NICU = False.&quot;,
+  &quot;references&quot;: [
+    &quot;Apgar V. NEJM 1953;249:485-90.&quot;
+  ]
+}</pre></details><details><summary>compute_bell_nec_stage <span class=pill>ob_peds_advanced</span> <span class=latency>0.003 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;abdominal_distension&quot;: true,
+  &quot;occult_blood_in_stool&quot;: true,
+  &quot;radiographic_pneumatosis_intestinalis&quot;: true,
+  &quot;persistent_metabolic_acidosis&quot;: false,
+  &quot;portal_venous_gas&quot;: false,
+  &quot;pneumoperitoneum&quot;: false,
+  &quot;septic_shock_or_dic&quot;: false
+}</pre><h3>Outputs</h3><pre>{
+  &quot;stage&quot;: &quot;IIA&quot;,
+  &quot;severity_tier&quot;: &quot;definite&quot;,
+  &quot;surgical_consult_required&quot;: false,
+  &quot;rationale&quot;: &quot;Bell stage IIA (definite); surgical consult = False.&quot;,
+  &quot;references&quot;: [
+    &quot;Bell MJ et al. Ann Surg 1978;187:1-7.&quot;
+  ]
+}</pre></details><details><summary>compute_bilirubin_nomogram <span class=pill>ob_peds_advanced</span> <span class=latency>0.005 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;age_hours&quot;: 60,
+  &quot;total_bilirubin_mg_dl&quot;: 13.5,
+  &quot;gestational_age_weeks&quot;: 39,
+  &quot;has_neurologic_risk_factors&quot;: false
+}</pre><h3>Outputs</h3><pre>{
+  &quot;age_hours&quot;: 60,
+  &quot;total_bilirubin_mg_dl&quot;: 13.5,
+  &quot;risk_zone&quot;: &quot;high_intermediate&quot;,
+  &quot;phototherapy_indicated&quot;: true,
+  &quot;exchange_transfusion_indicated&quot;: false,
+  &quot;rationale&quot;: &quot;Age 60 h; TSB 13.5 mg/dL; Bhutani zone = high_intermediate; phototherapy = True; exchange transfusion = False.&quot;,
+  &quot;references&quot;: [
+    &quot;Bhutani VK et al. Pediatrics 1999;103:6-14.&quot;
+  ]
+}</pre></details>
+<h2>S7 - GI/Hepatology + ID screen</h2><p>55y M with chronic alcohol use admitted for jaundice + melena; HIV co-infected on ART. Maddrey + FIB-4 + Glasgow-Blatchford + Rome IV (chronic IBS-mixed) + HIV tier + TB risk screen.</p><p><span class=pill>gi_hepatology_depth</span> <span class=pill>infectious_disease</span></p><details><summary>compute_maddrey_alcoholic_hepatitis <span class=pill>gi_hepatology_depth</span> <span class=latency>0.005 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;patient_pt_seconds&quot;: 22.5,
+  &quot;control_pt_seconds&quot;: 12.5,
+  &quot;serum_bilirubin_mg_dl&quot;: 18.5
+}</pre><h3>Outputs</h3><pre>{
+  &quot;discriminant_function&quot;: 64.5,
+  &quot;severity_tier&quot;: &quot;severe&quot;,
+  &quot;corticosteroid_indicated&quot;: true,
+  &quot;rationale&quot;: &quot;DF = 64.5; tier = severe; corticosteroid indicated = True.&quot;,
+  &quot;references&quot;: [
+    &quot;Maddrey WC. Gastroenterology 1978;75:193-9.&quot;
+  ]
+}</pre></details><details><summary>compute_fib4_liver_fibrosis <span class=pill>gi_hepatology_depth</span> <span class=latency>0.008 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;age&quot;: 55,
+  &quot;ast_iu_l&quot;: 145,
+  &quot;alt_iu_l&quot;: 85,
+  &quot;platelets_thousands_per_uL&quot;: 95
+}</pre><h3>Outputs</h3><pre>{
+  &quot;fib4_index&quot;: 9.11,
+  &quot;fibrosis_stage_estimate&quot;: &quot;F3_F4_advanced&quot;,
+  &quot;biopsy_or_elastography_recommended&quot;: true,
+  &quot;rationale&quot;: &quot;FIB-4 = 9.11; stage = F3_F4_advanced; biopsy/elastography = True.&quot;,
+  &quot;references&quot;: [
+    &quot;Sterling RK et al. Hepatology 2006;43:1317-25.&quot;
+  ]
+}</pre></details><details><summary>compute_glasgow_blatchford_ugib <span class=pill>gi_hepatology_depth</span> <span class=latency>0.006 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;blood_urea_mmol_l&quot;: 8.5,
+  &quot;hemoglobin_g_dl&quot;: 10.2,
+  &quot;sex&quot;: &quot;male&quot;,
+  &quot;systolic_bp_mmHg&quot;: 104,
+  &quot;pulse_ge_100&quot;: true,
+  &quot;melena&quot;: true,
+  &quot;hepatic_disease&quot;: true
+}</pre><h3>Outputs</h3><pre>{
+  &quot;score&quot;: 11,
+  &quot;risk_tier&quot;: &quot;high&quot;,
+  &quot;inpatient_admission_required&quot;: true,
+  &quot;endoscopy_within_24h&quot;: true,
+  &quot;rationale&quot;: &quot;GBS 11; risk tier = high; admit = True; endoscopy \u2264 24h = True.&quot;,
+  &quot;references&quot;: [
+    &quot;Blatchford O et al. Lancet 2000;356:1318-21.&quot;
+  ]
+}</pre></details><details><summary>compute_rome_iv_ibs <span class=pill>gi_hepatology_depth</span> <span class=latency>0.005 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;abdominal_pain_days_per_week&quot;: 2,
+  &quot;related_to_defecation&quot;: true,
+  &quot;associated_with_change_in_stool_frequency&quot;: true,
+  &quot;associated_with_change_in_stool_form&quot;: true,
+  &quot;symptom_duration_months&quot;: 8,
+  &quot;bowel_pattern_predominant&quot;: &quot;mixed&quot;
+}</pre><h3>Outputs</h3><pre>{
+  &quot;criteria_met&quot;: true,
+  &quot;subtype&quot;: &quot;IBS_M&quot;,
+  &quot;duration_criterion_met&quot;: true,
+  &quot;rationale&quot;: &quot;Pain \u22651 day/week = True; 3/3 associations; duration \u2265 6 months = True; Rome IV criteria met = True; subtype = IBS_M.&quot;,
+  &quot;references&quot;: [
+    &quot;Lacy BE et al. Gastroenterology 2016;150:1393-1407.&quot;
+  ]
+}</pre></details><details><summary>compute_hiv_management_tier <span class=pill>infectious_disease</span> <span class=latency>0.008 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;cd4_count&quot;: 380,
+  &quot;viral_load_copies_ml&quot;: 120,
+  &quot;on_art&quot;: true
+}</pre><h3>Outputs</h3><pre>{
+  &quot;cd4_count&quot;: 380,
+  &quot;viral_load_copies_ml&quot;: 120.0,
+  &quot;tier&quot;: &quot;active_viraemia_immune_compromise&quot;,
+  &quot;opportunistic_prophylaxis_indicated&quot;: [],
+  &quot;art_change_recommended&quot;: false,
+  &quot;rationale&quot;: &quot;CD4 380 cells/mm\u00b3; VL 120 copies/mL; on ART = True; tier = active_viraemia_immune_compromise.&quot;,
+  &quot;references&quot;: [
+    &quot;DHHS HIV Management Guidelines 2024.&quot;
+  ]
+}</pre></details><details><summary>compute_tb_risk_screen <span class=pill>infectious_disease</span> <span class=latency>0.004 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;high_burden_country_residence_or_travel&quot;: true,
+  &quot;immunocompromised_HIV_or_TNF_inhibitor&quot;: true,
+  &quot;cough_gt_3_weeks_with_constitutional_symptoms&quot;: true
+}</pre><h3>Outputs</h3><pre>{
+  &quot;risk_tier&quot;: &quot;high&quot;,
+  &quot;recommended_test&quot;: &quot;imaging+sputum&quot;,
+  &quot;treatment_consideration&quot;: &quot;Empiric airborne isolation + workup; do NOT delay.&quot;,
+  &quot;rationale&quot;: &quot;2 LTBI risk factor(s); active-TB suspicion = True; tier = high; recommended test = imaging+sputum.&quot;,
+  &quot;references&quot;: [
+    &quot;WHO TB Report 2024.&quot;,
+    &quot;CDC LTBI Treatment Regimens 2020.&quot;
+  ]
+}</pre></details>
+<h2>S8 - Outpatient panel + research models + EHR ingest</h2><p>Outpatient panel of 4 patients: sleep / pain / endocrine screen, kidney transplant donor + recipient pairing, specialty clinic referrals (derm + ophtho + pulmo). Research models on cohort data + HL7 v2 ingestion + C-CDA chart parse.</p><p><span class=pill>endocrinology_advanced</span> <span class=pill>legacy_ehr_parsers</span> <span class=pill>model_research</span> <span class=pill>sleep_pain</span> <span class=pill>specialty_clinics</span> <span class=pill>transplant</span></p><details><summary>compute_epworth_sleepiness_scale <span class=pill>sleep_pain</span> <span class=latency>0.004 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;sitting_reading&quot;: 2,
+  &quot;watching_tv&quot;: 3,
+  &quot;sitting_inactive_in_public&quot;: 2,
+  &quot;passenger_in_car_one_hour&quot;: 1,
+  &quot;lying_down_to_rest_afternoon&quot;: 3,
+  &quot;sitting_and_talking_to_someone&quot;: 1,
+  &quot;sitting_quietly_after_lunch&quot;: 2,
+  &quot;in_car_stopped_in_traffic&quot;: 1
+}</pre><h3>Outputs</h3><pre>{
+  &quot;score&quot;: 15,
+  &quot;severity&quot;: &quot;moderate_excessive&quot;,
+  &quot;sleep_study_recommended&quot;: true,
+  &quot;rationale&quot;: &quot;Epworth 15/24; severity moderate_excessive; sleep study referral = True.&quot;,
+  &quot;references&quot;: [
+    &quot;Johns MW. Sleep 1991;14(6):540-545.&quot;
+  ]
+}</pre></details><details><summary>compute_stop_bang_osa_screen <span class=pill>sleep_pain</span> <span class=latency>0.003 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;snoring_loudly&quot;: true,
+  &quot;tired_during_day&quot;: true,
+  &quot;observed_apnea&quot;: false,
+  &quot;high_blood_pressure&quot;: true,
+  &quot;bmi_gt_35&quot;: true,
+  &quot;age_gt_50&quot;: true,
+  &quot;neck_circumference_gt_40_cm&quot;: true,
+  &quot;male_sex&quot;: true
+}</pre><h3>Outputs</h3><pre>{
+  &quot;score&quot;: 7,
+  &quot;risk_tier&quot;: &quot;high&quot;,
+  &quot;polysomnography_referral_recommended&quot;: true,
+  &quot;rationale&quot;: &quot;STOP-BANG 7/8; risk high; PSG referral = True.&quot;,
+  &quot;references&quot;: [
+    &quot;Chung F et al. Anesthesiology 2008;108:812-21.&quot;
+  ]
+}</pre></details><details><summary>compute_dn4_neuropathic_pain <span class=pill>sleep_pain</span> <span class=latency>0.003 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;burning&quot;: true,
+  &quot;electric_shocks&quot;: true,
+  &quot;tingling&quot;: true,
+  &quot;pins_and_needles&quot;: true,
+  &quot;numbness&quot;: true,
+  &quot;hypoesthesia_to_touch&quot;: true,
+  &quot;hypoesthesia_to_pinprick&quot;: true
+}</pre><h3>Outputs</h3><pre>{
+  &quot;score&quot;: 7,
+  &quot;neuropathic_pain_likely&quot;: true,
+  &quot;suggested_first_line&quot;: [
+    &quot;Gabapentin or pregabalin (gabapentinoid)&quot;,
+    &quot;Duloxetine (SNRI) or amitriptyline (TCA)&quot;,
+    &quot;Topical lidocaine 5% patch for localised pain&quot;
+  ],
+  &quot;rationale&quot;: &quot;DN4 7/10; neuropathic pain likely = True. First-line: 3 options.&quot;,
+  &quot;references&quot;: [
+    &quot;Bouhassira D et al. Pain 2005;114:29-36.&quot;
+  ]
+}</pre></details><details><summary>compute_thyroid_management <span class=pill>endocrinology_advanced</span> <span class=latency>0.007 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;tsh_mU_L&quot;: 8.5,
+  &quot;free_t4_ng_dl&quot;: 0.8,
+  &quot;current_levothyroxine_dose_mcg&quot;: 75,
+  &quot;on_levothyroxine&quot;: true
+}</pre><h3>Outputs</h3><pre>{
+  &quot;pattern&quot;: &quot;subclinical_hypothyroid&quot;,
+  &quot;levothyroxine_dose_change_mcg&quot;: 25,
+  &quot;follow_up_weeks&quot;: 8,
+  &quot;rationale&quot;: &quot;TSH 8.50 mU/L; free T4 0.8; pattern subclinical_hypothyroid; levothyroxine \u0394 +25 mcg; follow-up 8 weeks.&quot;,
+  &quot;references&quot;: [
+    &quot;Jonklaas J et al. Thyroid 2014;24(12):1670-1751.&quot;
+  ]
+}</pre></details><details><summary>compute_adrenal_insufficiency_workup <span class=pill>endocrinology_advanced</span> <span class=latency>0.007 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;morning_cortisol_ug_dl&quot;: 4.2,
+  &quot;cortisol_after_acth_stim_ug_dl&quot;: 12.0,
+  &quot;acth_pg_ml&quot;: 85
+}</pre><h3>Outputs</h3><pre>{
+  &quot;morning_cortisol_ug_dl&quot;: 4.2,
+  &quot;cortisol_after_acth_stim_ug_dl&quot;: 12.0,
+  &quot;diagnosis_tier&quot;: &quot;indeterminate_repeat&quot;,
+  &quot;glucocorticoid_replacement_recommended&quot;: false,
+  &quot;fludrocortisone_recommended&quot;: false,
+  &quot;rationale&quot;: &quot;Morning cortisol 4.2 \u00b5g/dL; post-ACTH 12.0; ACTH 85; diagnosis = indeterminate_repeat; gluco replacement = False; fludro = False.&quot;,
+  &quot;references&quot;: [
+    &quot;Bornstein SR et al. Endocrine Society 2016.&quot;
+  ]
+}</pre></details><details><summary>compute_hypocalcemia_severity <span class=pill>endocrinology_advanced</span> <span class=latency>0.006 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;serum_calcium_mg_dl&quot;: 7.4,
+  &quot;serum_albumin_g_dl&quot;: 3.4,
+  &quot;qtc_ms&quot;: 470,
+  &quot;symptomatic_tetany&quot;: true
+}</pre><h3>Outputs</h3><pre>{
+  &quot;corrected_calcium_mg_dl&quot;: 7.88,
+  &quot;severity&quot;: &quot;critical&quot;,
+  &quot;iv_calcium_indicated&quot;: true,
+  &quot;cardiac_monitoring_indicated&quot;: true,
+  &quot;rationale&quot;: &quot;Calcium 7.4; albumin 3.4; corrected 7.88; severity critical; IV calcium = True; cardiac monitoring = True.&quot;,
+  &quot;references&quot;: [
+    &quot;Cooper MS, Gittoes NJ. BMJ 2008;336:1298-302.&quot;
+  ]
+}</pre></details><details><summary>compute_kdpi_kidney_donor <span class=pill>transplant</span> <span class=latency>0.006 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;age&quot;: 42,
+  &quot;height_cm&quot;: 178,
+  &quot;weight_kg&quot;: 82,
+  &quot;ethnicity_african_american&quot;: false,
+  &quot;history_of_hypertension&quot;: true,
+  &quot;history_of_diabetes&quot;: false,
+  &quot;cause_of_death_cva&quot;: false,
+  &quot;serum_creatinine_mg_dl&quot;: 1.1
+}</pre><h3>Outputs</h3><pre>{
+  &quot;kdri_raw&quot;: 1.093,
+  &quot;kdpi_pct&quot;: 65,
+  &quot;quality_tier&quot;: &quot;middle_50&quot;,
+  &quot;rationale&quot;: &quot;KDRI 1.093 -&gt; KDPI 65%; tier = middle_50.&quot;,
+  &quot;references&quot;: [
+    &quot;Rao PS et al. Transplantation 2009;88:231-236.&quot;
+  ]
+}</pre></details><details><summary>compute_epts_recipient_score <span class=pill>transplant</span> <span class=latency>0.005 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;age&quot;: 58,
+  &quot;time_on_dialysis_years&quot;: 3.5,
+  &quot;prior_solid_organ_transplant&quot;: false,
+  &quot;diabetes&quot;: true
+}</pre><h3>Outputs</h3><pre>{
+  &quot;epts_raw&quot;: -20.135,
+  &quot;epts_pct&quot;: 10,
+  &quot;top_20_pct_eligible&quot;: true,
+  &quot;rationale&quot;: &quot;EPTS raw -20.135 -&gt; 10%; top-20% eligible = True.&quot;,
+  &quot;references&quot;: [
+    &quot;Friedewald JJ et al. Am J Transplant 2013;13(8):2115-23.&quot;
+  ]
+}</pre></details><details><summary>compute_immunosuppression_dose_check <span class=pill>transplant</span> <span class=latency>0.007 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;drug&quot;: &quot;tacrolimus&quot;,
+  &quot;weight_kg&quot;: 82,
+  &quot;cyp3a5_phenotype&quot;: &quot;poor_metabolizer&quot;,
+  &quot;egfr_ml_min&quot;: 68,
+  &quot;on_strong_cyp3a4_inhibitor&quot;: false
+}</pre><h3>Outputs</h3><pre>{
+  &quot;drug&quot;: &quot;tacrolimus&quot;,
+  &quot;standard_dose_mg_per_kg_per_day&quot;: 0.1,
+  &quot;adjusted_dose_mg_per_kg_per_day&quot;: 0.1,
+  &quot;adjustment_reason&quot;: &quot;standard dosing&quot;,
+  &quot;cpic_aware&quot;: true,
+  &quot;rationale&quot;: &quot;tacrolimus standard 0.100 mg/kg/day -&gt; adjusted 0.100; weight 82 kg; reasons: standard dosing.&quot;,
+  &quot;references&quot;: [
+    &quot;Birdwell KA et al. CPIC tacrolimus + CYP3A5. CPT 2015.&quot;,
+    &quot;OPTN immunosuppression management protocols.&quot;
+  ]
+}</pre></details><details><summary>compute_lesion_triage <span class=pill>specialty_clinics</span> <span class=latency>0.004 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;asymmetry&quot;: true,
+  &quot;border_irregularity&quot;: true,
+  &quot;color_variegated&quot;: true,
+  &quot;diameter_mm&quot;: 8.5,
+  &quot;evolving_or_changing&quot;: true,
+  &quot;seven_point_atypical_features&quot;: 3,
+  &quot;history_uv_exposure&quot;: true,
+  &quot;family_history_melanoma&quot;: true
+}</pre><h3>Outputs</h3><pre>{
+  &quot;abcde_score&quot;: 5,
+  &quot;seven_point_score&quot;: 3,
+  &quot;suspicion_tier&quot;: &quot;urgent_referral&quot;,
+  &quot;biopsy_recommended&quot;: true,
+  &quot;rationale&quot;: &quot;ABCDE score 5/5; 7-point atypical 3; risk modifiers 2; tier = urgent_referral; Refer to dermatology within 2 weeks.&quot;,
+  &quot;references&quot;: [
+    &quot;Friedman RJ et al. ABCDE rule. CA Cancer J Clin 1985.&quot;,
+    &quot;MacKie RM. 7-point checklist. BMJ 1989.&quot;
+  ]
+}</pre></details><details><summary>compute_diabetic_retinopathy_severity <span class=pill>specialty_clinics</span> <span class=latency>0.002 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;microaneurysms&quot;: true,
+  &quot;retinal_hemorrhages_count&quot;: 4,
+  &quot;venous_beading&quot;: true,
+  &quot;intraretinal_microvascular_abnormalities&quot;: true,
+  &quot;neovascularization&quot;: false,
+  &quot;vitreous_hemorrhage&quot;: false,
+  &quot;macular_thickening&quot;: false
+}</pre><h3>Outputs</h3><pre>{
+  &quot;severity_class&quot;: &quot;severe_npdr&quot;,
+  &quot;macular_oedema_present&quot;: false,
+  &quot;referral_urgency&quot;: &quot;urgent&quot;,
+  &quot;rationale&quot;: &quot;DR class = severe_npdr; macular oedema = False; referral urgency = urgent.&quot;,
+  &quot;references&quot;: [
+    &quot;Wilkinson CP et al. ETDRS scale. Ophthalmology 2003.&quot;,
+    &quot;ICO Diabetic Eye Care Guidelines (2024).&quot;
+  ]
+}</pre></details><details><summary>compute_pft_interpretation <span class=pill>specialty_clinics</span> <span class=latency>0.005 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;fev1_l&quot;: 2.05,
+  &quot;fvc_l&quot;: 3.1,
+  &quot;fev1_pct_predicted&quot;: 62,
+  &quot;asthma_control_test_score&quot;: 18
+}</pre><h3>Outputs</h3><pre>{
+  &quot;fev1_fvc_ratio&quot;: 0.661,
+  &quot;fev1_pct_predicted&quot;: 62.0,
+  &quot;pattern&quot;: &quot;obstructive&quot;,
+  &quot;gold_stage&quot;: &quot;GOLD_2&quot;,
+  &quot;asthma_control_test_score&quot;: 18,
+  &quot;asthma_control_tier&quot;: &quot;not_well_controlled&quot;,
+  &quot;rationale&quot;: &quot;FEV1/FVC = 0.66; FEV1 % predicted 62.0%; pattern = obstructive; GOLD = GOLD_2; ACT tier = not_well_controlled.&quot;,
+  &quot;references&quot;: [
+    &quot;GOLD 2024 Report -- COPD diagnosis + staging.&quot;,
+    &quot;Nathan RA et al. Asthma Control Test. JACI 2004;113:59-65.&quot;
+  ]
+}</pre></details><details><summary>compute_cox_proportional_hazards <span class=pill>model_research</span> <span class=latency>0.138 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;durations&quot;: [
+    5.0,
+    8.0,
+    12.0,
+    3.0,
+    14.0,
+    7.0,
+    9.0,
+    11.0,
+    4.0,
+    13.0
+  ],
+  &quot;events&quot;: [
+    1,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0,
+    1,
+    1,
+    0
+  ],
+  &quot;covariates&quot;: [
+    [
+      0.1,
+      1.0
+    ],
+    [
+      0.4,
+      0.0
+    ],
+    [
+      0.2,
+      1.0
+    ],
+    [
+      0.7,
+      0.0
+    ],
+    [
+      0.1,
+      1.0
+    ],
+    [
+      0.5,
+      0.0
+    ],
+    [
+      0.3,
+      1.0
+    ],
+    [
+      0.6,
+      0.0
+    ],
+    [
+      0.8,
+      0.0
+    ],
+    [
+      0.2,
+      1.0
+    ]
+  ],
+  &quot;feature_names&quot;: [
+    &quot;lace_norm&quot;,
+    &quot;is_male&quot;
+  ]
+}</pre><h3>Outputs</h3><pre>{
+  &quot;n_observations&quot;: 10,
+  &quot;n_events&quot;: 6,
+  &quot;coefficients&quot;: {
+    &quot;lace_norm&quot;: 2.9608,
+    &quot;is_male&quot;: -1.037
+  },
+  &quot;hazard_ratios&quot;: {
+    &quot;lace_norm&quot;: 19.3134,
+    &quot;is_male&quot;: 0.3545
+  },
+  &quot;log_likelihood&quot;: -8.8341,
+  &quot;concordance_index&quot;: 0.75,
+  &quot;rationale&quot;: &quot;Cox PH on n=10, events=6, features=[&#x27;lace_norm&#x27;, &#x27;is_male&#x27;]; HRs {&#x27;lace_norm&#x27;: 19.3134, &#x27;is_male&#x27;: 0.3545}; c-index = 0.750; log-likelihood = -8.834.&quot;,
+  &quot;references&quot;: [
+    &quot;Cox DR. JRSS-B 1972;34:187-220.&quot;,
+    &quot;Harrell FE et al. Stat Med 1996;15:361-87.&quot;
+  ]
+}</pre></details><details><summary>compute_shap_attribution <span class=pill>model_research</span> <span class=latency>0.009 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;feature_values&quot;: {
+    &quot;L_los&quot;: 4,
+    &quot;A_acuity&quot;: 3,
+    &quot;C_charlson&quot;: 2,
+    &quot;E_ed&quot;: 1
+  },
+  &quot;coefficients&quot;: {
+    &quot;L_los&quot;: 0.06,
+    &quot;A_acuity&quot;: 0.1,
+    &quot;C_charlson&quot;: 0.08,
+    &quot;E_ed&quot;: 0.05
+  },
+  &quot;intercept&quot;: -1.5
+}</pre><h3>Outputs</h3><pre>{
+  &quot;feature_names&quot;: [
+    &quot;L_los&quot;,
+    &quot;A_acuity&quot;,
+    &quot;C_charlson&quot;,
+    &quot;E_ed&quot;
+  ],
+  &quot;base_value&quot;: -1.5,
+  &quot;shap_values&quot;: {
+    &quot;L_los&quot;: 0.24,
+    &quot;A_acuity&quot;: 0.3,
+    &quot;C_charlson&quot;: 0.16,
+    &quot;E_ed&quot;: 0.05
+  },
+  &quot;sum_shap_plus_base&quot;: -0.75,
+  &quot;actual_prediction&quot;: -0.75,
+  &quot;rationale&quot;: &quot;Exact SHAP on 4 feature(s); base=-1.5000; sum(SHAP)+base=-0.7500; prediction=-0.7500.&quot;,
+  &quot;references&quot;: [
+    &quot;Lundberg SM, Lee SI. NeurIPS 2017.&quot;
+  ]
+}</pre></details><details><summary>compute_ensemble_stacking <span class=pill>model_research</span> <span class=latency>0.982 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;base_predictions&quot;: {
+    &quot;betabin&quot;: [
+      0.1,
+      0.2,
+      0.3,
+      0.6,
+      0.8,
+      0.1,
+      0.2,
+      0.3,
+      0.6,
+      0.8,
+      0.1,
+      0.2,
+      0.3,
+      0.6,
+      0.8,
+      0.1,
+      0.2,
+      0.3,
+      0.6,
+      0.8
+    ],
+    &quot;gbm&quot;: [
+      0.15,
+      0.18,
+      0.32,
+      0.55,
+      0.78,
+      0.15,
+      0.18,
+      0.32,
+      0.55,
+      0.78,
+      0.15,
+      0.18,
+      0.32,
+      0.55,
+      0.78,
+      0.15,
+      0.18,
+      0.32,
+      0.55,
+      0.78
+    ]
+  },
+  &quot;labels&quot;: [
+    0,
+    0,
+    1,
+    1,
+    1,
+    0,
+    0,
+    1,
+    1,
+    1,
+    0,
+    0,
+    1,
+    1,
+    1,
+    0,
+    0,
+    1,
+    1,
+    1
+  ],
+  &quot;train_split_pct&quot;: 0.6
+}</pre><h3>Outputs</h3><pre>{
+  &quot;n_train&quot;: 12,
+  &quot;n_test&quot;: 8,
+  &quot;base_model_aurocs&quot;: {
+    &quot;betabin&quot;: 1.0,
+    &quot;gbm&quot;: 1.0
+  },
+  &quot;stacked_auroc&quot;: 1.0,
+  &quot;meta_learner_weights&quot;: {
+    &quot;betabin&quot;: 0.6301,
+    &quot;gbm&quot;: 0.3699
+  },
+  &quot;delta_vs_best_base&quot;: 0.0,
+  &quot;rationale&quot;: &quot;Stacked AUROC 1.000 vs best base 1.000 (\u0394 +0.000); n_train 12, n_test 8; weights [0.6301116696524783, 0.36988833034752167].&quot;,
+  &quot;references&quot;: [
+    &quot;Wolpert DH. Stacked generalization. Neural Networks 1992;5:241-259.&quot;
+  ]
+}</pre></details><details><summary>compute_hl7v2_message_parse <span class=pill>legacy_ehr_parsers</span> <span class=latency>0.054 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;message&quot;: &quot;MSH|^~\\&amp;|EPIC|HOSP|RECV|FAC|20260430090000||ADT^A01|MID01|P|2.5\rPID|1||MRN-V7^^^HOSP^MR||DOE^JOHN||19601115|M\rPV1|1|I|3W^301^A||||||MED\rOBX|1|NM|718-7^Hemoglobin^LN||10.1|g/dL|13.0-17.0|L|||F\r&quot;
+}</pre><h3>Outputs</h3><pre>{
+  &quot;message_type&quot;: &quot;ADT^A01&quot;,
+  &quot;n_segments&quot;: 4,
+  &quot;patient&quot;: {
+    &quot;patient_id&quot;: &quot;MRN-V7&quot;,
+    &quot;name&quot;: {
+      &quot;family&quot;: &quot;DOE&quot;,
+      &quot;given&quot;: [
+        &quot;JOHN&quot;
+      ]
+    },
+    &quot;birthDate&quot;: &quot;1960-11-15&quot;,
+    &quot;gender&quot;: &quot;male&quot;
+  },
+  &quot;encounter&quot;: {
+    &quot;class&quot;: &quot;inpatient&quot;,
+    &quot;assigned_location&quot;: &quot;3W&quot;
+  },
+  &quot;allergies&quot;: [],
+  &quot;observations&quot;: [
+    {
+      &quot;code&quot;: &quot;718-7&quot;,
+      &quot;display&quot;: &quot;Hemoglobin&quot;,
+      &quot;value&quot;: 10.1,
+      &quot;unit&quot;: &quot;g/dL&quot;
+    }
+  ],
+  &quot;medications&quot;: [],
+  &quot;rationale&quot;: &quot;HL7 v2 message ADT^A01 -- 4 segments, 1 observation(s), 0 allergy(ies), 0 medication(s).&quot;,
+  &quot;references&quot;: [
+    &quot;HL7 v2.x Standard, Chapter 3.&quot;
+  ],
+  &quot;abstain_recommended&quot;: false,
+  &quot;abstain_reason&quot;: null
+}</pre></details><details><summary>compute_ccda_document_parse <span class=pill>legacy_ehr_parsers</span> <span class=latency>0.119 ms</span></summary><h3>Inputs</h3><pre>{
+  &quot;xml_text&quot;: &quot;&lt;?xml version=\&quot;1.0\&quot;?&gt;\n&lt;ClinicalDocument xmlns=\&quot;urn:hl7-org:v3\&quot;&gt;\n  &lt;recordTarget&gt;&lt;patientRole&gt;&lt;id extension=\&quot;MRN-V7\&quot;/&gt;\n    &lt;patient&gt;&lt;name&gt;&lt;family&gt;DOE&lt;/family&gt;&lt;given&gt;JOHN&lt;/given&gt;&lt;/name&gt;\n    &lt;administrativeGenderCode code=\&quot;M\&quot;/&gt;\n    &lt;birthTime value=\&quot;19601115\&quot;/&gt;&lt;/patient&gt;\n  &lt;/patientRole&gt;&lt;/recordTarget&gt;\n  &lt;component&gt;&lt;structuredBody&gt;&lt;component&gt;\n    &lt;section&gt;\n      &lt;templateId root=\&quot;2.16.840.1.113883.10.20.22.2.5.1\&quot;/&gt;\n      &lt;entry&gt;&lt;act&gt;&lt;code code=\&quot;I50.9\&quot; displayName=\&quot;Heart failure\&quot;/&gt;&lt;/act&gt;&lt;/entry&gt;\n    &lt;/section&gt;\n  &lt;/component&gt;&lt;/structuredBody&gt;&lt;/component&gt;\n&lt;/ClinicalDocument&gt;&quot;
+}</pre><h3>Outputs</h3><pre>{
+  &quot;document_template_id&quot;: null,
+  &quot;n_sections&quot;: 1,
+  &quot;patient&quot;: {
+    &quot;name&quot;: {
+      &quot;family&quot;: &quot;DOE&quot;,
+      &quot;given&quot;: [
+        &quot;JOHN&quot;
+      ]
+    },
+    &quot;gender&quot;: &quot;male&quot;,
+    &quot;birthDate&quot;: &quot;1960-11-15&quot;,
+    &quot;patient_id&quot;: &quot;MRN-V7&quot;
+  },
+  &quot;allergies&quot;: [],
+  &quot;medications&quot;: [],
+  &quot;problems&quot;: [
+    {
+      &quot;code&quot;: &quot;I50.9&quot;,
+      &quot;display&quot;: &quot;Heart failure&quot;
+    }
+  ],
+  &quot;rationale&quot;: &quot;C-CDA document -- 1 section(s); 0 allergy(ies), 0 medication(s), 1 problem(s).&quot;,
+  &quot;references&quot;: [
+    &quot;HL7 C-CDA R2.1 Implementation Guide.&quot;
+  ],
+  &quot;abstain_recommended&quot;: false,
+  &quot;abstain_reason&quot;: null
+}</pre></details>
+</body></html>

@@ -1,0 +1,48 @@
+# Phase 9.3 — example YAML composer template.
+#
+# Outpatient medication-review workflow: polypharmacy + care-gap +
+# patient what-if. Equivalent to the in-process OUTPATIENT_MED_REVIEW
+# Python template.
+id: outpatient_med_review_yaml
+title: Outpatient medication review (YAML)
+description: |
+  Geriatric outpatient med-review (LACE = 0). Polypharmacy check +
+  care-gap detection + patient what-if scenarios. Loaded from YAML
+  rather than the in-process Python registry — Phase 9.3.
+
+required_inputs:
+  - patient_id
+  - medications
+  - fhir_bundle
+  - patient_age
+  - patient_sex
+
+steps:
+  - id: polypharmacy
+    specialist: trustedrisk-discharge
+    tool: mcp_server.tools.polypharmacy_concerns:detect_polypharmacy_concerns
+    description: DDI scan on the home med list
+    inputs:
+      medications: ${input.medications}
+
+  - id: gaps
+    specialist: trustedrisk-discharge
+    tool: mcp_server.tools.care_gap_detector:compute_care_gap_detector
+    description: HEDIS care-gap detection
+    inputs:
+      fhir_bundle: ${input.fhir_bundle}
+      patient_age: ${input.patient_age}
+      patient_sex: ${input.patient_sex}
+
+  - id: what_if
+    specialist: trustedrisk-patient
+    tool: mcp_server.tools.medication_what_if:compute_medication_what_if
+    description: Common what-if scenarios for the home regimen
+    inputs:
+      medications: ${input.medications}
+      scenarios:
+        - miss_one_dose
+        - take_with_alcohol
+        - stop_abruptly
+        - take_with_otc_nsaid
+      patient_reference: ${input.patient_id}

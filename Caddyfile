@@ -1,0 +1,71 @@
+# TrustedRisk -- Caddy reverse proxy
+#
+# Topology:
+#   Internet --(TCP 443)--> [router NAT 443->8181] --(TCP 8181)--> Caddy
+#                                                                    |
+#                                                                    v
+#                                                           127.0.0.1:9000 (MCP)
+#
+# Why no port 80: only 443 is NAT'd. ACME falls back to TLS-ALPN-01,
+# which is satisfied on the same 443 (NAT'd to 8181) path.
+#
+# Run:
+#   caddy run --config Caddyfile
+#
+# Storage (certs, ACME state) lives in ./caddy_data (gitignored).
+{
+	# Default site listener -- matches the router NAT 443 -> 8181.
+	https_port 8181
+
+	# We do NOT have a public :80 listener (no HTTP-01, no auto-redirect).
+	auto_https disable_redirects
+
+	# ACME contact (Let's Encrypt notifications).
+	email alessandro.flati@gmail.com
+
+	# Local storage for issued certs + account state.
+	storage file_system {
+		root ./caddy_data
+	}
+}
+
+flati.work {
+	# Disable HTTP-01 challenge -- only TLS-ALPN-01 is reachable from the
+	# public internet given the 443-only NAT.
+	tls {
+		issuer acme {
+			disable_http_challenge
+		}
+	}
+
+	encode gzip zstd
+
+	# Block local-only management surfaces. /metrics and /readyz leak
+	# operational state; keep them off the public hostname.
+	@blocked path /metrics /readyz
+	respond @blocked 404
+
+	# A2A federation -- 15 specialists + composer mounted under /a2a/<name>
+	# and served by a single unified process on loopback :9001.
+	reverse_proxy /a2a/* 127.0.0.1:9001 {
+		header_up X-Real-IP {remote_host}
+		flush_interval -1
+	}
+
+	# MCP root + everything else (OAuth, SHARP, /api/batch, /smart, /ws)
+	# stays on the original :9000 backend.
+	reverse_proxy 127.0.0.1:9000 {
+		header_up X-Real-IP {remote_host}
+
+		# Streaming endpoints (SSE) -- disable response buffering.
+		flush_interval -1
+	}
+
+	log {
+		output file ./logs/caddy_access.log {
+			roll_size 10mb
+			roll_keep 7
+		}
+		format json
+	}
+}

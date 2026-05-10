@@ -1,0 +1,632 @@
+{
+  "resourceType": "Bundle",
+  "id": "demo-nadia-okafor-bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:4b4628b3-e263-5422-88e9-f8845db6e94f",
+      "resource": {
+        "resourceType": "Patient",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"
+          ]
+        },
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race",
+            "extension": [
+              {
+                "url": "ombCategory",
+                "valueCoding": {
+                  "system": "urn:oid:2.16.840.1.113883.6.238",
+                  "code": "2054-5",
+                  "display": "Black or African American"
+                }
+              },
+              {
+                "url": "text",
+                "valueString": "Black or African American"
+              }
+            ]
+          },
+          {
+            "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity",
+            "extension": [
+              {
+                "url": "ombCategory",
+                "valueCoding": {
+                  "system": "urn:oid:2.16.840.1.113883.6.238",
+                  "code": "2186-5",
+                  "display": "Not Hispanic or Latino"
+                }
+              },
+              {
+                "url": "text",
+                "valueString": "Not Hispanic or Latino"
+              }
+            ]
+          }
+        ],
+        "name": [
+          {
+            "use": "official",
+            "family": "Okafor",
+            "given": [
+              "Nadia"
+            ]
+          }
+        ],
+        "gender": "female",
+        "birthDate": "1984-11-21",
+        "address": [
+          {
+            "line": [
+              "77 Beacon Hill Rd"
+            ],
+            "city": "Quincy",
+            "state": "MA",
+            "postalCode": "02169",
+            "country": "US"
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "555-419-7723",
+            "use": "mobile"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "Patient"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:926948f7-6d3f-5534-8a98-2dba7ec0b6df",
+      "resource": {
+        "resourceType": "Coverage",
+        "status": "active",
+        "beneficiary": {
+          "reference": "urn:uuid:4b4628b3-e263-5422-88e9-f8845db6e94f"
+        },
+        "payor": [
+          {
+            "display": "UnitedHealthcare Choice Plus PPO"
+          }
+        ],
+        "subscriberId": "UHC-9874-21998",
+        "class": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/coverage-class",
+                  "code": "plan"
+                }
+              ]
+            },
+            "value": "PPO",
+            "name": "Choice Plus"
+          }
+        ],
+        "period": {
+          "start": "2025-01-01"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Coverage"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:935dfe44-3172-5b91-9836-171b013e0bad",
+      "resource": {
+        "resourceType": "Encounter",
+        "status": "finished",
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "AMB",
+          "display": "ambulatory"
+        },
+        "subject": {
+          "reference": "urn:uuid:4b4628b3-e263-5422-88e9-f8845db6e94f"
+        },
+        "period": {
+          "start": "2026-05-04T09:30:00-04:00",
+          "end": "2026-05-04T10:15:00-04:00"
+        },
+        "reasonCode": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "69896004",
+                "display": "Rheumatoid arthritis"
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "Encounter"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:3ab9f70c-81ea-5431-85c4-bcf47cd5150e",
+      "resource": {
+        "resourceType": "Encounter",
+        "status": "finished",
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "AMB",
+          "display": "ambulatory"
+        },
+        "subject": {
+          "reference": "urn:uuid:4b4628b3-e263-5422-88e9-f8845db6e94f"
+        },
+        "period": {
+          "start": "2026-02-12T11:00:00-05:00",
+          "end": "2026-02-12T11:45:00-05:00"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Encounter"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:85b129d6-3b55-51b0-9f40-1c7493e9175b",
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+              "code": "confirmed"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "problem-list-item"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "69896004",
+              "display": "Rheumatoid arthritis"
+            }
+          ],
+          "text": "Seropositive rheumatoid arthritis, moderate disease activity"
+        },
+        "subject": {
+          "reference": "urn:uuid:4b4628b3-e263-5422-88e9-f8845db6e94f"
+        },
+        "onsetDateTime": "2022-03-18"
+      },
+      "request": {
+        "method": "POST",
+        "url": "Condition"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:b021ef21-b1da-58d2-a979-37a77f9cb3e8",
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "problem-list-item"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "271737000",
+              "display": "Anemia of chronic disease"
+            }
+          ],
+          "text": "Anemia of chronic disease (RA-related)"
+        },
+        "subject": {
+          "reference": "urn:uuid:4b4628b3-e263-5422-88e9-f8845db6e94f"
+        },
+        "onsetDateTime": "2023-08-09"
+      },
+      "request": {
+        "method": "POST",
+        "url": "Condition"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:20bc98fd-ef52-5bd3-889b-f6e5583ad0b2",
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "survey"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "75826-1",
+              "display": "Clinical Disease Activity Index"
+            }
+          ],
+          "text": "CDAI"
+        },
+        "subject": {
+          "reference": "urn:uuid:4b4628b3-e263-5422-88e9-f8845db6e94f"
+        },
+        "encounter": {
+          "reference": "urn:uuid:935dfe44-3172-5b91-9836-171b013e0bad"
+        },
+        "effectiveDateTime": "2026-05-04T09:50:00-04:00",
+        "valueQuantity": {
+          "value": 18.4,
+          "unit": "score"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:32e6ca55-69e6-5201-aa3b-f57d3a26e693",
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "30341-2",
+              "display": "Erythrocyte sedimentation rate"
+            }
+          ],
+          "text": "ESR"
+        },
+        "subject": {
+          "reference": "urn:uuid:4b4628b3-e263-5422-88e9-f8845db6e94f"
+        },
+        "encounter": {
+          "reference": "urn:uuid:935dfe44-3172-5b91-9836-171b013e0bad"
+        },
+        "effectiveDateTime": "2026-05-04T10:05:00-04:00",
+        "valueQuantity": {
+          "value": 42,
+          "unit": "mm/h",
+          "system": "http://unitsofmeasure.org",
+          "code": "mm/h"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:91abfa10-d264-5952-849b-777ee687996f",
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "1988-5",
+              "display": "C-reactive protein"
+            }
+          ],
+          "text": "CRP"
+        },
+        "subject": {
+          "reference": "urn:uuid:4b4628b3-e263-5422-88e9-f8845db6e94f"
+        },
+        "encounter": {
+          "reference": "urn:uuid:935dfe44-3172-5b91-9836-171b013e0bad"
+        },
+        "effectiveDateTime": "2026-05-04T10:05:00-04:00",
+        "valueQuantity": {
+          "value": 28.5,
+          "unit": "mg/L",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/L"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:11219d75-18c5-54b6-b2bc-22d08b3275e1",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "on-hold",
+        "intent": "order",
+        "subject": {
+          "reference": "urn:uuid:4b4628b3-e263-5422-88e9-f8845db6e94f"
+        },
+        "encounter": {
+          "reference": "urn:uuid:935dfe44-3172-5b91-9836-171b013e0bad"
+        },
+        "authoredOn": "2026-05-04T10:00:00-04:00",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "857297",
+              "display": "Adalimumab 40 MG/0.4 ML Auto-Injector"
+            }
+          ],
+          "text": "Adalimumab (Humira) 40 mg subq every 2 weeks"
+        },
+        "dosageInstruction": [
+          {
+            "text": "40 mg subcutaneous every 14 days. PRIOR AUTH DENIED 2026-05-06; appeal pending."
+          }
+        ],
+        "note": [
+          {
+            "text": "Step-therapy denial: payer (UnitedHealthcare) requires documented inadequate response to two conventional DMARDs (methotrexate, sulfasalazine) before approving biologic. Patient has failed methotrexate (LFT elevation) and sulfasalazine (rash) -- documented in 2024-2025 visit notes. Appeal letter requested."
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:698908fd-af6f-5576-afb8-9eb1955df1d6",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "stopped",
+        "statusReason": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/reason-medication-status-codes",
+              "code": "altcomplete"
+            }
+          ],
+          "text": "Discontinued for transaminitis (ALT 3x ULN)"
+        },
+        "intent": "order",
+        "subject": {
+          "reference": "urn:uuid:4b4628b3-e263-5422-88e9-f8845db6e94f"
+        },
+        "authoredOn": "2024-04-15",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "313887",
+              "display": "Methotrexate 2.5 MG Oral Tablet"
+            }
+          ],
+          "text": "Methotrexate 15 mg PO weekly (discontinued 2024-09 for hepatotoxicity)"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:de11a563-4d3a-5e10-9809-966d4d1971e7",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "stopped",
+        "statusReason": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/reason-medication-status-codes",
+              "code": "alttrt"
+            }
+          ],
+          "text": "Discontinued for diffuse maculopapular rash"
+        },
+        "intent": "order",
+        "subject": {
+          "reference": "urn:uuid:4b4628b3-e263-5422-88e9-f8845db6e94f"
+        },
+        "authoredOn": "2024-10-22",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "199370",
+              "display": "Sulfasalazine 500 MG Oral Tablet"
+            }
+          ],
+          "text": "Sulfasalazine 1000 mg PO BID (discontinued 2025-01 for rash)"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:ea1ea88d-f4f6-53eb-87e4-b835da053c76",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "subject": {
+          "reference": "urn:uuid:4b4628b3-e263-5422-88e9-f8845db6e94f"
+        },
+        "authoredOn": "2022-03-18",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "315966",
+              "display": "Folic Acid 1 MG Oral Tablet"
+            }
+          ],
+          "text": "Folic acid 1 mg PO daily"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:2da82a9a-38f2-50a8-83c0-dca33f16f917",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "status": "current",
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11488-4",
+              "display": "Consult note"
+            }
+          ],
+          "text": "Payer prior-authorization denial letter"
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/us/core/CodeSystem/us-core-documentreference-category",
+                "code": "clinical-note"
+              }
+            ]
+          }
+        ],
+        "subject": {
+          "reference": "urn:uuid:4b4628b3-e263-5422-88e9-f8845db6e94f"
+        },
+        "date": "2026-05-06T15:00:00-04:00",
+        "description": "UnitedHealthcare prior-authorization denial: adalimumab",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "language": "en",
+              "title": "UHC PA denial letter (claim 8H4-2026-RA-09214)",
+              "creation": "2026-05-06T00:00:00-04:00",
+              "data": "VW5pdGVkSGVhbHRoY2FyZQpDbGFpbXMgUHJvY2Vzc2luZyBDZW50ZXIKUC5PLiBCb3ggMzA2MDcsIFNhbHQgTGFrZSBDaXR5LCBVVCA4NDEzMAoKRGF0ZTogTWF5IDYsIDIwMjYKQ2xhaW0gSUQ6IDhINC0yMDI2LVJBLTA5MjE0Ck1lbWJlcjogTmFkaWEgT2thZm9yLCBETzogMTk4NC0xMS0yMQpHcm91cDogQ2hvaWNlIFBsdXMgUFBPCgpSZTogUHJpb3IgQXV0aG9yaXphdGlvbiBSZXF1ZXN0ICDigJMgQURBTElNVU1BQiAoSHVtaXJhKSA0MCBtZyBzdWJxIHEyd2VlawoKRGVhciBNcy4gT2thZm9yLAoKWW91ciByZXF1ZXN0IGZvciBjb3ZlcmFnZSBvZiBhZGFsaW11bWFiIChIdW1pcmEpIGhhcyBiZWVuIERFTklFRC4KClJlYXNvbiBmb3IgZGVuaWFsOiBTVEVQLVRIRVJBUFkgQ1JJVEVSSUEgTk9UIE1FVC4KCk91ciBjbGluaWNhbCBwb2xpY3kgcmVxdWlyZXMgZG9jdW1lbnRlZCBpbmFkZXF1YXRlIHJlc3BvbnNlLCBpbnRvbGVyYW5jZSwgb3IgY29udHJhaW5kaWNhdGlvbiB0byBhdCBsZWFzdCBUV08gKDIpIGNvbnZlbnRpb25hbCBzeW50aGV0aWMgRE1BUkRzIChlLmcuIG1ldGhvdHJleGF0ZSwgc3VsZmFzYWxhemluZSwgbGVmbHVub21pZGUsIGh5ZHJveHljaGxvcm9xdWluZSkgYXQgYWRlcXVhdGUgZG9zZSBmb3IgYSBtaW5pbXVtIG9mIDMgbW9udGhzIHByaW9yIHRvIGFwcHJvdmFsIG9mIGEgYmlvbG9naWMgYWdlbnQuCgpZb3UgaGF2ZSB0aGUgcmlnaHQgdG8gYXBwZWFsIHRoaXMgZGVjaXNpb24gd2l0aGluIDE4MCBkYXlzLgpJbnRlcm5hbCBmaXJzdC1sZXZlbCBhcHBlYWwgZGVhZGxpbmU6IE5vdmVtYmVyIDIsIDIwMjYuCkNvbnRlc3RlZCBjaGFyZ2U6ICQ2LDg0Mi4wMC9tb250aC4KCkFwcGVhbHMgUE8gQm94IDcyMDAsIE1pbm5lYXBvbGlzIE1OIDU1NDQwLgoKU2luY2VyZWx5LApVbml0ZWRIZWFsdGhjYXJlIENsaW5pY2FsIFV0aWxpemF0aW9uIE1hbmFnZW1lbnQK"
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "DocumentReference"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:8e222276-77e9-5848-b741-68e261a2fbe8",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "status": "current",
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11506-3",
+              "display": "Progress note"
+            }
+          ],
+          "text": "Rheumatology progress note"
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/us/core/CodeSystem/us-core-documentreference-category",
+                "code": "clinical-note"
+              }
+            ]
+          }
+        ],
+        "subject": {
+          "reference": "urn:uuid:4b4628b3-e263-5422-88e9-f8845db6e94f"
+        },
+        "date": "2026-05-04T10:30:00-04:00",
+        "description": "Rheumatology follow-up; biologic eligibility documented",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "language": "en",
+              "title": "Rheumatology follow-up note 2026-05-04",
+              "creation": "2026-05-04T10:30:00-04:00",
+              "data": "U1VCSkVDVElWRTogNDF5LW9sZCBmZW1hbGUgd2l0aCBzZXJvcG9zaXRpdmUgUkEgKGRpYWdub3NlZCAyMDIyKSwgcmVwb3J0aW5nIHBlcnNpc3RlbnQgbW9ybmluZyBzdGlmZm5lc3MgPjkwIG1pbiwgYmlsYXRlcmFsIE1DUC9QSVAgc3luZWxsaW5nIDcvMTAsIGZhdGlndWUuICAgQ2Fubm90IHdvcmsgaGFsZi1kYXlzIGFueSBsb25nZXIuCgpPQkpFQ1RJVkU6CiAtIENEQUkgMTguNCAobW9kZXJhdGUtaGlnaCBhY3Rpdml0eSwgY3V0LW9mZiAxMC4xKQogLSBFU1IgNDIgbW0vaCwgQ1JQIDI4LjUgbWcvTAogLSBNQ1AvUElQIHN3ZWxsaW5nIGFuZCB0ZW5kZXJuZXNzIGJpbGF0ZXJhbAoKUEFTVCBSWDoKIC0gTUVUSE9UUkVYQVRFIDE1IG1nIFBPIHdlZWtseSAqIDQuNSBtb250aHMgKDIwMjQtMDQgdG8gMjAyNC0wOSk6IGRpc2NvbnRpbnVlZCBmb3IgQUxUIHNlcnVtIHBlYWtlZCBhdCAxNzggVS9MICgzeCBVTE4pLCBub3JtYWxpemVkIDQgd2Vla3MgYWZ0ZXIgaG9sZC4KIC0gU1VMRkFTQUxBWklORSAxMDAwIG1nIFBPIEJJRCAqIDIuNSBtb250aHMgKDIwMjQtMTAgdG8gMjAyNS0wMSk6IGRpc2NvbnRpbnVlZCBmb3IgZGlmZnVzZSBtYWN1bG9wYXB1bGFyIHJhc2ggcmVxdWlyaW5nIG9yYWwgcHJlZG5pc29uZSAyMCBtZyBmb3IgNCBkYXlzLgoKQVNTRVNTTUVOVDogU2Vyb3Bvc2l0aXZlIFJBLCBtb2RlcmF0ZS1oaWdoIGFjdGl2aXR5IChDREFJIDE4LjQpIGRlc3BpdGUgZm9saWMgYWNpZCBzdXBwb3J0LiAgU3RlcC10aGVyYXB5IGNyaXRlcmlhIE1FVDogZmFpbGVkIDIgY29udmVudGlvbmFsIERNQVJEcyBmb3IgaW5kZXBlbmRlbnQgcmVhc29ucyAoaGVwYXRpYyB0b3hpY2l0eSAtPiBNVFg7IGN1dGFuZW91cyBoeXBlcnNlbnNpdGl2aXR5IC0+IFNTWi4pCgpQTEFOOgogLSBJbml0aWF0ZSBhZGFsaW11bWFiIChIdW1pcmEpIDQwIG1nIHN1YnEgcTJ3ZWVrcyAoQUNSIDIwMjEgZ3VpZGVsaW5lcyBjb25kaXRpb25hbGx5IHJlY29tbWVuZCBUTkYtaSBmaXJzdC1saW5lIGFmdGVyIGNvbnZlbnRpb25hbCBETUFSRCBmYWlsdXJlKQogLSBQQSBzdWJtaXR0ZWQgdG8gVW5pdGVkSGVhbHRoY2FyZSAyMDI2LTA1LTA1CiAtIENEQUkgcmVjaGVjayA4LTEyIHdlZWtzCgpDbGluaWNpYW46IERyLiBQYXRyaWNpYSBOZ3V5ZW4sIE1ELCBSaGV1bWF0b2xvZ3kK"
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "DocumentReference"
+      }
+    }
+  ]
+}

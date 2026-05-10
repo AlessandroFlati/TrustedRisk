@@ -1,0 +1,607 @@
+{
+  "bundle_id": "imaging_contrast",
+  "tool": "compute_contrast_safety_check",
+  "n_cases": 50,
+  "cases": [
+    {
+      "name": "contrast_case_000",
+      "input": {
+        "contrast_type": "gadolinium_iv",
+        "egfr_ml_min": 77,
+        "on_metformin": true,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": true,
+        "pregnant": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_001",
+      "input": {
+        "contrast_type": "gadolinium_iv",
+        "egfr_ml_min": null,
+        "on_metformin": false,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": false,
+        "pregnant": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_002",
+      "input": {
+        "contrast_type": "gadolinium_iv",
+        "egfr_ml_min": 97,
+        "on_metformin": true,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": false,
+        "pregnant": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_003",
+      "input": {
+        "contrast_type": "gadolinium_iv",
+        "egfr_ml_min": 107,
+        "on_metformin": false,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": false,
+        "pregnant": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_004",
+      "input": {
+        "contrast_type": "no_contrast",
+        "egfr_ml_min": 20,
+        "on_metformin": true,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": false,
+        "pregnant": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_005",
+      "input": {
+        "contrast_type": "iodinated_iv",
+        "egfr_ml_min": 28,
+        "on_metformin": false,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": false,
+        "pregnant": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_006",
+      "input": {
+        "contrast_type": "gadolinium_iv",
+        "egfr_ml_min": 108,
+        "on_metformin": false,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": false,
+        "pregnant": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_007",
+      "input": {
+        "contrast_type": "iodinated_iv",
+        "egfr_ml_min": 36,
+        "on_metformin": false,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": false,
+        "pregnant": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_008",
+      "input": {
+        "contrast_type": "no_contrast",
+        "egfr_ml_min": null,
+        "on_metformin": false,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": false,
+        "pregnant": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_009",
+      "input": {
+        "contrast_type": "iodinated_iv",
+        "egfr_ml_min": null,
+        "on_metformin": false,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": false,
+        "pregnant": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_010",
+      "input": {
+        "contrast_type": "gadolinium_iv",
+        "egfr_ml_min": null,
+        "on_metformin": false,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": false,
+        "pregnant": true
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_011",
+      "input": {
+        "contrast_type": "iodinated_iv",
+        "egfr_ml_min": 64,
+        "on_metformin": false,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": false,
+        "pregnant": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_012",
+      "input": {
+        "contrast_type": "no_contrast",
+        "egfr_ml_min": null,
+        "on_metformin": false,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": false,
+        "pregnant": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_013",
+      "input": {
+        "contrast_type": "no_contrast",
+        "egfr_ml_min": null,
+        "on_metformin": true,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": false,
+        "pregnant": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_014",
+      "input": {
+        "contrast_type": "gadolinium_iv",
+        "egfr_ml_min": null,
+        "on_metformin": false,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": false,
+        "pregnant": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_015",
+      "input": {
+        "contrast_type": "no_contrast",
+        "egfr_ml_min": 34,
+        "on_metformin": false,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": false,
+        "pregnant": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_016",
+      "input": {
+        "contrast_type": "gadolinium_iv",
+        "egfr_ml_min": 40,
+        "on_metformin": true,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": false,
+        "pregnant": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_017",
+      "input": {
+        "contrast_type": "no_contrast",
+        "egfr_ml_min": null,
+        "on_metformin": false,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": false,
+        "pregnant": true
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_018",
+      "input": {
+        "contrast_type": "no_contrast",
+        "egfr_ml_min": null,
+        "on_metformin": false,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": false,
+        "pregnant": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_019",
+      "input": {
+        "contrast_type": "no_contrast",
+        "egfr_ml_min": 79,
+        "on_metformin": false,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": false,
+        "pregnant": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_020",
+      "input": {
+        "contrast_type": "no_contrast",
+        "egfr_ml_min": null,
+        "on_metformin": false,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": false,
+        "pregnant": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_021",
+      "input": {
+        "contrast_type": "gadolinium_iv",
+        "egfr_ml_min": 111,
+        "on_metformin": false,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": false,
+        "pregnant": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_022",
+      "input": {
+        "contrast_type": "no_contrast",
+        "egfr_ml_min": null,
+        "on_metformin": false,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": false,
+        "pregnant": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_023",
+      "input": {
+        "contrast_type": "gadolinium_iv",
+        "egfr_ml_min": 85,
+        "on_metformin": false,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": false,
+        "pregnant": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_024",
+      "input": {
+        "contrast_type": "no_contrast",
+        "egfr_ml_min": null,
+        "on_metformin": false,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": false,
+        "pregnant": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_025",
+      "input": {
+        "contrast_type": "iodinated_iv",
+        "egfr_ml_min": 22,
+        "on_metformin": true,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": false,
+        "pregnant": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_026",
+      "input": {
+        "contrast_type": "gadolinium_iv",
+        "egfr_ml_min": null,
+        "on_metformin": false,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": false,
+        "pregnant": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_027",
+      "input": {
+        "contrast_type": "gadolinium_iv",
+        "egfr_ml_min": null,
+        "on_metformin": false,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": false,
+        "pregnant": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_028",
+      "input": {
+        "contrast_type": "gadolinium_iv",
+        "egfr_ml_min": null,
+        "on_metformin": false,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": false,
+        "pregnant": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_029",
+      "input": {
+        "contrast_type": "no_contrast",
+        "egfr_ml_min": 41,
+        "on_metformin": false,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": false,
+        "pregnant": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_030",
+      "input": {
+        "contrast_type": "no_contrast",
+        "egfr_ml_min": null,
+        "on_metformin": false,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": false,
+        "pregnant": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_031",
+      "input": {
+        "contrast_type": "no_contrast",
+        "egfr_ml_min": null,
+        "on_metformin": false,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": false,
+        "pregnant": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_032",
+      "input": {
+        "contrast_type": "no_contrast",
+        "egfr_ml_min": 108,
+        "on_metformin": false,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": false,
+        "pregnant": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_033",
+      "input": {
+        "contrast_type": "gadolinium_iv",
+        "egfr_ml_min": 90,
+        "on_metformin": false,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": false,
+        "pregnant": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_034",
+      "input": {
+        "contrast_type": "iodinated_iv",
+        "egfr_ml_min": null,
+        "on_metformin": true,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": false,
+        "pregnant": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_035",
+      "input": {
+        "contrast_type": "no_contrast",
+        "egfr_ml_min": null,
+        "on_metformin": false,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": false,
+        "pregnant": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_036",
+      "input": {
+        "contrast_type": "gadolinium_iv",
+        "egfr_ml_min": 100,
+        "on_metformin": false,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": false,
+        "pregnant": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_037",
+      "input": {
+        "contrast_type": "gadolinium_iv",
+        "egfr_ml_min": 23,
+        "on_metformin": false,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": false,
+        "pregnant": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_038",
+      "input": {
+        "contrast_type": "no_contrast",
+        "egfr_ml_min": null,
+        "on_metformin": true,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": false,
+        "pregnant": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_039",
+      "input": {
+        "contrast_type": "no_contrast",
+        "egfr_ml_min": null,
+        "on_metformin": false,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": true,
+        "pregnant": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_040",
+      "input": {
+        "contrast_type": "gadolinium_iv",
+        "egfr_ml_min": 45,
+        "on_metformin": false,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": true,
+        "pregnant": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_041",
+      "input": {
+        "contrast_type": "no_contrast",
+        "egfr_ml_min": 30,
+        "on_metformin": false,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": false,
+        "pregnant": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_042",
+      "input": {
+        "contrast_type": "iodinated_iv",
+        "egfr_ml_min": null,
+        "on_metformin": true,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": false,
+        "pregnant": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_043",
+      "input": {
+        "contrast_type": "no_contrast",
+        "egfr_ml_min": 21,
+        "on_metformin": false,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": true,
+        "pregnant": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_044",
+      "input": {
+        "contrast_type": "no_contrast",
+        "egfr_ml_min": 63,
+        "on_metformin": false,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": false,
+        "pregnant": true
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_045",
+      "input": {
+        "contrast_type": "iodinated_iv",
+        "egfr_ml_min": 20,
+        "on_metformin": false,
+        "iodine_contrast_prior_severe_reaction": true,
+        "iodine_contrast_prior_mild_reaction": true,
+        "pregnant": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_046",
+      "input": {
+        "contrast_type": "iodinated_iv",
+        "egfr_ml_min": 42,
+        "on_metformin": false,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": false,
+        "pregnant": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_047",
+      "input": {
+        "contrast_type": "iodinated_iv",
+        "egfr_ml_min": 44,
+        "on_metformin": true,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": false,
+        "pregnant": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_048",
+      "input": {
+        "contrast_type": "gadolinium_iv",
+        "egfr_ml_min": null,
+        "on_metformin": true,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": false,
+        "pregnant": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "contrast_case_049",
+      "input": {
+        "contrast_type": "gadolinium_iv",
+        "egfr_ml_min": 29,
+        "on_metformin": true,
+        "iodine_contrast_prior_severe_reaction": false,
+        "iodine_contrast_prior_mild_reaction": false,
+        "pregnant": false
+      },
+      "schema_only": true
+    }
+  ]
+}

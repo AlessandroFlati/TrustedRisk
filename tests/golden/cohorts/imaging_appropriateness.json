@@ -1,0 +1,507 @@
+{
+  "bundle_id": "imaging_appropriateness",
+  "tool": "compute_imaging_appropriateness",
+  "n_cases": 50,
+  "cases": [
+    {
+      "name": "imaging_case_000_suspected_pe_low_risk",
+      "input": {
+        "clinical_scenario": "suspected_pe_low_risk",
+        "patient_age": 43,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 45.88628720915782
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_001_pediatric_appendicitis",
+      "input": {
+        "clinical_scenario": "pediatric_appendicitis",
+        "patient_age": 75,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 0
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_002_acute_lbp_no_red_flag",
+      "input": {
+        "clinical_scenario": "acute_lbp_no_red_flag",
+        "patient_age": 82,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 0
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_003_acute_lbp_no_red_flag",
+      "input": {
+        "clinical_scenario": "acute_lbp_no_red_flag",
+        "patient_age": 86,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 0
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_004_acute_lbp_no_red_flag",
+      "input": {
+        "clinical_scenario": "acute_lbp_no_red_flag",
+        "patient_age": 56,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 0
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_005_acute_stroke",
+      "input": {
+        "clinical_scenario": "acute_stroke",
+        "patient_age": 26,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 0
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_006_suspected_pe_high_risk",
+      "input": {
+        "clinical_scenario": "suspected_pe_high_risk",
+        "patient_age": 9,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 0
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_007_chest_pain_low_risk",
+      "input": {
+        "clinical_scenario": "chest_pain_low_risk",
+        "patient_age": 82,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 0
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_008_blunt_abdominal_trauma",
+      "input": {
+        "clinical_scenario": "blunt_abdominal_trauma",
+        "patient_age": 33,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 0
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_009_acute_headache_thunderclap",
+      "input": {
+        "clinical_scenario": "acute_headache_thunderclap",
+        "patient_age": 80,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 0
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_010_chest_pain_acs_workup",
+      "input": {
+        "clinical_scenario": "chest_pain_acs_workup",
+        "patient_age": 50,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 0
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_011_suspected_pe_low_risk",
+      "input": {
+        "clinical_scenario": "suspected_pe_low_risk",
+        "patient_age": 77,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 31.231815791979145
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_012_acute_lbp_no_red_flag",
+      "input": {
+        "clinical_scenario": "acute_lbp_no_red_flag",
+        "patient_age": 32,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 49.25618180234398
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_013_acute_lbp_no_red_flag",
+      "input": {
+        "clinical_scenario": "acute_lbp_no_red_flag",
+        "patient_age": 74,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 0
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_014_acute_abdominal_pain",
+      "input": {
+        "clinical_scenario": "acute_abdominal_pain",
+        "patient_age": 32,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 0
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_015_pediatric_appendicitis",
+      "input": {
+        "clinical_scenario": "pediatric_appendicitis",
+        "patient_age": 61,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 0
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_016_blunt_abdominal_trauma",
+      "input": {
+        "clinical_scenario": "blunt_abdominal_trauma",
+        "patient_age": 20,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 0
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_017_blunt_abdominal_trauma",
+      "input": {
+        "clinical_scenario": "blunt_abdominal_trauma",
+        "patient_age": 65,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 0
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_018_pediatric_appendicitis",
+      "input": {
+        "clinical_scenario": "pediatric_appendicitis",
+        "patient_age": 50,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 0
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_019_acute_abdominal_pain",
+      "input": {
+        "clinical_scenario": "acute_abdominal_pain",
+        "patient_age": 7,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 0
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_020_pediatric_appendicitis",
+      "input": {
+        "clinical_scenario": "pediatric_appendicitis",
+        "patient_age": 66,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 0
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_021_acute_lbp_no_red_flag",
+      "input": {
+        "clinical_scenario": "acute_lbp_no_red_flag",
+        "patient_age": 73,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 0
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_022_chest_pain_low_risk",
+      "input": {
+        "clinical_scenario": "chest_pain_low_risk",
+        "patient_age": 19,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 0
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_023_chest_pain_low_risk",
+      "input": {
+        "clinical_scenario": "chest_pain_low_risk",
+        "patient_age": 77,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 17.819000202424117
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_024_acute_headache_thunderclap",
+      "input": {
+        "clinical_scenario": "acute_headache_thunderclap",
+        "patient_age": 57,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 0
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_025_pediatric_appendicitis",
+      "input": {
+        "clinical_scenario": "pediatric_appendicitis",
+        "patient_age": 50,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 0
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_026_suspected_pe_low_risk",
+      "input": {
+        "clinical_scenario": "suspected_pe_low_risk",
+        "patient_age": 19,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 0
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_027_acute_lbp_no_red_flag",
+      "input": {
+        "clinical_scenario": "acute_lbp_no_red_flag",
+        "patient_age": 43,
+        "patient_pregnant": true,
+        "cumulative_radiation_msv_last_12mo": 0
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_028_blunt_abdominal_trauma",
+      "input": {
+        "clinical_scenario": "blunt_abdominal_trauma",
+        "patient_age": 52,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 28.64579281650641
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_029_blunt_abdominal_trauma",
+      "input": {
+        "clinical_scenario": "blunt_abdominal_trauma",
+        "patient_age": 79,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 0
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_030_acute_stroke",
+      "input": {
+        "clinical_scenario": "acute_stroke",
+        "patient_age": 23,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 0
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_031_pediatric_appendicitis",
+      "input": {
+        "clinical_scenario": "pediatric_appendicitis",
+        "patient_age": 63,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 0
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_032_acute_stroke",
+      "input": {
+        "clinical_scenario": "acute_stroke",
+        "patient_age": 90,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 0
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_033_chest_pain_low_risk",
+      "input": {
+        "clinical_scenario": "chest_pain_low_risk",
+        "patient_age": 84,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 0
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_034_chest_pain_low_risk",
+      "input": {
+        "clinical_scenario": "chest_pain_low_risk",
+        "patient_age": 17,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 0
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_035_acute_abdominal_pain",
+      "input": {
+        "clinical_scenario": "acute_abdominal_pain",
+        "patient_age": 72,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 0
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_036_suspected_pe_low_risk",
+      "input": {
+        "clinical_scenario": "suspected_pe_low_risk",
+        "patient_age": 53,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 0
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_037_suspected_pe_low_risk",
+      "input": {
+        "clinical_scenario": "suspected_pe_low_risk",
+        "patient_age": 80,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 0
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_038_acute_abdominal_pain",
+      "input": {
+        "clinical_scenario": "acute_abdominal_pain",
+        "patient_age": 75,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 38.934448710153376
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_039_acute_lbp_no_red_flag",
+      "input": {
+        "clinical_scenario": "acute_lbp_no_red_flag",
+        "patient_age": 13,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 17.189190806860328
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_040_acute_stroke",
+      "input": {
+        "clinical_scenario": "acute_stroke",
+        "patient_age": 65,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 0
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_041_suspected_pe_high_risk",
+      "input": {
+        "clinical_scenario": "suspected_pe_high_risk",
+        "patient_age": 39,
+        "patient_pregnant": true,
+        "cumulative_radiation_msv_last_12mo": 0
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_042_acute_stroke",
+      "input": {
+        "clinical_scenario": "acute_stroke",
+        "patient_age": 44,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 0
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_043_acute_stroke",
+      "input": {
+        "clinical_scenario": "acute_stroke",
+        "patient_age": 60,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 0
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_044_chest_pain_acs_workup",
+      "input": {
+        "clinical_scenario": "chest_pain_acs_workup",
+        "patient_age": 59,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 0
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_045_acute_headache_thunderclap",
+      "input": {
+        "clinical_scenario": "acute_headache_thunderclap",
+        "patient_age": 31,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 0
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_046_acute_abdominal_pain",
+      "input": {
+        "clinical_scenario": "acute_abdominal_pain",
+        "patient_age": 11,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 0
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_047_chest_pain_acs_workup",
+      "input": {
+        "clinical_scenario": "chest_pain_acs_workup",
+        "patient_age": 13,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 0
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_048_pediatric_appendicitis",
+      "input": {
+        "clinical_scenario": "pediatric_appendicitis",
+        "patient_age": 60,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 0
+      },
+      "schema_only": true
+    },
+    {
+      "name": "imaging_case_049_acute_lbp_no_red_flag",
+      "input": {
+        "clinical_scenario": "acute_lbp_no_red_flag",
+        "patient_age": 67,
+        "patient_pregnant": false,
+        "cumulative_radiation_msv_last_12mo": 0
+      },
+      "schema_only": true
+    }
+  ]
+}

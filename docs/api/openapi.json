@@ -1,0 +1,496 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "TrustedRisk Federation API",
+    "version": "1.0.0",
+    "description": "OpenAPI 3.1 specification covering the TrustedRisk A2A federation surface (agent-card + marketplace + SHARP capabilities + batch decisioning + OAuth + CDS Hooks v1.1). Federation backs 145 MCP tools across 47 thematic bundles.",
+    "license": {
+      "name": "Apache-2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://trustedrisk.local",
+      "description": "Production marketplace ingress"
+    }
+  ],
+  "paths": {
+    "/.well-known/agent-card": {
+      "get": {
+        "tags": [
+          "A2A v1"
+        ],
+        "summary": "Return the A2A agent-card",
+        "operationId": "getAgentCard",
+        "responses": {
+          "200": {
+            "description": "A2A v1 agent card with skills, extensions, security schemes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentCard"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/.well-known/marketplace": {
+      "get": {
+        "tags": [
+          "Marketplace"
+        ],
+        "summary": "Return the federation marketplace manifest",
+        "operationId": "getMarketplace",
+        "responses": {
+          "200": {
+            "description": "Marketplace manifest JSON.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Marketplace manifest not configured."
+          }
+        }
+      }
+    },
+    "/.well-known/sharp-capabilities": {
+      "get": {
+        "tags": [
+          "SHARP-on-MCP"
+        ],
+        "summary": "Return SHARP-on-MCP capability declaration",
+        "operationId": "getSHARPCapabilities",
+        "responses": {
+          "200": {
+            "description": "SHARP capability JSON.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/healthz": {
+      "get": {
+        "tags": [
+          "Operations"
+        ],
+        "summary": "Liveness + tool/bundle counts",
+        "operationId": "getHealthz",
+        "responses": {
+          "200": {
+            "description": "Returns ok + tool/bundle counts. Current federation surface: 145 tools / 47 bundles.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Healthz"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/batch/decision-cards": {
+      "post": {
+        "tags": [
+          "Batch"
+        ],
+        "summary": "Run a batch of DecisionCards",
+        "operationId": "postBatchDecisionCards",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "patients": {
+                    "type": "array",
+                    "items": {
+                      "type": "object"
+                    }
+                  }
+                },
+                "required": [
+                  "patients"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Per-patient DecisionCard list.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request."
+          }
+        }
+      }
+    },
+    "/oauth/token": {
+      "post": {
+        "tags": [
+          "OAuth"
+        ],
+        "summary": "Client-credentials grant (RFC 6749 \u00a74.4)",
+        "operationId": "postOAuthToken",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "grant_type": {
+                    "type": "string"
+                  },
+                  "client_id": {
+                    "type": "string"
+                  },
+                  "client_secret": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "grant_type",
+                  "client_id"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Bearer token (HS256 JWT).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OAuthTokenResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid client credentials."
+          }
+        }
+      }
+    },
+    "/cds-services": {
+      "get": {
+        "tags": [
+          "CDS Hooks"
+        ],
+        "summary": "List CDS Hooks v1.1 services",
+        "operationId": "getCDSServices",
+        "responses": {
+          "200": {
+            "description": "Service catalogue.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "services": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/CDSService"
+                      }
+                    }
+                  },
+                  "required": [
+                    "services"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cds-services/{hookId}": {
+      "post": {
+        "tags": [
+          "CDS Hooks"
+        ],
+        "summary": "Invoke a CDS Hooks service",
+        "operationId": "postCDSHook",
+        "parameters": [
+          {
+            "name": "hookId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CDSHookRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Cards response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CDSHooksResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/a2a/trustedrisk": {
+      "post": {
+        "tags": [
+          "A2A v1"
+        ],
+        "summary": "Send an A2A v1 message to TrustedRisk",
+        "operationId": "postA2AMessage",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A2A v1 reply Message + extensions.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AgentCard": {
+        "type": "object",
+        "additionalProperties": true,
+        "description": "A2A v1 agent card with `_bundles` extension listing the registered tool surface."
+      },
+      "Healthz": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "ok"
+            ]
+          },
+          "version": {
+            "type": "string"
+          },
+          "tools_registered": {
+            "type": "integer"
+          },
+          "bundles_registered": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "status",
+          "tools_registered",
+          "bundles_registered"
+        ]
+      },
+      "BatchResponse": {
+        "type": "object",
+        "properties": {
+          "n_patients": {
+            "type": "integer"
+          },
+          "decision_cards": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          }
+        }
+      },
+      "OAuthTokenResponse": {
+        "type": "object",
+        "properties": {
+          "access_token": {
+            "type": "string"
+          },
+          "token_type": {
+            "type": "string",
+            "enum": [
+              "Bearer"
+            ]
+          },
+          "expires_in": {
+            "type": "integer"
+          },
+          "scope": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "access_token",
+          "token_type",
+          "expires_in"
+        ]
+      },
+      "CDSService": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "hook": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "hook"
+        ]
+      },
+      "CDSHookRequest": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "hook": {
+            "type": "string"
+          },
+          "hookInstance": {
+            "type": "string"
+          },
+          "context": {
+            "type": "object"
+          },
+          "fhirAuthorization": {
+            "type": "object"
+          },
+          "prefetch": {
+            "type": "object"
+          }
+        }
+      },
+      "CDSHooksResponse": {
+        "type": "object",
+        "properties": {
+          "cards": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "systemActions": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        },
+        "required": [
+          "cards"
+        ]
+      }
+    },
+    "securitySchemes": {
+      "oauth_client_credentials": {
+        "type": "oauth2",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://trustedrisk.local/oauth/token",
+            "scopes": {
+              "discharge.read": "read-only discharge",
+              "discharge.execute": "execute discharge decisioning",
+              "phi.scan": "PHI scanning only",
+              "grounding.read": "evidence grounding only"
+            }
+          }
+        }
+      },
+      "api_key": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-Key"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "A2A v1",
+      "description": "A2A v1 protocol surface."
+    },
+    {
+      "name": "Marketplace",
+      "description": "Federation marketplace metadata."
+    },
+    {
+      "name": "SHARP-on-MCP",
+      "description": "FHIR-context capability declaration."
+    },
+    {
+      "name": "Operations",
+      "description": "Liveness + readiness."
+    },
+    {
+      "name": "Batch",
+      "description": "Population-level batch decisioning."
+    },
+    {
+      "name": "OAuth",
+      "description": "Multi-tenant OAuth 2.0 client credentials."
+    },
+    {
+      "name": "CDS Hooks",
+      "description": "HL7 CDS Hooks v1.1 service surface."
+    }
+  ]
+}

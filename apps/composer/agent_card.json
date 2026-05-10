@@ -1,0 +1,106 @@
+{
+  "schemaVersion": "1.0.0",
+  "name": "Workflow Composer",
+  "_legacy_name": "trustedrisk-composer",
+  "description": "BYO orchestrator that demonstrates the A2A v1 Agent Composition pattern. Runs realistic end-to-end care arcs by consulting TrustedRisk federation specialists (discharge, acute, evidence, population, pediatric, mental-health, pa, scribe, patient, pgx, pophealth, preadmit, quality, multimodal, coder, appeals) in sequence. The full library spans 257 care-arc templates (58 base verticals A-J, 50 macros that chain bases through ${steps.X.output.Y} references, 149 payer- and severity-parametric variants). Each workflow declares its required inputs and the per-step specialist + tool + input-mapping; the orchestrator resolves variable references and produces a complete trace per execution.",
+  "version": "1.0.0",
+  "url": "https://flati.work/a2a/trustedrisk-composer",
+  "supportedInterfaces": [
+    {
+      "url": "https://flati.work/a2a/trustedrisk-composer",
+      "protocolBinding": "A2A",
+      "protocolVersion": "1.0"
+    }
+  ],
+  "defaultInputModes": ["application/json"],
+  "defaultOutputModes": ["application/json"],
+  "skills": [
+    {
+      "id": "run_workflow",
+      "name": "Run a clinical workflow template",
+      "description": "Execute one of the 257 prebuilt care-arc templates by id (58 base + 50 macro + 149 parametric variants). Each template specifies the participating specialists and the per-step inputs.",
+      "tags": ["composition", "workflow", "BYO-orchestrator", "Agent-Composition"],
+      "examples": [
+        "Run the chf_admission workflow for a 72y patient with SOB",
+        "Run the sepsis_workup workflow for a febrile patient with hypotension",
+        "Run the discharge_planning workflow on a CHF patient ready to go home",
+        "Run the outpatient_med_review workflow on a geriatric patient with 9 chronic medications",
+        "Run the stroke_alert workflow on a patient at 90 minutes from LKW"
+      ]
+    },
+    {
+      "id": "list_workflows",
+      "name": "List available workflow templates",
+      "description": "Return the marketplace-style listing of the 257 prebuilt care-arc templates with their required inputs and specialists consulted.",
+      "tags": ["discovery", "workflow"],
+      "examples": [
+        "What clinical workflows can the composer run?"
+      ]
+    }
+  ],
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false,
+    "stateTransitionHistory": false,
+    "extensions": [
+      {
+        "uri": "https://app.promptopinion.ai/schemas/a2a/v1/fhir-context",
+        "description": "FHIR context propagated through to the consulted specialists. The composer passes the BYO orchestrator's FHIR context unchanged on each step.",
+        "required": false,
+        "params": {
+          "scopes": [
+            { "name": "patient/Patient.rs", "required": true },
+            { "name": "patient/Encounter.rs" },
+            { "name": "patient/Condition.rs" },
+            { "name": "patient/Observation.rs" },
+            { "name": "patient/MedicationRequest.rs" },
+            { "name": "patient/AllergyIntolerance.rs" },
+            { "name": "patient/Procedure.rs" }
+          ]
+        }
+      }
+    ],
+    "agentComposition": {
+      "enabled": true,
+      "description": "Consults the 9 TrustedRisk federation specialists in sequence per a workflow template. Each specialist receives the FHIR context unchanged and contributes a structured artefact (DecisionCard, RiskEstimate, ClinicalNoteDraft, PA*, etc.) that downstream steps can reference via ${steps.<id>.output.<field>}.",
+      "consults": [
+        "trustedrisk-discharge",
+        "trustedrisk-acute",
+        "trustedrisk-evidence",
+        "trustedrisk-population",
+        "trustedrisk-pediatric",
+        "trustedrisk-mental-health",
+        "trustedrisk-pa",
+        "trustedrisk-scribe",
+        "trustedrisk-patient"
+      ]
+    }
+  },
+  "securitySchemes": {
+    "oauth_client_credentials": {
+      "oauth2SecurityScheme": {
+        "type": "oauth2",
+        "description": "Bearer-token authentication (RFC 6749 Sec. 4.4). Same OAuth client registry as the rest of the TrustedRisk federation.",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://<deploy-url>/oauth/token",
+            "scopes": {
+              "discharge.read": "Invoke compute_readmission_risk + decision_utility",
+              "discharge.execute": "Above plus medication_reconciliation + fairness_audit",
+              "phi.scan": "Invoke detect_phi only",
+              "grounding.read": "Invoke ground_claim only"
+            }
+          }
+        }
+      }
+    },
+    "x_api_key": {
+      "apiKeySecurityScheme": {
+        "type": "apiKey",
+        "description": "Static API-key authentication for marketplace-mediated A2A calls.",
+        "location": "header",
+        "name": "X-API-Key"
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "1.0.0",
+  "name": "trustedrisk-scheduler-agent",
+  "description": "Federated A2A partner that turns TrustedRisk DecisionCards into concrete follow-up visit plans. Consumes the recommendation action, calibrated risk, and tool trace; emits a list of FollowupVisit proposals (visit type, proposed date relative to discharge, modality, rationale). Demonstrates the COMPOSE-2 multi-agent pattern: a specialist scheduling agent reuses the upstream decision agent's output.",
+  "version": "0.1.0",
+  "url": "http://localhost:8769/a2a/trustedrisk-scheduler-agent",
+  "defaultInputModes": ["application/json"],
+  "defaultOutputModes": ["application/json"],
+  "skills": [
+    {
+      "id": "propose_followup_visits",
+      "name": "Propose follow-up visit plan from a DecisionCard",
+      "description": "Given a TrustedRisk DecisionCard, infer a structured follow-up plan: visit type (PCP, NP, specialist by domain — cardiology / nephrology / endocrinology / oncology / mental health), proposed date (urgent 3-7d / moderate 7-14d / routine 14-30d), modality (in-person / telehealth), and rationale citing the AHRQ Re-Engineered Discharge bundle + Hansen NEJM 2011. Risk-adjusted by recommendation.confidence and risk_estimate.probability_mean.",
+      "tags": ["scheduling", "transitions-of-care", "follow-up", "decision-support"],
+      "examples": [
+        "Plan follow-up visits for a home_with_care discharge with risk 0.42 and HF on the chart",
+        "What follow-up does a high-risk DKA discharge need within the first 14 days?"
+      ]
+    },
+    {
+      "id": "list_recent_proposals",
+      "name": "List recent scheduling proposals",
+      "description": "Returns the last N follow-up plans the scheduler emitted, with input DecisionCard.audit.request_id when available. Useful for the playground orchestration tab and operator dashboards.",
+      "tags": ["audit", "scheduling", "history"],
+      "examples": [
+        "Show me the last 10 follow-up plans"
+      ]
+    }
+  ],
+  "capabilities": {
+    "streaming": false,
+    "stateTransitionHistory": false,
+    "scheduling": {
+      "enabled": true,
+      "description": "Rule-based follow-up planner. NOT a calendar integration — plans are advisory; an EHR layer is responsible for booking. Plans are NOT persisted across restarts."
+    }
+  }
+}

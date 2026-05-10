@@ -1,0 +1,1207 @@
+{
+  "bundle_id": "stroke_acs",
+  "tool": "compute_stroke_severity",
+  "n_cases": 50,
+  "cases": [
+    {
+      "name": "nihss_case_000",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 0,
+          "loc_questions": 0,
+          "loc_commands": 0,
+          "best_gaze": 0,
+          "visual_fields": 0,
+          "facial_palsy": 0,
+          "motor_arm_left": 1,
+          "motor_arm_right": 0,
+          "motor_leg_left": 0,
+          "motor_leg_right": 0,
+          "limb_ataxia": 0,
+          "sensory": 2,
+          "best_language": 3,
+          "dysarthria": 0,
+          "extinction_inattention": 2
+        },
+        "last_known_well_minutes_ago": 80
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_001",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 1,
+          "loc_questions": 2,
+          "loc_commands": 0,
+          "best_gaze": 0,
+          "visual_fields": 1,
+          "facial_palsy": 2,
+          "motor_arm_left": 0,
+          "motor_arm_right": 1,
+          "motor_leg_left": 2,
+          "motor_leg_right": 0,
+          "limb_ataxia": 0,
+          "sensory": 0,
+          "best_language": 2,
+          "dysarthria": 2,
+          "extinction_inattention": 1
+        },
+        "last_known_well_minutes_ago": 228
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_002",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 3,
+          "loc_questions": 1,
+          "loc_commands": 0,
+          "best_gaze": 2,
+          "visual_fields": 1,
+          "facial_palsy": 3,
+          "motor_arm_left": 4,
+          "motor_arm_right": 1,
+          "motor_leg_left": 4,
+          "motor_leg_right": 4,
+          "limb_ataxia": 1,
+          "sensory": 1,
+          "best_language": 0,
+          "dysarthria": 0,
+          "extinction_inattention": 0
+        },
+        "last_known_well_minutes_ago": 1297
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_003",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 3,
+          "loc_questions": 0,
+          "loc_commands": 0,
+          "best_gaze": 2,
+          "visual_fields": 2,
+          "facial_palsy": 1,
+          "motor_arm_left": 0,
+          "motor_arm_right": 3,
+          "motor_leg_left": 0,
+          "motor_leg_right": 2,
+          "limb_ataxia": 2,
+          "sensory": 0,
+          "best_language": 2,
+          "dysarthria": 0,
+          "extinction_inattention": 0
+        },
+        "last_known_well_minutes_ago": 501
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_004",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 0,
+          "loc_questions": 1,
+          "loc_commands": 0,
+          "best_gaze": 2,
+          "visual_fields": 0,
+          "facial_palsy": 2,
+          "motor_arm_left": 2,
+          "motor_arm_right": 1,
+          "motor_leg_left": 0,
+          "motor_leg_right": 4,
+          "limb_ataxia": 2,
+          "sensory": 0,
+          "best_language": 3,
+          "dysarthria": 2,
+          "extinction_inattention": 0
+        },
+        "last_known_well_minutes_ago": 814
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_005",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 3,
+          "loc_questions": 0,
+          "loc_commands": 0,
+          "best_gaze": 2,
+          "visual_fields": 0,
+          "facial_palsy": 3,
+          "motor_arm_left": 0,
+          "motor_arm_right": 4,
+          "motor_leg_left": 0,
+          "motor_leg_right": 0,
+          "limb_ataxia": 2,
+          "sensory": 1,
+          "best_language": 3,
+          "dysarthria": 0,
+          "extinction_inattention": 0
+        },
+        "last_known_well_minutes_ago": 1118
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_006",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 1,
+          "loc_questions": 2,
+          "loc_commands": 0,
+          "best_gaze": 2,
+          "visual_fields": 0,
+          "facial_palsy": 2,
+          "motor_arm_left": 0,
+          "motor_arm_right": 1,
+          "motor_leg_left": 4,
+          "motor_leg_right": 4,
+          "limb_ataxia": 1,
+          "sensory": 0,
+          "best_language": 2,
+          "dysarthria": 2,
+          "extinction_inattention": 0
+        },
+        "last_known_well_minutes_ago": 240
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_007",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 0,
+          "loc_questions": 0,
+          "loc_commands": 1,
+          "best_gaze": 0,
+          "visual_fields": 1,
+          "facial_palsy": 0,
+          "motor_arm_left": 0,
+          "motor_arm_right": 0,
+          "motor_leg_left": 0,
+          "motor_leg_right": 4,
+          "limb_ataxia": 2,
+          "sensory": 0,
+          "best_language": 0,
+          "dysarthria": 0,
+          "extinction_inattention": 0
+        },
+        "last_known_well_minutes_ago": 839
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_008",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 0,
+          "loc_questions": 0,
+          "loc_commands": 1,
+          "best_gaze": 2,
+          "visual_fields": 3,
+          "facial_palsy": 3,
+          "motor_arm_left": 0,
+          "motor_arm_right": 3,
+          "motor_leg_left": 1,
+          "motor_leg_right": 4,
+          "limb_ataxia": 1,
+          "sensory": 2,
+          "best_language": 0,
+          "dysarthria": 0,
+          "extinction_inattention": 1
+        },
+        "last_known_well_minutes_ago": 144
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_009",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 0,
+          "loc_questions": 1,
+          "loc_commands": 1,
+          "best_gaze": 2,
+          "visual_fields": 0,
+          "facial_palsy": 0,
+          "motor_arm_left": 0,
+          "motor_arm_right": 0,
+          "motor_leg_left": 0,
+          "motor_leg_right": 0,
+          "limb_ataxia": 1,
+          "sensory": 2,
+          "best_language": 1,
+          "dysarthria": 0,
+          "extinction_inattention": 1
+        },
+        "last_known_well_minutes_ago": 724
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_010",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 0,
+          "loc_questions": 2,
+          "loc_commands": 2,
+          "best_gaze": 0,
+          "visual_fields": 1,
+          "facial_palsy": 0,
+          "motor_arm_left": 0,
+          "motor_arm_right": 4,
+          "motor_leg_left": 1,
+          "motor_leg_right": 4,
+          "limb_ataxia": 2,
+          "sensory": 1,
+          "best_language": 0,
+          "dysarthria": 0,
+          "extinction_inattention": 0
+        },
+        "last_known_well_minutes_ago": 870
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_011",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 0,
+          "loc_questions": 0,
+          "loc_commands": 0,
+          "best_gaze": 2,
+          "visual_fields": 0,
+          "facial_palsy": 1,
+          "motor_arm_left": 0,
+          "motor_arm_right": 0,
+          "motor_leg_left": 1,
+          "motor_leg_right": 0,
+          "limb_ataxia": 0,
+          "sensory": 0,
+          "best_language": 0,
+          "dysarthria": 0,
+          "extinction_inattention": 0
+        },
+        "last_known_well_minutes_ago": 501
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_012",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 3,
+          "loc_questions": 0,
+          "loc_commands": 1,
+          "best_gaze": 0,
+          "visual_fields": 0,
+          "facial_palsy": 1,
+          "motor_arm_left": 1,
+          "motor_arm_right": 0,
+          "motor_leg_left": 1,
+          "motor_leg_right": 4,
+          "limb_ataxia": 1,
+          "sensory": 0,
+          "best_language": 1,
+          "dysarthria": 0,
+          "extinction_inattention": 2
+        },
+        "last_known_well_minutes_ago": 427
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_013",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 3,
+          "loc_questions": 1,
+          "loc_commands": 1,
+          "best_gaze": 0,
+          "visual_fields": 0,
+          "facial_palsy": 3,
+          "motor_arm_left": 0,
+          "motor_arm_right": 1,
+          "motor_leg_left": 0,
+          "motor_leg_right": 1,
+          "limb_ataxia": 0,
+          "sensory": 0,
+          "best_language": 0,
+          "dysarthria": 1,
+          "extinction_inattention": 1
+        },
+        "last_known_well_minutes_ago": 388
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_014",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 0,
+          "loc_questions": 0,
+          "loc_commands": 0,
+          "best_gaze": 0,
+          "visual_fields": 0,
+          "facial_palsy": 0,
+          "motor_arm_left": 0,
+          "motor_arm_right": 4,
+          "motor_leg_left": 4,
+          "motor_leg_right": 1,
+          "limb_ataxia": 0,
+          "sensory": 0,
+          "best_language": 0,
+          "dysarthria": 2,
+          "extinction_inattention": 2
+        },
+        "last_known_well_minutes_ago": 1009
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_015",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 1,
+          "loc_questions": 0,
+          "loc_commands": 1,
+          "best_gaze": 2,
+          "visual_fields": 0,
+          "facial_palsy": 0,
+          "motor_arm_left": 0,
+          "motor_arm_right": 1,
+          "motor_leg_left": 0,
+          "motor_leg_right": 0,
+          "limb_ataxia": 1,
+          "sensory": 0,
+          "best_language": 1,
+          "dysarthria": 2,
+          "extinction_inattention": 2
+        },
+        "last_known_well_minutes_ago": 1030
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_016",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 0,
+          "loc_questions": 0,
+          "loc_commands": 1,
+          "best_gaze": 0,
+          "visual_fields": 0,
+          "facial_palsy": 0,
+          "motor_arm_left": 0,
+          "motor_arm_right": 0,
+          "motor_leg_left": 0,
+          "motor_leg_right": 0,
+          "limb_ataxia": 2,
+          "sensory": 0,
+          "best_language": 0,
+          "dysarthria": 0,
+          "extinction_inattention": 0
+        },
+        "last_known_well_minutes_ago": 743
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_017",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 1,
+          "loc_questions": 1,
+          "loc_commands": 2,
+          "best_gaze": 2,
+          "visual_fields": 3,
+          "facial_palsy": 0,
+          "motor_arm_left": 0,
+          "motor_arm_right": 3,
+          "motor_leg_left": 1,
+          "motor_leg_right": 0,
+          "limb_ataxia": 0,
+          "sensory": 0,
+          "best_language": 2,
+          "dysarthria": 0,
+          "extinction_inattention": 0
+        },
+        "last_known_well_minutes_ago": 1228
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_018",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 3,
+          "loc_questions": 0,
+          "loc_commands": 0,
+          "best_gaze": 0,
+          "visual_fields": 2,
+          "facial_palsy": 1,
+          "motor_arm_left": 0,
+          "motor_arm_right": 1,
+          "motor_leg_left": 3,
+          "motor_leg_right": 1,
+          "limb_ataxia": 0,
+          "sensory": 0,
+          "best_language": 2,
+          "dysarthria": 0,
+          "extinction_inattention": 2
+        },
+        "last_known_well_minutes_ago": 867
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_019",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 3,
+          "loc_questions": 0,
+          "loc_commands": 0,
+          "best_gaze": 0,
+          "visual_fields": 0,
+          "facial_palsy": 0,
+          "motor_arm_left": 1,
+          "motor_arm_right": 4,
+          "motor_leg_left": 0,
+          "motor_leg_right": 4,
+          "limb_ataxia": 0,
+          "sensory": 0,
+          "best_language": 3,
+          "dysarthria": 0,
+          "extinction_inattention": 0
+        },
+        "last_known_well_minutes_ago": 244
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_020",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 3,
+          "loc_questions": 1,
+          "loc_commands": 0,
+          "best_gaze": 2,
+          "visual_fields": 0,
+          "facial_palsy": 3,
+          "motor_arm_left": 0,
+          "motor_arm_right": 0,
+          "motor_leg_left": 0,
+          "motor_leg_right": 1,
+          "limb_ataxia": 1,
+          "sensory": 2,
+          "best_language": 1,
+          "dysarthria": 1,
+          "extinction_inattention": 0
+        },
+        "last_known_well_minutes_ago": 1052
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_021",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 1,
+          "loc_questions": 0,
+          "loc_commands": 0,
+          "best_gaze": 2,
+          "visual_fields": 2,
+          "facial_palsy": 3,
+          "motor_arm_left": 2,
+          "motor_arm_right": 1,
+          "motor_leg_left": 1,
+          "motor_leg_right": 3,
+          "limb_ataxia": 1,
+          "sensory": 0,
+          "best_language": 0,
+          "dysarthria": 1,
+          "extinction_inattention": 0
+        },
+        "last_known_well_minutes_ago": 1307
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_022",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 1,
+          "loc_questions": 0,
+          "loc_commands": 2,
+          "best_gaze": 1,
+          "visual_fields": 3,
+          "facial_palsy": 3,
+          "motor_arm_left": 1,
+          "motor_arm_right": 1,
+          "motor_leg_left": 0,
+          "motor_leg_right": 0,
+          "limb_ataxia": 0,
+          "sensory": 2,
+          "best_language": 1,
+          "dysarthria": 1,
+          "extinction_inattention": 1
+        },
+        "last_known_well_minutes_ago": 73
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_023",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 0,
+          "loc_questions": 1,
+          "loc_commands": 2,
+          "best_gaze": 2,
+          "visual_fields": 1,
+          "facial_palsy": 2,
+          "motor_arm_left": 4,
+          "motor_arm_right": 0,
+          "motor_leg_left": 2,
+          "motor_leg_right": 3,
+          "limb_ataxia": 0,
+          "sensory": 0,
+          "best_language": 0,
+          "dysarthria": 0,
+          "extinction_inattention": 1
+        },
+        "last_known_well_minutes_ago": 795
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_024",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 0,
+          "loc_questions": 2,
+          "loc_commands": 1,
+          "best_gaze": 2,
+          "visual_fields": 0,
+          "facial_palsy": 0,
+          "motor_arm_left": 4,
+          "motor_arm_right": 3,
+          "motor_leg_left": 0,
+          "motor_leg_right": 0,
+          "limb_ataxia": 1,
+          "sensory": 0,
+          "best_language": 2,
+          "dysarthria": 1,
+          "extinction_inattention": 1
+        },
+        "last_known_well_minutes_ago": 314
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_025",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 0,
+          "loc_questions": 1,
+          "loc_commands": 0,
+          "best_gaze": 1,
+          "visual_fields": 0,
+          "facial_palsy": 0,
+          "motor_arm_left": 0,
+          "motor_arm_right": 1,
+          "motor_leg_left": 0,
+          "motor_leg_right": 1,
+          "limb_ataxia": 0,
+          "sensory": 0,
+          "best_language": 0,
+          "dysarthria": 1,
+          "extinction_inattention": 1
+        },
+        "last_known_well_minutes_ago": 1306
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_026",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 0,
+          "loc_questions": 1,
+          "loc_commands": 0,
+          "best_gaze": 1,
+          "visual_fields": 3,
+          "facial_palsy": 0,
+          "motor_arm_left": 0,
+          "motor_arm_right": 0,
+          "motor_leg_left": 1,
+          "motor_leg_right": 1,
+          "limb_ataxia": 0,
+          "sensory": 0,
+          "best_language": 0,
+          "dysarthria": 1,
+          "extinction_inattention": 0
+        },
+        "last_known_well_minutes_ago": 358
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_027",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 0,
+          "loc_questions": 0,
+          "loc_commands": 2,
+          "best_gaze": 1,
+          "visual_fields": 1,
+          "facial_palsy": 0,
+          "motor_arm_left": 4,
+          "motor_arm_right": 4,
+          "motor_leg_left": 0,
+          "motor_leg_right": 0,
+          "limb_ataxia": 0,
+          "sensory": 0,
+          "best_language": 0,
+          "dysarthria": 0,
+          "extinction_inattention": 0
+        },
+        "last_known_well_minutes_ago": 54
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_028",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 1,
+          "loc_questions": 1,
+          "loc_commands": 2,
+          "best_gaze": 1,
+          "visual_fields": 2,
+          "facial_palsy": 1,
+          "motor_arm_left": 0,
+          "motor_arm_right": 4,
+          "motor_leg_left": 2,
+          "motor_leg_right": 1,
+          "limb_ataxia": 0,
+          "sensory": 0,
+          "best_language": 3,
+          "dysarthria": 0,
+          "extinction_inattention": 2
+        },
+        "last_known_well_minutes_ago": 1213
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_029",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 1,
+          "loc_questions": 0,
+          "loc_commands": 0,
+          "best_gaze": 0,
+          "visual_fields": 3,
+          "facial_palsy": 1,
+          "motor_arm_left": 1,
+          "motor_arm_right": 2,
+          "motor_leg_left": 2,
+          "motor_leg_right": 0,
+          "limb_ataxia": 0,
+          "sensory": 1,
+          "best_language": 2,
+          "dysarthria": 1,
+          "extinction_inattention": 0
+        },
+        "last_known_well_minutes_ago": 227
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_030",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 1,
+          "loc_questions": 1,
+          "loc_commands": 2,
+          "best_gaze": 0,
+          "visual_fields": 2,
+          "facial_palsy": 2,
+          "motor_arm_left": 0,
+          "motor_arm_right": 1,
+          "motor_leg_left": 3,
+          "motor_leg_right": 1,
+          "limb_ataxia": 1,
+          "sensory": 0,
+          "best_language": 3,
+          "dysarthria": 1,
+          "extinction_inattention": 1
+        },
+        "last_known_well_minutes_ago": 1084
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_031",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 0,
+          "loc_questions": 0,
+          "loc_commands": 0,
+          "best_gaze": 0,
+          "visual_fields": 0,
+          "facial_palsy": 0,
+          "motor_arm_left": 0,
+          "motor_arm_right": 1,
+          "motor_leg_left": 4,
+          "motor_leg_right": 0,
+          "limb_ataxia": 0,
+          "sensory": 1,
+          "best_language": 0,
+          "dysarthria": 0,
+          "extinction_inattention": 0
+        },
+        "last_known_well_minutes_ago": 1419
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_032",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 0,
+          "loc_questions": 0,
+          "loc_commands": 1,
+          "best_gaze": 2,
+          "visual_fields": 0,
+          "facial_palsy": 0,
+          "motor_arm_left": 0,
+          "motor_arm_right": 4,
+          "motor_leg_left": 1,
+          "motor_leg_right": 4,
+          "limb_ataxia": 0,
+          "sensory": 0,
+          "best_language": 0,
+          "dysarthria": 2,
+          "extinction_inattention": 0
+        },
+        "last_known_well_minutes_ago": 912
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_033",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 0,
+          "loc_questions": 0,
+          "loc_commands": 0,
+          "best_gaze": 1,
+          "visual_fields": 0,
+          "facial_palsy": 0,
+          "motor_arm_left": 0,
+          "motor_arm_right": 0,
+          "motor_leg_left": 0,
+          "motor_leg_right": 0,
+          "limb_ataxia": 0,
+          "sensory": 1,
+          "best_language": 1,
+          "dysarthria": 0,
+          "extinction_inattention": 0
+        },
+        "last_known_well_minutes_ago": 862
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_034",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 3,
+          "loc_questions": 0,
+          "loc_commands": 1,
+          "best_gaze": 0,
+          "visual_fields": 3,
+          "facial_palsy": 0,
+          "motor_arm_left": 1,
+          "motor_arm_right": 1,
+          "motor_leg_left": 0,
+          "motor_leg_right": 4,
+          "limb_ataxia": 2,
+          "sensory": 0,
+          "best_language": 0,
+          "dysarthria": 2,
+          "extinction_inattention": 2
+        },
+        "last_known_well_minutes_ago": 601
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_035",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 2,
+          "loc_questions": 0,
+          "loc_commands": 0,
+          "best_gaze": 1,
+          "visual_fields": 3,
+          "facial_palsy": 3,
+          "motor_arm_left": 0,
+          "motor_arm_right": 2,
+          "motor_leg_left": 4,
+          "motor_leg_right": 4,
+          "limb_ataxia": 2,
+          "sensory": 1,
+          "best_language": 1,
+          "dysarthria": 0,
+          "extinction_inattention": 0
+        },
+        "last_known_well_minutes_ago": 909
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_036",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 3,
+          "loc_questions": 0,
+          "loc_commands": 2,
+          "best_gaze": 0,
+          "visual_fields": 3,
+          "facial_palsy": 0,
+          "motor_arm_left": 4,
+          "motor_arm_right": 4,
+          "motor_leg_left": 0,
+          "motor_leg_right": 0,
+          "limb_ataxia": 0,
+          "sensory": 0,
+          "best_language": 0,
+          "dysarthria": 2,
+          "extinction_inattention": 0
+        },
+        "last_known_well_minutes_ago": 883
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_037",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 0,
+          "loc_questions": 0,
+          "loc_commands": 0,
+          "best_gaze": 2,
+          "visual_fields": 0,
+          "facial_palsy": 1,
+          "motor_arm_left": 4,
+          "motor_arm_right": 1,
+          "motor_leg_left": 0,
+          "motor_leg_right": 4,
+          "limb_ataxia": 0,
+          "sensory": 1,
+          "best_language": 3,
+          "dysarthria": 0,
+          "extinction_inattention": 0
+        },
+        "last_known_well_minutes_ago": 668
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_038",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 1,
+          "loc_questions": 1,
+          "loc_commands": 0,
+          "best_gaze": 0,
+          "visual_fields": 1,
+          "facial_palsy": 1,
+          "motor_arm_left": 0,
+          "motor_arm_right": 4,
+          "motor_leg_left": 0,
+          "motor_leg_right": 0,
+          "limb_ataxia": 0,
+          "sensory": 0,
+          "best_language": 0,
+          "dysarthria": 0,
+          "extinction_inattention": 1
+        },
+        "last_known_well_minutes_ago": 343
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_039",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 0,
+          "loc_questions": 0,
+          "loc_commands": 2,
+          "best_gaze": 0,
+          "visual_fields": 0,
+          "facial_palsy": 0,
+          "motor_arm_left": 0,
+          "motor_arm_right": 0,
+          "motor_leg_left": 0,
+          "motor_leg_right": 1,
+          "limb_ataxia": 0,
+          "sensory": 2,
+          "best_language": 0,
+          "dysarthria": 0,
+          "extinction_inattention": 0
+        },
+        "last_known_well_minutes_ago": 496
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_040",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 1,
+          "loc_questions": 2,
+          "loc_commands": 2,
+          "best_gaze": 0,
+          "visual_fields": 0,
+          "facial_palsy": 0,
+          "motor_arm_left": 0,
+          "motor_arm_right": 1,
+          "motor_leg_left": 1,
+          "motor_leg_right": 4,
+          "limb_ataxia": 2,
+          "sensory": 1,
+          "best_language": 0,
+          "dysarthria": 1,
+          "extinction_inattention": 2
+        },
+        "last_known_well_minutes_ago": 756
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_041",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 0,
+          "loc_questions": 1,
+          "loc_commands": 0,
+          "best_gaze": 1,
+          "visual_fields": 0,
+          "facial_palsy": 0,
+          "motor_arm_left": 0,
+          "motor_arm_right": 0,
+          "motor_leg_left": 0,
+          "motor_leg_right": 0,
+          "limb_ataxia": 2,
+          "sensory": 1,
+          "best_language": 3,
+          "dysarthria": 2,
+          "extinction_inattention": 0
+        },
+        "last_known_well_minutes_ago": 700
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_042",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 3,
+          "loc_questions": 1,
+          "loc_commands": 1,
+          "best_gaze": 0,
+          "visual_fields": 3,
+          "facial_palsy": 1,
+          "motor_arm_left": 4,
+          "motor_arm_right": 0,
+          "motor_leg_left": 4,
+          "motor_leg_right": 0,
+          "limb_ataxia": 1,
+          "sensory": 0,
+          "best_language": 0,
+          "dysarthria": 0,
+          "extinction_inattention": 1
+        },
+        "last_known_well_minutes_ago": 1043
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_043",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 1,
+          "loc_questions": 0,
+          "loc_commands": 1,
+          "best_gaze": 0,
+          "visual_fields": 3,
+          "facial_palsy": 0,
+          "motor_arm_left": 4,
+          "motor_arm_right": 0,
+          "motor_leg_left": 1,
+          "motor_leg_right": 0,
+          "limb_ataxia": 0,
+          "sensory": 1,
+          "best_language": 1,
+          "dysarthria": 0,
+          "extinction_inattention": 0
+        },
+        "last_known_well_minutes_ago": 333
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_044",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 0,
+          "loc_questions": 2,
+          "loc_commands": 2,
+          "best_gaze": 2,
+          "visual_fields": 0,
+          "facial_palsy": 0,
+          "motor_arm_left": 3,
+          "motor_arm_right": 4,
+          "motor_leg_left": 0,
+          "motor_leg_right": 0,
+          "limb_ataxia": 2,
+          "sensory": 2,
+          "best_language": 1,
+          "dysarthria": 0,
+          "extinction_inattention": 2
+        },
+        "last_known_well_minutes_ago": 69
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_045",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 0,
+          "loc_questions": 2,
+          "loc_commands": 0,
+          "best_gaze": 1,
+          "visual_fields": 3,
+          "facial_palsy": 1,
+          "motor_arm_left": 4,
+          "motor_arm_right": 1,
+          "motor_leg_left": 0,
+          "motor_leg_right": 0,
+          "limb_ataxia": 0,
+          "sensory": 1,
+          "best_language": 0,
+          "dysarthria": 0,
+          "extinction_inattention": 0
+        },
+        "last_known_well_minutes_ago": 98
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_046",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 3,
+          "loc_questions": 0,
+          "loc_commands": 0,
+          "best_gaze": 2,
+          "visual_fields": 0,
+          "facial_palsy": 0,
+          "motor_arm_left": 0,
+          "motor_arm_right": 1,
+          "motor_leg_left": 0,
+          "motor_leg_right": 0,
+          "limb_ataxia": 0,
+          "sensory": 1,
+          "best_language": 0,
+          "dysarthria": 0,
+          "extinction_inattention": 2
+        },
+        "last_known_well_minutes_ago": 211
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_047",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 1,
+          "loc_questions": 0,
+          "loc_commands": 0,
+          "best_gaze": 2,
+          "visual_fields": 0,
+          "facial_palsy": 0,
+          "motor_arm_left": 0,
+          "motor_arm_right": 0,
+          "motor_leg_left": 0,
+          "motor_leg_right": 0,
+          "limb_ataxia": 0,
+          "sensory": 2,
+          "best_language": 1,
+          "dysarthria": 0,
+          "extinction_inattention": 2
+        },
+        "last_known_well_minutes_ago": 365
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_048",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 3,
+          "loc_questions": 1,
+          "loc_commands": 0,
+          "best_gaze": 2,
+          "visual_fields": 0,
+          "facial_palsy": 0,
+          "motor_arm_left": 0,
+          "motor_arm_right": 0,
+          "motor_leg_left": 3,
+          "motor_leg_right": 0,
+          "limb_ataxia": 2,
+          "sensory": 0,
+          "best_language": 1,
+          "dysarthria": 0,
+          "extinction_inattention": 0
+        },
+        "last_known_well_minutes_ago": 1036
+      },
+      "schema_only": true
+    },
+    {
+      "name": "nihss_case_049",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 0,
+          "loc_questions": 2,
+          "loc_commands": 0,
+          "best_gaze": 0,
+          "visual_fields": 0,
+          "facial_palsy": 0,
+          "motor_arm_left": 1,
+          "motor_arm_right": 3,
+          "motor_leg_left": 2,
+          "motor_leg_right": 4,
+          "limb_ataxia": 0,
+          "sensory": 1,
+          "best_language": 3,
+          "dysarthria": 1,
+          "extinction_inattention": 0
+        },
+        "last_known_well_minutes_ago": 879
+      },
+      "schema_only": true
+    }
+  ]
+}

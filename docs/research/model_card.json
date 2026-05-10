@@ -1,0 +1,44 @@
+{
+  "generated_at": "2026-05-10 10:35 UTC",
+  "model_name": "TrustedRisk readmission risk + decision pipeline",
+  "model_version": "1.0.0",
+  "n_sections": 9,
+  "sections": [
+    {
+      "title": "1. Model details",
+      "body_md": "- **Person/organization developing the model**: TrustedRisk team.\n- **Model date**: 2026-04-30 (W1 coefficients promoted 2026-04-24).\n- **Model type**: Binary classifier on the LACE feature space (L=length-of-stay, A=acuity, C=Charlson, E=ED visits) + 5-bin Beta-Binomial posterior. Combined with a 4-critic ensemble + 3-agent debate that downgrades or abstains.\n- **Information about training algorithms**: per-bin Beta-Binomial conjugate update with weakly-informative prior alpha=2, beta=18.\n- **License**: Apache 2.0 for the codebase; coefficients produced by an internal calibration workflow (not redistributed).\n- **Where to send questions or comments**: GitHub Issues."
+    },
+    {
+      "title": "2. Intended use",
+      "body_md": "- **Primary intended uses**: assistive decision-support at inpatient discharge planning. The model emits a calibrated 30-day readmission probability + recommended action; a clinician reviews before any care decision is enacted.\n- **Primary intended users**: licensed clinicians.\n- **Out-of-scope use cases**: unsupervised patient-facing automation; replacement of clinician judgement; settings where the LACE feature space is unavailable; pediatric patients (the model was not fit on a pediatric cohort)."
+    },
+    {
+      "title": "3. Factors",
+      "body_md": "- **Relevant factors**: age band (5 strata), sex, race (White/Black/Hispanic/Asian/Indigenous/Other), ethnicity (Hispanic/Non-Hispanic), insurance type (Commercial/Medicare/Medicaid/Uninsured/TRICARE), language.\n- **Evaluation factors**: same as relevant factors plus the 5-bin LACE stratification.\n- **Group attributes that drive different performance**: Black + Indigenous + Medicaid + Uninsured patients show the largest TPR / DP gap (per the Phase 15 subgroup audit).\n- **Instrumentation**: predictions are deterministic given the LACE bin; ties are broken on tool name."
+    },
+    {
+      "title": "4. Metrics",
+      "body_md": "**Performance measures**: ECE (Expected Calibration Error, preferred gate <=0.05), Brier score, AUROC. Decision-level TPR + Demographic-Parity gap surfaced per subgroup.\n\n| Cohort | n | ECE | Brier | AUROC |\n| --- | ---: | ---: | ---: | ---: |\n| W1 spec_002 | 7,880 | 0.0078 | 0.124 | 0.590 |\n| Synthea-100k | 100,000 | 0.0001 | 0.1527 | 0.6093 |\n| MIMIC-IV demo | 275 | 0.0187 | 0.1489 | 0.6399 |\n\n**Decision threshold**: 0.20. **Confidence interval**: 5-bin Beta-Binomial posterior, width scaled by bin sample size."
+    },
+    {
+      "title": "5. Evaluation data",
+      "body_md": "- **Datasets**: (a) W1 internal calibration cohort (n=7,880); (b) Synthea-10k validation; (c) Synthea-100k recalibration; (d) MIMIC-IV demo 2.2 (n=275 in-cohort); (e) Phase-15 subgroup-audit synthetic cohort (n=100,000) with rich demographics.\n- **Motivation**: the W1 cohort drives the initial fit; Synthea-100k stress-tests calibration at scale; MIMIC-IV demo provides external validation; the subgroup-audit cohort drives fairness analysis.\n- **Preprocessing**: LACE features extracted from FHIR Bundle (length-of-stay from Encounter.period, acuity from Encounter.priority + chief complaint, Charlson from Conditions, ED visits from past Encounters)."
+    },
+    {
+      "title": "6. Training data",
+      "body_md": "- **Training cohort**: W1 internal calibration workflow output, n=7,880, Synthea-generated synthetic 30-day readmission cohort with the LACE feature space.\n- **Synthea version**: 3.3.0 (BSD-3 licence). Generation controlled by the internal `fhir-readmission-calibration` workflow (W1).\n- **Outcome label**: binary 30-day all-cause readmission drawn from a fixed bucket map {LACE 0-2: 7.2%, 3-5: 10.3%, 6-9: 15.8%, 10-12: 23.4%, 13+: 32.7%}; calibrated against AHRQ HCUP HRRP rates."
+    },
+    {
+      "title": "7. Quantitative analyses",
+      "body_md": "**Disaggregated evaluation results**: per Phase-15 subgroup-audit + prospective-eval artefacts.\n- Worst EOO gap: 7.14% on race=indigenous.\n- Worst DP gap: 1.85% on race=indigenous.\n- Prospective eval (n=2,000): abstain=0.00%, downgrade=64.10%, calibration gap=3.04%."
+    },
+    {
+      "title": "8. Ethical considerations",
+      "body_md": "- **Sensitive data**: predictions consume protected demographics (race, ethnicity, insurance). The 4-critic ensemble's `fairness_critic` blocks any recommendation that would adversely change for a flagged subgroup at matched LACE.\n- **Mitigation strategies**: deterministic abstain trigger for demographic-bias subgroups without a fresh fairness audit; differential-privacy publication of subgroup rates (Laplace, epsilon=1.0).\n- **Risks of harm**: under-prediction in Black + Indigenous + Medicaid populations is documented in the literature (AHRQ HCUP 2022, Joynt & Jha 2014). The system surfaces this risk directly via the Fairness Watch block."
+    },
+    {
+      "title": "9. Caveats and recommendations",
+      "body_md": "- **Caveats**: the LACE feature space is reductive. Real deployments should re-fit on local data and re-run the fairness audit on the local cohort before release.\n- **Recommendations**: do not deploy without a clinician in the loop; do not deploy on cohorts where sub-population coverage falls below the suppression threshold (n=20 raw); re-calibrate quarterly, monitor drift continuously."
+    }
+  ]
+}

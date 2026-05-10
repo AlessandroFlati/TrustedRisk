@@ -1,0 +1,65 @@
+{
+  "tool": "multi_tool",
+  "cases": [
+    {
+      "name": "trauma_severe_polytrauma",
+      "tool": "compute_trauma_severity_score",
+      "input": {
+        "injuries": [
+          {"body_region": "head_neck", "ais_severity": 4},
+          {"body_region": "chest", "ais_severity": 3},
+          {"body_region": "abdomen_pelvis", "ais_severity": 4}
+        ],
+        "glasgow_coma_score": 10, "systolic_bp": 85,
+        "respiratory_rate": 24, "has_active_hemorrhage": true
+      },
+      "expected_subset": {
+        "iss": 41, "iss_band": "severe",
+        "rts_band": "abnormal_physiology",
+        "triage_priority": "operating_room_immediate"
+      }
+    },
+    {
+      "name": "trauma_minor_isolated_extremity",
+      "tool": "compute_trauma_severity_score",
+      "input": {
+        "injuries": [{"body_region": "extremities_pelvic_girdle", "ais_severity": 2}],
+        "glasgow_coma_score": 15, "systolic_bp": 125,
+        "respiratory_rate": 16
+      },
+      "expected_subset": {
+        "iss": 4, "iss_band": "minor",
+        "triage_priority": "minor_injury_outpatient"
+      }
+    },
+    {
+      "name": "mtp_full_score_within_txa_window",
+      "tool": "compute_massive_transfusion_protocol",
+      "input": {
+        "penetrating_mechanism": true,
+        "field_or_arrival_sbp_le_90": true,
+        "heart_rate_ge_120": true,
+        "positive_fast_exam": true,
+        "minutes_since_injury": 45
+      },
+      "expected_subset": {
+        "abc_score": 4, "mtp_activated": true,
+        "txa_indicated": true, "txa_window_open": true
+      }
+    },
+    {
+      "name": "mtp_txa_out_of_window",
+      "tool": "compute_massive_transfusion_protocol",
+      "input": {
+        "penetrating_mechanism": true,
+        "field_or_arrival_sbp_le_90": true,
+        "heart_rate_ge_120": true, "positive_fast_exam": true,
+        "minutes_since_injury": 240
+      },
+      "expected_subset": {
+        "mtp_activated": true,
+        "txa_indicated": false, "txa_window_open": false
+      }
+    }
+  ]
+}

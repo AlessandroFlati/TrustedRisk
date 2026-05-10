@@ -1,0 +1,83 @@
+[project]
+name = "trustedrisk"
+version = "1.0.0"
+description = "SHARP-on-MCP server + A2A agent for safe hospital discharge decision support"
+requires-python = ">=3.11"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Alessandro Flati", email = "alessandro.flati@gmail.com"},
+]
+
+dependencies = [
+    "fastmcp>=2.0",
+    "google-adk>=1.31",
+    "fhirpy>=1.4",
+    "pydantic>=2.0",
+    "presidio-analyzer>=2.2",
+    "presidio-anonymizer>=2.2",
+    "scikit-learn>=1.4",
+    "scipy>=1.11",
+    "numpy>=1.24",
+    "pandas>=2.0",
+    "sentence-transformers>=2.2",
+    "faiss-cpu>=1.7",
+    "httpx>=0.27",
+    "uvicorn[standard]>=0.27",
+    "python-dotenv>=1.0",
+    "fastapi>=0.110",
+    "starlette>=0.36",
+    "dowhy>=0.11",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+    "pytest-cov>=4.1",
+    "hypothesis>=6.100",
+    "ruff>=0.5",
+    "mypy>=1.8",
+]
+# LiteLLM extras for non-Gemini providers (Ollama, OpenAI-compat, Anthropic, vLLM)
+litellm = [
+    "google-adk[extensions]>=1.31",
+]
+# Phase 6.3 Cloud Run deploy — observability + LLM-polish optional deps.
+deploy = [
+    "opentelemetry-sdk>=1.27",
+    "opentelemetry-exporter-otlp-proto-http>=1.27",
+    "ollama>=0.4",
+    "google-genai>=0.3",
+]
+# Phase 12.10 — Streamlit browser demo UI
+demo = [
+    "streamlit>=1.40",
+]
+
+[project.scripts]
+trustedrisk-mcp = "mcp_server.server:main"
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+markers = [
+    "llm_integration: tests requiring a live LLM (Ollama). Opt-in via TRUSTEDRISK_LLM_INTEGRATION=1.",
+    "adversarial: SAFE-1 prompt-injection / boundary / malformed input tests.",
+    "live_fhir: integration tests against a real FHIR server (hapi.fhir.org). Opt-in via TRUSTEDRISK_LIVE_FHIR=1.",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B"]
+ignore = ["E501"]

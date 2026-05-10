@@ -1,0 +1,312 @@
+{
+  "n_sites": 5,
+  "n_rounds": 10,
+  "epsilon_per_round": 0.0,
+  "rounds": [
+    {
+      "round_index": 0,
+      "global_posterior": {
+        "alpha_per_bucket": {
+          "lace_0_2": 2.6,
+          "lace_3_5": 13.600000000000001,
+          "lace_6_9": 66.60000000000001,
+          "lace_10_12": 78.0,
+          "lace_13_19": 56.4
+        },
+        "beta_per_bucket": {
+          "lace_0_2": 38.8,
+          "lace_3_5": 124.20000000000002,
+          "lace_6_9": 358.6,
+          "lace_10_12": 236.20000000000002,
+          "lace_13_19": 125.00000000000001
+        }
+      },
+      "per_site_ece": {
+        "site_urban_academic": 0.022032,
+        "site_rural_community": 0.028348,
+        "site_safety_net": 0.030849,
+        "site_geriatric_specialty": 0.044411,
+        "site_pediatric_adjacent": 0.016335
+      },
+      "global_ece": 0.009086,
+      "privacy_epsilon_used": 0.0
+    },
+    {
+      "round_index": 1,
+      "global_posterior": {
+        "alpha_per_bucket": {
+          "lace_0_2": 3.2,
+          "lace_3_5": 25.200000000000003,
+          "lace_6_9": 131.20000000000002,
+          "lace_10_12": 154.0,
+          "lace_13_19": 110.80000000000001
+        },
+        "beta_per_bucket": {
+          "lace_0_2": 59.6,
+          "lace_3_5": 230.40000000000003,
+          "lace_6_9": 699.2,
+          "lace_10_12": 454.4000000000001,
+          "lace_13_19": 232.0
+        }
+      },
+      "per_site_ece": {
+        "site_urban_academic": 0.02131,
+        "site_rural_community": 0.030505,
+        "site_safety_net": 0.024818,
+        "site_geriatric_specialty": 0.038535,
+        "site_pediatric_adjacent": 0.017359
+      },
+      "global_ece": 0.004848,
+      "privacy_epsilon_used": 0.0
+    },
+    {
+      "round_index": 2,
+      "global_posterior": {
+        "alpha_per_bucket": {
+          "lace_0_2": 3.8000000000000007,
+          "lace_3_5": 36.800000000000004,
+          "lace_6_9": 195.8,
+          "lace_10_12": 230.0,
+          "lace_13_19": 165.20000000000002
+        },
+        "beta_per_bucket": {
+          "lace_0_2": 80.4,
+          "lace_3_5": 336.6,
+          "lace_6_9": 1039.8000000000002,
+          "lace_10_12": 672.6000000000001,
+          "lace_13_19": 339.0
+        }
+      },
+      "per_site_ece": {
+        "site_urban_academic": 0.021032,
+        "site_rural_community": 0.031213,
+        "site_safety_net": 0.022676,
+        "site_geriatric_specialty": 0.036449,
+        "site_pediatric_adjacent": 0.017597
+      },
+      "global_ece": 0.003315,
+      "privacy_epsilon_used": 0.0
+    },
+    {
+      "round_index": 3,
+      "global_posterior": {
+        "alpha_per_bucket": {
+          "lace_0_2": 4.400000000000001,
+          "lace_3_5": 48.400000000000006,
+          "lace_6_9": 260.40000000000003,
+          "lace_10_12": 306.0,
+          "lace_13_19": 219.60000000000005
+        },
+        "beta_per_bucket": {
+          "lace_0_2": 101.20000000000002,
+          "lace_3_5": 442.80000000000007,
+          "lace_6_9": 1380.4000000000003,
+          "lace_10_12": 890.8000000000002,
+          "lace_13_19": 446.0
+        }
+      },
+      "per_site_ece": {
+        "site_urban_academic": 0.020885,
+        "site_rural_community": 0.031558,
+        "site_safety_net": 0.021579,
+        "site_geriatric_specialty": 0.03538,
+        "site_pediatric_adjacent": 0.017765
+      },
+      "global_ece": 0.00252,
+      "privacy_epsilon_used": 0.0
+    },
+    {
+      "round_index": 4,
+      "global_posterior": {
+        "alpha_per_bucket": {
+          "lace_0_2": 5.000000000000002,
+          "lace_3_5": 60.000000000000014,
+          "lace_6_9": 325.00000000000006,
+          "lace_10_12": 382.0,
+          "lace_13_19": 274.00000000000006
+        },
+        "beta_per_bucket": {
+          "lace_0_2": 122.00000000000003,
+          "lace_3_5": 549.0000000000001,
+          "lace_6_9": 1721.0000000000005,
+          "lace_10_12": 1109.0000000000002,
+          "lace_13_19": 553.0
+        }
+      },
+      "per_site_ece": {
+        "site_urban_academic": 0.020793,
+        "site_rural_community": 0.031762,
+        "site_safety_net": 0.020911,
+        "site_geriatric_specialty": 0.03473,
+        "site_pediatric_adjacent": 0.018129
+      },
+      "global_ece": 0.002034,
+      "privacy_epsilon_used": 0.0
+    },
+    {
+      "round_index": 5,
+      "global_posterior": {
+        "alpha_per_bucket": {
+          "lace_0_2": 5.600000000000002,
+          "lace_3_5": 71.60000000000002,
+          "lace_6_9": 389.6000000000001,
+          "lace_10_12": 458.00000000000006,
+          "lace_13_19": 328.4000000000001
+        },
+        "beta_per_bucket": {
+          "lace_0_2": 142.80000000000004,
+          "lace_3_5": 655.2000000000002,
+          "lace_6_9": 2061.6000000000004,
+          "lace_10_12": 1327.2000000000003,
+          "lace_13_19": 660.0
+        }
+      },
+      "per_site_ece": {
+        "site_urban_academic": 0.020731,
+        "site_rural_community": 0.031897,
+        "site_safety_net": 0.020463,
+        "site_geriatric_specialty": 0.034294,
+        "site_pediatric_adjacent": 0.01838
+      },
+      "global_ece": 0.001705,
+      "privacy_epsilon_used": 0.0
+    },
+    {
+      "round_index": 6,
+      "global_posterior": {
+        "alpha_per_bucket": {
+          "lace_0_2": 6.200000000000003,
+          "lace_3_5": 83.20000000000003,
+          "lace_6_9": 454.2000000000001,
+          "lace_10_12": 534.0,
+          "lace_13_19": 382.8000000000001
+        },
+        "beta_per_bucket": {
+          "lace_0_2": 163.60000000000005,
+          "lace_3_5": 761.4000000000002,
+          "lace_6_9": 2402.2000000000003,
+          "lace_10_12": 1545.4000000000003,
+          "lace_13_19": 767.0
+        }
+      },
+      "per_site_ece": {
+        "site_urban_academic": 0.020686,
+        "site_rural_community": 0.031991,
+        "site_safety_net": 0.020141,
+        "site_geriatric_specialty": 0.03398,
+        "site_pediatric_adjacent": 0.018563
+      },
+      "global_ece": 0.001468,
+      "privacy_epsilon_used": 0.0
+    },
+    {
+      "round_index": 7,
+      "global_posterior": {
+        "alpha_per_bucket": {
+          "lace_0_2": 6.800000000000003,
+          "lace_3_5": 94.80000000000004,
+          "lace_6_9": 518.8000000000001,
+          "lace_10_12": 610.0,
+          "lace_13_19": 437.20000000000016
+        },
+        "beta_per_bucket": {
+          "lace_0_2": 184.40000000000006,
+          "lace_3_5": 867.6000000000003,
+          "lace_6_9": 2742.8,
+          "lace_10_12": 1763.6000000000004,
+          "lace_13_19": 874.0
+        }
+      },
+      "per_site_ece": {
+        "site_urban_academic": 0.020651,
+        "site_rural_community": 0.032062,
+        "site_safety_net": 0.019898,
+        "site_geriatric_specialty": 0.033744,
+        "site_pediatric_adjacent": 0.018703
+      },
+      "global_ece": 0.001288,
+      "privacy_epsilon_used": 0.0
+    },
+    {
+      "round_index": 8,
+      "global_posterior": {
+        "alpha_per_bucket": {
+          "lace_0_2": 7.400000000000004,
+          "lace_3_5": 106.40000000000005,
+          "lace_6_9": 583.4000000000001,
+          "lace_10_12": 686.0,
+          "lace_13_19": 491.6000000000002
+        },
+        "beta_per_bucket": {
+          "lace_0_2": 205.20000000000007,
+          "lace_3_5": 973.8000000000004,
+          "lace_6_9": 3083.4000000000005,
+          "lace_10_12": 1981.8000000000004,
+          "lace_13_19": 981.0
+        }
+      },
+      "per_site_ece": {
+        "site_urban_academic": 0.020624,
+        "site_rural_community": 0.032116,
+        "site_safety_net": 0.019709,
+        "site_geriatric_specialty": 0.03356,
+        "site_pediatric_adjacent": 0.018813
+      },
+      "global_ece": 0.001148,
+      "privacy_epsilon_used": 0.0
+    },
+    {
+      "round_index": 9,
+      "global_posterior": {
+        "alpha_per_bucket": {
+          "lace_0_2": 8.000000000000004,
+          "lace_3_5": 118.00000000000006,
+          "lace_6_9": 648.0000000000001,
+          "lace_10_12": 762.0,
+          "lace_13_19": 546.0000000000002
+        },
+        "beta_per_bucket": {
+          "lace_0_2": 226.00000000000009,
+          "lace_3_5": 1080.0000000000005,
+          "lace_6_9": 3424.000000000001,
+          "lace_10_12": 2200.0000000000005,
+          "lace_13_19": 1088.0
+        }
+      },
+      "per_site_ece": {
+        "site_urban_academic": 0.020602,
+        "site_rural_community": 0.03216,
+        "site_safety_net": 0.019556,
+        "site_geriatric_specialty": 0.033411,
+        "site_pediatric_adjacent": 0.018903
+      },
+      "global_ece": 0.001035,
+      "privacy_epsilon_used": 0.0
+    }
+  ],
+  "centralized_baseline_posterior": {
+    "alpha_per_bucket": {
+      "lace_0_2": 5.0,
+      "lace_3_5": 60.0,
+      "lace_6_9": 325.0,
+      "lace_10_12": 382.0,
+      "lace_13_19": 274.0
+    },
+    "beta_per_bucket": {
+      "lace_0_2": 122.0,
+      "lace_3_5": 549.0,
+      "lace_6_9": 1721.0,
+      "lace_10_12": 1109.0,
+      "lace_13_19": 553.0
+    }
+  },
+  "centralized_baseline_ece": 0.002034,
+  "local_only_ece": {
+    "site_urban_academic": 0.009046,
+    "site_rural_community": 0.005421,
+    "site_safety_net": 0.009753,
+    "site_geriatric_specialty": 0.010589,
+    "site_pediatric_adjacent": 0.005588
+  },
+  "rationale": "FedAvg over 5 sites x 10 rounds; final global ECE 0.0010 vs centralized baseline 0.0020 (gap 0.0010); total epsilon spent 0.00."
+}

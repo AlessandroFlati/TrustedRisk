@@ -1,0 +1,43 @@
+{
+  "tool": "compute_heart_score",
+  "cases": [
+    {
+      "name": "low_risk_under_45_no_rfs",
+      "input": {
+        "history_descriptor": "slightly_suspicious",
+        "ecg_descriptor": "normal", "age": 35,
+        "risk_factors_count": 0, "troponin_times_uln": 0.0
+      },
+      "expected_subset": {
+        "total_score": 0, "risk_band": "low",
+        "estimated_30d_mace_risk_pct": 1.7
+      }
+    },
+    {
+      "name": "high_risk_typical_chest_pain",
+      "input": {
+        "history_descriptor": "highly_suspicious",
+        "ecg_descriptor": "significant_st_depression",
+        "age": 70, "risk_factors_count": 4,
+        "troponin_times_uln": 4.0
+      },
+      "expected_subset": {
+        "total_score": 10, "risk_band": "high"
+      }
+    },
+    {
+      "name": "moderate_known_cad_overrides_rf",
+      "input": {
+        "history_descriptor": "moderately_suspicious",
+        "ecg_descriptor": "normal", "age": 58,
+        "risk_factors_count": 0,
+        "known_atherosclerotic_disease": true,
+        "troponin_times_uln": 0.0
+      },
+      "expected_subset": {
+        "risk_factors_points": 2,
+        "risk_band": "moderate"
+      }
+    }
+  ]
+}

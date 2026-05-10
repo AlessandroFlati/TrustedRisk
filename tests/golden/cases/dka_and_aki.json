@@ -1,0 +1,69 @@
+{
+  "tool": "multi_tool",
+  "cases": [
+    {
+      "name": "dka_severe_low_ph",
+      "tool": "compute_dka_severity",
+      "input": {
+        "ph": 6.95, "bicarbonate_meq_l": 8, "glucose_mg_dl": 520,
+        "ketones_present": true, "mental_status": "stupor",
+        "anion_gap": 32, "potassium_meq_l": 3.0, "weight_kg": 70
+      },
+      "expected_subset": {
+        "severity": "severe", "icu_admission_indicated": true,
+        "potassium_replacement_at_initiation": true,
+        "bicarbonate_indicated": false
+      }
+    },
+    {
+      "name": "dka_mild",
+      "tool": "compute_dka_severity",
+      "input": {
+        "ph": 7.28, "bicarbonate_meq_l": 16, "glucose_mg_dl": 320,
+        "ketones_present": true, "mental_status": "alert",
+        "potassium_meq_l": 4.0
+      },
+      "expected_subset": {
+        "severity": "mild",
+        "icu_admission_indicated": false
+      }
+    },
+    {
+      "name": "aki_stage_2_doubling",
+      "tool": "compute_aki_kdigo_stage",
+      "input": {
+        "creatinine_baseline_mg_dl": 1.0,
+        "creatinine_current_mg_dl": 2.4
+      },
+      "expected_subset": {
+        "aki_stage": "stage_2",
+        "nephrology_consult_indicated": true
+      }
+    },
+    {
+      "name": "aki_stage_3_tripling",
+      "tool": "compute_aki_kdigo_stage",
+      "input": {
+        "creatinine_baseline_mg_dl": 1.0,
+        "creatinine_current_mg_dl": 3.5
+      },
+      "expected_subset": {
+        "aki_stage": "stage_3"
+      }
+    },
+    {
+      "name": "dialysis_emergent_hyperkalemia",
+      "tool": "compute_dialysis_initiation_decision",
+      "input": {
+        "aki_stage": "stage_3", "ph": 7.05,
+        "potassium_meq_l": 7.0, "refractory_hyperkalemia": true,
+        "hemodynamically_unstable": true
+      },
+      "expected_subset": {
+        "dialysis_indicated": true,
+        "urgency": "emergent_immediately",
+        "modality_suggested": "crrt"
+      }
+    }
+  ]
+}

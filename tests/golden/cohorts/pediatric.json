@@ -1,0 +1,607 @@
+{
+  "bundle_id": "pediatric",
+  "tool": "compute_pediatric_early_warning",
+  "n_cases": 50,
+  "cases": [
+    {
+      "name": "pews_case_000",
+      "input": {
+        "age_months": 106,
+        "behavior": "sleeping",
+        "heart_rate": 210,
+        "respiratory_rate": 60,
+        "spo2": 90,
+        "parental_or_nurse_concern": true
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_001",
+      "input": {
+        "age_months": 126,
+        "behavior": "sleeping",
+        "heart_rate": 190,
+        "respiratory_rate": 50,
+        "spo2": 92,
+        "parental_or_nurse_concern": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_002",
+      "input": {
+        "age_months": 121,
+        "behavior": "irritable",
+        "heart_rate": 190,
+        "respiratory_rate": 50,
+        "spo2": 90,
+        "parental_or_nurse_concern": true
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_003",
+      "input": {
+        "age_months": 183,
+        "behavior": "irritable",
+        "heart_rate": 210,
+        "respiratory_rate": 50,
+        "spo2": 90,
+        "parental_or_nurse_concern": true
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_004",
+      "input": {
+        "age_months": 81,
+        "behavior": "sleeping",
+        "heart_rate": 120,
+        "respiratory_rate": 28,
+        "spo2": 99,
+        "parental_or_nurse_concern": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_005",
+      "input": {
+        "age_months": 103,
+        "behavior": "appropriate",
+        "heart_rate": 100,
+        "respiratory_rate": 28,
+        "spo2": 99,
+        "parental_or_nurse_concern": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_006",
+      "input": {
+        "age_months": 68,
+        "behavior": "sleeping",
+        "heart_rate": 140,
+        "respiratory_rate": 28,
+        "spo2": 97,
+        "parental_or_nurse_concern": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_007",
+      "input": {
+        "age_months": 156,
+        "behavior": "appropriate",
+        "heart_rate": 210,
+        "respiratory_rate": 60,
+        "spo2": 88,
+        "parental_or_nurse_concern": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_008",
+      "input": {
+        "age_months": 186,
+        "behavior": "appropriate",
+        "heart_rate": 140,
+        "respiratory_rate": 35,
+        "spo2": 97,
+        "parental_or_nurse_concern": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_009",
+      "input": {
+        "age_months": 126,
+        "behavior": "sleeping",
+        "heart_rate": 210,
+        "respiratory_rate": 70,
+        "spo2": 90,
+        "parental_or_nurse_concern": true
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_010",
+      "input": {
+        "age_months": 63,
+        "behavior": "appropriate",
+        "heart_rate": 140,
+        "respiratory_rate": 16,
+        "spo2": 98,
+        "parental_or_nurse_concern": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_011",
+      "input": {
+        "age_months": 201,
+        "behavior": "irritable",
+        "heart_rate": 180,
+        "respiratory_rate": 60,
+        "spo2": 88,
+        "parental_or_nurse_concern": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_012",
+      "input": {
+        "age_months": 188,
+        "behavior": "sleeping",
+        "heart_rate": 100,
+        "respiratory_rate": 28,
+        "spo2": 99,
+        "parental_or_nurse_concern": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_013",
+      "input": {
+        "age_months": 124,
+        "behavior": "appropriate",
+        "heart_rate": 120,
+        "respiratory_rate": 20,
+        "spo2": 97,
+        "parental_or_nurse_concern": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_014",
+      "input": {
+        "age_months": 205,
+        "behavior": "appropriate",
+        "heart_rate": 80,
+        "respiratory_rate": 35,
+        "spo2": 96,
+        "parental_or_nurse_concern": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_015",
+      "input": {
+        "age_months": 124,
+        "behavior": "sleeping",
+        "heart_rate": 100,
+        "respiratory_rate": 35,
+        "spo2": 98,
+        "parental_or_nurse_concern": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_016",
+      "input": {
+        "age_months": 168,
+        "behavior": "irritable",
+        "heart_rate": 180,
+        "respiratory_rate": 50,
+        "spo2": 88,
+        "parental_or_nurse_concern": true
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_017",
+      "input": {
+        "age_months": 119,
+        "behavior": "irritable",
+        "heart_rate": 200,
+        "respiratory_rate": 60,
+        "spo2": 88,
+        "parental_or_nurse_concern": true
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_018",
+      "input": {
+        "age_months": 52,
+        "behavior": "sleeping",
+        "heart_rate": 80,
+        "respiratory_rate": 28,
+        "spo2": 98,
+        "parental_or_nurse_concern": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_019",
+      "input": {
+        "age_months": 63,
+        "behavior": "appropriate",
+        "heart_rate": 80,
+        "respiratory_rate": 20,
+        "spo2": 97,
+        "parental_or_nurse_concern": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_020",
+      "input": {
+        "age_months": 35,
+        "behavior": "appropriate",
+        "heart_rate": 80,
+        "respiratory_rate": 28,
+        "spo2": 96,
+        "parental_or_nurse_concern": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_021",
+      "input": {
+        "age_months": 6,
+        "behavior": "appropriate",
+        "heart_rate": 120,
+        "respiratory_rate": 35,
+        "spo2": 97,
+        "parental_or_nurse_concern": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_022",
+      "input": {
+        "age_months": 177,
+        "behavior": "appropriate",
+        "heart_rate": 100,
+        "respiratory_rate": 35,
+        "spo2": 99,
+        "parental_or_nurse_concern": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_023",
+      "input": {
+        "age_months": 34,
+        "behavior": "appropriate",
+        "heart_rate": 80,
+        "respiratory_rate": 20,
+        "spo2": 98,
+        "parental_or_nurse_concern": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_024",
+      "input": {
+        "age_months": 128,
+        "behavior": "appropriate",
+        "heart_rate": 120,
+        "respiratory_rate": 35,
+        "spo2": 99,
+        "parental_or_nurse_concern": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_025",
+      "input": {
+        "age_months": 47,
+        "behavior": "appropriate",
+        "heart_rate": 100,
+        "respiratory_rate": 16,
+        "spo2": 99,
+        "parental_or_nurse_concern": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_026",
+      "input": {
+        "age_months": 10,
+        "behavior": "appropriate",
+        "heart_rate": 140,
+        "respiratory_rate": 20,
+        "spo2": 97,
+        "parental_or_nurse_concern": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_027",
+      "input": {
+        "age_months": 36,
+        "behavior": "appropriate",
+        "heart_rate": 100,
+        "respiratory_rate": 20,
+        "spo2": 98,
+        "parental_or_nurse_concern": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_028",
+      "input": {
+        "age_months": 126,
+        "behavior": "irritable",
+        "heart_rate": 190,
+        "respiratory_rate": 70,
+        "spo2": 90,
+        "parental_or_nurse_concern": true
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_029",
+      "input": {
+        "age_months": 14,
+        "behavior": "appropriate",
+        "heart_rate": 80,
+        "respiratory_rate": 35,
+        "spo2": 99,
+        "parental_or_nurse_concern": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_030",
+      "input": {
+        "age_months": 184,
+        "behavior": "appropriate",
+        "heart_rate": 180,
+        "respiratory_rate": 50,
+        "spo2": 88,
+        "parental_or_nurse_concern": true
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_031",
+      "input": {
+        "age_months": 62,
+        "behavior": "lethargic",
+        "heart_rate": 200,
+        "respiratory_rate": 70,
+        "spo2": 92,
+        "parental_or_nurse_concern": true
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_032",
+      "input": {
+        "age_months": 104,
+        "behavior": "sleeping",
+        "heart_rate": 120,
+        "respiratory_rate": 16,
+        "spo2": 99,
+        "parental_or_nurse_concern": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_033",
+      "input": {
+        "age_months": 173,
+        "behavior": "appropriate",
+        "heart_rate": 80,
+        "respiratory_rate": 20,
+        "spo2": 99,
+        "parental_or_nurse_concern": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_034",
+      "input": {
+        "age_months": 51,
+        "behavior": "appropriate",
+        "heart_rate": 120,
+        "respiratory_rate": 20,
+        "spo2": 99,
+        "parental_or_nurse_concern": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_035",
+      "input": {
+        "age_months": 111,
+        "behavior": "appropriate",
+        "heart_rate": 100,
+        "respiratory_rate": 28,
+        "spo2": 99,
+        "parental_or_nurse_concern": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_036",
+      "input": {
+        "age_months": 167,
+        "behavior": "sleeping",
+        "heart_rate": 210,
+        "respiratory_rate": 50,
+        "spo2": 90,
+        "parental_or_nurse_concern": true
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_037",
+      "input": {
+        "age_months": 64,
+        "behavior": "appropriate",
+        "heart_rate": 210,
+        "respiratory_rate": 60,
+        "spo2": 88,
+        "parental_or_nurse_concern": true
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_038",
+      "input": {
+        "age_months": 95,
+        "behavior": "appropriate",
+        "heart_rate": 100,
+        "respiratory_rate": 16,
+        "spo2": 98,
+        "parental_or_nurse_concern": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_039",
+      "input": {
+        "age_months": 144,
+        "behavior": "appropriate",
+        "heart_rate": 80,
+        "respiratory_rate": 16,
+        "spo2": 98,
+        "parental_or_nurse_concern": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_040",
+      "input": {
+        "age_months": 150,
+        "behavior": "sleeping",
+        "heart_rate": 180,
+        "respiratory_rate": 50,
+        "spo2": 90,
+        "parental_or_nurse_concern": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_041",
+      "input": {
+        "age_months": 32,
+        "behavior": "appropriate",
+        "heart_rate": 80,
+        "respiratory_rate": 16,
+        "spo2": 97,
+        "parental_or_nurse_concern": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_042",
+      "input": {
+        "age_months": 69,
+        "behavior": "sleeping",
+        "heart_rate": 80,
+        "respiratory_rate": 16,
+        "spo2": 99,
+        "parental_or_nurse_concern": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_043",
+      "input": {
+        "age_months": 122,
+        "behavior": "lethargic",
+        "heart_rate": 190,
+        "respiratory_rate": 50,
+        "spo2": 90,
+        "parental_or_nurse_concern": true
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_044",
+      "input": {
+        "age_months": 143,
+        "behavior": "appropriate",
+        "heart_rate": 140,
+        "respiratory_rate": 28,
+        "spo2": 96,
+        "parental_or_nurse_concern": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_045",
+      "input": {
+        "age_months": 134,
+        "behavior": "lethargic",
+        "heart_rate": 190,
+        "respiratory_rate": 60,
+        "spo2": 88,
+        "parental_or_nurse_concern": true
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_046",
+      "input": {
+        "age_months": 91,
+        "behavior": "appropriate",
+        "heart_rate": 180,
+        "respiratory_rate": 70,
+        "spo2": 90,
+        "parental_or_nurse_concern": true
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_047",
+      "input": {
+        "age_months": 113,
+        "behavior": "appropriate",
+        "heart_rate": 120,
+        "respiratory_rate": 28,
+        "spo2": 96,
+        "parental_or_nurse_concern": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_048",
+      "input": {
+        "age_months": 57,
+        "behavior": "appropriate",
+        "heart_rate": 80,
+        "respiratory_rate": 35,
+        "spo2": 96,
+        "parental_or_nurse_concern": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "pews_case_049",
+      "input": {
+        "age_months": 2,
+        "behavior": "appropriate",
+        "heart_rate": 120,
+        "respiratory_rate": 16,
+        "spo2": 99,
+        "parental_or_nurse_concern": false
+      },
+      "schema_only": true
+    }
+  ]
+}

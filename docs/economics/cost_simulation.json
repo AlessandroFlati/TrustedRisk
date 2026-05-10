@@ -1,0 +1,76 @@
+{
+  "cohort_n": 10000,
+  "overall": {
+    "n": 10000,
+    "readmissions_predicted": 1319,
+    "readmissions_averted_vs_baseline": 125,
+    "abstain_rate": 0.0,
+    "cost_saved_usd": 1800000.0,
+    "qalys_gained": 6.25,
+    "icer_per_qaly": 288000.0,
+    "incremental_net_monetary_benefit": 625000.0,
+    "rationale": "n=10000, pipeline predicted 1319 readmits, baseline predicted 1444, averted 125 -> $1,800,000 saved, 6.25 QALYs gained."
+  },
+  "by_payer": {
+    "medicare": {
+      "n": 3015,
+      "readmissions_predicted": 397,
+      "readmissions_averted_vs_baseline": 38,
+      "abstain_rate": 0.0,
+      "cost_saved_usd": 547200.0,
+      "qalys_gained": 1.9,
+      "icer_per_qaly": 288000.0,
+      "incremental_net_monetary_benefit": 190000.0,
+      "rationale": "n=3015, pipeline predicted 397 readmits, baseline predicted 435, averted 38 -> $547,200 saved, 1.90 QALYs gained."
+    },
+    "commercial": {
+      "n": 3949,
+      "readmissions_predicted": 521,
+      "readmissions_averted_vs_baseline": 49,
+      "abstain_rate": 0.0,
+      "cost_saved_usd": 793800.0,
+      "qalys_gained": 2.45,
+      "icer_per_qaly": 324000.0,
+      "incremental_net_monetary_benefit": 245000.0,
+      "rationale": "n=3949, pipeline predicted 521 readmits, baseline predicted 570, averted 49 -> $793,800 saved, 2.45 QALYs gained."
+    },
+    "medicaid": {
+      "n": 1808,
+      "readmissions_predicted": 238,
+      "readmissions_averted_vs_baseline": 24,
+      "abstain_rate": 0.0,
+      "cost_saved_usd": 309600.0,
+      "qalys_gained": 1.2,
+      "icer_per_qaly": 258000.0,
+      "incremental_net_monetary_benefit": 120000.0,
+      "rationale": "n=1808, pipeline predicted 238 readmits, baseline predicted 262, averted 24 -> $309,600 saved, 1.20 QALYs gained."
+    },
+    "uninsured": {
+      "n": 823,
+      "readmissions_predicted": 109,
+      "readmissions_averted_vs_baseline": 10,
+      "abstain_rate": 0.0,
+      "cost_saved_usd": 115000.0,
+      "qalys_gained": 0.5,
+      "icer_per_qaly": 230000.0,
+      "incremental_net_monetary_benefit": 50000.0,
+      "rationale": "n=823, pipeline predicted 109 readmits, baseline predicted 119, averted 10 -> $115,000 saved, 0.50 QALYs gained."
+    },
+    "tricare": {
+      "n": 405,
+      "readmissions_predicted": 53,
+      "readmissions_averted_vs_baseline": 5,
+      "abstain_rate": 0.0,
+      "cost_saved_usd": 72000.0,
+      "qalys_gained": 0.25,
+      "icer_per_qaly": 288000.0,
+      "incremental_net_monetary_benefit": 25000.0,
+      "rationale": "n=405, pipeline predicted 53 readmits, baseline predicted 58, averted 5 -> $72,000 saved, 0.25 QALYs gained."
+    }
+  },
+  "references": [
+    "AHRQ HCUP Statistical Brief #248 (HRRP, 2019).",
+    "Fingar et al. 2019 - HRRP cost-effectiveness (Medical Care Research & Review).",
+    "ICER WTP threshold $100k / QALY (2019 update)."
+  ]
+}

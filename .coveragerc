@@ -1,0 +1,21 @@
+[run]
+branch = false
+source = src
+
+[report]
+# Exclude entry-point + orchestration code that is exercised via end-to-end
+# scripts (scripts/smoke_mcp_client.py, scripts/smoke_readmission_risk.py)
+# rather than unit-tested in isolation.
+omit =
+    src/a2a_agent/agent.py
+    src/a2a_agent/__init__.py
+    src/mcp_server/server.py
+
+# Exclude the trivial __init__.py wrappers + lazy-import branches.
+exclude_lines =
+    pragma: no cover
+    raise NotImplementedError
+    if __name__ == .__main__.:
+    except ImportError
+    raise SystemExit
+    \.\.\.

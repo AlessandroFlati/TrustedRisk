@@ -1,0 +1,324 @@
+{
+  "generated_at_utc": "2026-04-29T22:14:27Z",
+  "wallclock_seconds": 0.01,
+  "rows": [
+    {
+      "bundle": "ed_acute",
+      "tool": "compute_admission_triage",
+      "n_runs": 30,
+      "p50_ms": 0.005,
+      "p95_ms": 0.006,
+      "p99_ms": 0.006,
+      "min_ms": 0.004,
+      "max_ms": 0.007,
+      "mean_ms": 0.005,
+      "stdev_ms": 0.001
+    },
+    {
+      "bundle": "ed_acute",
+      "tool": "compute_clinical_deterioration_score",
+      "n_runs": 30,
+      "p50_ms": 0.003,
+      "p95_ms": 0.004,
+      "p99_ms": 0.004,
+      "min_ms": 0.003,
+      "max_ms": 0.006,
+      "mean_ms": 0.004,
+      "stdev_ms": 0.001
+    },
+    {
+      "bundle": "stroke_acs",
+      "tool": "compute_stroke_severity",
+      "n_runs": 30,
+      "p50_ms": 0.014,
+      "p95_ms": 0.014,
+      "p99_ms": 0.015,
+      "min_ms": 0.014,
+      "max_ms": 0.015,
+      "mean_ms": 0.014,
+      "stdev_ms": 0.0
+    },
+    {
+      "bundle": "stroke_acs",
+      "tool": "compute_heart_score",
+      "error": "TypeError: compute_heart_score() got an unexpected keyword argument 'history'",
+      "n_runs": 0
+    },
+    {
+      "bundle": "stroke_acs",
+      "tool": "compute_acs_disposition_decision",
+      "error": "TypeError: compute_acs_disposition_decision() got an unexpected keyword argument 'heart_score'",
+      "n_runs": 0
+    },
+    {
+      "bundle": "nephrology",
+      "tool": "compute_aki_kdigo_stage",
+      "error": "TypeError: compute_aki_kdigo_stage() got an unexpected keyword argument 'baseline_creatinine_mg_dl'",
+      "n_runs": 0
+    },
+    {
+      "bundle": "nephrology",
+      "tool": "compute_contrast_safety_check",
+      "n_runs": 30,
+      "p50_ms": 0.002,
+      "p95_ms": 0.003,
+      "p99_ms": 0.003,
+      "min_ms": 0.002,
+      "max_ms": 0.004,
+      "mean_ms": 0.002,
+      "stdev_ms": 0.0
+    },
+    {
+      "bundle": "imaging",
+      "tool": "compute_contrast_safety_check",
+      "n_runs": 30,
+      "p50_ms": 0.002,
+      "p95_ms": 0.002,
+      "p99_ms": 0.002,
+      "min_ms": 0.002,
+      "max_ms": 0.003,
+      "mean_ms": 0.002,
+      "stdev_ms": 0.0
+    },
+    {
+      "bundle": "antimicrobial",
+      "tool": "compute_empiric_antibiotic_selection",
+      "n_runs": 30,
+      "p50_ms": 0.008,
+      "p95_ms": 0.01,
+      "p99_ms": 0.01,
+      "min_ms": 0.007,
+      "max_ms": 0.012,
+      "mean_ms": 0.008,
+      "stdev_ms": 0.001
+    },
+    {
+      "bundle": "trauma_critical",
+      "tool": "compute_trauma_severity_score",
+      "error": "TypeError: compute_trauma_severity_score() got an unexpected keyword argument 'ais_scores'",
+      "n_runs": 0
+    },
+    {
+      "bundle": "endocrine_acute",
+      "tool": "compute_dka_severity",
+      "error": "TypeError: compute_dka_severity() got an unexpected keyword argument 'venous_ph'",
+      "n_runs": 0
+    },
+    {
+      "bundle": "obstetric_geriatric",
+      "tool": "compute_delirium_screening_cam",
+      "error": "TypeError: compute_delirium_screening_cam() got an unexpected keyword argument 'acute_onset_or_fluctuating'. Did you mean 'feature1_acute_onset_or_fluctuating'?",
+      "n_runs": 0
+    },
+    {
+      "bundle": "data_normalization",
+      "tool": "compute_charlson_elixhauser_index",
+      "error": "TypeError: compute_charlson_elixhauser_index() got an unexpected keyword argument 'conditions'",
+      "n_runs": 0
+    },
+    {
+      "bundle": "diagnosis",
+      "tool": "compute_differential_diagnosis_ranker",
+      "n_runs": 30,
+      "p50_ms": 0.018,
+      "p95_ms": 0.019,
+      "p99_ms": 0.021,
+      "min_ms": 0.017,
+      "max_ms": 0.026,
+      "mean_ms": 0.018,
+      "stdev_ms": 0.002
+    },
+    {
+      "bundle": "patient_qa",
+      "tool": "compute_discharge_qa",
+      "n_runs": 30,
+      "p50_ms": 0.003,
+      "p95_ms": 0.003,
+      "p99_ms": 0.004,
+      "min_ms": 0.003,
+      "max_ms": 0.005,
+      "mean_ms": 0.003,
+      "stdev_ms": 0.0
+    },
+    {
+      "bundle": "patient_qa",
+      "tool": "compute_medication_what_if",
+      "n_runs": 30,
+      "p50_ms": 0.003,
+      "p95_ms": 0.003,
+      "p99_ms": 0.004,
+      "min_ms": 0.003,
+      "max_ms": 0.004,
+      "mean_ms": 0.003,
+      "stdev_ms": 0.0
+    },
+    {
+      "bundle": "patient_qa",
+      "tool": "compute_caregiver_handoff",
+      "n_runs": 30,
+      "p50_ms": 0.007,
+      "p95_ms": 0.008,
+      "p99_ms": 0.008,
+      "min_ms": 0.006,
+      "max_ms": 0.01,
+      "mean_ms": 0.007,
+      "stdev_ms": 0.001
+    },
+    {
+      "bundle": "clinical_documentation",
+      "tool": "compute_progress_note_draft",
+      "n_runs": 30,
+      "p50_ms": 0.01,
+      "p95_ms": 0.011,
+      "p99_ms": 0.012,
+      "min_ms": 0.01,
+      "max_ms": 0.014,
+      "mean_ms": 0.011,
+      "stdev_ms": 0.001
+    },
+    {
+      "bundle": "clinical_documentation",
+      "tool": "compute_admission_hnp_draft",
+      "n_runs": 30,
+      "p50_ms": 0.019,
+      "p95_ms": 0.028,
+      "p99_ms": 0.05,
+      "min_ms": 0.018,
+      "max_ms": 0.054,
+      "mean_ms": 0.022,
+      "stdev_ms": 0.008
+    },
+    {
+      "bundle": "auto_coding",
+      "tool": "compute_icd10_suggest",
+      "n_runs": 30,
+      "p50_ms": 0.023,
+      "p95_ms": 0.025,
+      "p99_ms": 0.025,
+      "min_ms": 0.023,
+      "max_ms": 0.026,
+      "mean_ms": 0.024,
+      "stdev_ms": 0.001
+    },
+    {
+      "bundle": "auto_coding",
+      "tool": "compute_cpt_suggest",
+      "n_runs": 30,
+      "p50_ms": 0.011,
+      "p95_ms": 0.012,
+      "p99_ms": 0.013,
+      "min_ms": 0.011,
+      "max_ms": 0.017,
+      "mean_ms": 0.011,
+      "stdev_ms": 0.001
+    },
+    {
+      "bundle": "auto_coding",
+      "tool": "compute_hcpcs_suggest",
+      "n_runs": 30,
+      "p50_ms": 0.007,
+      "p95_ms": 0.007,
+      "p99_ms": 0.008,
+      "min_ms": 0.007,
+      "max_ms": 0.008,
+      "mean_ms": 0.007,
+      "stdev_ms": 0.0
+    },
+    {
+      "bundle": "auto_coding",
+      "tool": "compute_coding_audit",
+      "n_runs": 30,
+      "p50_ms": 0.043,
+      "p95_ms": 0.045,
+      "p99_ms": 0.047,
+      "min_ms": 0.042,
+      "max_ms": 0.047,
+      "mean_ms": 0.043,
+      "stdev_ms": 0.001
+    },
+    {
+      "bundle": "pharmacogenomics",
+      "tool": "compute_pgx_dose_adjustment",
+      "n_runs": 30,
+      "p50_ms": 0.005,
+      "p95_ms": 0.005,
+      "p99_ms": 0.006,
+      "min_ms": 0.005,
+      "max_ms": 0.007,
+      "mean_ms": 0.005,
+      "stdev_ms": 0.0
+    },
+    {
+      "bundle": "pharmacogenomics",
+      "tool": "compute_pgx_drug_alternatives",
+      "n_runs": 30,
+      "p50_ms": 0.005,
+      "p95_ms": 0.006,
+      "p99_ms": 0.006,
+      "min_ms": 0.005,
+      "max_ms": 0.007,
+      "mean_ms": 0.006,
+      "stdev_ms": 0.0
+    },
+    {
+      "bundle": "pharmacogenomics",
+      "tool": "compute_pgx_eligibility_check",
+      "n_runs": 30,
+      "p50_ms": 0.002,
+      "p95_ms": 0.003,
+      "p99_ms": 0.003,
+      "min_ms": 0.002,
+      "max_ms": 0.003,
+      "mean_ms": 0.002,
+      "stdev_ms": 0.0
+    },
+    {
+      "bundle": "preadmit_triage",
+      "tool": "compute_symptom_red_flag_check",
+      "n_runs": 30,
+      "p50_ms": 0.01,
+      "p95_ms": 0.012,
+      "p99_ms": 0.013,
+      "min_ms": 0.01,
+      "max_ms": 0.015,
+      "mean_ms": 0.011,
+      "stdev_ms": 0.001
+    },
+    {
+      "bundle": "preadmit_triage",
+      "tool": "compute_when_to_seek_care",
+      "n_runs": 30,
+      "p50_ms": 0.018,
+      "p95_ms": 0.027,
+      "p99_ms": 0.077,
+      "min_ms": 0.009,
+      "max_ms": 0.136,
+      "mean_ms": 0.024,
+      "stdev_ms": 0.024
+    },
+    {
+      "bundle": "preadmit_triage",
+      "tool": "compute_symptom_followup_questions",
+      "n_runs": 30,
+      "p50_ms": 0.005,
+      "p95_ms": 0.005,
+      "p99_ms": 0.005,
+      "min_ms": 0.005,
+      "max_ms": 0.006,
+      "mean_ms": 0.005,
+      "stdev_ms": 0.0
+    },
+    {
+      "bundle": "prior_authorization",
+      "tool": "compute_pa_evidence_pack",
+      "n_runs": 30,
+      "p50_ms": 0.007,
+      "p95_ms": 0.009,
+      "p99_ms": 0.01,
+      "min_ms": 0.007,
+      "max_ms": 0.011,
+      "mean_ms": 0.008,
+      "stdev_ms": 0.001
+    }
+  ]
+}

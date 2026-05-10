@@ -1,0 +1,194 @@
+{
+  "captured_at_iso": "2026-04-30 06:47 UTC",
+  "per_tool_phase_10_11": [
+    {
+      "label": "compute_quality_measures_aggregate",
+      "iterations": 200,
+      "errors": 0,
+      "n": 200,
+      "p50": 0.007,
+      "p95": 0.007,
+      "p99": 0.009,
+      "max": 0.014,
+      "mean": 0.007
+    },
+    {
+      "label": "compute_stars_rating_forecast",
+      "iterations": 200,
+      "errors": 0,
+      "n": 200,
+      "p50": 0.008,
+      "p95": 0.009,
+      "p99": 0.016,
+      "max": 0.053,
+      "mean": 0.009
+    },
+    {
+      "label": "compute_care_gap_priority_ranking",
+      "iterations": 200,
+      "errors": 0,
+      "n": 200,
+      "p50": 0.007,
+      "p95": 0.007,
+      "p99": 0.016,
+      "max": 0.166,
+      "mean": 0.008
+    },
+    {
+      "label": "compute_syndromic_surveillance",
+      "iterations": 200,
+      "errors": 0,
+      "n": 200,
+      "p50": 0.004,
+      "p95": 0.004,
+      "p99": 0.006,
+      "max": 0.026,
+      "mean": 0.004
+    },
+    {
+      "label": "compute_vaccine_reminder_cohort",
+      "iterations": 200,
+      "errors": 0,
+      "n": 200,
+      "p50": 0.004,
+      "p95": 0.004,
+      "p99": 0.006,
+      "max": 0.026,
+      "mean": 0.004
+    },
+    {
+      "label": "compute_outbreak_heatmap",
+      "iterations": 200,
+      "errors": 0,
+      "n": 200,
+      "p50": 0.007,
+      "p95": 0.007,
+      "p99": 0.011,
+      "max": 0.029,
+      "mean": 0.007
+    },
+    {
+      "label": "compute_denial_letter_parse",
+      "iterations": 200,
+      "errors": 0,
+      "n": 200,
+      "p50": 0.015,
+      "p95": 0.016,
+      "p99": 0.029,
+      "max": 0.248,
+      "mean": 0.017
+    },
+    {
+      "label": "compute_appeal_escalation_path",
+      "iterations": 200,
+      "errors": 0,
+      "n": 200,
+      "p50": 0.002,
+      "p95": 0.002,
+      "p99": 0.003,
+      "max": 0.016,
+      "mean": 0.002
+    },
+    {
+      "label": "compute_ecg_qt_analyzer",
+      "iterations": 200,
+      "errors": 0,
+      "n": 200,
+      "p50": 0.01,
+      "p95": 0.01,
+      "p99": 0.013,
+      "max": 0.036,
+      "mean": 0.01
+    },
+    {
+      "label": "compute_dicom_sr_ingest",
+      "iterations": 200,
+      "errors": 0,
+      "n": 200,
+      "p50": 0.004,
+      "p95": 0.004,
+      "p99": 0.007,
+      "max": 0.029,
+      "mean": 0.004
+    },
+    {
+      "label": "plan_tool_use",
+      "iterations": 200,
+      "errors": 0,
+      "n": 200,
+      "p50": 0.035,
+      "p95": 0.037,
+      "p99": 0.071,
+      "max": 0.252,
+      "mean": 0.036
+    }
+  ],
+  "per_scenario": [
+    {
+      "label": "scenario:acute_stroke_lvo",
+      "iterations": 50,
+      "errors": 0,
+      "n": 50,
+      "p50": 0.035,
+      "p95": 0.051,
+      "p99": 0.531,
+      "max": 0.531,
+      "mean": 0.047
+    },
+    {
+      "label": "scenario:sepsis_bundle",
+      "iterations": 50,
+      "errors": 0,
+      "n": 50,
+      "p50": 0.043,
+      "p95": 0.066,
+      "p99": 0.218,
+      "max": 0.218,
+      "mean": 0.048
+    },
+    {
+      "label": "scenario:polytrauma_mtp",
+      "iterations": 50,
+      "errors": 0,
+      "n": 50,
+      "p50": 0.028,
+      "p95": 0.043,
+      "p99": 0.099,
+      "max": 0.099,
+      "mean": 0.03
+    },
+    {
+      "label": "scenario:geriatric_polypharmacy",
+      "iterations": 50,
+      "errors": 0,
+      "n": 50,
+      "p50": 0.174,
+      "p95": 0.219,
+      "p99": 0.372,
+      "max": 0.372,
+      "mean": 0.183
+    },
+    {
+      "label": "scenario:mental_health_crisis",
+      "iterations": 50,
+      "errors": 0,
+      "n": 50,
+      "p50": 0.066,
+      "p95": 0.089,
+      "p99": 0.256,
+      "max": 0.256,
+      "mean": 0.073
+    }
+  ],
+  "federation_concurrency": {
+    "label": "federation_healthz_concurrent_100",
+    "iterations": 100,
+    "errors": 0,
+    "n": 100,
+    "p50": 34.722,
+    "p95": 47.961,
+    "p99": 49.892,
+    "max": 50.409,
+    "mean": 35.424
+  }
+}

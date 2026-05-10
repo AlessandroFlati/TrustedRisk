@@ -1,0 +1,340 @@
+{
+  "schemaVersion": "1.0.0",
+  "name": "Discharge Planner",
+  "_legacy_name": "trustedrisk-discharge",
+  "description": "Adult inpatient discharge planning + outpatient medication review. Marketplace-publishable A2A specialist sharing the TrustedRisk MCP backend. Advertises 9 skills: Safe discharge review, Medication safety review, PHI leakage check, Patient-language discharge counseling, Empiric antibiotic + de-escalation, Oncology cycle decision + RECIST response, Multilingual patient-facing rendering, Terminology + comorbidity-index normalization, Discharge order set + adherence + HEDIS gaps + PROM. FHIR context propagated via the A2A v1 FHIR-context extension; tools see the FHIRContext via the shared ContextVar without ever surfacing the bearer token to the LLM prompt. Every recommendation surfaces a calibrated CI when applicable, a deterministic safety gate, an abstain trigger when uncertainty or demographic bias is high, a 4-critic ensemble vote (clinical_safety + fairness + evidence + llm_judge) with bounded plan revision, a fairness audit by demographic subgroup, and a longitudinal patient timeline that surfaces drift across encounters.",
+  "version": "1.0.0",
+  "_bundles": {
+    "_doc": "Thematic groupings for client-side discovery. Tools may appear in multiple bundles (e.g. ground_claim, fairness_audit). The runtime exposes BUNDLES via the tools package (mcp_server.tools.list_bundles()).",
+    "core_discharge": [
+      "compute_readmission_risk",
+      "compute_decision_utility",
+      "ground_claim",
+      "detect_phi",
+      "compute_medication_reconciliation",
+      "detect_polypharmacy_concerns",
+      "compute_fairness_audit",
+      "compute_counterfactual_explanation",
+      "compute_lab_trend_analysis",
+      "compute_discharge_counseling"
+    ],
+    "clinical_workflow": [
+      "compute_order_set",
+      "compute_medication_adherence_predictor",
+      "compute_care_gap_detector",
+      "compute_prom_influence"
+    ],
+    "patient_facing": [
+      "compute_discharge_counseling",
+      "compute_translate_discharge_counseling",
+      "compute_patient_faq",
+      "compute_caregiver_summary"
+    ],
+    "data_normalization": [
+      "compute_charlson_elixhauser_index",
+      "compute_normalize_observations",
+      "compute_rxnorm_ddi_lookup",
+      "compute_umls_concept_map"
+    ],
+    "antimicrobial": [
+      "compute_empiric_antibiotic_selection",
+      "compute_antibiotic_de_escalation",
+      "ground_claim"
+    ],
+    "oncology": [
+      "compute_chemo_dose_adjustment",
+      "compute_oncology_treatment_response",
+      "compute_treatment_selection",
+      "compute_lab_trend_analysis"
+    ],
+    "fhir_writeback": [
+      "compute_write_decision_to_fhir"
+    ],
+    "heme_onc_depth": [
+      "compute_iss_myeloma_staging",
+      "compute_ipss_r_mds_score",
+      "compute_ecog_performance_status",
+      "compute_karnofsky_performance"
+    ]
+  },
+  "_specialist": "specialist_discharge",
+  "url": "https://<deploy-url>/a2a/trustedrisk-discharge",
+  "supportedInterfaces": [
+    {
+      "url": "https://<deploy-url>/a2a/trustedrisk-discharge",
+      "protocolBinding": "A2A",
+      "protocolVersion": "1.0"
+    }
+  ],
+  "defaultInputModes": [
+    "text/plain",
+    "application/json"
+  ],
+  "defaultOutputModes": [
+    "application/json"
+  ],
+  "skills": [
+    {
+      "id": "safe_discharge_review",
+      "name": "Safe discharge review",
+      "description": "Review a patient chart and produce a discharge action recommendation with calibrated risk estimates, evidence grounding, medication-reconciliation safety check, fairness audit by demographic subgroup, PHI check, and explicit abstain if uncertainty is high. Includes a self-critique stage that reviews internal consistency before emitting the final DecisionCard. Uses SHARP-on-MCP for FHIR context propagation.",
+      "tags": [
+        "clinical",
+        "discharge",
+        "readmission",
+        "risk",
+        "decision-support",
+        "medication-reconciliation",
+        "fairness-audit",
+        "SHARP-on-MCP"
+      ],
+      "examples": [
+        "Can patient Jane Doe (Enc/A123) be discharged home safely?",
+        "Review the discharge plan for this patient and flag any concerns.",
+        "What is the 30-day readmission risk for this patient and what's the recommended disposition?"
+      ]
+    },
+    {
+      "id": "medication_safety_review",
+      "name": "Medication safety review",
+      "description": "Stateless medication-reconciliation + polypharmacy + drug-drug-interaction analysis on a structured med list. Does not require a FHIR Patient context. Useful for batch pre-admission med review or for callers that already have an admission/discharge med-list pair.",
+      "tags": [
+        "medication-reconciliation",
+        "polypharmacy",
+        "drug-interactions",
+        "discharge-safety",
+        "AHRQ-MATCH"
+      ],
+      "examples": [
+        "Review these discharge medications for interactions: warfarin 5 mg, ibuprofen 600 mg, lisinopril 10 mg.",
+        "Compare the admission and discharge med lists and flag any safety concerns."
+      ]
+    },
+    {
+      "id": "phi_check",
+      "name": "PHI leakage check",
+      "description": "Scan arbitrary clinical text for PHI entities and produce a redaction map. Does not require FHIR patient context.",
+      "tags": [
+        "phi",
+        "safety",
+        "privacy",
+        "redaction"
+      ],
+      "examples": [
+        "Scan this discharge summary for PHI.",
+        "Does this note contain any protected information?"
+      ]
+    },
+    {
+      "id": "discharge_counseling",
+      "name": "Patient-language discharge counseling",
+      "description": "Generate a structured, patient-friendly discharge summary from the structured medication list, LACE risk score, and recommended action. Output is targeted at a 6th-grade reading level and contains five sections (Your Medications, Follow-up Appointments, Warning Signs, Daily Activities, Questions to Ask). Templates are deterministic \u2014 every statement binds to a structured input, so no medication or dosage can be hallucinated. Optional LLM polish (TRUSTEDRISK_COUNSELING_LLM_POLISH=1) paraphrases prose without changing facts. Reusable for outpatient med-review counseling (set lace_score=0).",
+      "tags": [
+        "discharge",
+        "patient-education",
+        "health-literacy",
+        "AHRQ-RED",
+        "medication-safety",
+        "outpatient"
+      ],
+      "examples": [
+        "Generate a 6th-grade-level discharge summary for this patient's medication list.",
+        "Write patient-language warning signs for someone leaving on warfarin and lisinopril.",
+        "Produce an outpatient counseling sheet for an 82-year-old on 11 chronic medications."
+      ]
+    },
+    {
+      "id": "antimicrobial_stewardship",
+      "name": "Empiric antibiotic + de-escalation",
+      "description": "Two stewardship tools: (1) compute_empiric_antibiotic_selection ranks empiric regimens by infection source (urinary / pneumonia / SSTI / etc.) and severity (uncomplicated \u2192 septic shock), incorporating LOCAL antibiogram data (e.g. ESBL prevalence > 15% pulls carbapenem to top pick), patient allergies, renal function, and MRSA / Pseudomonas risk; (2) compute_antibiotic_de_escalation takes the current regimen + identified pathogen + susceptibility pattern and recommends the narrowest acceptable agent + IV-to-PO switch when the IDSA \"5 Cs\" criteria (afebrile 24h, hemodynamically stable, tolerating PO, alert, no malabsorption) are met.",
+      "tags": [
+        "antimicrobial-stewardship",
+        "IDSA",
+        "antibiogram",
+        "ESBL",
+        "MRSA",
+        "iv-to-po",
+        "de-escalation"
+      ],
+      "examples": [
+        "Pick empiric antibiotics for complicated UTI with sepsis, PCN allergy, local ESBL 22%.",
+        "De-escalate pip-tazo IV for an E. coli ESBL UTI on day 3.",
+        "Decide IV-to-PO switch for a patient afebrile 24h but still NPO."
+      ]
+    },
+    {
+      "id": "oncology_decisions",
+      "name": "Oncology cycle decision + RECIST response",
+      "description": "Two oncology tools: (1) compute_chemo_dose_adjustment decides whether the next chemo cycle should proceed (full or reduced dose), be delayed, held, or discontinued \u2014 based on hematologic recovery (ANC, platelets), renal function (cisplatin holds, carboplatin Calvert), hepatic function (anthracycline / taxane bilirubin gates), and ECOG performance status; growth-factor recommendation included for high-FN-risk regimens; (2) compute_oncology_treatment_response implements RECIST 1.1 categorical response (CR / PR / SD / PD / NE) from target lesion measurements + new-lesion / non-target progression flags, with a decision implication (continue / dose-escalation / switch / palliative / repeat imaging).",
+      "tags": [
+        "oncology",
+        "chemotherapy",
+        "RECIST",
+        "NCCN",
+        "ECOG",
+        "Calvert-formula",
+        "growth-factor"
+      ],
+      "examples": [
+        "Decide cycle 4 of carboplatin/pemetrexed with ANC 1100, eGFR 58.",
+        "Compute RECIST 1.1 for a patient with target lesions shrinking from 62 mm to 41 mm.",
+        "Adjust doxorubicin dose for a patient with bilirubin 2.5."
+      ]
+    },
+    {
+      "id": "patient_facing_translation",
+      "name": "Multilingual patient-facing rendering",
+      "description": "Three patient-facing tools (PATIENT-1/2/3): compute_translate_discharge_counseling (en/es/zh/vi/ar paraphrase-only, structured bullets immutable), compute_patient_faq (anticipated patient questions + answers from the structured DecisionCard), compute_caregiver_summary (caregiver-language summary for hand-off).",
+      "tags": [
+        "patient-facing",
+        "translation",
+        "FAQ",
+        "caregiver",
+        "health-literacy"
+      ],
+      "examples": [
+        "Translate the discharge counseling into Vietnamese.",
+        "Generate the top 5 FAQs for a patient discharged on warfarin.",
+        "Caregiver summary for a 90y patient discharged with delirium watch."
+      ]
+    },
+    {
+      "id": "data_normalization",
+      "name": "Terminology + comorbidity-index normalization",
+      "description": "Four DATA-1/2/3/4 tools: compute_charlson_elixhauser_index (Quan 2005 + van Walraven 2009), compute_normalize_observations (LOINC), compute_rxnorm_ddi_lookup (NIH RxNav DDI graph), compute_umls_concept_map (UMLS Metathesaurus crosswalk). Used for cross-EHR normalisation upstream of the clinical bundles.",
+      "tags": [
+        "LOINC",
+        "RxNorm",
+        "UMLS",
+        "Charlson",
+        "Elixhauser",
+        "terminology"
+      ],
+      "examples": [
+        "Compute Charlson + Elixhauser for a patient with CHF + DM2 + CKD.",
+        "DDI lookup on warfarin + amiodarone + amoxicillin.",
+        "UMLS crosswalk SNOMED 44054006 \u2192 ICD-10."
+      ]
+    },
+    {
+      "id": "clinical_workflow_orders",
+      "name": "Discharge order set + adherence + HEDIS gaps + PROM",
+      "description": "Four LIB-1/2/3/4 tools: compute_order_set (template-driven structured discharge orders), compute_medication_adherence_predictor (driver-list + risk score), compute_care_gap_detector (HEDIS-mapped open gaps), compute_prom_influence (PROMIS-29 / EQ-5D-5L \u2192 QALY delta + action-dominance shift hint).",
+      "tags": [
+        "order-set",
+        "adherence",
+        "HEDIS",
+        "PROM",
+        "PROMIS",
+        "EQ-5D"
+      ],
+      "examples": [
+        "Generate the discharge order set for a high-risk CHF patient.",
+        "Predict adherence risk for a 5-medication regimen on Medicare.",
+        "Detect open HEDIS care gaps for a Type 2 DM patient.",
+        "Compute QALY-30d from a PROMIS-29 score set."
+      ]
+    }
+  ],
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": true,
+    "stateTransitionHistory": false,
+    "extensions": [
+      {
+        "uri": "https://app.promptopinion.ai/schemas/a2a/v1/fhir-context",
+        "description": "A2A v1 FHIR-context extension. The platform delivers FHIR credentials in `Message.metadata` keyed by this URI, with camelCase fields {fhirUrl, fhirToken, patientId, fhirRefreshToken?, fhirRefreshTokenUrl?}. TrustedRisk consumes the metadata in its before-model hook, populates the shared FHIRContext ContextVar, and never lets the credentials reach the LLM prompt. See https://docs.promptopinion.ai/fhir-context/a2a-fhir-context.html.",
+        "required": false,
+        "params": {
+          "scopes": [
+            {
+              "name": "patient/Patient.rs",
+              "required": true
+            },
+            {
+              "name": "patient/AllergyIntolerance.rs"
+            },
+            {
+              "name": "patient/Condition.rs"
+            },
+            {
+              "name": "patient/Encounter.rs"
+            },
+            {
+              "name": "patient/MedicationRequest.rs"
+            },
+            {
+              "name": "patient/Observation.rs"
+            },
+            {
+              "name": "patient/Procedure.rs"
+            }
+          ]
+        }
+      }
+    ],
+    "selfCritique": {
+      "enabled": true,
+      "description": "Every clinical recommendation passes through a 4-critic ensemble (clinical_safety + fairness + evidence + llm_judge) that may downgrade confidence, force abstain, or request a replay before the response is emitted. The LLM critic has a deterministic floor (pass-through approval) so it never blocks unilaterally."
+    },
+    "memoryLayer": {
+      "enabled": true,
+      "description": "Prior DecisionCards for the same patient are retrieved from a SQLite-backed memory store. When a valid (non-expired, same-model-version) card is found, it can serve directly; otherwise a fresh tool chain runs and detect_recommendation_drift flags any meaningful change vs the prior."
+    },
+    "temporalValidity": {
+      "enabled": true,
+      "description": "Every RiskEstimate carries a valid_until timestamp scaled by clinical-risk severity (high LACE \u2192 4h, moderate \u2192 12h, low \u2192 24h). Expired cards force a re-call."
+    },
+    "fairnessAuditCalibration": {
+      "enabled": true,
+      "description": "Subgroup-multiplier baseline is calibrated on the receiving cohort (internal calibration workflow output) and falls back to literature defaults (HRRP/HCUP/JAMA) when the calibrated artifact is absent."
+    },
+    "counterfactualExplanation": {
+      "enabled": true,
+      "description": "Per-factor what-if sweep shows how each LACE component contributes to the predicted risk and identifies a minimum-modification path that would flip the recommendation tier."
+    },
+    "multiTenant": {
+      "enabled": true,
+      "description": "Optional OAuth 2.0 client_credentials grant (RFC 6749 \u00a74.4) with per-client allowed_fhir_servers allowlist enforces tenant isolation: a token issued for tenant A cannot be used to query tenant B's FHIR endpoint."
+    },
+    "auditTrail": {
+      "enabled": true,
+      "description": "Append-only HIPAA-style audit log (PHI-redacted SHA-256 hashing) plus an RFC 6962 Merkle audit chain for tamper-evidence; reproducibility archive enables byte-identical replay of any historical decision."
+    },
+    "rightToExplanation": {
+      "enabled": true,
+      "description": "GDPR Art. 22 / EU AI Act Art. 13 right-to-explanation surface \u2014 every DecisionCard is paired with a patient-friendly audit summary on demand."
+    },
+    "differentialPrivacyEquity": {
+      "enabled": true,
+      "description": "Equity dashboard publishes subgroup intervention / abstain / risk rates with Laplace-mechanism differential privacy."
+    }
+  },
+  "securitySchemes": {
+    "oauth_client_credentials": {
+      "oauth2SecurityScheme": {
+        "type": "oauth2",
+        "description": "Optional bearer-token authentication (RFC 6749 \u00a74.4). Disabled by default; enable via TRUSTEDRISK_OAUTH_ENABLED=1.",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://<deploy-url>/oauth/token",
+            "scopes": {
+              "discharge.read": "Invoke compute_readmission_risk + decision_utility",
+              "discharge.execute": "Above plus medication_reconciliation + fairness_audit",
+              "phi.scan": "Invoke detect_phi only",
+              "grounding.read": "Invoke ground_claim only"
+            }
+          }
+        }
+      }
+    },
+    "x_api_key": {
+      "apiKeySecurityScheme": {
+        "type": "apiKey",
+        "description": "Static API-key authentication for marketplace-mediated A2A calls. Configured via TRUSTEDRISK_API_KEYS env var (comma-separated). When set, every A2A call must carry `X-API-Key` matching one of the configured values.",
+        "location": "header",
+        "name": "X-API-Key"
+      }
+    }
+  }
+}

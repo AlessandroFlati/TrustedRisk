@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>TrustedRisk Decision Card — Mockup</title>
+<style>
+  :root {
+    --bg: #0f1115;
+    --surface: #181b22;
+    --surface-2: #1f232c;
+    --border: #2a2f3a;
+    --text: #e7eaf0;
+    --text-muted: #9aa3b2;
+    --text-faint: #6b7280;
+    --accent: #5b8cff;
+    --green-bg: #15291d;
+    --green-fg: #4ade80;
+    --green-border: #2c6b48;
+    --yellow-bg: #2a2316;
+    --yellow-fg: #fbbf24;
+    --yellow-border: #6b5224;
+    --red-bg: #2c1818;
+    --red-fg: #f87171;
+    --red-border: #6b2c2c;
+    --purple-bg: #1f1a2c;
+    --purple-fg: #a78bfa;
+    --purple-border: #4c3b6b;
+    --mono: "SF Mono", "JetBrains Mono", "Menlo", "Consolas", monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+  }
+  header {
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    background: var(--surface);
+  }
+  header h1 {
+    margin: 0; font-size: 16px; font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  header .badge {
+    font-size: 11px; padding: 3px 8px; border-radius: 4px;
+    background: var(--surface-2); color: var(--text-muted);
+    font-family: var(--mono);
+  }
+  .scenario-tabs {
+    display: flex; gap: 4px; padding: 16px 24px 0;
+    border-bottom: 1px solid var(--border); background: var(--surface);
+    overflow-x: auto;
+  }
+  .scenario-tabs button {
+    padding: 8px 14px; border: 1px solid var(--border); background: var(--surface-2);
+    color: var(--text-muted); border-radius: 6px 6px 0 0; cursor: pointer;
+    font-size: 13px; font-weight: 500;
+    border-bottom: none;
+    white-space: nowrap;
+  }
+  .scenario-tabs button.active {
+    background: var(--bg); color: var(--text);
+    border-color: var(--accent); border-bottom-color: var(--bg);
+    margin-bottom: -1px;
+  }
+  main {
+    max-width: 920px; margin: 0 auto; padding: 24px;
+  }
+  .card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  }
+  /* ─── Recommendation badge ─── */
+  .rec-badge {
+    padding: 24px 28px;
+    border-bottom: 1px solid var(--border);
+    display: flex; gap: 18px; align-items: center;
+  }
+  .rec-icon {
+    width: 56px; height: 56px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px; font-weight: 700;
+    flex-shrink: 0;
+  }
+  .rec-text h2 {
+    margin: 0 0 4px 0; font-size: 20px; font-weight: 600; letter-spacing: -0.01em;
+  }
+  .rec-text p {
+    margin: 0; font-size: 13px; color: var(--text-muted);
+  }
+  .rec-badge.green { background: linear-gradient(180deg, var(--green-bg) 0%, var(--surface) 100%); }
+  .rec-badge.yellow { background: linear-gradient(180deg, var(--yellow-bg) 0%, var(--surface) 100%); }
+  .rec-badge.red { background: linear-gradient(180deg, var(--red-bg) 0%, var(--surface) 100%); }
+  .rec-badge.green .rec-icon { background: var(--green-border); color: var(--green-fg); }
+  .rec-badge.yellow .rec-icon { background: var(--yellow-border); color: var(--yellow-fg); }
+  .rec-badge.red .rec-icon { background: var(--red-border); color: var(--red-fg); }
+  .rec-badge.green h2 { color: var(--green-fg); }
+  .rec-badge.yellow h2 { color: var(--yellow-fg); }
+  .rec-badge.red h2 { color: var(--red-fg); }
+
+  /* ─── Section blocks ─── */
+  .section {
+    padding: 18px 28px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section h3 {
+    margin: 0 0 12px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--text-muted); font-weight: 600;
+    display: flex; align-items: baseline; justify-content: space-between;
+  }
+  .section h3 .source-tag {
+    font-size: 10px; font-family: var(--mono); color: var(--text-faint);
+    padding: 2px 6px; background: var(--surface-2); border-radius: 3px;
+    text-transform: none; letter-spacing: 0;
+  }
+
+  /* ─── Risk block ─── */
+  .risk-row {
+    display: grid; grid-template-columns: auto 1fr auto; gap: 18px; align-items: center;
+  }
+  .prob-big {
+    font-size: 44px; font-weight: 700; letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+    color: var(--text);
+  }
+  .prob-meta { display: flex; flex-direction: column; gap: 4px; }
+  .prob-ci {
+    font-family: var(--mono); font-size: 13px; color: var(--text-muted);
+  }
+  .prob-bin {
+    font-size: 11px; color: var(--text-muted); text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .prob-confidence-pill {
+    padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.04em;
+    border: 1px solid var(--border);
+  }
+  .prob-confidence-pill.preferred { background: var(--green-bg); color: var(--green-fg); border-color: var(--green-border); }
+  .prob-confidence-pill.degraded { background: var(--yellow-bg); color: var(--yellow-fg); border-color: var(--yellow-border); }
+
+  .factors {
+    margin-top: 18px;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .factor-row {
+    display: grid; grid-template-columns: 130px 1fr 50px; gap: 10px; align-items: center;
+    font-size: 12px;
+  }
+  .factor-label { color: var(--text-muted); }
+  .factor-bar-track {
+    background: var(--surface-2); height: 8px; border-radius: 4px; overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .factor-bar-fill {
+    height: 100%; background: linear-gradient(90deg, var(--accent), var(--green-fg));
+    border-radius: 3px;
+  }
+  .factor-points {
+    font-family: var(--mono); font-size: 12px; text-align: right;
+    color: var(--text);
+  }
+  .risk-na {
+    font-size: 16px; font-style: italic; color: var(--text-muted);
+    padding: 12px 0;
+  }
+
+  /* ─── Pill list common ─── */
+  .pill-row {
+    display: flex; gap: 10px; align-items: flex-start;
+    padding: 6px 0;
+    font-size: 13px;
+  }
+  .pill {
+    padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.04em;
+    border: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+  .pill.green { background: var(--green-bg); color: var(--green-fg); border-color: var(--green-border); }
+  .pill.yellow { background: var(--yellow-bg); color: var(--yellow-fg); border-color: var(--yellow-border); }
+  .pill.red { background: var(--red-bg); color: var(--red-fg); border-color: var(--red-border); }
+  .pill.purple { background: var(--purple-bg); color: var(--purple-fg); border-color: var(--purple-border); }
+  .pill-row .reason {
+    color: var(--text-muted); font-size: 12px;
+  }
+
+  /* ─── Med-recon block ─── */
+  .med-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;
+    margin-bottom: 14px;
+  }
+  .med-cell {
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: 6px;
+    padding: 10px 12px;
+  }
+  .med-cell .label {
+    font-size: 10px; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .med-cell .value {
+    font-size: 22px; font-weight: 700; color: var(--text); margin-top: 2px;
+    font-variant-numeric: tabular-nums;
+  }
+  .med-cell .sub {
+    font-size: 11px; color: var(--text-muted); margin-top: 2px;
+  }
+  .med-concern {
+    padding: 8px 10px; background: var(--surface-2);
+    border-left: 3px solid var(--red-border); border-radius: 3px;
+    margin-top: 6px;
+  }
+  .med-concern.medium { border-left-color: var(--yellow-border); }
+  .med-concern.low { border-left-color: var(--green-border); }
+  .med-concern .head {
+    display: flex; gap: 8px; align-items: baseline; margin-bottom: 2px;
+  }
+  .med-concern .head strong { font-size: 13px; }
+  .med-concern .detail { font-size: 12px; color: var(--text-muted); }
+
+  /* ─── Self-critique block ─── */
+  .critique {
+    padding: 14px 16px; border-radius: 6px;
+    background: var(--purple-bg); border: 1px solid var(--purple-border);
+    display: flex; gap: 12px; align-items: flex-start;
+  }
+  .critique-icon {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--purple-border); color: var(--purple-fg);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 700; flex-shrink: 0;
+  }
+  .critique-body { flex: 1; }
+  .critique-body .verdict {
+    font-size: 14px; font-weight: 600; color: var(--purple-fg);
+    margin-bottom: 4px;
+  }
+  .critique-body .rationale {
+    font-size: 12px; color: var(--text); line-height: 1.5;
+  }
+  .critique-body .meta {
+    font-size: 11px; color: var(--text-faint); font-family: var(--mono);
+    margin-top: 6px;
+  }
+
+  /* ─── Audit block ─── */
+  .audit-block {
+    padding: 18px 28px;
+    background: var(--surface-2);
+    font-family: var(--mono); font-size: 11px; color: var(--text-muted);
+  }
+  .audit-block dl {
+    display: grid; grid-template-columns: max-content 1fr; gap: 4px 12px;
+    margin: 0;
+  }
+  .audit-block dt { color: var(--text-muted); }
+  .audit-block dd {
+    margin: 0; color: var(--text);
+    word-break: break-all;
+  }
+  .disclaimer {
+    margin-top: 12px; padding-top: 10px;
+    border-top: 1px dashed var(--border);
+    font-style: italic; font-size: 10px; color: var(--text-muted);
+    line-height: 1.4;
+  }
+  footer {
+    text-align: center; padding: 20px;
+    font-size: 11px; color: var(--text-muted);
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>TrustedRisk — Decision Card</h1>
+  <span class="badge">SHARP-on-MCP · A2A · v0.2.0 · 7 tools + self-critique</span>
+</header>
+
+<div class="scenario-tabs">
+  <button class="active" data-scenario="clean" onclick="switchScenario('clean')">Patient 01 — clean discharge</button>
+  <button data-scenario="abstain" onclick="switchScenario('abstain')">Patient 02 — abstain (evidence gap)</button>
+  <button data-scenario="complex" onclick="switchScenario('complex')">Patient 03 — complex (downgraded)</button>
+  <button data-scenario="fairness" onclick="switchScenario('fairness')">Patient 04 — fairness force-abstain</button>
+</div>
+
+<main>
+  <div class="card" id="card"></div>
+</main>
+
+<footer>
+  Mockup • 4 scenarios demonstrating the 7-tool + self-critique stack.
+  All numerics derive from the W1-promoted <code>coefficients.json</code> (5-bin Beta-Binomial, ECE 0.0078)
+  + W4 lace_percentile abstain policy + literature fairness baselines.
+</footer>
+
+<script>
+const scenarios = {
+  clean: {
+    badge: {
+      class: "green",
+      icon: "✓",
+      title: "Discharge home with care",
+      subtitle: "All abstain triggers clear. Self-critique approved with no edits.",
+    },
+    risk: {
+      prob: 0.103, ci: [0.086, 0.121], ciWidth: 0.034,
+      bin: "lace_3_5", confidence: "preferred", lace: 8,
+      factors: [
+        { name: "Length of stay",     points: 4, weight: 0.50, raw: "5 days" },
+        { name: "Acute admission",    points: 3, weight: 0.38, raw: "via ED" },
+        { name: "Charlson comorbidity", points: 1, weight: 0.13, raw: "1 active condition" },
+        { name: "ED visits 6mo",      points: 0, weight: 0.00, raw: "0 visits" },
+      ],
+    },
+    medRecon: {
+      n_admission: 4, n_discharge: 5, n_added: 1, contractOk: true,
+      concerns: [],
+    },
+    polypharmacy: {
+      n_meds: 5, n_high_risk: 2, severity: "low",
+      classes: ["ace_inhibitor", "beta_blocker"],
+      ddi: [],
+      rationale: "5 medications; 2 mapped to high-risk classes. No DDI flagged.",
+    },
+    fairness: {
+      n_subgroups: 2, action: "no_action",
+      drifts: [
+        { subgroup: "age 18-64", severity: "none", rel_drift: 0, citation: "Reference adult cohort" },
+        { subgroup: "race=White", severity: "none", rel_drift: 0, citation: "HRRP reference category" },
+      ],
+    },
+    validation: [
+      { kind: "green", label: "Risk estimate calibrated", reason: "Posterior CI width 0.034, well within ±0.30 abstain threshold." },
+      { kind: "green", label: "Clinical claim grounded", reason: "All 4 sub-claims supported by FHIR observations within last 24h." },
+      { kind: "green", label: "No PHI leak", reason: "Detected 0 entities in narrative; redaction map empty." },
+      { kind: "green", label: "In-distribution patient", reason: "LACE 8 below the 90th-percentile cohort threshold (LACE ≥ 13)." },
+    ],
+    critique: {
+      verdict: "approved",
+      rationale: "Risk + utility + validation + medication safety + fairness all line up. No abstain trigger fired and confidence is preferred. Card is internally consistent.",
+      stage: "stage 3 of 3 (decide → validate → critique)",
+    },
+    audit: {
+      "request-id": "req-2026-04-27-08c1",
+      "patient-id": "Patient/synthea-6aadb444",
+      "model-version": "readmission-calibration-run-1777055367773-4204d20e",
+      "abstain-policy": "abstain-fallback-v1 (LACE percentile 90, threshold 13)",
+      "tools-called": "compute_readmission_risk → compute_decision_utility → compute_medication_reconciliation → detect_polypharmacy_concerns → compute_fairness_audit → ground_claim → detect_phi → self_critique",
+      "agent-version": "trustedrisk-agent-0.2",
+    },
+  },
+
+  abstain: {
+    badge: {
+      class: "red",
+      icon: "✕",
+      title: "ABSTAIN — refer to attending",
+      subtitle: "Evidence gap + medication safety failure. Self-critique forced abstain.",
+    },
+    risk: { abstain: true, lace: 10 },
+    medRecon: {
+      n_admission: 6, n_discharge: 7, n_added: 2, contractOk: false,
+      concerns: [
+        { sev: "high", med: "warfarin 5 mg", type: "missing_monitoring",
+          detail: "Warfarin requires INR within target range at discharge. Last INR > 48h ago. Without a recent INR, the dose at discharge may be sub- or supra-therapeutic." },
+      ],
+    },
+    polypharmacy: {
+      n_meds: 7, n_high_risk: 4, severity: "medium",
+      classes: ["anticoagulant_vka", "insulin", "ace_inhibitor", "loop_diuretic"],
+      ddi: [],
+      rationale: "7 medications; 4 high-risk classes. Polypharmacy risk MEDIUM — monitoring contracts must all be active.",
+    },
+    fairness: {
+      n_subgroups: 2, action: "flag_for_review",
+      drifts: [
+        { subgroup: "age 75-84", severity: "medium", rel_drift: -0.26, citation: "AHRQ HCUP 2022: 75-84 age band ~1.30-1.40× baseline" },
+        { subgroup: "race=Black", severity: "low", rel_drift: -0.15, citation: "AHRQ HCUP Statistical Brief #278 (2022)" },
+      ],
+    },
+    validation: [
+      { kind: "yellow", label: "Risk estimate suppressed", reason: "Computed LACE = 10, posterior 0.183. Output withheld until evidence gap resolved." },
+      { kind: "red", label: "Critical evidence missing",
+        reason: "Most-recent serum creatinine (anchor for CKD staging) is older than 48h. Sub-claim 'renal function adequate for discharge' marked partially_supported." },
+      { kind: "green", label: "No PHI leak", reason: "Narrative redaction clean." },
+      { kind: "green", label: "In-distribution patient", reason: "LACE 10 below the 90th-percentile cohort threshold." },
+    ],
+    critique: {
+      verdict: "force_abstain",
+      rationale: "Two compounding signals: (1) ground_claim flagged the renal sub-claim as partially_supported because the most recent creatinine is stale; (2) compute_medication_reconciliation reports a HIGH-severity warfarin monitoring concern (missing INR). With both safety layers raising flags, surfacing a recommendation — even with degraded confidence — would be unsafe. Forcing abstain.",
+      stage: "stage 3 of 3 (decide → validate → critique)",
+    },
+    audit: {
+      "request-id": "req-2026-04-27-08c2",
+      "patient-id": "Patient/synthea-cdd89f6d",
+      "abstain-trigger": "evidence_insufficient + medication_contract_violation",
+      "edit-target-rationale": "creatinine + computed eGFR removed in W2 fixture editor (CKD stage 5 vs 3 ambiguity)",
+      "tools-called": "compute_readmission_risk → compute_decision_utility → compute_medication_reconciliation (HIGH concern) → detect_polypharmacy_concerns → compute_fairness_audit → ground_claim (partial) → detect_phi → self_critique (force_abstain)",
+      "agent-version": "trustedrisk-agent-0.2",
+    },
+  },
+
+  complex: {
+    badge: {
+      class: "yellow",
+      icon: "⚠",
+      title: "Discharge to SNF (degraded confidence)",
+      subtitle: "Multi-system complexity + age-band fairness drift. Self-critique downgraded confidence preferred → degraded.",
+    },
+    risk: {
+      prob: 0.282, ci: [0.255, 0.309], ciWidth: 0.054,
+      bin: "lace_12_19", confidence: "degraded", lace: 14,
+      factors: [
+        { name: "Length of stay",     points: 4, weight: 0.29, raw: "5 days" },
+        { name: "Acute admission",    points: 3, weight: 0.21, raw: "via ED" },
+        { name: "Charlson comorbidity", points: 5, weight: 0.36, raw: "≥4 active conditions (capped)" },
+        { name: "ED visits 6mo",      points: 2, weight: 0.14, raw: "2 visits" },
+      ],
+    },
+    medRecon: {
+      n_admission: 8, n_discharge: 9, n_added: 1, contractOk: true,
+      concerns: [
+        { sev: "low", med: "insulin glargine", type: "monitoring_present",
+          detail: "Glucose monitoring observation present within 12h. Hypoglycemia counseling assumed; verify on discharge note." },
+      ],
+    },
+    polypharmacy: {
+      n_meds: 9, n_high_risk: 5, severity: "medium",
+      classes: ["insulin", "ace_inhibitor", "beta_blocker", "mra", "loop_diuretic"],
+      ddi: [
+        { a: "lisinopril 10 mg", b: "spironolactone 25 mg", sev: "medium",
+          mech: "hyperkalemia risk",
+          detail: "ACE-I + MRA: monitor K+ within 1-2 weeks of initiation." },
+      ],
+      rationale: "9 medications; 5 high-risk classes; 1 medium-severity DDI. Polypharmacy risk MEDIUM — monitoring contracts must all be active.",
+    },
+    fairness: {
+      n_subgroups: 3, action: "downgrade_confidence",
+      drifts: [
+        { subgroup: "age 75-84", severity: "medium", rel_drift: -0.26, citation: "AHRQ HCUP 2022: 75-84 age band ~1.30-1.40× baseline" },
+        { subgroup: "race=Hispanic", severity: "low", rel_drift: -0.09, citation: "Joynt & Jha 2014 (JGIM)" },
+        { subgroup: "insurance=Medicaid", severity: "low", rel_drift: -0.15, citation: "Wadhera 2018 (JAMA): Medicaid beneficiaries ~1.15-1.22×" },
+      ],
+    },
+    validation: [
+      { kind: "green", label: "Risk estimate calibrated", reason: "Posterior CI width 0.054 within abstain threshold." },
+      { kind: "yellow", label: "Multi-system complexity", reason: "Cardiovascular + renal + endocrine systems involved. Sub-claims at moderate-grounded level." },
+      { kind: "green", label: "No PHI leak", reason: "Narrative redaction clean." },
+      { kind: "green", label: "In-distribution patient", reason: "LACE 14 below the 90th-percentile cohort threshold." },
+    ],
+    critique: {
+      verdict: "downgrade_confidence",
+      rationale: "Recommendation (SNF) is the right disposition given multi-system complexity AND polypharmacy. But fairness_audit reports a medium-severity drift on the age 75-84 subgroup (literature baseline ~1.35× current cohort), and the patient's insurance type (Medicaid) compounds this with a low-severity drift. Downgrading from preferred → degraded so the clinician sees the calibration uncertainty alongside the recommendation.",
+      stage: "stage 3 of 3 (decide → validate → critique)",
+    },
+    audit: {
+      "request-id": "req-2026-04-27-08c3",
+      "patient-id": "Patient/synthea-947fa990",
+      "model-version": "readmission-calibration-run-1777055367773-4204d20e",
+      "complexity-note": "3 organ systems involved; recommend SNF over home_with_care given polypharmacy (≥6 meds).",
+      "tools-called": "compute_readmission_risk → compute_decision_utility → compute_medication_reconciliation → detect_polypharmacy_concerns (1 DDI) → compute_fairness_audit (3 drifts) → ground_claim → detect_phi → self_critique (downgrade)",
+      "agent-version": "trustedrisk-agent-0.2",
+    },
+  },
+
+  fairness: {
+    badge: {
+      class: "red",
+      icon: "✕",
+      title: "ABSTAIN — fairness audit",
+      subtitle: "Two high-severity subgroup drifts. Self-critique force-abstain to surface bias rather than hide it.",
+    },
+    risk: { abstain: true, lace: 11 },
+    medRecon: {
+      n_admission: 5, n_discharge: 6, n_added: 1, contractOk: true,
+      concerns: [],
+    },
+    polypharmacy: {
+      n_meds: 6, n_high_risk: 3, severity: "low",
+      classes: ["insulin", "ace_inhibitor", "beta_blocker"],
+      ddi: [],
+      rationale: "6 medications; 3 high-risk classes. No DDI flagged.",
+    },
+    fairness: {
+      n_subgroups: 3, action: "abstain_recommended",
+      drifts: [
+        { subgroup: "age 85+", severity: "high", rel_drift: -0.33, citation: "AHRQ HCUP 2022: 85+ age band ~1.45-1.55× baseline; frailty effect" },
+        { subgroup: "race=Black", severity: "low", rel_drift: -0.15, citation: "AHRQ HCUP Statistical Brief #278 (2022)" },
+        { subgroup: "insurance=Uninsured", severity: "high", rel_drift: -0.31, citation: "AHRQ Statistical Brief 2022: uninsured patients trend ~1.20-1.30× due to outpatient access barriers" },
+      ],
+    },
+    validation: [
+      { kind: "yellow", label: "Risk estimate suppressed", reason: "LACE 11 → posterior 0.183 computed but not surfaced. Bias signal too strong." },
+      { kind: "green", label: "Clinical claim grounded", reason: "Sub-claims supported." },
+      { kind: "green", label: "No PHI leak", reason: "Narrative redaction clean." },
+      { kind: "green", label: "In-distribution (LACE)", reason: "LACE 11 below 90th-percentile threshold." },
+    ],
+    critique: {
+      verdict: "force_abstain",
+      rationale: "compute_fairness_audit recommends abstain: the patient sits at the intersection of two HIGH-severity drift subgroups (age 85+ AND uninsured), where literature baselines disagree with the cohort calibration by >30% on each axis. Surfacing a confident recommendation here would amplify exactly the structural bias the model inherits from its training distribution. Better to abstain transparently than to mask the drift.",
+      stage: "stage 3 of 3 (decide → validate → critique)",
+    },
+    audit: {
+      "request-id": "req-2026-04-27-08c4",
+      "patient-id": "Patient/synthea-fairness-demo",
+      "abstain-trigger": "fairness_audit:abstain_recommended",
+      "fairness-baseline-version": "literature-v1 (HCUP 2022 + JAMA 2018 + JGIM 2014)",
+      "tools-called": "compute_readmission_risk → compute_decision_utility → compute_medication_reconciliation → detect_polypharmacy_concerns → compute_fairness_audit (2 HIGH drifts) → ground_claim → detect_phi → self_critique (force_abstain)",
+      "agent-version": "trustedrisk-agent-0.2",
+    },
+  },
+};
+
+function pct(v) { return (v * 100).toFixed(1) + '%'; }
+function signedPct(v) { return ((v >= 0 ? '+' : '') + (v * 100).toFixed(0) + '%'); }
+function severityClass(s) { return s === 'high' || s === 'medium' ? (s === 'high' ? 'red' : 'yellow') : (s === 'low' ? 'green' : 'green'); }
+
+function renderRiskBlock(r) {
+  if (r.abstain) {
+    return `
+      <div class="section">
+        <h3>Readmission risk (30 days) <span class="source-tag">model: lace-plus-bayesian-v1</span></h3>
+        <div class="risk-na">
+          Suppressed under abstain policy. Computed LACE total = ${r.lace};
+          posterior available in audit log but not surfaced to the clinician.
+        </div>
+      </div>
+    `;
+  }
+  return `
+    <div class="section">
+      <h3>Readmission risk (30 days) <span class="source-tag">model: lace-plus-bayesian-v1 · LACE ${r.lace} → bin <code>${r.bin}</code></span></h3>
+      <div class="risk-row">
+        <div class="prob-big">${pct(r.prob)}</div>
+        <div class="prob-meta">
+          <span class="prob-ci">95% CI [${pct(r.ci[0])}, ${pct(r.ci[1])}] · width ${pct(r.ciWidth)}</span>
+          <span class="prob-bin">posterior Beta-Binomial · 5-fold CV ECE 0.008 · AUROC 0.59</span>
+        </div>
+        <span class="prob-confidence-pill ${r.confidence}">${r.confidence}</span>
+      </div>
+      <div class="factors">
+        ${r.factors.map(f => `
+          <div class="factor-row">
+            <span class="factor-label">${f.name} <span style="color: var(--text-faint); font-size: 10px;">(${f.raw})</span></span>
+            <div class="factor-bar-track">
+              <div class="factor-bar-fill" style="width: ${(f.weight * 100).toFixed(0)}%"></div>
+            </div>
+            <span class="factor-points">${f.points} pt</span>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function renderMedReconBlock(mr) {
+  return `
+    <div class="section">
+      <h3>Medication reconciliation <span class="source-tag">healthcare.compute_medication_reconciliation</span></h3>
+      <div class="med-grid">
+        <div class="med-cell">
+          <div class="label">admission meds</div>
+          <div class="value">${mr.n_admission}</div>
+        </div>
+        <div class="med-cell">
+          <div class="label">discharge meds</div>
+          <div class="value">${mr.n_discharge}</div>
+          <div class="sub">+${mr.n_added} added</div>
+        </div>
+        <div class="med-cell">
+          <div class="label">contract</div>
+          <div class="value" style="color: ${mr.contractOk ? 'var(--green-fg)' : 'var(--red-fg)'};">${mr.contractOk ? '✓ ok' : '✕ violated'}</div>
+        </div>
+      </div>
+      ${mr.concerns.length === 0
+        ? '<div style="font-size:12px; color: var(--text-muted); font-style: italic;">No medication concerns flagged.</div>'
+        : mr.concerns.map(c => `
+            <div class="med-concern ${c.sev}">
+              <div class="head">
+                <span class="pill ${c.sev === 'high' ? 'red' : (c.sev === 'medium' ? 'yellow' : 'green')}">${c.sev}</span>
+                <strong>${c.med}</strong>
+                <span style="font-size: 11px; color: var(--text-faint); font-family: var(--mono);">${c.type}</span>
+              </div>
+              <div class="detail">${c.detail}</div>
+            </div>
+          `).join('')}
+    </div>
+  `;
+}
+
+function renderPolypharmacyBlock(pp) {
+  return `
+    <div class="section">
+      <h3>Polypharmacy &amp; DDI scan <span class="source-tag">healthcare.detect_polypharmacy_concerns</span></h3>
+      <div class="pill-row">
+        <span class="pill ${pp.severity === 'none' ? 'green' : (pp.severity === 'low' ? 'green' : (pp.severity === 'medium' ? 'yellow' : 'red'))}">${pp.severity}</span>
+        <div>
+          <div>${pp.n_meds} medications · ${pp.n_high_risk} high-risk class<span style="${pp.n_high_risk === 1 ? 'display:none' : ''}">es</span></div>
+          <div class="reason">classes: ${pp.classes.length ? pp.classes.map(c => `<code>${c}</code>`).join(', ') : '<i>none</i>'}</div>
+          <div class="reason" style="margin-top: 4px;">${pp.rationale}</div>
+        </div>
+      </div>
+      ${pp.ddi.length > 0 ? `
+        <div style="margin-top: 12px;">
+          ${pp.ddi.map(d => `
+            <div class="med-concern ${d.sev}">
+              <div class="head">
+                <span class="pill ${d.sev === 'high' ? 'red' : (d.sev === 'medium' ? 'yellow' : 'green')}">${d.sev}</span>
+                <strong>${d.a} ↔ ${d.b}</strong>
+                <span style="font-size: 11px; color: var(--text-faint); font-family: var(--mono);">${d.mech}</span>
+              </div>
+              <div class="detail">${d.detail}</div>
+            </div>
+          `).join('')}
+        </div>
+      ` : ''}
+    </div>
+  `;
+}
+
+function renderFairnessBlock(fa) {
+  const actionPillClass = {
+    no_action: 'green',
+    flag_for_review: 'yellow',
+    downgrade_confidence: 'yellow',
+    abstain_recommended: 'red',
+  }[fa.action] || 'yellow';
+  return `
+    <div class="section">
+      <h3>Fairness watch <span class="source-tag">healthcare.compute_fairness_audit</span></h3>
+      <div class="pill-row">
+        <span class="pill ${actionPillClass}">${fa.action.replace(/_/g, ' ')}</span>
+        <div class="reason">${fa.n_subgroups} subgroup${fa.n_subgroups === 1 ? '' : 's'} assessed against literature baselines (HCUP 2022 + JAMA 2018 + JGIM 2014).</div>
+      </div>
+      <div style="margin-top: 12px;">
+        ${fa.drifts.map(d => `
+          <div class="med-concern ${d.severity === 'high' ? 'high' : (d.severity === 'medium' ? 'medium' : 'low')}">
+            <div class="head">
+              <span class="pill ${d.severity === 'high' ? 'red' : (d.severity === 'medium' ? 'yellow' : 'green')}">${d.severity}</span>
+              <strong>${d.subgroup}</strong>
+              <span style="font-size: 11px; color: var(--text-faint); font-family: var(--mono);">drift ${signedPct(d.rel_drift)}</span>
+            </div>
+            <div class="detail">${d.citation}</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function renderValidationBlock(validation) {
+  return `
+    <div class="section">
+      <h3>Validation <span class="source-tag">ground_claim · detect_phi · abstain.compose</span></h3>
+      ${validation.map(v => `
+        <div class="pill-row">
+          <span class="pill ${v.kind === 'red' ? 'red' : (v.kind === 'yellow' ? 'yellow' : 'green')}">${v.kind === 'green' ? '✓' : (v.kind === 'red' ? '✕' : '!')}</span>
+          <div>
+            <div style="font-size: 13px;">${v.label}</div>
+            <div class="reason">${v.reason}</div>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+function renderCritiqueBlock(c) {
+  const verdictColor = {
+    approved: 'green',
+    downgrade_confidence: 'yellow',
+    force_abstain: 'red',
+    request_replay: 'yellow',
+  }[c.verdict] || 'yellow';
+  const icon = c.verdict === 'approved' ? '✓' : (c.verdict === 'force_abstain' ? '✕' : '↻');
+  return `
+    <div class="section">
+      <h3>Self-critique <span class="source-tag">a2a_agent.self_critique</span></h3>
+      <div class="critique">
+        <div class="critique-icon">${icon}</div>
+        <div class="critique-body">
+          <div class="verdict">verdict: <span style="color: var(--${verdictColor === 'green' ? 'green' : (verdictColor === 'red' ? 'red' : 'yellow')}-fg);">${c.verdict.replace(/_/g, ' ')}</span></div>
+          <div class="rationale">${c.rationale}</div>
+          <div class="meta">${c.stage}</div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderAuditBlock(audit) {
+  return `
+    <div class="audit-block">
+      <dl>
+        ${Object.entries(audit).map(([k,v]) => `<dt>${k}:</dt><dd>${v}</dd>`).join('')}
+      </dl>
+      <div class="disclaimer">
+        TrustedRisk is a clinical decision-support research prototype. NOT a medical device.
+        Calibration may vary by demographic subgroup. ALWAYS consult qualified healthcare professionals.
+      </div>
+    </div>
+  `;
+}
+
+function render(scn) {
+  const data = scenarios[scn];
+  const card = document.getElementById('card');
+  card.innerHTML = `
+    <div class="rec-badge ${data.badge.class}">
+      <div class="rec-icon">${data.badge.icon}</div>
+      <div class="rec-text">
+        <h2>${data.badge.title}</h2>
+        <p>${data.badge.subtitle}</p>
+      </div>
+    </div>
+    ${renderRiskBlock(data.risk)}
+    ${renderMedReconBlock(data.medRecon)}
+    ${renderPolypharmacyBlock(data.polypharmacy)}
+    ${renderFairnessBlock(data.fairness)}
+    ${renderValidationBlock(data.validation)}
+    ${renderCritiqueBlock(data.critique)}
+    ${renderAuditBlock(data.audit)}
+  `;
+}
+
+function switchScenario(name) {
+  document.querySelectorAll('.scenario-tabs button').forEach(b =>
+    b.classList.toggle('active', b.dataset.scenario === name)
+  );
+  render(name);
+}
+
+render('clean');
+</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+{
+  "tool": "compute_preeclampsia_assessment",
+  "cases": [
+    {
+      "name": "no_preeclampsia_normal_bp",
+      "input": {
+        "gestational_age_weeks": 32,
+        "systolic_bp": 120, "diastolic_bp": 75,
+        "proteinuria_present": false
+      },
+      "expected_subset": {"classification": "no_preeclampsia"}
+    },
+    {
+      "name": "severe_features_severe_bp",
+      "input": {
+        "gestational_age_weeks": 32,
+        "systolic_bp": 165, "diastolic_bp": 112,
+        "proteinuria_present": true
+      },
+      "expected_subset": {
+        "classification": "preeclampsia_with_severe_features",
+        "magnesium_sulfate_indicated": true,
+        "antihypertensive_indicated": true
+      }
+    },
+    {
+      "name": "eclampsia_seizure",
+      "input": {
+        "gestational_age_weeks": 33,
+        "systolic_bp": 160, "diastolic_bp": 95,
+        "proteinuria_present": true,
+        "seizures_present": true
+      },
+      "expected_subset": {
+        "classification": "eclampsia",
+        "delivery_recommended": true,
+        "recommended_disposition": "icu_obstetric_anesthesia_consult"
+      }
+    },
+    {
+      "name": "hellp_syndrome",
+      "input": {
+        "gestational_age_weeks": 33,
+        "systolic_bp": 145, "diastolic_bp": 92,
+        "proteinuria_present": true,
+        "clinical_factors": {
+          "platelets_per_ul": 80000, "ast_ul": 120,
+          "ldh_ul": 800, "haptoglobin_low": true
+        }
+      },
+      "expected_subset": {
+        "classification": "hellp_syndrome",
+        "delivery_recommended": true
+      }
+    }
+  ]
+}

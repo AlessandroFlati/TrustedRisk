@@ -1,0 +1,16 @@
+{
+  "n_bundles": 1000,
+  "seed": 4242,
+  "generation_seconds": 0.039,
+  "resource_counts": {
+    "Patient": 1000,
+    "Encounter": 1000,
+    "Condition": 1796,
+    "Observation": 4522,
+    "MedicationRequest": 2099
+  },
+  "live_mode": false,
+  "hapi_url": null,
+  "load_seconds": null,
+  "load_results": null
+}

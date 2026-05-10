@@ -1,0 +1,26 @@
+{
+  "policy_type": "lace_percentile_fallback",
+  "policy_version": "abstain-fallback-v1",
+  "method": {
+    "feature": "LACE_total_score",
+    "cohort_percentile_cutoff": 90,
+    "cohort_size_used": 7778
+  },
+  "threshold_lace": 13,
+  "threshold_rationale": "LACE scores >= 13 correspond to top 10% of training cohort (n=7778). Observed abstain rate on training: 0.106. Heuristic but robust fallback when topological OOD detection fails validation gates.",
+  "validation_metrics": {
+    "statistical": {
+      "abstain_rate_on_training": 0.10632553355618411,
+      "n_abstained": 827,
+      "n_total": 7778
+    }
+  },
+  "runtime_consumers": {
+    "threshold_only": true,
+    "no_embeddings_required": true
+  },
+  "known_limitations": [
+    "Purely LACE-score-based, does not capture out-of-scope patients whose LACE is low but who are clinically outside the training distribution (e.g. pediatric with low LACE).",
+    "Simpler and more robust than topological, but less interpretable as a genuine OOD signal."
+  ]
+}

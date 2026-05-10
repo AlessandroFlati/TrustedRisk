@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "1.0.0",
+  "name": "darena-data-agent",
+  "description": "Mock federated A2A partner — a clinical data agent that ingests FHIR Bundles from multiple hospital systems and federates clinical decision-support questions to TrustedRisk. Used to demo the A2A handshake + capability negotiation pattern. NOT a real product.",
+  "version": "0.1.0",
+  "url": "http://localhost:8766/a2a/darena-data-agent",
+  "defaultInputModes": ["application/json"],
+  "defaultOutputModes": ["application/json"],
+  "skills": [
+    {
+      "id": "evaluate_patient_via_trustedrisk",
+      "name": "Evaluate patient via TrustedRisk federation",
+      "description": "Take a patient summary, perform A2A handshake with the TrustedRisk agent at TRUSTEDRISK_A2A_URL, request an appropriate clinical decision-support skill, and return the structured DecisionCard. Demonstrates the A2A pattern.",
+      "tags": ["federation", "a2a", "clinical", "decision-support"],
+      "examples": [
+        "Evaluate this patient for safe discharge via TrustedRisk.",
+        "Federate this chart to TrustedRisk for ED triage."
+      ]
+    }
+  ],
+  "capabilities": {
+    "streaming": false,
+    "stateTransitionHistory": false,
+    "federation": {
+      "enabled": true,
+      "description": "Stub federation client. Performs A2A capability discovery + tool invocation against an upstream TrustedRisk agent. The handshake records every exchanged message in an audit trail."
+    }
+  }
+}

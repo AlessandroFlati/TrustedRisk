@@ -1,0 +1,84 @@
+{
+  "tool": "multi_tool",
+  "cases": [
+    {
+      "name": "suicide_risk_imminent_with_recent_attempt",
+      "tool": "compute_suicide_risk_assessment",
+      "input": {
+        "ideation_lifetime_level": 5,
+        "ideation_past_30d_level": 5,
+        "behavior_lifetime_attempts": 1,
+        "behavior_past_30d_any": true,
+        "warning_factors_count": 3
+      },
+      "expected_subset": {
+        "risk_level": "imminent",
+        "safety_plan_indicated": true
+      }
+    },
+    {
+      "name": "suicide_risk_bias_guard_fires",
+      "tool": "compute_suicide_risk_assessment",
+      "input": {
+        "ideation_past_30d_level": 2,
+        "patient_demographics": {"race": "black", "ses": "low_ses"}
+      },
+      "expected_subset": {
+        "abstain_recommended": true
+      }
+    },
+    {
+      "name": "psychiatric_imminent_involuntary_co",
+      "tool": "compute_psychiatric_admission_decision",
+      "input": {
+        "risk_level": "imminent",
+        "danger_to_self": true,
+        "voluntary_capable": false,
+        "state_jurisdiction": "CO"
+      },
+      "expected_subset": {
+        "disposition": "involuntary_hold_evaluation",
+        "abstain_recommended": true
+      }
+    },
+    {
+      "name": "pews_septic_infant",
+      "tool": "compute_pediatric_early_warning",
+      "input": {
+        "age_months": 4, "behavior": "lethargic",
+        "heart_rate": 190, "respiratory_rate": 60, "spo2": 89,
+        "capillary_refill_seconds": 4.5,
+        "accessory_muscle_use": true,
+        "parental_or_nurse_concern": true
+      },
+      "expected_subset": {
+        "severity_tier": "high",
+        "recommended_response": "rapid_response_picu_consult",
+        "age_band": "0-11mo"
+      }
+    },
+    {
+      "name": "weight_dose_amoxicillin_toddler",
+      "tool": "compute_weight_based_dosing",
+      "input": {
+        "drug": "amoxicillin", "weight_kg": 12.0,
+        "age_months": 14, "indication": "acute_otitis_media"
+      },
+      "expected_subset": {
+        "abstain_recommended": false,
+        "drug": "amoxicillin"
+      }
+    },
+    {
+      "name": "weight_dose_ibuprofen_blocked_under_6mo",
+      "tool": "compute_weight_based_dosing",
+      "input": {
+        "drug": "ibuprofen", "weight_kg": 5.0,
+        "age_months": 4, "indication": "fever"
+      },
+      "expected_subset": {
+        "abstain_recommended": true
+      }
+    }
+  ]
+}

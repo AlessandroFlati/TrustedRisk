@@ -1,0 +1,2182 @@
+{
+  "bundle_id": "core_discharge_polypharmacy",
+  "tool": "detect_polypharmacy_concerns",
+  "n_cases": 50,
+  "cases": [
+    {
+      "name": "polypharmacy_case_000",
+      "input": {
+        "medications": [
+          {
+            "name": "amoxicillin 500mg",
+            "drug_class": "antibiotic",
+            "status": "active"
+          },
+          {
+            "name": "aspirin 81mg",
+            "drug_class": "antiplatelet",
+            "status": "active"
+          },
+          {
+            "name": "ibuprofen 400mg",
+            "drug_class": "nsaid",
+            "status": "active"
+          },
+          {
+            "name": "insulin glargine",
+            "drug_class": "insulin",
+            "status": "active"
+          },
+          {
+            "name": "oxycodone 5mg",
+            "drug_class": "opioid",
+            "status": "active"
+          },
+          {
+            "name": "spironolactone 25mg",
+            "drug_class": "mra",
+            "status": "active"
+          },
+          {
+            "name": "metoprolol 25mg",
+            "drug_class": "beta_blocker",
+            "status": "active"
+          },
+          {
+            "name": "furosemide 40mg",
+            "drug_class": "loop_diuretic",
+            "status": "active"
+          },
+          {
+            "name": "apixaban 5mg",
+            "drug_class": "anticoagulant_doac",
+            "status": "active"
+          },
+          {
+            "name": "atorvastatin 40mg",
+            "drug_class": "statin",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_001",
+      "input": {
+        "medications": [
+          {
+            "name": "metoprolol 25mg",
+            "drug_class": "beta_blocker",
+            "status": "active"
+          },
+          {
+            "name": "lisinopril 10mg",
+            "drug_class": "ace_inhibitor",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_002",
+      "input": {
+        "medications": [
+          {
+            "name": "apixaban 5mg",
+            "drug_class": "anticoagulant_doac",
+            "status": "active"
+          },
+          {
+            "name": "metformin 1000mg",
+            "drug_class": "biguanide",
+            "status": "active"
+          },
+          {
+            "name": "spironolactone 25mg",
+            "drug_class": "mra",
+            "status": "active"
+          },
+          {
+            "name": "aspirin 81mg",
+            "drug_class": "antiplatelet",
+            "status": "active"
+          },
+          {
+            "name": "losartan 50mg",
+            "drug_class": "arb",
+            "status": "active"
+          },
+          {
+            "name": "insulin glargine",
+            "drug_class": "insulin",
+            "status": "active"
+          },
+          {
+            "name": "atorvastatin 40mg",
+            "drug_class": "statin",
+            "status": "active"
+          },
+          {
+            "name": "ibuprofen 400mg",
+            "drug_class": "nsaid",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_003",
+      "input": {
+        "medications": [
+          {
+            "name": "spironolactone 25mg",
+            "drug_class": "mra",
+            "status": "active"
+          },
+          {
+            "name": "furosemide 40mg",
+            "drug_class": "loop_diuretic",
+            "status": "active"
+          },
+          {
+            "name": "insulin glargine",
+            "drug_class": "insulin",
+            "status": "active"
+          },
+          {
+            "name": "ibuprofen 400mg",
+            "drug_class": "nsaid",
+            "status": "active"
+          },
+          {
+            "name": "apixaban 5mg",
+            "drug_class": "anticoagulant_doac",
+            "status": "active"
+          },
+          {
+            "name": "oxycodone 5mg",
+            "drug_class": "opioid",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_004",
+      "input": {
+        "medications": [
+          {
+            "name": "atorvastatin 40mg",
+            "drug_class": "statin",
+            "status": "active"
+          },
+          {
+            "name": "insulin glargine",
+            "drug_class": "insulin",
+            "status": "active"
+          },
+          {
+            "name": "furosemide 40mg",
+            "drug_class": "loop_diuretic",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_005",
+      "input": {
+        "medications": [
+          {
+            "name": "amoxicillin 500mg",
+            "drug_class": "antibiotic",
+            "status": "active"
+          },
+          {
+            "name": "apixaban 5mg",
+            "drug_class": "anticoagulant_doac",
+            "status": "active"
+          },
+          {
+            "name": "atorvastatin 40mg",
+            "drug_class": "statin",
+            "status": "active"
+          },
+          {
+            "name": "insulin glargine",
+            "drug_class": "insulin",
+            "status": "active"
+          },
+          {
+            "name": "losartan 50mg",
+            "drug_class": "arb",
+            "status": "active"
+          },
+          {
+            "name": "metoprolol 25mg",
+            "drug_class": "beta_blocker",
+            "status": "active"
+          },
+          {
+            "name": "spironolactone 25mg",
+            "drug_class": "mra",
+            "status": "active"
+          },
+          {
+            "name": "metformin 1000mg",
+            "drug_class": "biguanide",
+            "status": "active"
+          },
+          {
+            "name": "ibuprofen 400mg",
+            "drug_class": "nsaid",
+            "status": "active"
+          },
+          {
+            "name": "lisinopril 10mg",
+            "drug_class": "ace_inhibitor",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_006",
+      "input": {
+        "medications": [
+          {
+            "name": "spironolactone 25mg",
+            "drug_class": "mra",
+            "status": "active"
+          },
+          {
+            "name": "atorvastatin 40mg",
+            "drug_class": "statin",
+            "status": "active"
+          },
+          {
+            "name": "metformin 1000mg",
+            "drug_class": "biguanide",
+            "status": "active"
+          },
+          {
+            "name": "amoxicillin 500mg",
+            "drug_class": "antibiotic",
+            "status": "active"
+          },
+          {
+            "name": "apixaban 5mg",
+            "drug_class": "anticoagulant_doac",
+            "status": "active"
+          },
+          {
+            "name": "losartan 50mg",
+            "drug_class": "arb",
+            "status": "active"
+          },
+          {
+            "name": "lisinopril 10mg",
+            "drug_class": "ace_inhibitor",
+            "status": "active"
+          },
+          {
+            "name": "oxycodone 5mg",
+            "drug_class": "opioid",
+            "status": "active"
+          },
+          {
+            "name": "warfarin 5mg",
+            "drug_class": "anticoagulant_vka",
+            "status": "active"
+          },
+          {
+            "name": "metoprolol 25mg",
+            "drug_class": "beta_blocker",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_007",
+      "input": {
+        "medications": [
+          {
+            "name": "ibuprofen 400mg",
+            "drug_class": "nsaid",
+            "status": "active"
+          },
+          {
+            "name": "metoprolol 25mg",
+            "drug_class": "beta_blocker",
+            "status": "active"
+          },
+          {
+            "name": "warfarin 5mg",
+            "drug_class": "anticoagulant_vka",
+            "status": "active"
+          },
+          {
+            "name": "insulin glargine",
+            "drug_class": "insulin",
+            "status": "active"
+          },
+          {
+            "name": "aspirin 81mg",
+            "drug_class": "antiplatelet",
+            "status": "active"
+          },
+          {
+            "name": "lisinopril 10mg",
+            "drug_class": "ace_inhibitor",
+            "status": "active"
+          },
+          {
+            "name": "metformin 1000mg",
+            "drug_class": "biguanide",
+            "status": "active"
+          },
+          {
+            "name": "atorvastatin 40mg",
+            "drug_class": "statin",
+            "status": "active"
+          },
+          {
+            "name": "losartan 50mg",
+            "drug_class": "arb",
+            "status": "active"
+          },
+          {
+            "name": "amoxicillin 500mg",
+            "drug_class": "antibiotic",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_008",
+      "input": {
+        "medications": [
+          {
+            "name": "warfarin 5mg",
+            "drug_class": "anticoagulant_vka",
+            "status": "active"
+          },
+          {
+            "name": "metoprolol 25mg",
+            "drug_class": "beta_blocker",
+            "status": "active"
+          },
+          {
+            "name": "spironolactone 25mg",
+            "drug_class": "mra",
+            "status": "active"
+          },
+          {
+            "name": "insulin glargine",
+            "drug_class": "insulin",
+            "status": "active"
+          },
+          {
+            "name": "furosemide 40mg",
+            "drug_class": "loop_diuretic",
+            "status": "active"
+          },
+          {
+            "name": "lisinopril 10mg",
+            "drug_class": "ace_inhibitor",
+            "status": "active"
+          },
+          {
+            "name": "aspirin 81mg",
+            "drug_class": "antiplatelet",
+            "status": "active"
+          },
+          {
+            "name": "metformin 1000mg",
+            "drug_class": "biguanide",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_009",
+      "input": {
+        "medications": [
+          {
+            "name": "atorvastatin 40mg",
+            "drug_class": "statin",
+            "status": "active"
+          },
+          {
+            "name": "metoprolol 25mg",
+            "drug_class": "beta_blocker",
+            "status": "active"
+          },
+          {
+            "name": "oxycodone 5mg",
+            "drug_class": "opioid",
+            "status": "active"
+          },
+          {
+            "name": "furosemide 40mg",
+            "drug_class": "loop_diuretic",
+            "status": "active"
+          },
+          {
+            "name": "losartan 50mg",
+            "drug_class": "arb",
+            "status": "active"
+          },
+          {
+            "name": "spironolactone 25mg",
+            "drug_class": "mra",
+            "status": "active"
+          },
+          {
+            "name": "amoxicillin 500mg",
+            "drug_class": "antibiotic",
+            "status": "active"
+          },
+          {
+            "name": "metformin 1000mg",
+            "drug_class": "biguanide",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_010",
+      "input": {
+        "medications": [
+          {
+            "name": "lisinopril 10mg",
+            "drug_class": "ace_inhibitor",
+            "status": "active"
+          },
+          {
+            "name": "metformin 1000mg",
+            "drug_class": "biguanide",
+            "status": "active"
+          },
+          {
+            "name": "metoprolol 25mg",
+            "drug_class": "beta_blocker",
+            "status": "active"
+          },
+          {
+            "name": "oxycodone 5mg",
+            "drug_class": "opioid",
+            "status": "active"
+          },
+          {
+            "name": "losartan 50mg",
+            "drug_class": "arb",
+            "status": "active"
+          },
+          {
+            "name": "apixaban 5mg",
+            "drug_class": "anticoagulant_doac",
+            "status": "active"
+          },
+          {
+            "name": "amoxicillin 500mg",
+            "drug_class": "antibiotic",
+            "status": "active"
+          },
+          {
+            "name": "warfarin 5mg",
+            "drug_class": "anticoagulant_vka",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_011",
+      "input": {
+        "medications": [
+          {
+            "name": "apixaban 5mg",
+            "drug_class": "anticoagulant_doac",
+            "status": "active"
+          },
+          {
+            "name": "furosemide 40mg",
+            "drug_class": "loop_diuretic",
+            "status": "active"
+          },
+          {
+            "name": "oxycodone 5mg",
+            "drug_class": "opioid",
+            "status": "active"
+          },
+          {
+            "name": "insulin glargine",
+            "drug_class": "insulin",
+            "status": "active"
+          },
+          {
+            "name": "aspirin 81mg",
+            "drug_class": "antiplatelet",
+            "status": "active"
+          },
+          {
+            "name": "metoprolol 25mg",
+            "drug_class": "beta_blocker",
+            "status": "active"
+          },
+          {
+            "name": "spironolactone 25mg",
+            "drug_class": "mra",
+            "status": "active"
+          },
+          {
+            "name": "amoxicillin 500mg",
+            "drug_class": "antibiotic",
+            "status": "active"
+          },
+          {
+            "name": "metformin 1000mg",
+            "drug_class": "biguanide",
+            "status": "active"
+          },
+          {
+            "name": "warfarin 5mg",
+            "drug_class": "anticoagulant_vka",
+            "status": "active"
+          },
+          {
+            "name": "losartan 50mg",
+            "drug_class": "arb",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_012",
+      "input": {
+        "medications": [
+          {
+            "name": "apixaban 5mg",
+            "drug_class": "anticoagulant_doac",
+            "status": "active"
+          },
+          {
+            "name": "lisinopril 10mg",
+            "drug_class": "ace_inhibitor",
+            "status": "active"
+          },
+          {
+            "name": "ibuprofen 400mg",
+            "drug_class": "nsaid",
+            "status": "active"
+          },
+          {
+            "name": "insulin glargine",
+            "drug_class": "insulin",
+            "status": "active"
+          },
+          {
+            "name": "warfarin 5mg",
+            "drug_class": "anticoagulant_vka",
+            "status": "active"
+          },
+          {
+            "name": "aspirin 81mg",
+            "drug_class": "antiplatelet",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_013",
+      "input": {
+        "medications": [
+          {
+            "name": "apixaban 5mg",
+            "drug_class": "anticoagulant_doac",
+            "status": "active"
+          },
+          {
+            "name": "atorvastatin 40mg",
+            "drug_class": "statin",
+            "status": "active"
+          },
+          {
+            "name": "amoxicillin 500mg",
+            "drug_class": "antibiotic",
+            "status": "active"
+          },
+          {
+            "name": "spironolactone 25mg",
+            "drug_class": "mra",
+            "status": "active"
+          },
+          {
+            "name": "ibuprofen 400mg",
+            "drug_class": "nsaid",
+            "status": "active"
+          },
+          {
+            "name": "lisinopril 10mg",
+            "drug_class": "ace_inhibitor",
+            "status": "active"
+          },
+          {
+            "name": "warfarin 5mg",
+            "drug_class": "anticoagulant_vka",
+            "status": "active"
+          },
+          {
+            "name": "insulin glargine",
+            "drug_class": "insulin",
+            "status": "active"
+          },
+          {
+            "name": "metoprolol 25mg",
+            "drug_class": "beta_blocker",
+            "status": "active"
+          },
+          {
+            "name": "aspirin 81mg",
+            "drug_class": "antiplatelet",
+            "status": "active"
+          },
+          {
+            "name": "losartan 50mg",
+            "drug_class": "arb",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_014",
+      "input": {
+        "medications": [
+          {
+            "name": "amoxicillin 500mg",
+            "drug_class": "antibiotic",
+            "status": "active"
+          },
+          {
+            "name": "insulin glargine",
+            "drug_class": "insulin",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_015",
+      "input": {
+        "medications": [
+          {
+            "name": "spironolactone 25mg",
+            "drug_class": "mra",
+            "status": "active"
+          },
+          {
+            "name": "losartan 50mg",
+            "drug_class": "arb",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_016",
+      "input": {
+        "medications": [
+          {
+            "name": "metoprolol 25mg",
+            "drug_class": "beta_blocker",
+            "status": "active"
+          },
+          {
+            "name": "losartan 50mg",
+            "drug_class": "arb",
+            "status": "active"
+          },
+          {
+            "name": "apixaban 5mg",
+            "drug_class": "anticoagulant_doac",
+            "status": "active"
+          },
+          {
+            "name": "lisinopril 10mg",
+            "drug_class": "ace_inhibitor",
+            "status": "active"
+          },
+          {
+            "name": "oxycodone 5mg",
+            "drug_class": "opioid",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_017",
+      "input": {
+        "medications": [
+          {
+            "name": "warfarin 5mg",
+            "drug_class": "anticoagulant_vka",
+            "status": "active"
+          },
+          {
+            "name": "metoprolol 25mg",
+            "drug_class": "beta_blocker",
+            "status": "active"
+          },
+          {
+            "name": "insulin glargine",
+            "drug_class": "insulin",
+            "status": "active"
+          },
+          {
+            "name": "amoxicillin 500mg",
+            "drug_class": "antibiotic",
+            "status": "active"
+          },
+          {
+            "name": "losartan 50mg",
+            "drug_class": "arb",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_018",
+      "input": {
+        "medications": [
+          {
+            "name": "lisinopril 10mg",
+            "drug_class": "ace_inhibitor",
+            "status": "active"
+          },
+          {
+            "name": "ibuprofen 400mg",
+            "drug_class": "nsaid",
+            "status": "active"
+          },
+          {
+            "name": "furosemide 40mg",
+            "drug_class": "loop_diuretic",
+            "status": "active"
+          },
+          {
+            "name": "losartan 50mg",
+            "drug_class": "arb",
+            "status": "active"
+          },
+          {
+            "name": "insulin glargine",
+            "drug_class": "insulin",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_019",
+      "input": {
+        "medications": [
+          {
+            "name": "ibuprofen 400mg",
+            "drug_class": "nsaid",
+            "status": "active"
+          },
+          {
+            "name": "aspirin 81mg",
+            "drug_class": "antiplatelet",
+            "status": "active"
+          },
+          {
+            "name": "metoprolol 25mg",
+            "drug_class": "beta_blocker",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_020",
+      "input": {
+        "medications": [
+          {
+            "name": "spironolactone 25mg",
+            "drug_class": "mra",
+            "status": "active"
+          },
+          {
+            "name": "apixaban 5mg",
+            "drug_class": "anticoagulant_doac",
+            "status": "active"
+          },
+          {
+            "name": "aspirin 81mg",
+            "drug_class": "antiplatelet",
+            "status": "active"
+          },
+          {
+            "name": "insulin glargine",
+            "drug_class": "insulin",
+            "status": "active"
+          },
+          {
+            "name": "losartan 50mg",
+            "drug_class": "arb",
+            "status": "active"
+          },
+          {
+            "name": "metoprolol 25mg",
+            "drug_class": "beta_blocker",
+            "status": "active"
+          },
+          {
+            "name": "oxycodone 5mg",
+            "drug_class": "opioid",
+            "status": "active"
+          },
+          {
+            "name": "metformin 1000mg",
+            "drug_class": "biguanide",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_021",
+      "input": {
+        "medications": [
+          {
+            "name": "oxycodone 5mg",
+            "drug_class": "opioid",
+            "status": "active"
+          },
+          {
+            "name": "insulin glargine",
+            "drug_class": "insulin",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_022",
+      "input": {
+        "medications": [
+          {
+            "name": "apixaban 5mg",
+            "drug_class": "anticoagulant_doac",
+            "status": "active"
+          },
+          {
+            "name": "warfarin 5mg",
+            "drug_class": "anticoagulant_vka",
+            "status": "active"
+          },
+          {
+            "name": "metoprolol 25mg",
+            "drug_class": "beta_blocker",
+            "status": "active"
+          },
+          {
+            "name": "oxycodone 5mg",
+            "drug_class": "opioid",
+            "status": "active"
+          },
+          {
+            "name": "losartan 50mg",
+            "drug_class": "arb",
+            "status": "active"
+          },
+          {
+            "name": "amoxicillin 500mg",
+            "drug_class": "antibiotic",
+            "status": "active"
+          },
+          {
+            "name": "furosemide 40mg",
+            "drug_class": "loop_diuretic",
+            "status": "active"
+          },
+          {
+            "name": "metformin 1000mg",
+            "drug_class": "biguanide",
+            "status": "active"
+          },
+          {
+            "name": "ibuprofen 400mg",
+            "drug_class": "nsaid",
+            "status": "active"
+          },
+          {
+            "name": "spironolactone 25mg",
+            "drug_class": "mra",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_023",
+      "input": {
+        "medications": [
+          {
+            "name": "amoxicillin 500mg",
+            "drug_class": "antibiotic",
+            "status": "active"
+          },
+          {
+            "name": "lisinopril 10mg",
+            "drug_class": "ace_inhibitor",
+            "status": "active"
+          },
+          {
+            "name": "insulin glargine",
+            "drug_class": "insulin",
+            "status": "active"
+          },
+          {
+            "name": "ibuprofen 400mg",
+            "drug_class": "nsaid",
+            "status": "active"
+          },
+          {
+            "name": "metoprolol 25mg",
+            "drug_class": "beta_blocker",
+            "status": "active"
+          },
+          {
+            "name": "losartan 50mg",
+            "drug_class": "arb",
+            "status": "active"
+          },
+          {
+            "name": "metformin 1000mg",
+            "drug_class": "biguanide",
+            "status": "active"
+          },
+          {
+            "name": "apixaban 5mg",
+            "drug_class": "anticoagulant_doac",
+            "status": "active"
+          },
+          {
+            "name": "oxycodone 5mg",
+            "drug_class": "opioid",
+            "status": "active"
+          },
+          {
+            "name": "spironolactone 25mg",
+            "drug_class": "mra",
+            "status": "active"
+          },
+          {
+            "name": "aspirin 81mg",
+            "drug_class": "antiplatelet",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_024",
+      "input": {
+        "medications": [
+          {
+            "name": "lisinopril 10mg",
+            "drug_class": "ace_inhibitor",
+            "status": "active"
+          },
+          {
+            "name": "ibuprofen 400mg",
+            "drug_class": "nsaid",
+            "status": "active"
+          },
+          {
+            "name": "metformin 1000mg",
+            "drug_class": "biguanide",
+            "status": "active"
+          },
+          {
+            "name": "metoprolol 25mg",
+            "drug_class": "beta_blocker",
+            "status": "active"
+          },
+          {
+            "name": "amoxicillin 500mg",
+            "drug_class": "antibiotic",
+            "status": "active"
+          },
+          {
+            "name": "losartan 50mg",
+            "drug_class": "arb",
+            "status": "active"
+          },
+          {
+            "name": "warfarin 5mg",
+            "drug_class": "anticoagulant_vka",
+            "status": "active"
+          },
+          {
+            "name": "aspirin 81mg",
+            "drug_class": "antiplatelet",
+            "status": "active"
+          },
+          {
+            "name": "oxycodone 5mg",
+            "drug_class": "opioid",
+            "status": "active"
+          },
+          {
+            "name": "spironolactone 25mg",
+            "drug_class": "mra",
+            "status": "active"
+          },
+          {
+            "name": "furosemide 40mg",
+            "drug_class": "loop_diuretic",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_025",
+      "input": {
+        "medications": [
+          {
+            "name": "aspirin 81mg",
+            "drug_class": "antiplatelet",
+            "status": "active"
+          },
+          {
+            "name": "spironolactone 25mg",
+            "drug_class": "mra",
+            "status": "active"
+          },
+          {
+            "name": "apixaban 5mg",
+            "drug_class": "anticoagulant_doac",
+            "status": "active"
+          },
+          {
+            "name": "metoprolol 25mg",
+            "drug_class": "beta_blocker",
+            "status": "active"
+          },
+          {
+            "name": "atorvastatin 40mg",
+            "drug_class": "statin",
+            "status": "active"
+          },
+          {
+            "name": "losartan 50mg",
+            "drug_class": "arb",
+            "status": "active"
+          },
+          {
+            "name": "warfarin 5mg",
+            "drug_class": "anticoagulant_vka",
+            "status": "active"
+          },
+          {
+            "name": "oxycodone 5mg",
+            "drug_class": "opioid",
+            "status": "active"
+          },
+          {
+            "name": "amoxicillin 500mg",
+            "drug_class": "antibiotic",
+            "status": "active"
+          },
+          {
+            "name": "insulin glargine",
+            "drug_class": "insulin",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_026",
+      "input": {
+        "medications": [
+          {
+            "name": "ibuprofen 400mg",
+            "drug_class": "nsaid",
+            "status": "active"
+          },
+          {
+            "name": "lisinopril 10mg",
+            "drug_class": "ace_inhibitor",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_027",
+      "input": {
+        "medications": [
+          {
+            "name": "lisinopril 10mg",
+            "drug_class": "ace_inhibitor",
+            "status": "active"
+          },
+          {
+            "name": "ibuprofen 400mg",
+            "drug_class": "nsaid",
+            "status": "active"
+          },
+          {
+            "name": "furosemide 40mg",
+            "drug_class": "loop_diuretic",
+            "status": "active"
+          },
+          {
+            "name": "spironolactone 25mg",
+            "drug_class": "mra",
+            "status": "active"
+          },
+          {
+            "name": "losartan 50mg",
+            "drug_class": "arb",
+            "status": "active"
+          },
+          {
+            "name": "metoprolol 25mg",
+            "drug_class": "beta_blocker",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_028",
+      "input": {
+        "medications": [
+          {
+            "name": "atorvastatin 40mg",
+            "drug_class": "statin",
+            "status": "active"
+          },
+          {
+            "name": "insulin glargine",
+            "drug_class": "insulin",
+            "status": "active"
+          },
+          {
+            "name": "amoxicillin 500mg",
+            "drug_class": "antibiotic",
+            "status": "active"
+          },
+          {
+            "name": "aspirin 81mg",
+            "drug_class": "antiplatelet",
+            "status": "active"
+          },
+          {
+            "name": "spironolactone 25mg",
+            "drug_class": "mra",
+            "status": "active"
+          },
+          {
+            "name": "apixaban 5mg",
+            "drug_class": "anticoagulant_doac",
+            "status": "active"
+          },
+          {
+            "name": "furosemide 40mg",
+            "drug_class": "loop_diuretic",
+            "status": "active"
+          },
+          {
+            "name": "losartan 50mg",
+            "drug_class": "arb",
+            "status": "active"
+          },
+          {
+            "name": "metformin 1000mg",
+            "drug_class": "biguanide",
+            "status": "active"
+          },
+          {
+            "name": "lisinopril 10mg",
+            "drug_class": "ace_inhibitor",
+            "status": "active"
+          },
+          {
+            "name": "ibuprofen 400mg",
+            "drug_class": "nsaid",
+            "status": "active"
+          },
+          {
+            "name": "warfarin 5mg",
+            "drug_class": "anticoagulant_vka",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_029",
+      "input": {
+        "medications": [
+          {
+            "name": "metformin 1000mg",
+            "drug_class": "biguanide",
+            "status": "active"
+          },
+          {
+            "name": "apixaban 5mg",
+            "drug_class": "anticoagulant_doac",
+            "status": "active"
+          },
+          {
+            "name": "ibuprofen 400mg",
+            "drug_class": "nsaid",
+            "status": "active"
+          },
+          {
+            "name": "oxycodone 5mg",
+            "drug_class": "opioid",
+            "status": "active"
+          },
+          {
+            "name": "spironolactone 25mg",
+            "drug_class": "mra",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_030",
+      "input": {
+        "medications": [
+          {
+            "name": "warfarin 5mg",
+            "drug_class": "anticoagulant_vka",
+            "status": "active"
+          },
+          {
+            "name": "metoprolol 25mg",
+            "drug_class": "beta_blocker",
+            "status": "active"
+          },
+          {
+            "name": "metformin 1000mg",
+            "drug_class": "biguanide",
+            "status": "active"
+          },
+          {
+            "name": "apixaban 5mg",
+            "drug_class": "anticoagulant_doac",
+            "status": "active"
+          },
+          {
+            "name": "oxycodone 5mg",
+            "drug_class": "opioid",
+            "status": "active"
+          },
+          {
+            "name": "amoxicillin 500mg",
+            "drug_class": "antibiotic",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_031",
+      "input": {
+        "medications": [
+          {
+            "name": "spironolactone 25mg",
+            "drug_class": "mra",
+            "status": "active"
+          },
+          {
+            "name": "ibuprofen 400mg",
+            "drug_class": "nsaid",
+            "status": "active"
+          },
+          {
+            "name": "atorvastatin 40mg",
+            "drug_class": "statin",
+            "status": "active"
+          },
+          {
+            "name": "oxycodone 5mg",
+            "drug_class": "opioid",
+            "status": "active"
+          },
+          {
+            "name": "metoprolol 25mg",
+            "drug_class": "beta_blocker",
+            "status": "active"
+          },
+          {
+            "name": "furosemide 40mg",
+            "drug_class": "loop_diuretic",
+            "status": "active"
+          },
+          {
+            "name": "lisinopril 10mg",
+            "drug_class": "ace_inhibitor",
+            "status": "active"
+          },
+          {
+            "name": "amoxicillin 500mg",
+            "drug_class": "antibiotic",
+            "status": "active"
+          },
+          {
+            "name": "metformin 1000mg",
+            "drug_class": "biguanide",
+            "status": "active"
+          },
+          {
+            "name": "warfarin 5mg",
+            "drug_class": "anticoagulant_vka",
+            "status": "active"
+          },
+          {
+            "name": "insulin glargine",
+            "drug_class": "insulin",
+            "status": "active"
+          },
+          {
+            "name": "apixaban 5mg",
+            "drug_class": "anticoagulant_doac",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_032",
+      "input": {
+        "medications": [
+          {
+            "name": "insulin glargine",
+            "drug_class": "insulin",
+            "status": "active"
+          },
+          {
+            "name": "metoprolol 25mg",
+            "drug_class": "beta_blocker",
+            "status": "active"
+          },
+          {
+            "name": "spironolactone 25mg",
+            "drug_class": "mra",
+            "status": "active"
+          },
+          {
+            "name": "losartan 50mg",
+            "drug_class": "arb",
+            "status": "active"
+          },
+          {
+            "name": "atorvastatin 40mg",
+            "drug_class": "statin",
+            "status": "active"
+          },
+          {
+            "name": "furosemide 40mg",
+            "drug_class": "loop_diuretic",
+            "status": "active"
+          },
+          {
+            "name": "oxycodone 5mg",
+            "drug_class": "opioid",
+            "status": "active"
+          },
+          {
+            "name": "lisinopril 10mg",
+            "drug_class": "ace_inhibitor",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_033",
+      "input": {
+        "medications": [
+          {
+            "name": "aspirin 81mg",
+            "drug_class": "antiplatelet",
+            "status": "active"
+          },
+          {
+            "name": "warfarin 5mg",
+            "drug_class": "anticoagulant_vka",
+            "status": "active"
+          },
+          {
+            "name": "metoprolol 25mg",
+            "drug_class": "beta_blocker",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_034",
+      "input": {
+        "medications": [
+          {
+            "name": "furosemide 40mg",
+            "drug_class": "loop_diuretic",
+            "status": "active"
+          },
+          {
+            "name": "ibuprofen 400mg",
+            "drug_class": "nsaid",
+            "status": "active"
+          },
+          {
+            "name": "aspirin 81mg",
+            "drug_class": "antiplatelet",
+            "status": "active"
+          },
+          {
+            "name": "amoxicillin 500mg",
+            "drug_class": "antibiotic",
+            "status": "active"
+          },
+          {
+            "name": "oxycodone 5mg",
+            "drug_class": "opioid",
+            "status": "active"
+          },
+          {
+            "name": "warfarin 5mg",
+            "drug_class": "anticoagulant_vka",
+            "status": "active"
+          },
+          {
+            "name": "metformin 1000mg",
+            "drug_class": "biguanide",
+            "status": "active"
+          },
+          {
+            "name": "apixaban 5mg",
+            "drug_class": "anticoagulant_doac",
+            "status": "active"
+          },
+          {
+            "name": "spironolactone 25mg",
+            "drug_class": "mra",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_035",
+      "input": {
+        "medications": [
+          {
+            "name": "amoxicillin 500mg",
+            "drug_class": "antibiotic",
+            "status": "active"
+          },
+          {
+            "name": "spironolactone 25mg",
+            "drug_class": "mra",
+            "status": "active"
+          },
+          {
+            "name": "apixaban 5mg",
+            "drug_class": "anticoagulant_doac",
+            "status": "active"
+          },
+          {
+            "name": "oxycodone 5mg",
+            "drug_class": "opioid",
+            "status": "active"
+          },
+          {
+            "name": "warfarin 5mg",
+            "drug_class": "anticoagulant_vka",
+            "status": "active"
+          },
+          {
+            "name": "aspirin 81mg",
+            "drug_class": "antiplatelet",
+            "status": "active"
+          },
+          {
+            "name": "furosemide 40mg",
+            "drug_class": "loop_diuretic",
+            "status": "active"
+          },
+          {
+            "name": "ibuprofen 400mg",
+            "drug_class": "nsaid",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_036",
+      "input": {
+        "medications": [
+          {
+            "name": "losartan 50mg",
+            "drug_class": "arb",
+            "status": "active"
+          },
+          {
+            "name": "metoprolol 25mg",
+            "drug_class": "beta_blocker",
+            "status": "active"
+          },
+          {
+            "name": "amoxicillin 500mg",
+            "drug_class": "antibiotic",
+            "status": "active"
+          },
+          {
+            "name": "aspirin 81mg",
+            "drug_class": "antiplatelet",
+            "status": "active"
+          },
+          {
+            "name": "apixaban 5mg",
+            "drug_class": "anticoagulant_doac",
+            "status": "active"
+          },
+          {
+            "name": "ibuprofen 400mg",
+            "drug_class": "nsaid",
+            "status": "active"
+          },
+          {
+            "name": "atorvastatin 40mg",
+            "drug_class": "statin",
+            "status": "active"
+          },
+          {
+            "name": "oxycodone 5mg",
+            "drug_class": "opioid",
+            "status": "active"
+          },
+          {
+            "name": "warfarin 5mg",
+            "drug_class": "anticoagulant_vka",
+            "status": "active"
+          },
+          {
+            "name": "metformin 1000mg",
+            "drug_class": "biguanide",
+            "status": "active"
+          },
+          {
+            "name": "spironolactone 25mg",
+            "drug_class": "mra",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_037",
+      "input": {
+        "medications": [
+          {
+            "name": "atorvastatin 40mg",
+            "drug_class": "statin",
+            "status": "active"
+          },
+          {
+            "name": "aspirin 81mg",
+            "drug_class": "antiplatelet",
+            "status": "active"
+          },
+          {
+            "name": "metformin 1000mg",
+            "drug_class": "biguanide",
+            "status": "active"
+          },
+          {
+            "name": "ibuprofen 400mg",
+            "drug_class": "nsaid",
+            "status": "active"
+          },
+          {
+            "name": "metoprolol 25mg",
+            "drug_class": "beta_blocker",
+            "status": "active"
+          },
+          {
+            "name": "lisinopril 10mg",
+            "drug_class": "ace_inhibitor",
+            "status": "active"
+          },
+          {
+            "name": "warfarin 5mg",
+            "drug_class": "anticoagulant_vka",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_038",
+      "input": {
+        "medications": [
+          {
+            "name": "amoxicillin 500mg",
+            "drug_class": "antibiotic",
+            "status": "active"
+          },
+          {
+            "name": "aspirin 81mg",
+            "drug_class": "antiplatelet",
+            "status": "active"
+          },
+          {
+            "name": "insulin glargine",
+            "drug_class": "insulin",
+            "status": "active"
+          },
+          {
+            "name": "spironolactone 25mg",
+            "drug_class": "mra",
+            "status": "active"
+          },
+          {
+            "name": "lisinopril 10mg",
+            "drug_class": "ace_inhibitor",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_039",
+      "input": {
+        "medications": [
+          {
+            "name": "atorvastatin 40mg",
+            "drug_class": "statin",
+            "status": "active"
+          },
+          {
+            "name": "insulin glargine",
+            "drug_class": "insulin",
+            "status": "active"
+          },
+          {
+            "name": "ibuprofen 400mg",
+            "drug_class": "nsaid",
+            "status": "active"
+          },
+          {
+            "name": "spironolactone 25mg",
+            "drug_class": "mra",
+            "status": "active"
+          },
+          {
+            "name": "aspirin 81mg",
+            "drug_class": "antiplatelet",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_040",
+      "input": {
+        "medications": [
+          {
+            "name": "amoxicillin 500mg",
+            "drug_class": "antibiotic",
+            "status": "active"
+          },
+          {
+            "name": "ibuprofen 400mg",
+            "drug_class": "nsaid",
+            "status": "active"
+          },
+          {
+            "name": "spironolactone 25mg",
+            "drug_class": "mra",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_041",
+      "input": {
+        "medications": [
+          {
+            "name": "lisinopril 10mg",
+            "drug_class": "ace_inhibitor",
+            "status": "active"
+          },
+          {
+            "name": "apixaban 5mg",
+            "drug_class": "anticoagulant_doac",
+            "status": "active"
+          },
+          {
+            "name": "metoprolol 25mg",
+            "drug_class": "beta_blocker",
+            "status": "active"
+          },
+          {
+            "name": "metformin 1000mg",
+            "drug_class": "biguanide",
+            "status": "active"
+          },
+          {
+            "name": "spironolactone 25mg",
+            "drug_class": "mra",
+            "status": "active"
+          },
+          {
+            "name": "amoxicillin 500mg",
+            "drug_class": "antibiotic",
+            "status": "active"
+          },
+          {
+            "name": "losartan 50mg",
+            "drug_class": "arb",
+            "status": "active"
+          },
+          {
+            "name": "oxycodone 5mg",
+            "drug_class": "opioid",
+            "status": "active"
+          },
+          {
+            "name": "atorvastatin 40mg",
+            "drug_class": "statin",
+            "status": "active"
+          },
+          {
+            "name": "warfarin 5mg",
+            "drug_class": "anticoagulant_vka",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_042",
+      "input": {
+        "medications": [
+          {
+            "name": "metformin 1000mg",
+            "drug_class": "biguanide",
+            "status": "active"
+          },
+          {
+            "name": "ibuprofen 400mg",
+            "drug_class": "nsaid",
+            "status": "active"
+          },
+          {
+            "name": "lisinopril 10mg",
+            "drug_class": "ace_inhibitor",
+            "status": "active"
+          },
+          {
+            "name": "aspirin 81mg",
+            "drug_class": "antiplatelet",
+            "status": "active"
+          },
+          {
+            "name": "losartan 50mg",
+            "drug_class": "arb",
+            "status": "active"
+          },
+          {
+            "name": "atorvastatin 40mg",
+            "drug_class": "statin",
+            "status": "active"
+          },
+          {
+            "name": "warfarin 5mg",
+            "drug_class": "anticoagulant_vka",
+            "status": "active"
+          },
+          {
+            "name": "apixaban 5mg",
+            "drug_class": "anticoagulant_doac",
+            "status": "active"
+          },
+          {
+            "name": "insulin glargine",
+            "drug_class": "insulin",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_043",
+      "input": {
+        "medications": [
+          {
+            "name": "atorvastatin 40mg",
+            "drug_class": "statin",
+            "status": "active"
+          },
+          {
+            "name": "aspirin 81mg",
+            "drug_class": "antiplatelet",
+            "status": "active"
+          },
+          {
+            "name": "losartan 50mg",
+            "drug_class": "arb",
+            "status": "active"
+          },
+          {
+            "name": "lisinopril 10mg",
+            "drug_class": "ace_inhibitor",
+            "status": "active"
+          },
+          {
+            "name": "spironolactone 25mg",
+            "drug_class": "mra",
+            "status": "active"
+          },
+          {
+            "name": "metoprolol 25mg",
+            "drug_class": "beta_blocker",
+            "status": "active"
+          },
+          {
+            "name": "oxycodone 5mg",
+            "drug_class": "opioid",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_044",
+      "input": {
+        "medications": [
+          {
+            "name": "insulin glargine",
+            "drug_class": "insulin",
+            "status": "active"
+          },
+          {
+            "name": "losartan 50mg",
+            "drug_class": "arb",
+            "status": "active"
+          },
+          {
+            "name": "apixaban 5mg",
+            "drug_class": "anticoagulant_doac",
+            "status": "active"
+          },
+          {
+            "name": "aspirin 81mg",
+            "drug_class": "antiplatelet",
+            "status": "active"
+          },
+          {
+            "name": "spironolactone 25mg",
+            "drug_class": "mra",
+            "status": "active"
+          },
+          {
+            "name": "atorvastatin 40mg",
+            "drug_class": "statin",
+            "status": "active"
+          },
+          {
+            "name": "lisinopril 10mg",
+            "drug_class": "ace_inhibitor",
+            "status": "active"
+          },
+          {
+            "name": "furosemide 40mg",
+            "drug_class": "loop_diuretic",
+            "status": "active"
+          },
+          {
+            "name": "metoprolol 25mg",
+            "drug_class": "beta_blocker",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_045",
+      "input": {
+        "medications": [
+          {
+            "name": "amoxicillin 500mg",
+            "drug_class": "antibiotic",
+            "status": "active"
+          },
+          {
+            "name": "metoprolol 25mg",
+            "drug_class": "beta_blocker",
+            "status": "active"
+          },
+          {
+            "name": "spironolactone 25mg",
+            "drug_class": "mra",
+            "status": "active"
+          },
+          {
+            "name": "insulin glargine",
+            "drug_class": "insulin",
+            "status": "active"
+          },
+          {
+            "name": "aspirin 81mg",
+            "drug_class": "antiplatelet",
+            "status": "active"
+          },
+          {
+            "name": "ibuprofen 400mg",
+            "drug_class": "nsaid",
+            "status": "active"
+          },
+          {
+            "name": "losartan 50mg",
+            "drug_class": "arb",
+            "status": "active"
+          },
+          {
+            "name": "oxycodone 5mg",
+            "drug_class": "opioid",
+            "status": "active"
+          },
+          {
+            "name": "furosemide 40mg",
+            "drug_class": "loop_diuretic",
+            "status": "active"
+          },
+          {
+            "name": "apixaban 5mg",
+            "drug_class": "anticoagulant_doac",
+            "status": "active"
+          },
+          {
+            "name": "warfarin 5mg",
+            "drug_class": "anticoagulant_vka",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_046",
+      "input": {
+        "medications": [
+          {
+            "name": "lisinopril 10mg",
+            "drug_class": "ace_inhibitor",
+            "status": "active"
+          },
+          {
+            "name": "atorvastatin 40mg",
+            "drug_class": "statin",
+            "status": "active"
+          },
+          {
+            "name": "apixaban 5mg",
+            "drug_class": "anticoagulant_doac",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_047",
+      "input": {
+        "medications": [
+          {
+            "name": "furosemide 40mg",
+            "drug_class": "loop_diuretic",
+            "status": "active"
+          },
+          {
+            "name": "metoprolol 25mg",
+            "drug_class": "beta_blocker",
+            "status": "active"
+          },
+          {
+            "name": "losartan 50mg",
+            "drug_class": "arb",
+            "status": "active"
+          },
+          {
+            "name": "ibuprofen 400mg",
+            "drug_class": "nsaid",
+            "status": "active"
+          },
+          {
+            "name": "aspirin 81mg",
+            "drug_class": "antiplatelet",
+            "status": "active"
+          },
+          {
+            "name": "spironolactone 25mg",
+            "drug_class": "mra",
+            "status": "active"
+          },
+          {
+            "name": "oxycodone 5mg",
+            "drug_class": "opioid",
+            "status": "active"
+          },
+          {
+            "name": "metformin 1000mg",
+            "drug_class": "biguanide",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_048",
+      "input": {
+        "medications": [
+          {
+            "name": "spironolactone 25mg",
+            "drug_class": "mra",
+            "status": "active"
+          },
+          {
+            "name": "atorvastatin 40mg",
+            "drug_class": "statin",
+            "status": "active"
+          },
+          {
+            "name": "warfarin 5mg",
+            "drug_class": "anticoagulant_vka",
+            "status": "active"
+          },
+          {
+            "name": "insulin glargine",
+            "drug_class": "insulin",
+            "status": "active"
+          },
+          {
+            "name": "amoxicillin 500mg",
+            "drug_class": "antibiotic",
+            "status": "active"
+          },
+          {
+            "name": "metoprolol 25mg",
+            "drug_class": "beta_blocker",
+            "status": "active"
+          },
+          {
+            "name": "lisinopril 10mg",
+            "drug_class": "ace_inhibitor",
+            "status": "active"
+          },
+          {
+            "name": "apixaban 5mg",
+            "drug_class": "anticoagulant_doac",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "polypharmacy_case_049",
+      "input": {
+        "medications": [
+          {
+            "name": "ibuprofen 400mg",
+            "drug_class": "nsaid",
+            "status": "active"
+          },
+          {
+            "name": "oxycodone 5mg",
+            "drug_class": "opioid",
+            "status": "active"
+          },
+          {
+            "name": "spironolactone 25mg",
+            "drug_class": "mra",
+            "status": "active"
+          }
+        ]
+      },
+      "schema_only": true
+    }
+  ]
+}

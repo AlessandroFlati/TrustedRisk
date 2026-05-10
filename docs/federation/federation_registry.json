@@ -1,0 +1,249 @@
+{
+  "n_specialists": 16,
+  "specialists": [
+    {
+      "name": "trustedrisk-acute",
+      "description_first_line": "Emergency department + acute / critical-care decision support",
+      "bundles": [
+        "cardiology_depth",
+        "critical_care",
+        "ed_acute",
+        "endocrine_acute",
+        "endocrinology_advanced",
+        "gi_hepatology_depth",
+        "imaging",
+        "infectious_disease",
+        "nephrology",
+        "neurology_depth",
+        "ob_peds_advanced",
+        "obstetric_geriatric",
+        "peri_op_risk",
+        "rheumatology",
+        "stroke_acs",
+        "transplant",
+        "trauma_critical"
+      ],
+      "n_skills": 11,
+      "port": 8771,
+      "card_path": "apps\\specialist_acute\\agent_card.json"
+    },
+    {
+      "name": "trustedrisk-appeals",
+      "description_first_line": "Insurance appeals: denial parse + letter draft + escalation (Phase 10",
+      "bundles": [
+        "insurance_appeals"
+      ],
+      "n_skills": 2,
+      "port": 8784,
+      "card_path": "apps\\specialist_appeals\\agent_card.json"
+    },
+    {
+      "name": "trustedrisk-coder",
+      "description_first_line": "Auto-coding agent (Phase 7",
+      "bundles": [
+        "auto_coding"
+      ],
+      "n_skills": 2,
+      "port": 8778,
+      "card_path": "apps\\specialist_coder\\agent_card.json"
+    },
+    {
+      "name": "trustedrisk-discharge",
+      "description_first_line": "Adult inpatient discharge planning + outpatient medication review",
+      "bundles": [
+        "antimicrobial",
+        "clinical_workflow",
+        "core_discharge",
+        "data_normalization",
+        "fhir_writeback",
+        "heme_onc_depth",
+        "oncology",
+        "patient_facing"
+      ],
+      "n_skills": 9,
+      "port": 8770,
+      "card_path": "apps\\specialist_discharge\\agent_card.json"
+    },
+    {
+      "name": "trustedrisk-evidence",
+      "description_first_line": "Clinician evidence retrieval + grounded differential diagnosis",
+      "bundles": [
+        "chart_intelligence",
+        "context_resolution",
+        "diagnosis",
+        "external_knowledge",
+        "legacy_ehr_parsers",
+        "model_research",
+        "research_design",
+        "sleep_pain",
+        "specialty_clinics"
+      ],
+      "n_skills": 6,
+      "port": 8772,
+      "card_path": "apps\\specialist_evidence\\agent_card.json"
+    },
+    {
+      "name": "trustedrisk-mental-health",
+      "description_first_line": "Suicide risk screening + psychiatric admission decision",
+      "bundles": [
+        "mental_health"
+      ],
+      "n_skills": 2,
+      "port": 8785,
+      "card_path": "apps\\specialist_mental_health\\agent_card.json"
+    },
+    {
+      "name": "trustedrisk-multimodal",
+      "description_first_line": "Multi-modal: ECG QT analyzer + DICOM SR ingest (Phase 11",
+      "bundles": [
+        "multimodal"
+      ],
+      "n_skills": 2,
+      "port": 8786,
+      "card_path": "apps\\specialist_multimodal\\agent_card.json"
+    },
+    {
+      "name": "trustedrisk-pa",
+      "description_first_line": "Prior Authorization evidence + letter + appeal-likelihood (Phase 2",
+      "bundles": [
+        "prior_authorization"
+      ],
+      "n_skills": 2,
+      "port": 8775,
+      "card_path": "apps\\specialist_pa\\agent_card.json"
+    },
+    {
+      "name": "trustedrisk-patient",
+      "description_first_line": "Post-discharge Q&A + caregiver hand-off (Phase 2",
+      "bundles": [
+        "patient_facing",
+        "patient_qa"
+      ],
+      "n_skills": 2,
+      "port": 8777,
+      "card_path": "apps\\specialist_patient\\agent_card.json"
+    },
+    {
+      "name": "trustedrisk-pediatric",
+      "description_first_line": "Pediatric early warning + weight-based dosing",
+      "bundles": [
+        "pediatric"
+      ],
+      "n_skills": 2,
+      "port": 8774,
+      "card_path": "apps\\specialist_pediatric\\agent_card.json"
+    },
+    {
+      "name": "trustedrisk-pgx",
+      "description_first_line": "Pharmacogenomic DSS (Phase 7",
+      "bundles": [
+        "pharmacogenomics"
+      ],
+      "n_skills": 2,
+      "port": 8779,
+      "card_path": "apps\\specialist_pgx\\agent_card.json"
+    },
+    {
+      "name": "trustedrisk-pophealth",
+      "description_first_line": "Population health + outbreak detection (Phase 10",
+      "bundles": [
+        "population_health"
+      ],
+      "n_skills": 2,
+      "port": 8783,
+      "card_path": "apps\\specialist_pophealth\\agent_card.json"
+    },
+    {
+      "name": "trustedrisk-population",
+      "description_first_line": "Cost-effectiveness + subgroup fairness + DP equity dashboard",
+      "bundles": [
+        "economics"
+      ],
+      "n_skills": 2,
+      "port": 8773,
+      "card_path": "apps\\specialist_population\\agent_card.json"
+    },
+    {
+      "name": "trustedrisk-preadmit",
+      "description_first_line": "Pre-arrival triage agent (Phase 7",
+      "bundles": [
+        "preadmit_triage"
+      ],
+      "n_skills": 2,
+      "port": 8781,
+      "card_path": "apps\\specialist_preadmit\\agent_card.json"
+    },
+    {
+      "name": "trustedrisk-quality",
+      "description_first_line": "HEDIS / CMS Stars Rating + care-gap prioritisation (Phase 10",
+      "bundles": [
+        "quality_stars"
+      ],
+      "n_skills": 2,
+      "port": 8782,
+      "card_path": "apps\\specialist_quality\\agent_card.json"
+    },
+    {
+      "name": "trustedrisk-scribe",
+      "description_first_line": "Clinical documentation drafting (Phase 2",
+      "bundles": [
+        "clinical_documentation"
+      ],
+      "n_skills": 2,
+      "port": 8776,
+      "card_path": "apps\\specialist_scribe\\agent_card.json"
+    }
+  ],
+  "bundles_covered": [
+    "antimicrobial",
+    "auto_coding",
+    "cardiology_depth",
+    "chart_intelligence",
+    "clinical_documentation",
+    "clinical_workflow",
+    "context_resolution",
+    "core_discharge",
+    "critical_care",
+    "data_normalization",
+    "diagnosis",
+    "economics",
+    "ed_acute",
+    "endocrine_acute",
+    "endocrinology_advanced",
+    "external_knowledge",
+    "fhir_writeback",
+    "gi_hepatology_depth",
+    "heme_onc_depth",
+    "imaging",
+    "infectious_disease",
+    "insurance_appeals",
+    "legacy_ehr_parsers",
+    "mental_health",
+    "model_research",
+    "multimodal",
+    "nephrology",
+    "neurology_depth",
+    "ob_peds_advanced",
+    "obstetric_geriatric",
+    "oncology",
+    "patient_facing",
+    "patient_qa",
+    "pediatric",
+    "peri_op_risk",
+    "pharmacogenomics",
+    "population_health",
+    "preadmit_triage",
+    "prior_authorization",
+    "quality_stars",
+    "research_design",
+    "rheumatology",
+    "sleep_pain",
+    "specialty_clinics",
+    "stroke_acs",
+    "transplant",
+    "trauma_critical"
+  ],
+  "bundles_missing": [],
+  "coverage_percent": 100.0,
+  "rationale": "16 specialist agent cards aggregated; 47/47 runtime bundles covered (100.0%); 0 gap(s)."
+}

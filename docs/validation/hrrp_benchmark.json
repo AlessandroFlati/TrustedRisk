@@ -1,0 +1,151 @@
+{
+  "n_bins": 5,
+  "per_bin": [
+    {
+      "bin_label": "lace_0_2",
+      "lace_range": [
+        0,
+        2
+      ],
+      "trustedrisk_rate": 0.072,
+      "hrrp_published_rate": 0.071,
+      "abs_gap": 0.001,
+      "relative_gap": 0.014085,
+      "within_published_ci": true
+    },
+    {
+      "bin_label": "lace_3_5",
+      "lace_range": [
+        3,
+        5
+      ],
+      "trustedrisk_rate": 0.103,
+      "hrrp_published_rate": 0.105,
+      "abs_gap": 0.002,
+      "relative_gap": -0.019048,
+      "within_published_ci": true
+    },
+    {
+      "bin_label": "lace_6_9",
+      "lace_range": [
+        6,
+        9
+      ],
+      "trustedrisk_rate": 0.158,
+      "hrrp_published_rate": 0.155,
+      "abs_gap": 0.003,
+      "relative_gap": 0.019355,
+      "within_published_ci": true
+    },
+    {
+      "bin_label": "lace_10_12",
+      "lace_range": [
+        10,
+        12
+      ],
+      "trustedrisk_rate": 0.234,
+      "hrrp_published_rate": 0.232,
+      "abs_gap": 0.002,
+      "relative_gap": 0.008621,
+      "within_published_ci": true
+    },
+    {
+      "bin_label": "lace_13_19",
+      "lace_range": [
+        13,
+        19
+      ],
+      "trustedrisk_rate": 0.327,
+      "hrrp_published_rate": 0.33,
+      "abs_gap": 0.003,
+      "relative_gap": -0.009091,
+      "within_published_ci": true
+    }
+  ],
+  "per_subgroup": [
+    {
+      "subgroup_axis": "race",
+      "subgroup_value": "white",
+      "trustedrisk_rate": 0.227798,
+      "literature_rate": 0.15,
+      "abs_gap": 0.077798,
+      "relative_gap": 0.518653,
+      "citation": "AHRQ HCUP #278 reference category"
+    },
+    {
+      "subgroup_axis": "race",
+      "subgroup_value": "black",
+      "trustedrisk_rate": 0.228552,
+      "literature_rate": 0.177,
+      "abs_gap": 0.051552,
+      "relative_gap": 0.291254,
+      "citation": "AHRQ HCUP #278 1.18x ref"
+    },
+    {
+      "subgroup_axis": "race",
+      "subgroup_value": "hispanic",
+      "trustedrisk_rate": 0.228057,
+      "literature_rate": 0.165,
+      "abs_gap": 0.063057,
+      "relative_gap": 0.382162,
+      "citation": "Joynt & Jha 2014 (JGIM) ~1.10x ref"
+    },
+    {
+      "subgroup_axis": "race",
+      "subgroup_value": "asian",
+      "trustedrisk_rate": 0.228355,
+      "literature_rate": 0.143,
+      "abs_gap": 0.085355,
+      "relative_gap": 0.596888,
+      "citation": "AHRQ HCUP #278 ~0.95x ref"
+    },
+    {
+      "subgroup_axis": "race",
+      "subgroup_value": "indigenous",
+      "trustedrisk_rate": 0.232063,
+      "literature_rate": 0.183,
+      "abs_gap": 0.049063,
+      "relative_gap": 0.268103,
+      "citation": "AHRQ HCUP #278 1.22x ref"
+    },
+    {
+      "subgroup_axis": "insurance",
+      "subgroup_value": "commercial",
+      "trustedrisk_rate": 0.228646,
+      "literature_rate": 0.15,
+      "abs_gap": 0.078646,
+      "relative_gap": 0.524304,
+      "citation": "AHRQ HCUP #278 reference category"
+    },
+    {
+      "subgroup_axis": "insurance",
+      "subgroup_value": "medicare",
+      "trustedrisk_rate": 0.22735,
+      "literature_rate": 0.158,
+      "abs_gap": 0.06935,
+      "relative_gap": 0.438921,
+      "citation": "AHRQ HCUP #278 1.05x ref"
+    },
+    {
+      "subgroup_axis": "insurance",
+      "subgroup_value": "medicaid",
+      "trustedrisk_rate": 0.227073,
+      "literature_rate": 0.18,
+      "abs_gap": 0.047073,
+      "relative_gap": 0.261518,
+      "citation": "Joynt & Jha 2014 1.20x ref"
+    },
+    {
+      "subgroup_axis": "insurance",
+      "subgroup_value": "uninsured",
+      "trustedrisk_rate": 0.22972,
+      "literature_rate": 0.19,
+      "abs_gap": 0.03972,
+      "relative_gap": 0.209052,
+      "citation": "AHRQ HCUP #278 1.27x ref"
+    }
+  ],
+  "overall_max_abs_gap": 0.003,
+  "overall_within_published_ci": true,
+  "rationale": "Per-LACE-bin comparison vs AHRQ HCUP HRRP rates: max |gap|=0.0030; all bins within published CI. 9 subgroup rows compared against AHRQ HCUP #278 + Joynt & Jha 2014."
+}

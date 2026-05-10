@@ -1,0 +1,607 @@
+{
+  "bundle_id": "stroke_acs_heart",
+  "tool": "compute_heart_score",
+  "n_cases": 50,
+  "cases": [
+    {
+      "name": "heart_case_000",
+      "input": {
+        "history_descriptor": "non_suspicious",
+        "ecg_descriptor": "non_specific_repolarization",
+        "age": 43,
+        "risk_factors_count": 0,
+        "known_atherosclerotic_disease": false,
+        "troponin_times_uln": 0.40907549470114013
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_001",
+      "input": {
+        "history_descriptor": "slightly_suspicious",
+        "ecg_descriptor": "non_specific_repolarization",
+        "age": 64,
+        "risk_factors_count": 1,
+        "known_atherosclerotic_disease": false,
+        "troponin_times_uln": 0.35279441472185924
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_002",
+      "input": {
+        "history_descriptor": "non_suspicious",
+        "ecg_descriptor": "non_specific_repolarization",
+        "age": 34,
+        "risk_factors_count": 0,
+        "known_atherosclerotic_disease": false,
+        "troponin_times_uln": 0.6157031107037235
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_003",
+      "input": {
+        "history_descriptor": "non_suspicious",
+        "ecg_descriptor": "normal",
+        "age": 70,
+        "risk_factors_count": 1,
+        "known_atherosclerotic_disease": false,
+        "troponin_times_uln": 0.2191251431659088
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_004",
+      "input": {
+        "history_descriptor": "slightly_suspicious",
+        "ecg_descriptor": "non_specific_repolarization",
+        "age": 39,
+        "risk_factors_count": 3,
+        "known_atherosclerotic_disease": true,
+        "troponin_times_uln": 0.02317247177101689
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_005",
+      "input": {
+        "history_descriptor": "moderately_suspicious",
+        "ecg_descriptor": "normal",
+        "age": 51,
+        "risk_factors_count": 1,
+        "known_atherosclerotic_disease": false,
+        "troponin_times_uln": 0.24790328482146673
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_006",
+      "input": {
+        "history_descriptor": "moderately_suspicious",
+        "ecg_descriptor": "normal",
+        "age": 41,
+        "risk_factors_count": 2,
+        "known_atherosclerotic_disease": false,
+        "troponin_times_uln": 0.33675924915580513
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_007",
+      "input": {
+        "history_descriptor": "moderately_suspicious",
+        "ecg_descriptor": "normal",
+        "age": 39,
+        "risk_factors_count": 3,
+        "known_atherosclerotic_disease": false,
+        "troponin_times_uln": 0.9297997560207197
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_008",
+      "input": {
+        "history_descriptor": "non_suspicious",
+        "ecg_descriptor": "normal",
+        "age": 35,
+        "risk_factors_count": 1,
+        "known_atherosclerotic_disease": false,
+        "troponin_times_uln": 0.9888764765817594
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_009",
+      "input": {
+        "history_descriptor": "highly_suspicious",
+        "ecg_descriptor": "stemi",
+        "age": 76,
+        "risk_factors_count": 4,
+        "known_atherosclerotic_disease": false,
+        "troponin_times_uln": 3.389266728139508
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_010",
+      "input": {
+        "history_descriptor": "non_suspicious",
+        "ecg_descriptor": "normal",
+        "age": 59,
+        "risk_factors_count": 0,
+        "known_atherosclerotic_disease": false,
+        "troponin_times_uln": 0.36238238707954373
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_011",
+      "input": {
+        "history_descriptor": "moderately_suspicious",
+        "ecg_descriptor": "normal",
+        "age": 64,
+        "risk_factors_count": 1,
+        "known_atherosclerotic_disease": true,
+        "troponin_times_uln": 0.3173347035685675
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_012",
+      "input": {
+        "history_descriptor": "highly_suspicious",
+        "ecg_descriptor": "significant_st_depression",
+        "age": 53,
+        "risk_factors_count": 5,
+        "known_atherosclerotic_disease": false,
+        "troponin_times_uln": 6.934264245093781
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_013",
+      "input": {
+        "history_descriptor": "highly_suspicious",
+        "ecg_descriptor": "stemi",
+        "age": 67,
+        "risk_factors_count": 5,
+        "known_atherosclerotic_disease": false,
+        "troponin_times_uln": 3.384904516566104
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_014",
+      "input": {
+        "history_descriptor": "highly_suspicious",
+        "ecg_descriptor": "stemi",
+        "age": 58,
+        "risk_factors_count": 3,
+        "known_atherosclerotic_disease": true,
+        "troponin_times_uln": 4.696234854885906
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_015",
+      "input": {
+        "history_descriptor": "slightly_suspicious",
+        "ecg_descriptor": "non_specific_repolarization",
+        "age": 60,
+        "risk_factors_count": 1,
+        "known_atherosclerotic_disease": false,
+        "troponin_times_uln": 0.024271254426869282
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_016",
+      "input": {
+        "history_descriptor": "non_suspicious",
+        "ecg_descriptor": "non_specific_repolarization",
+        "age": 67,
+        "risk_factors_count": 0,
+        "known_atherosclerotic_disease": false,
+        "troponin_times_uln": 0.8389816494537357
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_017",
+      "input": {
+        "history_descriptor": "non_suspicious",
+        "ecg_descriptor": "non_specific_repolarization",
+        "age": 64,
+        "risk_factors_count": 2,
+        "known_atherosclerotic_disease": false,
+        "troponin_times_uln": 0.9898845808017903
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_018",
+      "input": {
+        "history_descriptor": "slightly_suspicious",
+        "ecg_descriptor": "normal",
+        "age": 48,
+        "risk_factors_count": 0,
+        "known_atherosclerotic_disease": true,
+        "troponin_times_uln": 0.10361410624696898
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_019",
+      "input": {
+        "history_descriptor": "moderately_suspicious",
+        "ecg_descriptor": "significant_st_depression",
+        "age": 52,
+        "risk_factors_count": 5,
+        "known_atherosclerotic_disease": true,
+        "troponin_times_uln": 3.363128440552723
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_020",
+      "input": {
+        "history_descriptor": "non_suspicious",
+        "ecg_descriptor": "non_specific_repolarization",
+        "age": 42,
+        "risk_factors_count": 1,
+        "known_atherosclerotic_disease": false,
+        "troponin_times_uln": 0.2738306832542847
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_021",
+      "input": {
+        "history_descriptor": "moderately_suspicious",
+        "ecg_descriptor": "normal",
+        "age": 30,
+        "risk_factors_count": 1,
+        "known_atherosclerotic_disease": false,
+        "troponin_times_uln": 0.8107166895619483
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_022",
+      "input": {
+        "history_descriptor": "moderately_suspicious",
+        "ecg_descriptor": "normal",
+        "age": 60,
+        "risk_factors_count": 3,
+        "known_atherosclerotic_disease": true,
+        "troponin_times_uln": 0.9588165311847868
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_023",
+      "input": {
+        "history_descriptor": "slightly_suspicious",
+        "ecg_descriptor": "normal",
+        "age": 61,
+        "risk_factors_count": 2,
+        "known_atherosclerotic_disease": false,
+        "troponin_times_uln": 0.2086266002422449
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_024",
+      "input": {
+        "history_descriptor": "slightly_suspicious",
+        "ecg_descriptor": "normal",
+        "age": 66,
+        "risk_factors_count": 3,
+        "known_atherosclerotic_disease": true,
+        "troponin_times_uln": 0.8955406809488559
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_025",
+      "input": {
+        "history_descriptor": "moderately_suspicious",
+        "ecg_descriptor": "non_specific_repolarization",
+        "age": 53,
+        "risk_factors_count": 3,
+        "known_atherosclerotic_disease": false,
+        "troponin_times_uln": 0.0960352984926709
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_026",
+      "input": {
+        "history_descriptor": "slightly_suspicious",
+        "ecg_descriptor": "non_specific_repolarization",
+        "age": 44,
+        "risk_factors_count": 1,
+        "known_atherosclerotic_disease": false,
+        "troponin_times_uln": 0.6356020498732505
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_027",
+      "input": {
+        "history_descriptor": "non_suspicious",
+        "ecg_descriptor": "non_specific_repolarization",
+        "age": 34,
+        "risk_factors_count": 2,
+        "known_atherosclerotic_disease": false,
+        "troponin_times_uln": 0.33015015104521517
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_028",
+      "input": {
+        "history_descriptor": "moderately_suspicious",
+        "ecg_descriptor": "stemi",
+        "age": 78,
+        "risk_factors_count": 2,
+        "known_atherosclerotic_disease": false,
+        "troponin_times_uln": 4.889514341827822
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_029",
+      "input": {
+        "history_descriptor": "highly_suspicious",
+        "ecg_descriptor": "significant_st_depression",
+        "age": 66,
+        "risk_factors_count": 4,
+        "known_atherosclerotic_disease": false,
+        "troponin_times_uln": 3.963658319826987
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_030",
+      "input": {
+        "history_descriptor": "moderately_suspicious",
+        "ecg_descriptor": "stemi",
+        "age": 56,
+        "risk_factors_count": 2,
+        "known_atherosclerotic_disease": true,
+        "troponin_times_uln": 3.736210398817609
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_031",
+      "input": {
+        "history_descriptor": "highly_suspicious",
+        "ecg_descriptor": "significant_st_depression",
+        "age": 66,
+        "risk_factors_count": 5,
+        "known_atherosclerotic_disease": true,
+        "troponin_times_uln": 6.16452919580551
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_032",
+      "input": {
+        "history_descriptor": "slightly_suspicious",
+        "ecg_descriptor": "non_specific_repolarization",
+        "age": 41,
+        "risk_factors_count": 3,
+        "known_atherosclerotic_disease": false,
+        "troponin_times_uln": 0.9841715590091102
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_033",
+      "input": {
+        "history_descriptor": "moderately_suspicious",
+        "ecg_descriptor": "non_specific_repolarization",
+        "age": 56,
+        "risk_factors_count": 2,
+        "known_atherosclerotic_disease": false,
+        "troponin_times_uln": 0.045870555963303694
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_034",
+      "input": {
+        "history_descriptor": "moderately_suspicious",
+        "ecg_descriptor": "non_specific_repolarization",
+        "age": 61,
+        "risk_factors_count": 1,
+        "known_atherosclerotic_disease": false,
+        "troponin_times_uln": 0.09227475985489575
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_035",
+      "input": {
+        "history_descriptor": "non_suspicious",
+        "ecg_descriptor": "normal",
+        "age": 47,
+        "risk_factors_count": 0,
+        "known_atherosclerotic_disease": false,
+        "troponin_times_uln": 0.5041293173784851
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_036",
+      "input": {
+        "history_descriptor": "highly_suspicious",
+        "ecg_descriptor": "stemi",
+        "age": 61,
+        "risk_factors_count": 5,
+        "known_atherosclerotic_disease": true,
+        "troponin_times_uln": 4.564257721681936
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_037",
+      "input": {
+        "history_descriptor": "moderately_suspicious",
+        "ecg_descriptor": "stemi",
+        "age": 53,
+        "risk_factors_count": 5,
+        "known_atherosclerotic_disease": true,
+        "troponin_times_uln": 6.984713419824589
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_038",
+      "input": {
+        "history_descriptor": "slightly_suspicious",
+        "ecg_descriptor": "non_specific_repolarization",
+        "age": 46,
+        "risk_factors_count": 1,
+        "known_atherosclerotic_disease": false,
+        "troponin_times_uln": 0.1323701426703745
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_039",
+      "input": {
+        "history_descriptor": "slightly_suspicious",
+        "ecg_descriptor": "non_specific_repolarization",
+        "age": 59,
+        "risk_factors_count": 3,
+        "known_atherosclerotic_disease": false,
+        "troponin_times_uln": 0.17757779683333486
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_040",
+      "input": {
+        "history_descriptor": "non_suspicious",
+        "ecg_descriptor": "normal",
+        "age": 49,
+        "risk_factors_count": 1,
+        "known_atherosclerotic_disease": false,
+        "troponin_times_uln": 0.4021107963274687
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_041",
+      "input": {
+        "history_descriptor": "highly_suspicious",
+        "ecg_descriptor": "significant_st_depression",
+        "age": 65,
+        "risk_factors_count": 5,
+        "known_atherosclerotic_disease": true,
+        "troponin_times_uln": 7.779210606305492
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_042",
+      "input": {
+        "history_descriptor": "moderately_suspicious",
+        "ecg_descriptor": "significant_st_depression",
+        "age": 52,
+        "risk_factors_count": 2,
+        "known_atherosclerotic_disease": true,
+        "troponin_times_uln": 4.680204747666732
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_043",
+      "input": {
+        "history_descriptor": "moderately_suspicious",
+        "ecg_descriptor": "stemi",
+        "age": 72,
+        "risk_factors_count": 5,
+        "known_atherosclerotic_disease": false,
+        "troponin_times_uln": 5.757355126870849
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_044",
+      "input": {
+        "history_descriptor": "moderately_suspicious",
+        "ecg_descriptor": "stemi",
+        "age": 77,
+        "risk_factors_count": 4,
+        "known_atherosclerotic_disease": false,
+        "troponin_times_uln": 6.674665319439848
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_045",
+      "input": {
+        "history_descriptor": "slightly_suspicious",
+        "ecg_descriptor": "non_specific_repolarization",
+        "age": 52,
+        "risk_factors_count": 3,
+        "known_atherosclerotic_disease": false,
+        "troponin_times_uln": 0.7288143401096832
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_046",
+      "input": {
+        "history_descriptor": "non_suspicious",
+        "ecg_descriptor": "normal",
+        "age": 43,
+        "risk_factors_count": 2,
+        "known_atherosclerotic_disease": false,
+        "troponin_times_uln": 0.81485160078226
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_047",
+      "input": {
+        "history_descriptor": "moderately_suspicious",
+        "ecg_descriptor": "significant_st_depression",
+        "age": 59,
+        "risk_factors_count": 5,
+        "known_atherosclerotic_disease": true,
+        "troponin_times_uln": 7.115735792852596
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_048",
+      "input": {
+        "history_descriptor": "non_suspicious",
+        "ecg_descriptor": "normal",
+        "age": 40,
+        "risk_factors_count": 2,
+        "known_atherosclerotic_disease": false,
+        "troponin_times_uln": 0.7572894599938389
+      },
+      "schema_only": true
+    },
+    {
+      "name": "heart_case_049",
+      "input": {
+        "history_descriptor": "moderately_suspicious",
+        "ecg_descriptor": "normal",
+        "age": 50,
+        "risk_factors_count": 2,
+        "known_atherosclerotic_disease": false,
+        "troponin_times_uln": 0.6215567428774599
+      },
+      "schema_only": true
+    }
+  ]
+}

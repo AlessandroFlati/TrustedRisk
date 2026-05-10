@@ -1,0 +1,51 @@
+{
+  "_doc": "Golden cases for compute_stroke_severity. Each case asserts on a subset of fields — additive new fields are ok.",
+  "tool": "compute_stroke_severity",
+  "cases": [
+    {
+      "name": "minor_stroke_isolated_facial_palsy",
+      "input": {
+        "item_scores": {"facial_palsy": 1},
+        "last_known_well_minutes_ago": 60
+      },
+      "expected_subset": {
+        "score_total": 1,
+        "severity_tier": "minor",
+        "lvo_suspected": false,
+        "recommended_response": "outpatient_workup"
+      }
+    },
+    {
+      "name": "moderate_stroke_lvo_within_window",
+      "input": {
+        "item_scores": {
+          "loc_responsiveness": 1, "best_gaze": 2,
+          "motor_arm_right": 3, "best_language": 2,
+          "extinction_inattention": 1
+        },
+        "last_known_well_minutes_ago": 90
+      },
+      "expected_subset": {
+        "score_total": 9,
+        "severity_tier": "moderate",
+        "lvo_suspected": true,
+        "recommended_response": "endovascular_thrombectomy_evaluation"
+      }
+    },
+    {
+      "name": "severe_stroke_no_cortical_no_lvo",
+      "input": {
+        "item_scores": {
+          "motor_arm_left": 4, "motor_arm_right": 4,
+          "motor_leg_left": 4, "motor_leg_right": 4,
+          "facial_palsy": 3
+        },
+        "last_known_well_minutes_ago": 600
+      },
+      "expected_subset": {
+        "lvo_suspected": false,
+        "severity_tier": "moderate_severe"
+      }
+    }
+  ]
+}

@@ -1,0 +1,727 @@
+{
+  "bundle_id": "mental_health",
+  "tool": "compute_suicide_risk_assessment",
+  "n_cases": 50,
+  "cases": [
+    {
+      "name": "suicide_case_000",
+      "input": {
+        "ideation_lifetime_level": 4,
+        "ideation_past_30d_level": 0,
+        "behavior_lifetime_attempts": 0,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 3,
+        "protective_factors_count": 0,
+        "patient_demographics": {
+          "race": "asian"
+        }
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_001",
+      "input": {
+        "ideation_lifetime_level": 4,
+        "ideation_past_30d_level": 4,
+        "behavior_lifetime_attempts": 2,
+        "behavior_past_30d_any": true,
+        "warning_factors_count": 5,
+        "protective_factors_count": 3,
+        "patient_demographics": {
+          "race": "white"
+        }
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_002",
+      "input": {
+        "ideation_lifetime_level": 1,
+        "ideation_past_30d_level": 5,
+        "behavior_lifetime_attempts": 2,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 3,
+        "protective_factors_count": 0,
+        "patient_demographics": {
+          "race": "white"
+        }
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_003",
+      "input": {
+        "ideation_lifetime_level": 0,
+        "ideation_past_30d_level": 1,
+        "behavior_lifetime_attempts": 0,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 3,
+        "protective_factors_count": 2,
+        "patient_demographics": {
+          "race": "white"
+        }
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_004",
+      "input": {
+        "ideation_lifetime_level": 4,
+        "ideation_past_30d_level": 3,
+        "behavior_lifetime_attempts": 0,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 5,
+        "protective_factors_count": 4,
+        "patient_demographics": null
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_005",
+      "input": {
+        "ideation_lifetime_level": 0,
+        "ideation_past_30d_level": 5,
+        "behavior_lifetime_attempts": 0,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 2,
+        "protective_factors_count": 0,
+        "patient_demographics": {
+          "race": "white"
+        }
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_006",
+      "input": {
+        "ideation_lifetime_level": 2,
+        "ideation_past_30d_level": 5,
+        "behavior_lifetime_attempts": 1,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 1,
+        "protective_factors_count": 0,
+        "patient_demographics": null
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_007",
+      "input": {
+        "ideation_lifetime_level": 0,
+        "ideation_past_30d_level": 3,
+        "behavior_lifetime_attempts": 0,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 3,
+        "protective_factors_count": 2,
+        "patient_demographics": {
+          "sexual_orientation": "lgbtq"
+        }
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_008",
+      "input": {
+        "ideation_lifetime_level": 5,
+        "ideation_past_30d_level": 3,
+        "behavior_lifetime_attempts": 0,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 0,
+        "protective_factors_count": 3,
+        "patient_demographics": null
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_009",
+      "input": {
+        "ideation_lifetime_level": 0,
+        "ideation_past_30d_level": 2,
+        "behavior_lifetime_attempts": 0,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 5,
+        "protective_factors_count": 0,
+        "patient_demographics": null
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_010",
+      "input": {
+        "ideation_lifetime_level": 0,
+        "ideation_past_30d_level": 4,
+        "behavior_lifetime_attempts": 0,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 5,
+        "protective_factors_count": 3,
+        "patient_demographics": {
+          "race": "asian"
+        }
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_011",
+      "input": {
+        "ideation_lifetime_level": 2,
+        "ideation_past_30d_level": 2,
+        "behavior_lifetime_attempts": 0,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 0,
+        "protective_factors_count": 0,
+        "patient_demographics": null
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_012",
+      "input": {
+        "ideation_lifetime_level": 2,
+        "ideation_past_30d_level": 4,
+        "behavior_lifetime_attempts": 1,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 3,
+        "protective_factors_count": 0,
+        "patient_demographics": null
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_013",
+      "input": {
+        "ideation_lifetime_level": 5,
+        "ideation_past_30d_level": 4,
+        "behavior_lifetime_attempts": 2,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 4,
+        "protective_factors_count": 4,
+        "patient_demographics": {
+          "race": "black"
+        }
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_014",
+      "input": {
+        "ideation_lifetime_level": 1,
+        "ideation_past_30d_level": 0,
+        "behavior_lifetime_attempts": 0,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 0,
+        "protective_factors_count": 1,
+        "patient_demographics": {
+          "race": "black"
+        }
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_015",
+      "input": {
+        "ideation_lifetime_level": 5,
+        "ideation_past_30d_level": 0,
+        "behavior_lifetime_attempts": 0,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 5,
+        "protective_factors_count": 0,
+        "patient_demographics": null
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_016",
+      "input": {
+        "ideation_lifetime_level": 4,
+        "ideation_past_30d_level": 3,
+        "behavior_lifetime_attempts": 0,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 2,
+        "protective_factors_count": 4,
+        "patient_demographics": {
+          "race": "black"
+        }
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_017",
+      "input": {
+        "ideation_lifetime_level": 2,
+        "ideation_past_30d_level": 1,
+        "behavior_lifetime_attempts": 0,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 4,
+        "protective_factors_count": 3,
+        "patient_demographics": {
+          "race": "black"
+        }
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_018",
+      "input": {
+        "ideation_lifetime_level": 4,
+        "ideation_past_30d_level": 1,
+        "behavior_lifetime_attempts": 0,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 4,
+        "protective_factors_count": 4,
+        "patient_demographics": {
+          "sexual_orientation": "lgbtq"
+        }
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_019",
+      "input": {
+        "ideation_lifetime_level": 2,
+        "ideation_past_30d_level": 5,
+        "behavior_lifetime_attempts": 0,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 3,
+        "protective_factors_count": 4,
+        "patient_demographics": {
+          "race": "black"
+        }
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_020",
+      "input": {
+        "ideation_lifetime_level": 4,
+        "ideation_past_30d_level": 2,
+        "behavior_lifetime_attempts": 0,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 1,
+        "protective_factors_count": 2,
+        "patient_demographics": null
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_021",
+      "input": {
+        "ideation_lifetime_level": 4,
+        "ideation_past_30d_level": 0,
+        "behavior_lifetime_attempts": 0,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 5,
+        "protective_factors_count": 1,
+        "patient_demographics": {
+          "sexual_orientation": "lgbtq"
+        }
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_022",
+      "input": {
+        "ideation_lifetime_level": 3,
+        "ideation_past_30d_level": 1,
+        "behavior_lifetime_attempts": 0,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 1,
+        "protective_factors_count": 5,
+        "patient_demographics": {
+          "race": "asian"
+        }
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_023",
+      "input": {
+        "ideation_lifetime_level": 3,
+        "ideation_past_30d_level": 4,
+        "behavior_lifetime_attempts": 3,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 1,
+        "protective_factors_count": 0,
+        "patient_demographics": {
+          "race": "black"
+        }
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_024",
+      "input": {
+        "ideation_lifetime_level": 0,
+        "ideation_past_30d_level": 2,
+        "behavior_lifetime_attempts": 0,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 1,
+        "protective_factors_count": 1,
+        "patient_demographics": null
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_025",
+      "input": {
+        "ideation_lifetime_level": 1,
+        "ideation_past_30d_level": 3,
+        "behavior_lifetime_attempts": 0,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 5,
+        "protective_factors_count": 2,
+        "patient_demographics": {
+          "sexual_orientation": "lgbtq"
+        }
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_026",
+      "input": {
+        "ideation_lifetime_level": 5,
+        "ideation_past_30d_level": 0,
+        "behavior_lifetime_attempts": 0,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 3,
+        "protective_factors_count": 4,
+        "patient_demographics": {
+          "race": "white"
+        }
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_027",
+      "input": {
+        "ideation_lifetime_level": 4,
+        "ideation_past_30d_level": 1,
+        "behavior_lifetime_attempts": 0,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 5,
+        "protective_factors_count": 5,
+        "patient_demographics": {
+          "race": "white"
+        }
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_028",
+      "input": {
+        "ideation_lifetime_level": 4,
+        "ideation_past_30d_level": 0,
+        "behavior_lifetime_attempts": 0,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 3,
+        "protective_factors_count": 4,
+        "patient_demographics": null
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_029",
+      "input": {
+        "ideation_lifetime_level": 0,
+        "ideation_past_30d_level": 3,
+        "behavior_lifetime_attempts": 0,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 1,
+        "protective_factors_count": 3,
+        "patient_demographics": {
+          "race": "asian"
+        }
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_030",
+      "input": {
+        "ideation_lifetime_level": 5,
+        "ideation_past_30d_level": 1,
+        "behavior_lifetime_attempts": 0,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 1,
+        "protective_factors_count": 3,
+        "patient_demographics": null
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_031",
+      "input": {
+        "ideation_lifetime_level": 2,
+        "ideation_past_30d_level": 4,
+        "behavior_lifetime_attempts": 0,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 5,
+        "protective_factors_count": 5,
+        "patient_demographics": null
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_032",
+      "input": {
+        "ideation_lifetime_level": 2,
+        "ideation_past_30d_level": 3,
+        "behavior_lifetime_attempts": 0,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 4,
+        "protective_factors_count": 0,
+        "patient_demographics": {
+          "race": "asian"
+        }
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_033",
+      "input": {
+        "ideation_lifetime_level": 2,
+        "ideation_past_30d_level": 1,
+        "behavior_lifetime_attempts": 0,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 1,
+        "protective_factors_count": 4,
+        "patient_demographics": null
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_034",
+      "input": {
+        "ideation_lifetime_level": 0,
+        "ideation_past_30d_level": 3,
+        "behavior_lifetime_attempts": 0,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 0,
+        "protective_factors_count": 3,
+        "patient_demographics": {
+          "race": "white"
+        }
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_035",
+      "input": {
+        "ideation_lifetime_level": 0,
+        "ideation_past_30d_level": 5,
+        "behavior_lifetime_attempts": 3,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 4,
+        "protective_factors_count": 4,
+        "patient_demographics": {
+          "race": "white"
+        }
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_036",
+      "input": {
+        "ideation_lifetime_level": 0,
+        "ideation_past_30d_level": 1,
+        "behavior_lifetime_attempts": 0,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 4,
+        "protective_factors_count": 5,
+        "patient_demographics": {
+          "sexual_orientation": "lgbtq"
+        }
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_037",
+      "input": {
+        "ideation_lifetime_level": 3,
+        "ideation_past_30d_level": 3,
+        "behavior_lifetime_attempts": 0,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 1,
+        "protective_factors_count": 4,
+        "patient_demographics": {
+          "sexual_orientation": "lgbtq"
+        }
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_038",
+      "input": {
+        "ideation_lifetime_level": 5,
+        "ideation_past_30d_level": 3,
+        "behavior_lifetime_attempts": 0,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 0,
+        "protective_factors_count": 4,
+        "patient_demographics": {
+          "sexual_orientation": "lgbtq"
+        }
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_039",
+      "input": {
+        "ideation_lifetime_level": 1,
+        "ideation_past_30d_level": 3,
+        "behavior_lifetime_attempts": 0,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 3,
+        "protective_factors_count": 0,
+        "patient_demographics": {
+          "race": "asian"
+        }
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_040",
+      "input": {
+        "ideation_lifetime_level": 3,
+        "ideation_past_30d_level": 2,
+        "behavior_lifetime_attempts": 0,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 0,
+        "protective_factors_count": 4,
+        "patient_demographics": null
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_041",
+      "input": {
+        "ideation_lifetime_level": 2,
+        "ideation_past_30d_level": 0,
+        "behavior_lifetime_attempts": 0,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 4,
+        "protective_factors_count": 2,
+        "patient_demographics": null
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_042",
+      "input": {
+        "ideation_lifetime_level": 4,
+        "ideation_past_30d_level": 0,
+        "behavior_lifetime_attempts": 0,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 4,
+        "protective_factors_count": 0,
+        "patient_demographics": {
+          "race": "white"
+        }
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_043",
+      "input": {
+        "ideation_lifetime_level": 5,
+        "ideation_past_30d_level": 3,
+        "behavior_lifetime_attempts": 0,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 2,
+        "protective_factors_count": 4,
+        "patient_demographics": {
+          "race": "black"
+        }
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_044",
+      "input": {
+        "ideation_lifetime_level": 3,
+        "ideation_past_30d_level": 0,
+        "behavior_lifetime_attempts": 0,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 0,
+        "protective_factors_count": 1,
+        "patient_demographics": {
+          "race": "black"
+        }
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_045",
+      "input": {
+        "ideation_lifetime_level": 2,
+        "ideation_past_30d_level": 3,
+        "behavior_lifetime_attempts": 0,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 0,
+        "protective_factors_count": 4,
+        "patient_demographics": {
+          "race": "asian"
+        }
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_046",
+      "input": {
+        "ideation_lifetime_level": 5,
+        "ideation_past_30d_level": 3,
+        "behavior_lifetime_attempts": 0,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 2,
+        "protective_factors_count": 0,
+        "patient_demographics": {
+          "race": "white"
+        }
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_047",
+      "input": {
+        "ideation_lifetime_level": 4,
+        "ideation_past_30d_level": 5,
+        "behavior_lifetime_attempts": 1,
+        "behavior_past_30d_any": true,
+        "warning_factors_count": 1,
+        "protective_factors_count": 4,
+        "patient_demographics": {
+          "race": "asian"
+        }
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_048",
+      "input": {
+        "ideation_lifetime_level": 3,
+        "ideation_past_30d_level": 1,
+        "behavior_lifetime_attempts": 0,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 4,
+        "protective_factors_count": 1,
+        "patient_demographics": {
+          "race": "black"
+        }
+      },
+      "schema_only": true
+    },
+    {
+      "name": "suicide_case_049",
+      "input": {
+        "ideation_lifetime_level": 5,
+        "ideation_past_30d_level": 5,
+        "behavior_lifetime_attempts": 0,
+        "behavior_past_30d_any": false,
+        "warning_factors_count": 0,
+        "protective_factors_count": 5,
+        "patient_demographics": {
+          "race": "white"
+        }
+      },
+      "schema_only": true
+    }
+  ]
+}

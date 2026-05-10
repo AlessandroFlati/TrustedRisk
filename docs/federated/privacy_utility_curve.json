@@ -1,0 +1,43 @@
+{
+  "n_sites": 5,
+  "epsilon_grid": [
+    0.1,
+    0.5,
+    1.0,
+    5.0,
+    10.0
+  ],
+  "points": [
+    {
+      "epsilon_per_round": 0.1,
+      "final_global_ece": 0.007939,
+      "centralized_baseline_ece": 0.002034,
+      "federated_overhead": 0.005905
+    },
+    {
+      "epsilon_per_round": 0.5,
+      "final_global_ece": 0.001798,
+      "centralized_baseline_ece": 0.002034,
+      "federated_overhead": -0.000236
+    },
+    {
+      "epsilon_per_round": 1.0,
+      "final_global_ece": 0.001378,
+      "centralized_baseline_ece": 0.002034,
+      "federated_overhead": -0.000656
+    },
+    {
+      "epsilon_per_round": 5.0,
+      "final_global_ece": 0.001104,
+      "centralized_baseline_ece": 0.002034,
+      "federated_overhead": -0.00093
+    },
+    {
+      "epsilon_per_round": 10.0,
+      "final_global_ece": 0.00107,
+      "centralized_baseline_ece": 0.002034,
+      "federated_overhead": -0.000964
+    }
+  ],
+  "rationale": "Privacy-utility sweep across 5 epsilon values; lowest final ECE 0.0011."
+}

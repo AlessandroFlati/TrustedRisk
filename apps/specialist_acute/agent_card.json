@@ -1,0 +1,421 @@
+{
+  "schemaVersion": "1.0.0",
+  "name": "Acute Care Specialist",
+  "_legacy_name": "trustedrisk-acute",
+  "description": "Emergency department + acute / critical-care decision support. Marketplace-publishable A2A specialist sharing the TrustedRisk MCP backend. Advertises 11 skills: ED admission triage (ESI + disposition), Inpatient deterioration score (NEWS2), Acute stroke severity + reperfusion eligibility, HEART score + ACS disposition, Polytrauma severity + massive transfusion, DKA severity + inpatient glycemic control, ACR appropriateness + contrast safety, KDIGO AKI staging + dialysis initiation, MEOWS + ACOG preeclampsia assessment, Morse falls + CAM delirium screening, PHI leakage check. FHIR context propagated via the A2A v1 FHIR-context extension; tools see the FHIRContext via the shared ContextVar without ever surfacing the bearer token to the LLM prompt. Every recommendation surfaces a calibrated CI when applicable, a deterministic safety gate, an abstain trigger when uncertainty or demographic bias is high, a 4-critic ensemble vote (clinical_safety + fairness + evidence + llm_judge) with bounded plan revision, a fairness audit by demographic subgroup, and a longitudinal patient timeline that surfaces drift across encounters.",
+  "version": "1.0.0",
+  "_bundles": {
+    "_doc": "Thematic groupings for client-side discovery. Tools may appear in multiple bundles (e.g. ground_claim, fairness_audit). The runtime exposes BUNDLES via the tools package (mcp_server.tools.list_bundles()).",
+    "ed_acute": [
+      "compute_admission_triage",
+      "compute_clinical_deterioration_score",
+      "detect_phi",
+      "ground_claim",
+      "compute_lab_trend_analysis"
+    ],
+    "stroke_acs": [
+      "compute_stroke_severity",
+      "compute_stroke_thrombolysis_eligibility",
+      "compute_heart_score",
+      "compute_acs_disposition_decision",
+      "ground_claim"
+    ],
+    "trauma_critical": [
+      "compute_trauma_severity_score",
+      "compute_massive_transfusion_protocol",
+      "compute_imaging_appropriateness"
+    ],
+    "endocrine_acute": [
+      "compute_dka_severity",
+      "compute_inpatient_glycemic_control"
+    ],
+    "imaging": [
+      "compute_imaging_appropriateness",
+      "compute_contrast_safety_check",
+      "compute_aki_kdigo_stage"
+    ],
+    "nephrology": [
+      "compute_aki_kdigo_stage",
+      "compute_dialysis_initiation_decision",
+      "compute_lab_trend_analysis",
+      "compute_contrast_safety_check"
+    ],
+    "obstetric_geriatric": [
+      "compute_maternal_early_warning",
+      "compute_preeclampsia_assessment",
+      "compute_falls_risk_morse",
+      "compute_delirium_screening_cam",
+      "compute_fairness_audit"
+    ],
+    "cardiology_depth": [
+      "compute_cha2ds2_vasc",
+      "compute_has_bled",
+      "compute_timi_acs_score",
+      "compute_grace_acs_score"
+    ],
+    "critical_care": [
+      "compute_apache_ii_score",
+      "compute_sofa_score",
+      "compute_meld_score",
+      "compute_rifle_aki_classification"
+    ],
+    "endocrinology_advanced": [
+      "compute_thyroid_management",
+      "compute_adrenal_insufficiency_workup",
+      "compute_hypocalcemia_severity"
+    ],
+    "gi_hepatology_depth": [
+      "compute_maddrey_alcoholic_hepatitis",
+      "compute_fib4_liver_fibrosis",
+      "compute_glasgow_blatchford_ugib",
+      "compute_rome_iv_ibs"
+    ],
+    "infectious_disease": [
+      "compute_qsofa_score",
+      "compute_lactate_clearance",
+      "compute_hiv_management_tier",
+      "compute_tb_risk_screen"
+    ],
+    "neurology_depth": [
+      "compute_hunt_hess_sah",
+      "compute_ich_score",
+      "compute_modified_rankin",
+      "compute_hauser_ambulation_index"
+    ],
+    "ob_peds_advanced": [
+      "compute_bishop_induction_score",
+      "compute_apgar_score",
+      "compute_bell_nec_stage",
+      "compute_bilirubin_nomogram"
+    ],
+    "peri_op_risk": [
+      "compute_rcri_cardiac_risk",
+      "compute_ariscat_pulmonary_risk",
+      "compute_caprini_vte_risk"
+    ],
+    "rheumatology": [
+      "compute_das28_rheumatoid_arthritis",
+      "compute_asdas_axspa",
+      "compute_acr_eular_ra_classification"
+    ],
+    "transplant": [
+      "compute_kdpi_kidney_donor",
+      "compute_epts_recipient_score",
+      "compute_immunosuppression_dose_check"
+    ]
+  },
+  "_specialist": "specialist_acute",
+  "url": "https://<deploy-url>/a2a/trustedrisk-acute",
+  "supportedInterfaces": [
+    {
+      "url": "https://<deploy-url>/a2a/trustedrisk-acute",
+      "protocolBinding": "A2A",
+      "protocolVersion": "1.0"
+    }
+  ],
+  "defaultInputModes": [
+    "text/plain",
+    "application/json"
+  ],
+  "defaultOutputModes": [
+    "application/json"
+  ],
+  "skills": [
+    {
+      "id": "ed_admission_triage",
+      "name": "ED admission triage (ESI + disposition)",
+      "description": "Apply the AHRQ Emergency Severity Index v4 + Manchester Triage red-flag rules to a chief complaint + vital signs + age. Produces ESI level 1-5, priority (immediate / emergent / urgent / less_urgent / non_urgent), disposition (resuscitation_room / admit_inpatient / admit_observation / ED_workup_then_dispose / discharge_from_ED), and recommended unit. The tool is conservative: any chief-complaint red flag (chest pain, focal neuro deficit, thunderclap headache, GI bleed, sepsis pattern, suicidal intent) plus any abnormal vital signs pull the ESI floor downward. Without vitals on a high-acuity complaint the tool sets abstain_recommended=true.",
+      "tags": [
+        "emergency-department",
+        "triage",
+        "ESI",
+        "Manchester-Triage",
+        "AHRQ",
+        "disposition"
+      ],
+      "examples": [
+        "Triage a 58-year-old with crushing chest pain radiating to left arm, BP 95/62, HR 115.",
+        "ESI assessment for a pediatric patient: 3-month-old infant lethargic, not feeding."
+      ]
+    },
+    {
+      "id": "deterioration_score",
+      "name": "Inpatient deterioration score (NEWS2)",
+      "description": "Compute the Royal College of Physicians NEWS2 early-warning score on a vital-sign set, with a trend delta vs prior-shift score that surfaces deterioration earlier than point-in-time NEWS2 alone. Returns total score 0-20, severity tier (low / low_medium / medium / high), and recommended response (routine_12h_obs / increase_obs_4_6h / urgent_review_1h / emergency_response). A single 3-point parameter escalates the response tier even at moderate totals. Used for rapid-response triage on the ward and for ICU step-up decisions.",
+      "tags": [
+        "inpatient",
+        "deterioration",
+        "NEWS2",
+        "rapid-response",
+        "sepsis",
+        "early-warning"
+      ],
+      "examples": [
+        "Score this patient's vitals: HR 122, SpO2 91% on 2L, RR 26, BP 96/58, T 38.4, AVPU=V.",
+        "Compare this NEWS2 with the prior shift score of 3 to surface trend deterioration."
+      ]
+    },
+    {
+      "id": "acute_stroke",
+      "name": "Acute stroke severity + reperfusion eligibility",
+      "description": "Two stroke tools: (1) compute_stroke_severity scores the 15-item NIH Stroke Scale (0-42) with severity tiers (minor / moderate / moderate-severe / severe), an LVO indicator (NIHSS \u22656 with cortical signs \u2014 gaze, language, neglect, visual fields \u2192 suspect anterior-circulation large-vessel occlusion), and a recommended response that gates reperfusion vs supportive care by time-since-last-known-well; (2) compute_stroke_thrombolysis_eligibility encodes the AHA/ASA 2019 IV alteplase inclusion + extensive exclusion criteria (0-3h standard window, 3-4.5h extended window with extra exclusions) AND endovascular thrombectomy (EVT) eligibility (0-6h with confirmed LVO + ASPECTS \u22656, 6-24h via DAWN/DEFUSE 3 imaging mismatch). Decision tree resolves to iv_tpa_only / evt_only / iv_tpa_plus_evt / no_reperfusion_supportive_care / abstain_clinician_decision.",
+      "tags": [
+        "stroke",
+        "NIHSS",
+        "tPA",
+        "alteplase",
+        "thrombectomy",
+        "DAWN",
+        "DEFUSE-3",
+        "AHA-ASA"
+      ],
+      "examples": [
+        "Score NIHSS for a patient with R arm 3/5, gaze deviation, expressive aphasia.",
+        "Decide IV tPA + EVT eligibility for an LVO patient at 90 minutes from LKW.",
+        "Late-window EVT for stroke at 12h with imaging mismatch."
+      ]
+    },
+    {
+      "id": "chest_pain_acs",
+      "name": "HEART score + ACS disposition",
+      "description": "Two cardiology tools: (1) compute_heart_score computes the 5-item HEART score (History / ECG / Age / Risk-factors / Troponin), 0-10, with risk bands (0-3 low ~1.7% 30-day MACE; 4-6 moderate ~16.6%; 7-10 high ~50.1%); (2) compute_acs_disposition_decision combines the HEART total + STEMI status + dynamic troponin + high-risk features (ongoing pain, hemodynamic instability, new heart failure) into a 4-tier disposition (discharge_with_outpatient_followup / ed_observation_serial_troponin / admit_telemetry_for_workup / cath_lab_activation_immediate).",
+      "tags": [
+        "ACS",
+        "chest-pain",
+        "HEART-score",
+        "STEMI",
+        "troponin",
+        "AHA-ACC-2021"
+      ],
+      "examples": [
+        "Compute HEART for a 58yo with moderately suspicious chest pain, 2 RFs, normal trop.",
+        "Disposition for a HEART 5 patient with non-dynamic troponin.",
+        "STEMI on ECG \u2192 cath lab activation."
+      ]
+    },
+    {
+      "id": "trauma_critical_care",
+      "name": "Polytrauma severity + massive transfusion",
+      "description": "Three trauma-critical tools: (1) compute_trauma_severity_score (ISS Baker 1974 + T-RTS Champion 1989, AIS 1-6, 4 triage tiers); (2) compute_massive_transfusion_protocol (ABC score Nunez 2009 + 1:1:1 PROPPR ratio + TXA CRASH-2 \u2264180 min window); (3) compute_imaging_appropriateness for blunt-trauma CT decisions. Surfaces ICU triage tier and transfusion activation gate.",
+      "tags": [
+        "trauma",
+        "ISS",
+        "RTS",
+        "MTP",
+        "PROPPR",
+        "TXA",
+        "polytrauma"
+      ],
+      "examples": [
+        "Score ISS+RTS for a 35y M with chest AIS 4, abdomen AIS 3.",
+        "Decide MTP activation on an ABC \u22652 patient at 25 min post-arrival.",
+        "Trauma-tier disposition for a polytrauma patient."
+      ]
+    },
+    {
+      "id": "endocrine_acute",
+      "name": "DKA severity + inpatient glycemic control",
+      "description": "Two acute-endocrine tools: (1) compute_dka_severity (ADA/ISPAD severity tiers + IV fluid / insulin / K+ / HCO3 protocol gates); (2) compute_inpatient_glycemic_control (ADA 2024 basal-bolus titration + hypoglycemia risk score). Gates ICU admission on severe DKA classification.",
+      "tags": [
+        "DKA",
+        "ADA",
+        "endocrine",
+        "insulin",
+        "glycemic-control"
+      ],
+      "examples": [
+        "Classify DKA severity for a patient with pH 7.18, HCO3 9, glucose 480.",
+        "Titrate basal-bolus insulin for a 70 kg inpatient with A1c 9.1."
+      ]
+    },
+    {
+      "id": "imaging_appropriateness_safety",
+      "name": "ACR appropriateness + contrast safety",
+      "description": "Two imaging tools: (1) compute_imaging_appropriateness (ACR Appropriateness Criteria + Choosing Wisely + pediatric ALARA); (2) compute_contrast_safety_check (ACR 2024 + Davenport 2020 + metformin hold logic). Used in ED CT decisioning, peri-op imaging, and pre-contrast renal-safety gating.",
+      "tags": [
+        "ACR",
+        "imaging",
+        "contrast",
+        "Choosing-Wisely",
+        "ALARA"
+      ],
+      "examples": [
+        "Decide CT vs MRI for blunt abdominal trauma 28y M.",
+        "Contrast safety check for eGFR 28 + metformin patient."
+      ]
+    },
+    {
+      "id": "nephrology",
+      "name": "KDIGO AKI staging + dialysis initiation",
+      "description": "Two renal tools: (1) compute_aki_kdigo_stage (KDIGO 2012 staging + etiology clue surface); (2) compute_dialysis_initiation_decision (AEIOU mnemonic + STARRT-AKI deferral + CRRT vs HD). Gates renal consult escalation and dose-adjusts upstream tools (e.g. contrast safety, vancomycin trough).",
+      "tags": [
+        "KDIGO",
+        "AKI",
+        "dialysis",
+        "AEIOU",
+        "STARRT-AKI",
+        "CRRT"
+      ],
+      "examples": [
+        "Stage AKI for a patient with Cr rising 1.0 \u2192 2.4 in 48 h.",
+        "Decide dialysis initiation timing on AEIOU criteria + STARRT-AKI evidence."
+      ]
+    },
+    {
+      "id": "maternal_obstetric",
+      "name": "MEOWS + ACOG preeclampsia assessment",
+      "description": "Two obstetric tools: (1) compute_maternal_early_warning implements the MEOWS color-coded (green/yellow/red) early-warning score with PREGNANCY-ADJUSTED vital thresholds (HR 80-110 normal in 3rd trimester, lower DBP, mildly elevated RR) \u2014 standard NEWS2 over-flags pregnant women; obstetric-specific red flags (severe headache, visual changes, chest pain, excess bleeding) escalate independently; (2) compute_preeclampsia_assessment implements the ACOG 2020 classification tree (gestational HTN / preeclampsia without severe / preeclampsia with severe / eclampsia / HELLP) with delivery recommendations gated by GA (\u226537 for non-severe, \u226534 for severe), magnesium-sulfate + antihypertensive indications.",
+      "tags": [
+        "obstetric",
+        "maternal",
+        "MEOWS",
+        "preeclampsia",
+        "HELLP",
+        "eclampsia",
+        "ACOG",
+        "fairness"
+      ],
+      "examples": [
+        "MEOWS for a 32-week patient with BP 158/95 + severe headache.",
+        "Classify preeclampsia for a 34-week patient with BP 165/112 + thrombocytopenia.",
+        "Apply maternal-mortality fairness audit to a Black patient (3\u00d7 elevated risk literature)."
+      ]
+    },
+    {
+      "id": "geriatric_assessment",
+      "name": "Morse falls + CAM delirium screening",
+      "description": "Two geriatric tools: (1) compute_falls_risk_morse computes the 6-item Morse Falls Scale (0-125) with risk tiers (low <25, moderate 25-44, high \u226545) AND flags Beers-criteria falls-risk medications (benzodiazepines, opioids, sedating antihistamines, hypnotics, alpha-blockers, etc.); 3+ flagged meds bumps moderate to high tier; (2) compute_delirium_screening_cam implements the Confusion Assessment Method diagnostic algorithm (F1 acute onset/fluctuating + F2 inattention + (F3 disorganized thinking OR F4 altered consciousness)) with motor subtype (hyperactive / hypoactive / mixed), Beers deliriogenic-medication flagging, and DELIRIUM-mnemonic next-steps (workup, deprescribe, non-pharm bundle).",
+      "tags": [
+        "geriatric",
+        "falls",
+        "Morse",
+        "delirium",
+        "CAM",
+        "Beers-criteria",
+        "polypharmacy",
+        "older-adults"
+      ],
+      "examples": [
+        "Compute Morse for an 85yo on lorazepam + oxycodone + diphenhydramine.",
+        "Apply CAM to a fluctuating-confusion patient on hospital day 2.",
+        "Identify deliriogenic medications in a 5-medication regimen."
+      ]
+    },
+    {
+      "id": "phi_check",
+      "name": "PHI leakage check",
+      "description": "Scan arbitrary clinical text for PHI entities and produce a redaction map. Does not require FHIR patient context.",
+      "tags": [
+        "phi",
+        "safety",
+        "privacy",
+        "redaction"
+      ],
+      "examples": [
+        "Scan this discharge summary for PHI.",
+        "Does this note contain any protected information?"
+      ]
+    }
+  ],
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": true,
+    "stateTransitionHistory": false,
+    "extensions": [
+      {
+        "uri": "https://app.promptopinion.ai/schemas/a2a/v1/fhir-context",
+        "description": "A2A v1 FHIR-context extension. The platform delivers FHIR credentials in `Message.metadata` keyed by this URI, with camelCase fields {fhirUrl, fhirToken, patientId, fhirRefreshToken?, fhirRefreshTokenUrl?}. TrustedRisk consumes the metadata in its before-model hook, populates the shared FHIRContext ContextVar, and never lets the credentials reach the LLM prompt. See https://docs.promptopinion.ai/fhir-context/a2a-fhir-context.html.",
+        "required": false,
+        "params": {
+          "scopes": [
+            {
+              "name": "patient/Patient.rs",
+              "required": true
+            },
+            {
+              "name": "patient/Condition.rs"
+            },
+            {
+              "name": "patient/Encounter.rs"
+            },
+            {
+              "name": "patient/MedicationRequest.rs"
+            },
+            {
+              "name": "patient/Observation.rs"
+            },
+            {
+              "name": "patient/Procedure.rs"
+            },
+            {
+              "name": "patient/ServiceRequest.rs"
+            }
+          ]
+        }
+      }
+    ],
+    "selfCritique": {
+      "enabled": true,
+      "description": "Every clinical recommendation passes through a 4-critic ensemble (clinical_safety + fairness + evidence + llm_judge) that may downgrade confidence, force abstain, or request a replay before the response is emitted. The LLM critic has a deterministic floor (pass-through approval) so it never blocks unilaterally."
+    },
+    "memoryLayer": {
+      "enabled": true,
+      "description": "Prior DecisionCards for the same patient are retrieved from a SQLite-backed memory store. When a valid (non-expired, same-model-version) card is found, it can serve directly; otherwise a fresh tool chain runs and detect_recommendation_drift flags any meaningful change vs the prior."
+    },
+    "temporalValidity": {
+      "enabled": true,
+      "description": "Every RiskEstimate carries a valid_until timestamp scaled by clinical-risk severity (high LACE \u2192 4h, moderate \u2192 12h, low \u2192 24h). Expired cards force a re-call."
+    },
+    "fairnessAuditCalibration": {
+      "enabled": true,
+      "description": "Subgroup-multiplier baseline is calibrated on the receiving cohort (internal calibration workflow output) and falls back to literature defaults (HRRP/HCUP/JAMA) when the calibrated artifact is absent."
+    },
+    "counterfactualExplanation": {
+      "enabled": true,
+      "description": "Per-factor what-if sweep shows how each LACE component contributes to the predicted risk and identifies a minimum-modification path that would flip the recommendation tier."
+    },
+    "multiTenant": {
+      "enabled": true,
+      "description": "Optional OAuth 2.0 client_credentials grant (RFC 6749 \u00a74.4) with per-client allowed_fhir_servers allowlist enforces tenant isolation: a token issued for tenant A cannot be used to query tenant B's FHIR endpoint."
+    },
+    "auditTrail": {
+      "enabled": true,
+      "description": "Append-only HIPAA-style audit log (PHI-redacted SHA-256 hashing) plus an RFC 6962 Merkle audit chain for tamper-evidence; reproducibility archive enables byte-identical replay of any historical decision."
+    },
+    "rightToExplanation": {
+      "enabled": true,
+      "description": "GDPR Art. 22 / EU AI Act Art. 13 right-to-explanation surface \u2014 every DecisionCard is paired with a patient-friendly audit summary on demand."
+    },
+    "differentialPrivacyEquity": {
+      "enabled": true,
+      "description": "Equity dashboard publishes subgroup intervention / abstain / risk rates with Laplace-mechanism differential privacy."
+    }
+  },
+  "securitySchemes": {
+    "oauth_client_credentials": {
+      "oauth2SecurityScheme": {
+        "type": "oauth2",
+        "description": "Optional bearer-token authentication (RFC 6749 \u00a74.4). Disabled by default; enable via TRUSTEDRISK_OAUTH_ENABLED=1.",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://<deploy-url>/oauth/token",
+            "scopes": {
+              "discharge.read": "Invoke compute_readmission_risk + decision_utility",
+              "discharge.execute": "Above plus medication_reconciliation + fairness_audit",
+              "phi.scan": "Invoke detect_phi only",
+              "grounding.read": "Invoke ground_claim only"
+            }
+          }
+        }
+      }
+    },
+    "x_api_key": {
+      "apiKeySecurityScheme": {
+        "type": "apiKey",
+        "description": "Static API-key authentication for marketplace-mediated A2A calls. Configured via TRUSTEDRISK_API_KEYS env var (comma-separated). When set, every A2A call must carry `X-API-Key` matching one of the configured values.",
+        "location": "header",
+        "name": "X-API-Key"
+      }
+    }
+  }
+}

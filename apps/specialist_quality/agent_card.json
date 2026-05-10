@@ -1,0 +1,165 @@
+{
+  "schemaVersion": "1.0.0",
+  "name": "HEDIS Quality Stars",
+  "_legacy_name": "trustedrisk-quality",
+  "description": "HEDIS / CMS Stars Rating + care-gap prioritisation (Phase 10.1 STARS-1/2/3). Marketplace-publishable A2A specialist sharing the TrustedRisk MCP backend. Advertises 2 skills: HEDIS / CMS Stars Rating + care-gap prioritisation (STARS-1/2/3), PHI leakage check. FHIR context propagated via the A2A v1 FHIR-context extension; tools see the FHIRContext via the shared ContextVar without ever surfacing the bearer token to the LLM prompt. Every recommendation surfaces a calibrated CI when applicable, a deterministic safety gate, an abstain trigger when uncertainty or demographic bias is high, a 4-critic ensemble vote (clinical_safety + fairness + evidence + llm_judge) with bounded plan revision, a fairness audit by demographic subgroup, and a longitudinal patient timeline that surfaces drift across encounters.",
+  "version": "1.0.0",
+  "_bundles": {
+    "_doc": "Thematic groupings for client-side discovery. Tools may appear in multiple bundles (e.g. ground_claim, fairness_audit). The runtime exposes BUNDLES via the tools package (mcp_server.tools.list_bundles()).",
+    "quality_stars": [
+      "compute_quality_measures_aggregate",
+      "compute_stars_rating_forecast",
+      "compute_care_gap_priority_ranking"
+    ]
+  },
+  "_specialist": "specialist_quality",
+  "url": "https://<deploy-url>/a2a/trustedrisk-quality",
+  "supportedInterfaces": [
+    {
+      "url": "https://<deploy-url>/a2a/trustedrisk-quality",
+      "protocolBinding": "A2A",
+      "protocolVersion": "1.0"
+    }
+  ],
+  "defaultInputModes": [
+    "text/plain",
+    "application/json"
+  ],
+  "defaultOutputModes": [
+    "application/json"
+  ],
+  "skills": [
+    {
+      "id": "quality_stars",
+      "name": "HEDIS / CMS Stars Rating + care-gap prioritisation (STARS-1/2/3)",
+      "description": "Three Phase-10.1 HEDIS / CMS Medicare Stars tools that turn a per-measure cohort summary (numerator + denominator per HEDIS measure) into a payer-ready Stars-Rating + QBP forecast: (1) compute_quality_measures_aggregate — per-measure HEDIS rates with FY 2025 CMS 5/4/3-star benchmark cuts (BCS, CCS, COL, CDC-EYE, CDC-HBA1C, CBP, MPM-ACE/DIURETIC/ANTICONV, OMW, PCR, FUH, FUM, AAB, FMC, MRP, CWP, DAE, TRC, SUPD); (2) compute_stars_rating_forecast — per-domain (preventive_care + chronic_conditions) + overall Stars projection at measurement-period end + estimated Quality Bonus Payment dollars (Avalere 2024 — 4.0 Stars unlocks ~5% benchmark QBP, 4.5+ doubles); (3) compute_care_gap_priority_ranking — top-N care-gap-closure actions ranked by expected Stars / QBP lift × difficulty (easy / moderate / hard / very_hard) with measure-specific intervention recommendations. Pure-deterministic — no LLM in the floor; addresses the $4-6 B/yr CMS QBP pain-point.",
+      "tags": [
+        "HEDIS",
+        "CMS-Stars",
+        "QBP",
+        "Medicare-Advantage",
+        "quality-measures",
+        "care-gap",
+        "NCQA"
+      ],
+      "examples": [
+        "Aggregate HEDIS rates for FY 2025 — BCS 0.71 (1400/1968), COL 0.66 (3300/5000), CDC-HBA1C 0.22 (440/2000).",
+        "Project this MA contract's Stars rating at end-of-measurement-year + estimate the QBP impact for 50k members.",
+        "Rank the top-10 care-gap actions by expected QBP lift for a contract with 12 open HEDIS measures."
+      ]
+    },
+    {
+      "id": "phi_check",
+      "name": "PHI leakage check",
+      "description": "Scan arbitrary clinical text for PHI entities and produce a redaction map. Does not require FHIR patient context.",
+      "tags": [
+        "phi",
+        "safety",
+        "privacy",
+        "redaction"
+      ],
+      "examples": [
+        "Scan this discharge summary for PHI.",
+        "Does this note contain any protected information?"
+      ]
+    }
+  ],
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": true,
+    "stateTransitionHistory": false,
+    "extensions": [
+      {
+        "uri": "https://app.promptopinion.ai/schemas/a2a/v1/fhir-context",
+        "description": "A2A v1 FHIR-context extension. The platform delivers FHIR credentials in `Message.metadata` keyed by this URI, with camelCase fields {fhirUrl, fhirToken, patientId, fhirRefreshToken?, fhirRefreshTokenUrl?}. TrustedRisk consumes the metadata in its before-model hook, populates the shared FHIRContext ContextVar, and never lets the credentials reach the LLM prompt. See https://docs.promptopinion.ai/fhir-context/a2a-fhir-context.html.",
+        "required": false,
+        "params": {
+          "scopes": [
+            {
+              "name": "patient/Patient.rs",
+              "required": true
+            },
+            {
+              "name": "patient/Condition.rs"
+            },
+            {
+              "name": "patient/Encounter.rs"
+            },
+            {
+              "name": "patient/MedicationRequest.rs"
+            },
+            {
+              "name": "patient/Observation.rs"
+            },
+            {
+              "name": "patient/Procedure.rs"
+            }
+          ]
+        }
+      }
+    ],
+    "selfCritique": {
+      "enabled": true,
+      "description": "Every clinical recommendation passes through a 4-critic ensemble (clinical_safety + fairness + evidence + llm_judge) that may downgrade confidence, force abstain, or request a replay before the response is emitted. The LLM critic has a deterministic floor (pass-through approval) so it never blocks unilaterally."
+    },
+    "memoryLayer": {
+      "enabled": true,
+      "description": "Prior DecisionCards for the same patient are retrieved from a SQLite-backed memory store. When a valid (non-expired, same-model-version) card is found, it can serve directly; otherwise a fresh tool chain runs and detect_recommendation_drift flags any meaningful change vs the prior."
+    },
+    "temporalValidity": {
+      "enabled": true,
+      "description": "Every RiskEstimate carries a valid_until timestamp scaled by clinical-risk severity (high LACE → 4h, moderate → 12h, low → 24h). Expired cards force a re-call."
+    },
+    "fairnessAuditCalibration": {
+      "enabled": true,
+      "description": "Subgroup-multiplier baseline is calibrated on the receiving cohort (internal calibration workflow output) and falls back to literature defaults (HRRP/HCUP/JAMA) when the calibrated artifact is absent."
+    },
+    "counterfactualExplanation": {
+      "enabled": true,
+      "description": "Per-factor what-if sweep shows how each LACE component contributes to the predicted risk and identifies a minimum-modification path that would flip the recommendation tier."
+    },
+    "multiTenant": {
+      "enabled": true,
+      "description": "Optional OAuth 2.0 client_credentials grant (RFC 6749 §4.4) with per-client allowed_fhir_servers allowlist enforces tenant isolation: a token issued for tenant A cannot be used to query tenant B's FHIR endpoint."
+    },
+    "auditTrail": {
+      "enabled": true,
+      "description": "Append-only HIPAA-style audit log (PHI-redacted SHA-256 hashing) plus an RFC 6962 Merkle audit chain for tamper-evidence; reproducibility archive enables byte-identical replay of any historical decision."
+    },
+    "rightToExplanation": {
+      "enabled": true,
+      "description": "GDPR Art. 22 / EU AI Act Art. 13 right-to-explanation surface — every DecisionCard is paired with a patient-friendly audit summary on demand."
+    },
+    "differentialPrivacyEquity": {
+      "enabled": true,
+      "description": "Equity dashboard publishes subgroup intervention / abstain / risk rates with Laplace-mechanism differential privacy."
+    }
+  },
+  "securitySchemes": {
+    "oauth_client_credentials": {
+      "oauth2SecurityScheme": {
+        "type": "oauth2",
+        "description": "Optional bearer-token authentication (RFC 6749 §4.4). Disabled by default; enable via TRUSTEDRISK_OAUTH_ENABLED=1.",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://<deploy-url>/oauth/token",
+            "scopes": {
+              "discharge.read": "Invoke compute_readmission_risk + decision_utility",
+              "discharge.execute": "Above plus medication_reconciliation + fairness_audit",
+              "phi.scan": "Invoke detect_phi only",
+              "grounding.read": "Invoke ground_claim only"
+            }
+          }
+        }
+      }
+    },
+    "x_api_key": {
+      "apiKeySecurityScheme": {
+        "type": "apiKey",
+        "description": "Static API-key authentication for marketplace-mediated A2A calls. Configured via TRUSTEDRISK_API_KEYS env var (comma-separated). When set, every A2A call must carry `X-API-Key` matching one of the configured values.",
+        "location": "header",
+        "name": "X-API-Key"
+      }
+    }
+  }
+}

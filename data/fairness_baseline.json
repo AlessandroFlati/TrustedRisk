@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "calibration_date": "2026-04-27T11:51:47.688472+00:00",
+  "cohort_size": 7878,
+  "min_subgroup_size": 30,
+  "by_race": {
+    "american indian or alaska native": {
+      "multiplier": 1.0187,
+      "n_encounters": 63,
+      "observed_rate": 0.1746,
+      "expected_rate": 0.1714,
+      "drift_pct": 1.87,
+      "citation": "Calibrated on cohort race=american indian or alaska native (n=63)."
+    },
+    "asian": {
+      "multiplier": 1.045,
+      "n_encounters": 568,
+      "observed_rate": 0.1778,
+      "expected_rate": 0.1702,
+      "drift_pct": 4.5,
+      "citation": "Calibrated on cohort race=asian (n=568)."
+    },
+    "black or african american": {
+      "multiplier": 0.9982,
+      "n_encounters": 946,
+      "observed_rate": 0.1765,
+      "expected_rate": 0.1769,
+      "drift_pct": -0.18,
+      "citation": "Calibrated on cohort race=black or african american (n=946)."
+    },
+    "native hawaiian or other pacific islander": {
+      "multiplier": 1.1805,
+      "n_encounters": 123,
+      "observed_rate": 0.2033,
+      "expected_rate": 0.1722,
+      "drift_pct": 18.05,
+      "citation": "Calibrated on cohort race=native hawaiian or other pacific islander (n=123)."
+    },
+    "unknown": {
+      "multiplier": 0.9647,
+      "n_encounters": 107,
+      "observed_rate": 0.1682,
+      "expected_rate": 0.1744,
+      "drift_pct": -3.53,
+      "citation": "Calibrated on cohort race=unknown (n=107)."
+    },
+    "white": {
+      "multiplier": 1.0287,
+      "n_encounters": 6046,
+      "observed_rate": 0.1715,
+      "expected_rate": 0.1667,
+      "drift_pct": 2.87,
+      "citation": "Calibrated on cohort race=white (n=6046)."
+    }
+  },
+  "by_age_band": {
+    "18-64": {
+      "multiplier": 1.033,
+      "n_encounters": 5774,
+      "observed_rate": 0.168,
+      "expected_rate": 0.1626,
+      "drift_pct": 3.3,
+      "citation": "Calibrated on cohort age-band 18-64 (n=5774)."
+    },
+    "65-74": {
+      "multiplier": 1.0071,
+      "n_encounters": 1226,
+      "observed_rate": 0.1811,
+      "expected_rate": 0.1798,
+      "drift_pct": 0.71,
+      "citation": "Calibrated on cohort age-band 65-74 (n=1226)."
+    },
+    "75-84": {
+      "multiplier": 1.085,
+      "n_encounters": 677,
+      "observed_rate": 0.2038,
+      "expected_rate": 0.1879,
+      "drift_pct": 8.5,
+      "citation": "Calibrated on cohort age-band 75-84 (n=677)."
+    },
+    "85+": {
+      "multiplier": 0.8014,
+      "n_encounters": 201,
+      "observed_rate": 0.1592,
+      "expected_rate": 0.1987,
+      "drift_pct": -19.86,
+      "citation": "Calibrated on cohort age-band 85+ (n=201)."
+    }
+  },
+  "by_sex": {
+    "female": {
+      "multiplier": 1.0485,
+      "n_encounters": 4127,
+      "observed_rate": 0.1742,
+      "expected_rate": 0.1662,
+      "drift_pct": 4.85,
+      "citation": "Calibrated on cohort sex=female (n=4127)."
+    },
+    "male": {
+      "multiplier": 1.0034,
+      "n_encounters": 3751,
+      "observed_rate": 0.1714,
+      "expected_rate": 0.1708,
+      "drift_pct": 0.34,
+      "citation": "Calibrated on cohort sex=male (n=3751)."
+    }
+  },
+  "_provenance": {
+    "model_version": "readmission-calibration-run-1777055367773-4204d20e",
+    "model_name": "lace-plus-bayesian-v1",
+    "ece_baseline": null
+  }
+}

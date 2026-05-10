@@ -1,0 +1,327 @@
+{
+  "generated_at_utc": "2026-04-28T12:29:48Z",
+  "cohort_source": "synthetic cross-shifted cohort (n=500, seed=1234)",
+  "model_name": "lace-plus-bayesian-v1",
+  "model_version": "readmission-calibration-run-1777055367773-4204d20e",
+  "selected_spec": "spec_002",
+  "training_cohort": "Synthea synthetic n=7780 + 100 MIMIC-IV demo cross-check",
+  "validation_cohort_n": 500,
+  "overall": {
+    "brier_score": 0.299840731696374,
+    "ece": 0.25230294600000003,
+    "mce": 0.35324112578616357,
+    "auroc": 0.650219298245614,
+    "mean_predicted": 0.203697054,
+    "observed_rate": 0.456,
+    "calibration_gap": -0.25230294600000003,
+    "bins": [
+      {
+        "bin_lo": 0.0,
+        "bin_hi": 0.1,
+        "n": 0,
+        "mean_predicted": null,
+        "observed_rate": null,
+        "calibration_gap": null
+      },
+      {
+        "bin_lo": 0.1,
+        "bin_hi": 0.2,
+        "n": 341,
+        "mean_predicted": 0.1671960879765396,
+        "observed_rate": 0.3724340175953079,
+        "calibration_gap": 0.20523792961876833
+      },
+      {
+        "bin_lo": 0.2,
+        "bin_hi": 0.30000000000000004,
+        "n": 159,
+        "mean_predicted": 0.2819789999999999,
+        "observed_rate": 0.6352201257861635,
+        "calibration_gap": 0.35324112578616357
+      },
+      {
+        "bin_lo": 0.30000000000000004,
+        "bin_hi": 0.4,
+        "n": 0,
+        "mean_predicted": null,
+        "observed_rate": null,
+        "calibration_gap": null
+      },
+      {
+        "bin_lo": 0.4,
+        "bin_hi": 0.5,
+        "n": 0,
+        "mean_predicted": null,
+        "observed_rate": null,
+        "calibration_gap": null
+      },
+      {
+        "bin_lo": 0.5,
+        "bin_hi": 0.6000000000000001,
+        "n": 0,
+        "mean_predicted": null,
+        "observed_rate": null,
+        "calibration_gap": null
+      },
+      {
+        "bin_lo": 0.6000000000000001,
+        "bin_hi": 0.7000000000000001,
+        "n": 0,
+        "mean_predicted": null,
+        "observed_rate": null,
+        "calibration_gap": null
+      },
+      {
+        "bin_lo": 0.7000000000000001,
+        "bin_hi": 0.8,
+        "n": 0,
+        "mean_predicted": null,
+        "observed_rate": null,
+        "calibration_gap": null
+      },
+      {
+        "bin_lo": 0.8,
+        "bin_hi": 0.9,
+        "n": 0,
+        "mean_predicted": null,
+        "observed_rate": null,
+        "calibration_gap": null
+      },
+      {
+        "bin_lo": 0.9,
+        "bin_hi": 1.0,
+        "n": 0,
+        "mean_predicted": null,
+        "observed_rate": null,
+        "calibration_gap": null
+      }
+    ]
+  },
+  "by_race": {
+    "asian": {
+      "n": 39,
+      "brier_score": 0.2719252123656154,
+      "brier_ci95": [
+        0.18461426099651598,
+        0.36472126212041667
+      ],
+      "ece": 0.2076788461538462,
+      "auroc": 0.6521739130434783,
+      "auroc_ci95": [
+        0.47152777777777777,
+        0.8225
+      ],
+      "mean_predicted": 0.20257756410256406,
+      "observed_rate": 0.41025641025641024,
+      "calibration_gap": -0.20767884615384619
+    },
+    "black": {
+      "n": 152,
+      "brier_score": 0.3010813035984211,
+      "brier_ci95": [
+        0.2562420209096209,
+        0.3433234995838855
+      ],
+      "ece": 0.27132944736842113,
+      "auroc": 0.695138888888889,
+      "auroc_ci95": [
+        0.6339958699181866,
+        0.8009537190317757
+      ],
+      "mean_predicted": 0.20235476315789475,
+      "observed_rate": 0.47368421052631576,
+      "calibration_gap": -0.271329447368421
+    },
+    "hispanic": {
+      "n": 86,
+      "brier_score": 0.29086679284850003,
+      "brier_ci95": [
+        0.22314081931167012,
+        0.3562832532923663
+      ],
+      "ece": 0.22736040697674414,
+      "auroc": 0.5388858246001104,
+      "auroc_ci95": [
+        0.4917904788810712,
+        0.7174369747899159
+      ],
+      "mean_predicted": 0.20287215116279067,
+      "observed_rate": 0.43023255813953487,
+      "calibration_gap": -0.2273604069767442
+    },
+    "unknown": {
+      "n": 24,
+      "brier_score": 0.23689543762808332,
+      "brier_ci95": [
+        0.1266305075153333,
+        0.3693151394958799
+      ],
+      "ece": 0.14076175000000002,
+      "auroc": 0.5625,
+      "auroc_ci95": [
+        0.31708576998050686,
+        0.8582539682539683
+      ],
+      "mean_predicted": 0.19257158333333332,
+      "observed_rate": 0.3333333333333333,
+      "calibration_gap": -0.14076175
+    },
+    "white": {
+      "n": 199,
+      "brier_score": 0.3158336167383065,
+      "brier_ci95": [
+        0.27800120697598385,
+        0.35644296970750505
+      ],
+      "ece": 0.270746959798995,
+      "auroc": 0.603744939271255,
+      "auroc_ci95": [
+        0.5121382174275322,
+        0.6699964639321074
+      ],
+      "mean_predicted": 0.20663997487437183,
+      "observed_rate": 0.47738693467336685,
+      "calibration_gap": -0.270746959798995
+    }
+  },
+  "by_insurance": {
+    "medicaid": {
+      "n": 143,
+      "brier_score": 0.2851281932967343,
+      "brier_ci95": [
+        0.23251027757999043,
+        0.32914855568692397
+      ],
+      "ece": 0.23214210489510484,
+      "auroc": 0.6664675428116289,
+      "auroc_ci95": [
+        0.5753042596348885,
+        0.7521428538512936
+      ],
+      "mean_predicted": 0.2014243286713287,
+      "observed_rate": 0.43356643356643354,
+      "calibration_gap": -0.23214210489510484
+    },
+    "medicare": {
+      "n": 240,
+      "brier_score": 0.30331866042540834,
+      "brier_ci95": [
+        0.26375080583645455,
+        0.34283739444611966
+      ],
+      "ece": 0.255666275,
+      "auroc": 0.622027972027972,
+      "auroc_ci95": [
+        0.5387453964994853,
+        0.6865497889233642
+      ],
+      "mean_predicted": 0.2026670583333333,
+      "observed_rate": 0.4583333333333333,
+      "calibration_gap": -0.25566627500000005
+    },
+    "private": {
+      "n": 88,
+      "brier_score": 0.31022071151218183,
+      "brier_ci95": [
+        0.24741097572448154,
+        0.36707916333919055
+      ],
+      "ece": 0.26497306818181815,
+      "auroc": 0.5926501035196687,
+      "auroc_ci95": [
+        0.4920799673602611,
+        0.7397959611194905
+      ],
+      "mean_predicted": 0.2122996590909091,
+      "observed_rate": 0.4772727272727273,
+      "calibration_gap": -0.2649730681818182
+    },
+    "uninsured": {
+      "n": 29,
+      "brier_score": 0.31210803764082756,
+      "brier_ci95": [
+        0.20379642253117244,
+        0.4096999237518104
+      ],
+      "ece": 0.28543503448275864,
+      "auroc": 0.7380952380952381,
+      "auroc_ci95": [
+        0.4997619047619048,
+        0.8899759615384615
+      ],
+      "mean_predicted": 0.19732358620689652,
+      "observed_rate": 0.4827586206896552,
+      "calibration_gap": -0.28543503448275864
+    }
+  },
+  "by_age_band": {
+    "18-64": {
+      "n": 217,
+      "brier_score": 0.29864583167013825,
+      "brier_ci95": [
+        0.26241536379151953,
+        0.3380686002740051
+      ],
+      "ece": 0.2533045529953917,
+      "auroc": 0.6626433829823661,
+      "auroc_ci95": [
+        0.5773532841614253,
+        0.7205467919177596
+      ],
+      "mean_predicted": 0.2029166451612903,
+      "observed_rate": 0.45622119815668205,
+      "calibration_gap": -0.2533045529953918
+    },
+    "65-74": {
+      "n": 114,
+      "brier_score": 0.3014054519187544,
+      "brier_ci95": [
+        0.24873835961203183,
+        0.35291228406932784
+      ],
+      "ece": 0.24200161403508774,
+      "auroc": 0.5455960161842516,
+      "auroc_ci95": [
+        0.45336246092639954,
+        0.6614212972098082
+      ],
+      "mean_predicted": 0.20536680701754384,
+      "observed_rate": 0.4473684210526316,
+      "calibration_gap": -0.24200161403508774
+    },
+    "75-84": {
+      "n": 99,
+      "brier_score": 0.31578773512837377,
+      "brier_ci95": [
+        0.25806276998702404,
+        0.3765448992860441
+      ],
+      "ece": 0.2767677676767677,
+      "auroc": 0.5882352941176471,
+      "auroc_ci95": [
+        0.5114552912223134,
+        0.74100697292863
+      ],
+      "mean_predicted": 0.20808071717171717,
+      "observed_rate": 0.48484848484848486,
+      "calibration_gap": -0.2767677676767677
+    },
+    "85+": {
+      "n": 70,
+      "brier_score": 0.2784430439902858,
+      "brier_ci95": [
+        0.21738253132522678,
+        0.34228023559875537
+      ],
+      "ece": 0.23137417142857145,
+      "auroc": 0.6616666666666667,
+      "auroc_ci95": [
+        0.5957341443948587,
+        0.8361598837209302
+      ],
+      "mean_predicted": 0.19719725714285716,
+      "observed_rate": 0.42857142857142855,
+      "calibration_gap": -0.2313741714285714
+    }
+  }
+}

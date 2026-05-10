@@ -1,0 +1,678 @@
+{
+  "generated_at_iso": "2026-05-10 10:35 UTC",
+  "system_name": "TrustedRisk",
+  "system_version": "0.7.0",
+  "phase": "15.B1",
+  "cohort_n": 100000,
+  "calibration_threshold": 0.2,
+  "differential_privacy": {
+    "mechanism": "Laplace",
+    "epsilon": 1.0,
+    "sensitivity": 1,
+    "suppression_threshold": 20
+  },
+  "subgroups": {
+    "age_band": {
+      "reference": "40-64",
+      "by_value": {
+        "40-64": {
+          "n": 35108,
+          "n_positive": 7303,
+          "n_action": 14942,
+          "prevalence": 0.20801526717557253,
+          "mean_predicted_rate": 0.22801432086437218,
+          "observed_rate": 0.20801526717557253,
+          "tpr_at_thr": 0.5682596193345201,
+          "action_rate": 0.42560100262048534,
+          "ece": 0.01999905368879964,
+          "brier": 0.15982626456085142
+        },
+        "65-74": {
+          "n": 24864,
+          "n_positive": 5707,
+          "n_action": 10519,
+          "prevalence": 0.22952863577863578,
+          "mean_predicted_rate": 0.2275550191329127,
+          "observed_rate": 0.22952863577863578,
+          "tpr_at_thr": 0.5700017522340984,
+          "action_rate": 0.4230614543114543,
+          "ece": 0.001973616645723047,
+          "brier": 0.17038175175807338
+        },
+        "18-39": {
+          "n": 9941,
+          "n_positive": 1924,
+          "n_action": 4282,
+          "prevalence": 0.1935418971934413,
+          "mean_predicted_rate": 0.2286821401579365,
+          "observed_rate": 0.1935418971934413,
+          "tpr_at_thr": 0.5639293139293139,
+          "action_rate": 0.4307413741072327,
+          "ece": 0.035140242964495194,
+          "brier": 0.15369696042129216
+        },
+        "75-84": {
+          "n": 20053,
+          "n_positive": 5049,
+          "n_action": 8631,
+          "prevalence": 0.251782775644542,
+          "mean_predicted_rate": 0.2282829786415877,
+          "observed_rate": 0.251782775644542,
+          "tpr_at_thr": 0.5712022182610418,
+          "action_rate": 0.4304094150501172,
+          "ece": 0.023499797002954282,
+          "brier": 0.1821171770388422
+        },
+        "85+": {
+          "n": 10034,
+          "n_positive": 2831,
+          "n_action": 4286,
+          "prevalence": 0.2821407215467411,
+          "mean_predicted_rate": 0.22807578221975422,
+          "observed_rate": 0.2821407215467411,
+          "tpr_at_thr": 0.5796538325679972,
+          "action_rate": 0.4271476978273869,
+          "ece": 0.05406493932698685,
+          "brier": 0.19648024180152165
+        }
+      },
+      "gaps": {
+        "40-64": {
+          "eoo_gap_vs_reference": 0.0,
+          "dp_gap_vs_reference": 0.0,
+          "reference_value": 1.0
+        },
+        "65-74": {
+          "eoo_gap_vs_reference": 0.0017421328995783636,
+          "dp_gap_vs_reference": -0.0025395483090310256,
+          "reference_value": 0.0
+        },
+        "18-39": {
+          "eoo_gap_vs_reference": -0.004330305405206181,
+          "dp_gap_vs_reference": 0.005140371486747342,
+          "reference_value": 0.0
+        },
+        "75-84": {
+          "eoo_gap_vs_reference": 0.002942598926521711,
+          "dp_gap_vs_reference": 0.00480841242963187,
+          "reference_value": 0.0
+        },
+        "85+": {
+          "eoo_gap_vs_reference": 0.011394213233477113,
+          "dp_gap_vs_reference": 0.0015466952069015383,
+          "reference_value": 0.0
+        }
+      }
+    },
+    "sex": {
+      "reference": "male",
+      "by_value": {
+        "male": {
+          "n": 49198,
+          "n_positive": 11410,
+          "n_action": 20924,
+          "prevalence": 0.23191999674783528,
+          "mean_predicted_rate": 0.22759203173663597,
+          "observed_rate": 0.23191999674783528,
+          "tpr_at_thr": 0.5733567046450482,
+          "action_rate": 0.42530184153827394,
+          "ece": 0.004327965011199312,
+          "brier": 0.1715490959226964
+        },
+        "female": {
+          "n": 50802,
+          "n_positive": 11404,
+          "n_action": 21736,
+          "prevalence": 0.22447935120664542,
+          "mean_predicted_rate": 0.22844734695584665,
+          "observed_rate": 0.22447935120664542,
+          "tpr_at_thr": 0.567432479831638,
+          "action_rate": 0.4278571709775206,
+          "ece": 0.003967995749201236,
+          "brier": 0.16847879870191582
+        }
+      },
+      "gaps": {
+        "male": {
+          "eoo_gap_vs_reference": 0.0,
+          "dp_gap_vs_reference": 0.0,
+          "reference_value": 1.0
+        },
+        "female": {
+          "eoo_gap_vs_reference": -0.0059242248134101505,
+          "dp_gap_vs_reference": 0.002555329439246634,
+          "reference_value": 0.0
+        }
+      }
+    },
+    "race": {
+      "reference": "white",
+      "by_value": {
+        "white": {
+          "n": 60103,
+          "n_positive": 13005,
+          "n_action": 25541,
+          "prevalence": 0.21637855015556628,
+          "mean_predicted_rate": 0.22779798649754904,
+          "observed_rate": 0.21637855015556628,
+          "tpr_at_thr": 0.5693194925028835,
+          "action_rate": 0.4249538292597707,
+          "ece": 0.011419436341982756,
+          "brier": 0.16418636566929667
+        },
+        "other": {
+          "n": 1949,
+          "n_positive": 431,
+          "n_action": 815,
+          "prevalence": 0.2211390456644433,
+          "mean_predicted_rate": 0.2282445598329177,
+          "observed_rate": 0.2211390456644433,
+          "tpr_at_thr": 0.5661252900232019,
+          "action_rate": 0.418163160595177,
+          "ece": 0.007105514168474389,
+          "brier": 0.1667574344912762
+        },
+        "hispanic": {
+          "n": 18015,
+          "n_positive": 4430,
+          "n_action": 7684,
+          "prevalence": 0.24590618928670552,
+          "mean_predicted_rate": 0.2280566845694083,
+          "observed_rate": 0.24590618928670552,
+          "tpr_at_thr": 0.5600451467268623,
+          "action_rate": 0.42653344435192897,
+          "ece": 0.017849504717297206,
+          "brier": 0.17968489021397133
+        },
+        "black": {
+          "n": 12952,
+          "n_positive": 3366,
+          "n_action": 5589,
+          "prevalence": 0.2598826436071649,
+          "mean_predicted_rate": 0.2285520295498025,
+          "observed_rate": 0.2598826436071649,
+          "tpr_at_thr": 0.5837789661319073,
+          "action_rate": 0.4315163681284744,
+          "ece": 0.031330614057362385,
+          "brier": 0.18443651840848144
+        },
+        "asian": {
+          "n": 5991,
+          "n_positive": 1287,
+          "n_action": 2592,
+          "prevalence": 0.21482223335002504,
+          "mean_predicted_rate": 0.22835495566716124,
+          "observed_rate": 0.21482223335002504,
+          "tpr_at_thr": 0.5672105672105672,
+          "action_rate": 0.43264897346019027,
+          "ece": 0.01353272231713621,
+          "brier": 0.16395526693195211
+        },
+        "indigenous": {
+          "n": 990,
+          "n_positive": 295,
+          "n_action": 439,
+          "prevalence": 0.29797979797979796,
+          "mean_predicted_rate": 0.2320628981863601,
+          "observed_rate": 0.29797979797979796,
+          "tpr_at_thr": 0.6406779661016949,
+          "action_rate": 0.44343434343434346,
+          "ece": 0.06591689979343787,
+          "brier": 0.199725140801655
+        }
+      },
+      "gaps": {
+        "white": {
+          "eoo_gap_vs_reference": 0.0,
+          "dp_gap_vs_reference": 0.0,
+          "reference_value": 1.0
+        },
+        "other": {
+          "eoo_gap_vs_reference": -0.003194202479681607,
+          "dp_gap_vs_reference": -0.006790668664593713,
+          "reference_value": 0.0
+        },
+        "hispanic": {
+          "eoo_gap_vs_reference": -0.009274345776021153,
+          "dp_gap_vs_reference": 0.0015796150921582597,
+          "reference_value": 0.0
+        },
+        "black": {
+          "eoo_gap_vs_reference": 0.014459473629023778,
+          "dp_gap_vs_reference": 0.006562538868703671,
+          "reference_value": 0.0
+        },
+        "asian": {
+          "eoo_gap_vs_reference": -0.0021089252923163215,
+          "dp_gap_vs_reference": 0.007695144200419557,
+          "reference_value": 0.0
+        },
+        "indigenous": {
+          "eoo_gap_vs_reference": 0.07135847359881142,
+          "dp_gap_vs_reference": 0.01848051417457275,
+          "reference_value": 0.0
+        }
+      }
+    },
+    "ethnicity": {
+      "reference": "non_hispanic",
+      "by_value": {
+        "non_hispanic": {
+          "n": 81915,
+          "n_positive": 18391,
+          "n_action": 34864,
+          "prevalence": 0.22451321491790271,
+          "mean_predicted_rate": 0.22784700751816123,
+          "observed_rate": 0.22451321491790271,
+          "tpr_at_thr": 0.5701701919417106,
+          "action_rate": 0.42561191478972105,
+          "ece": 0.0033337926002584978,
+          "brier": 0.16821921898391548
+        },
+        "hispanic": {
+          "n": 18085,
+          "n_positive": 4423,
+          "n_action": 7796,
+          "prevalence": 0.24456732098424108,
+          "mean_predicted_rate": 0.2288397719977751,
+          "observed_rate": 0.24456732098424108,
+          "tpr_at_thr": 0.5713316753334841,
+          "action_rate": 0.4310754769145701,
+          "ece": 0.015727548986465955,
+          "brier": 0.17800691345270156
+        }
+      },
+      "gaps": {
+        "non_hispanic": {
+          "eoo_gap_vs_reference": 0.0,
+          "dp_gap_vs_reference": 0.0,
+          "reference_value": 1.0
+        },
+        "hispanic": {
+          "eoo_gap_vs_reference": 0.0011614833917734657,
+          "dp_gap_vs_reference": 0.005463562124849053,
+          "reference_value": 0.0
+        }
+      }
+    },
+    "insurance_type": {
+      "reference": "commercial",
+      "by_value": {
+        "medicare": {
+          "n": 29843,
+          "n_positive": 6591,
+          "n_action": 12629,
+          "prevalence": 0.2208558120832356,
+          "mean_predicted_rate": 0.22734957118856317,
+          "observed_rate": 0.2208558120832356,
+          "tpr_at_thr": 0.5716886663632226,
+          "action_rate": 0.4231813155513856,
+          "ece": 0.006626207744436619,
+          "brier": 0.16594584841164167
+        },
+        "commercial": {
+          "n": 40010,
+          "n_positive": 8430,
+          "n_action": 17222,
+          "prevalence": 0.21069732566858285,
+          "mean_predicted_rate": 0.2286455905210902,
+          "observed_rate": 0.21069732566858285,
+          "tpr_at_thr": 0.5722419928825623,
+          "action_rate": 0.43044238940264934,
+          "ece": 0.017948264852507362,
+          "brier": 0.1616505075776657
+        },
+        "medicaid": {
+          "n": 18152,
+          "n_positive": 4665,
+          "n_action": 7617,
+          "prevalence": 0.25699647421771704,
+          "mean_predicted_rate": 0.22707329526193806,
+          "observed_rate": 0.25699647421771704,
+          "tpr_at_thr": 0.5579849946409432,
+          "action_rate": 0.41962318201851034,
+          "ece": 0.029923178955779006,
+          "brier": 0.18468557475204098
+        },
+        "uninsured": {
+          "n": 8044,
+          "n_positive": 2248,
+          "n_action": 3504,
+          "prevalence": 0.2794629537543511,
+          "mean_predicted_rate": 0.22971989764255646,
+          "observed_rate": 0.2794629537543511,
+          "tpr_at_thr": 0.577846975088968,
+          "action_rate": 0.43560417702635507,
+          "ece": 0.0497430561117946,
+          "brier": 0.19522474677643628
+        },
+        "tricare": {
+          "n": 3951,
+          "n_positive": 880,
+          "n_action": 1688,
+          "prevalence": 0.22272842318400404,
+          "mean_predicted_rate": 0.2278031524852961,
+          "observed_rate": 0.22272842318400404,
+          "tpr_at_thr": 0.5897727272727272,
+          "action_rate": 0.4272336117438623,
+          "ece": 0.008419607042274693,
+          "brier": 0.1660777460288069
+        }
+      },
+      "gaps": {
+        "medicare": {
+          "eoo_gap_vs_reference": -0.000553326519339703,
+          "dp_gap_vs_reference": -0.007261073851263733,
+          "reference_value": 0.0
+        },
+        "commercial": {
+          "eoo_gap_vs_reference": 0.0,
+          "dp_gap_vs_reference": 0.0,
+          "reference_value": 1.0
+        },
+        "medicaid": {
+          "eoo_gap_vs_reference": -0.014256998241619079,
+          "dp_gap_vs_reference": -0.010819207384138996,
+          "reference_value": 0.0
+        },
+        "uninsured": {
+          "eoo_gap_vs_reference": 0.0056049822064057064,
+          "dp_gap_vs_reference": 0.005161787623705727,
+          "reference_value": 0.0
+        },
+        "tricare": {
+          "eoo_gap_vs_reference": 0.017530734390164948,
+          "dp_gap_vs_reference": -0.003208777658787021,
+          "reference_value": 0.0
+        }
+      }
+    },
+    "language": {
+      "reference": "english",
+      "by_value": {
+        "english": {
+          "n": 77958,
+          "n_positive": 17606,
+          "n_action": 33224,
+          "prevalence": 0.22583955463198133,
+          "mean_predicted_rate": 0.2278936058261065,
+          "observed_rate": 0.22583955463198133,
+          "tpr_at_thr": 0.5699761444961945,
+          "action_rate": 0.4261781985171503,
+          "ece": 0.0020540511941251915,
+          "brier": 0.1689237298493514
+        },
+        "spanish": {
+          "n": 13052,
+          "n_positive": 3134,
+          "n_action": 5573,
+          "prevalence": 0.24011645724793135,
+          "mean_predicted_rate": 0.22818618479048983,
+          "observed_rate": 0.24011645724793135,
+          "tpr_at_thr": 0.5622208040842374,
+          "action_rate": 0.42698437021146185,
+          "ece": 0.011930272457441533,
+          "brier": 0.17622692086954572
+        },
+        "chinese": {
+          "n": 4946,
+          "n_positive": 1153,
+          "n_action": 2117,
+          "prevalence": 0.23311767084512738,
+          "mean_predicted_rate": 0.22837128146617922,
+          "observed_rate": 0.23311767084512738,
+          "tpr_at_thr": 0.5862966175195143,
+          "action_rate": 0.4280226445612616,
+          "ece": 0.007079441374732454,
+          "brier": 0.17201723310705702
+        },
+        "vietnamese": {
+          "n": 2070,
+          "n_positive": 464,
+          "n_action": 916,
+          "prevalence": 0.22415458937198068,
+          "mean_predicted_rate": 0.23007023558032896,
+          "observed_rate": 0.22415458937198068,
+          "tpr_at_thr": 0.5991379310344828,
+          "action_rate": 0.442512077294686,
+          "ece": 0.0073064372762912605,
+          "brier": 0.16604046824361685
+        },
+        "arabic": {
+          "n": 1974,
+          "n_positive": 457,
+          "n_action": 830,
+          "prevalence": 0.2315096251266464,
+          "mean_predicted_rate": 0.2292144603697322,
+          "observed_rate": 0.2315096251266464,
+          "tpr_at_thr": 0.5733041575492341,
+          "action_rate": 0.4204660587639311,
+          "ece": 0.004625728013756308,
+          "brier": 0.16988928361839276
+        }
+      },
+      "gaps": {
+        "english": {
+          "eoo_gap_vs_reference": 0.0,
+          "dp_gap_vs_reference": 0.0,
+          "reference_value": 1.0
+        },
+        "spanish": {
+          "eoo_gap_vs_reference": -0.0077553404119571345,
+          "dp_gap_vs_reference": 0.0008061716943115749,
+          "reference_value": 0.0
+        },
+        "chinese": {
+          "eoo_gap_vs_reference": 0.016320473023319848,
+          "dp_gap_vs_reference": 0.0018444460441113253,
+          "reference_value": 0.0
+        },
+        "vietnamese": {
+          "eoo_gap_vs_reference": 0.02916178653828827,
+          "dp_gap_vs_reference": 0.016333878777535726,
+          "reference_value": 0.0
+        },
+        "arabic": {
+          "eoo_gap_vs_reference": 0.003328013053039647,
+          "dp_gap_vs_reference": -0.005712139753219159,
+          "reference_value": 0.0
+        }
+      }
+    }
+  },
+  "dp_published_for_release": {
+    "age_band": {
+      "40-64": {
+        "n_dp": 35108,
+        "n_positive_dp": 7303,
+        "n_action_dp": 14942,
+        "prevalence_dp": 0.20801526717557253,
+        "action_rate_dp": 0.42560100262048534
+      },
+      "65-74": {
+        "n_dp": 24863,
+        "n_positive_dp": 5706,
+        "n_action_dp": 10521,
+        "prevalence_dp": 0.22949764710614165,
+        "action_rate_dp": 0.4231589108313558
+      },
+      "18-39": {
+        "n_dp": 9941,
+        "n_positive_dp": 1923,
+        "n_action_dp": 4283,
+        "prevalence_dp": 0.1934413036917815,
+        "action_rate_dp": 0.4308419676088925
+      },
+      "75-84": {
+        "n_dp": 20053,
+        "n_positive_dp": 5052,
+        "n_action_dp": 8631,
+        "prevalence_dp": 0.2519323791951329,
+        "action_rate_dp": 0.4304094150501172
+      },
+      "85+": {
+        "n_dp": 10037,
+        "n_positive_dp": 2829,
+        "n_action_dp": 4286,
+        "prevalence_dp": 0.28185712862409085,
+        "action_rate_dp": 0.4270200259041546
+      }
+    },
+    "sex": {
+      "male": {
+        "n_dp": 49196,
+        "n_positive_dp": 11410,
+        "n_action_dp": 20924,
+        "prevalence_dp": 0.2319294251565168,
+        "action_rate_dp": 0.4253191316367184
+      },
+      "female": {
+        "n_dp": 50802,
+        "n_positive_dp": 11408,
+        "n_action_dp": 21736,
+        "prevalence_dp": 0.22455808826424156,
+        "action_rate_dp": 0.4278571709775206
+      }
+    },
+    "race": {
+      "white": {
+        "n_dp": 60103,
+        "n_positive_dp": 13003,
+        "n_action_dp": 25541,
+        "prevalence_dp": 0.21634527394639202,
+        "action_rate_dp": 0.4249538292597707
+      },
+      "other": {
+        "n_dp": 1949,
+        "n_positive_dp": 431,
+        "n_action_dp": 816,
+        "prevalence_dp": 0.2211390456644433,
+        "action_rate_dp": 0.41867624422780914
+      },
+      "hispanic": {
+        "n_dp": 18014,
+        "n_positive_dp": 4429,
+        "n_action_dp": 7681,
+        "prevalence_dp": 0.24586432774508715,
+        "action_rate_dp": 0.4263905851004774
+      },
+      "black": {
+        "n_dp": 12952,
+        "n_positive_dp": 3364,
+        "n_action_dp": 5588,
+        "prevalence_dp": 0.25972822730080297,
+        "action_rate_dp": 0.4314391599752934
+      },
+      "asian": {
+        "n_dp": 5992,
+        "n_positive_dp": 1291,
+        "n_action_dp": 2593,
+        "prevalence_dp": 0.2154539385847797,
+        "action_rate_dp": 0.43274365821094796
+      },
+      "indigenous": {
+        "n_dp": 989,
+        "n_positive_dp": 293,
+        "n_action_dp": 441,
+        "prevalence_dp": 0.29625884732052576,
+        "action_rate_dp": 0.44590495449949447
+      }
+    },
+    "ethnicity": {
+      "non_hispanic": {
+        "n_dp": 81916,
+        "n_positive_dp": 18392,
+        "n_action_dp": 34863,
+        "prevalence_dp": 0.22452268177157086,
+        "action_rate_dp": 0.42559451145075444
+      },
+      "hispanic": {
+        "n_dp": 18084,
+        "n_positive_dp": 4422,
+        "n_action_dp": 7796,
+        "prevalence_dp": 0.24452554744525548,
+        "action_rate_dp": 0.43109931431099313
+      }
+    },
+    "insurance_type": {
+      "medicare": {
+        "n_dp": 29844,
+        "n_positive_dp": 6591,
+        "n_action_dp": 12628,
+        "prevalence_dp": 0.2208484117410535,
+        "action_rate_dp": 0.4231336281999732
+      },
+      "commercial": {
+        "n_dp": 40010,
+        "n_positive_dp": 8430,
+        "n_action_dp": 17226,
+        "prevalence_dp": 0.21069732566858285,
+        "action_rate_dp": 0.43054236440889776
+      },
+      "medicaid": {
+        "n_dp": 18150,
+        "n_positive_dp": 4665,
+        "n_action_dp": 7617,
+        "prevalence_dp": 0.25702479338842976,
+        "action_rate_dp": 0.41966942148760333
+      },
+      "uninsured": {
+        "n_dp": 8044,
+        "n_positive_dp": 2248,
+        "n_action_dp": 3504,
+        "prevalence_dp": 0.2794629537543511,
+        "action_rate_dp": 0.43560417702635507
+      },
+      "tricare": {
+        "n_dp": 3952,
+        "n_positive_dp": 880,
+        "n_action_dp": 1688,
+        "prevalence_dp": 0.22267206477732793,
+        "action_rate_dp": 0.4271255060728745
+      }
+    },
+    "language": {
+      "english": {
+        "n_dp": 77958,
+        "n_positive_dp": 17607,
+        "n_action_dp": 33224,
+        "prevalence_dp": 0.22585238205187408,
+        "action_rate_dp": 0.4261781985171503
+      },
+      "spanish": {
+        "n_dp": 13052,
+        "n_positive_dp": 3134,
+        "n_action_dp": 5573,
+        "prevalence_dp": 0.24011645724793135,
+        "action_rate_dp": 0.42698437021146185
+      },
+      "chinese": {
+        "n_dp": 4947,
+        "n_positive_dp": 1154,
+        "n_action_dp": 2118,
+        "prevalence_dp": 0.23327269051950678,
+        "action_rate_dp": 0.42813826561552454
+      },
+      "vietnamese": {
+        "n_dp": 2069,
+        "n_positive_dp": 457,
+        "n_action_dp": 917,
+        "prevalence_dp": 0.2208796520057999,
+        "action_rate_dp": 0.4432092798453359
+      },
+      "arabic": {
+        "n_dp": 1973,
+        "n_positive_dp": 457,
+        "n_action_dp": 830,
+        "prevalence_dp": 0.23162696401419158,
+        "action_rate_dp": 0.42067916877850986
+      }
+    }
+  },
+  "references": [
+    "AHRQ HCUP Statistical Brief #278 (2022).",
+    "Joynt & Jha 2014 (JGIM).",
+    "Wadhera et al. 2018 (JAMA) -- HRRP impact on safety-net.",
+    "Dwork et al. 2006 -- Calibrating Noise to Sensitivity."
+  ]
+}

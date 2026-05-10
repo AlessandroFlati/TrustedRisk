@@ -1,0 +1,112 @@
+{
+  "resourceType": "Bundle",
+  "id": "minimal-chf-patient",
+  "type": "collection",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Patient",
+        "id": "pt-chf-test",
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race",
+            "extension": [
+              {
+                "url": "ombCategory",
+                "valueCoding": {
+                  "system": "urn:oid:2.16.840.1.113883.6.238",
+                  "code": "2106-3",
+                  "display": "White"
+                }
+              }
+            ]
+          },
+          {
+            "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity",
+            "extension": [
+              {
+                "url": "ombCategory",
+                "valueCoding": {
+                  "system": "urn:oid:2.16.840.1.113883.6.238",
+                  "code": "2186-5",
+                  "display": "Not Hispanic or Latino"
+                }
+              }
+            ]
+          }
+        ],
+        "name": [{"use": "official", "family": "Test", "given": ["Patient"]}],
+        "gender": "female",
+        "birthDate": "1952-06-01"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-chf-test",
+        "status": "in-progress",
+        "class": {"code": "IMP", "display": "Inpatient"},
+        "subject": {"reference": "Patient/pt-chf-test"},
+        "period": {"start": "2026-05-01T08:00:00Z"}
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Condition",
+        "id": "cond-chf-test",
+        "clinicalStatus": {
+          "coding": [{"code": "active"}]
+        },
+        "code": {
+          "coding": [
+            {"system": "http://hl7.org/fhir/sid/icd-10-cm",
+             "code": "I50.21",
+             "display": "Acute on chronic systolic (congestive) heart failure"}
+          ],
+          "text": "Acute on chronic systolic CHF"
+        },
+        "subject": {"reference": "Patient/pt-chf-test"}
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "med-furo-test",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "coding": [
+            {"system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+             "code": "202991",
+             "display": "furosemide 40 MG Oral Tablet"}
+          ],
+          "text": "furosemide 40 mg PO daily"
+        },
+        "subject": {"reference": "Patient/pt-chf-test"},
+        "category": [
+          {"coding": [{"code": "discharge", "display": "Discharge"}]}
+        ]
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "med-lisin-test",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "coding": [
+            {"system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+             "code": "29046",
+             "display": "lisinopril 10 MG Oral Tablet"}
+          ],
+          "text": "lisinopril 10 mg PO daily"
+        },
+        "subject": {"reference": "Patient/pt-chf-test"},
+        "category": [
+          {"coding": [{"code": "discharge", "display": "Discharge"}]}
+        ]
+      }
+    }
+  ]
+}

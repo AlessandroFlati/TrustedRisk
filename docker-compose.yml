@@ -1,0 +1,204 @@
+services:
+  trustedrisk-mcp:
+    build: .
+    container_name: trustedrisk-mcp
+    ports:
+      - "8080:8080"
+    environment:
+      - TRUSTEDRISK_PORT=8080
+      - TRUSTEDRISK_HOST=0.0.0.0
+      - TRUSTEDRISK_LOG_LEVEL=INFO
+      - TRUSTEDRISK_COEFFICIENTS_PATH=/app/data/coefficients.json
+      - TRUSTEDRISK_GROUNDING_INDEX_PATH=/app/data/grounding_index_mpnet.pkl
+      - TRUSTEDRISK_OOD_POLICY_TYPE=${TRUSTEDRISK_OOD_POLICY_TYPE:-topological}
+      - TRUSTEDRISK_OOD_POLICY_PATH=/app/data/abstain_policy_topological.json
+      - TRUSTEDRISK_COHORT_EMBEDDINGS_PATH=/app/data/cohort_embeddings.npz
+      - EMBEDDING_MODEL=${EMBEDDING_MODEL:-sentence-transformers/all-mpnet-base-v2}
+    volumes:
+      - ./data:/app/data:ro
+      - ./fixtures:/app/fixtures:ro
+    restart: unless-stopped
+
+  # ─── Phase 1 federation specialists ─────────────────────────────────
+  #
+  # Each specialist reuses the same image (and the calibrated artifact
+  # volume) but runs uvicorn against a different `apps.specialist_*` ASGI
+  # module on a distinct port. They all share the same MCP backend; only
+  # the published `/.well-known/agent-card.json` differs.
+
+  trustedrisk-discharge:
+    build: .
+    container_name: trustedrisk-discharge
+    command: >
+      python -m uvicorn apps.specialist_discharge.server:app
+      --host 0.0.0.0 --port 8770
+    ports:
+      - "8770:8770"
+    environment:
+      - TRUSTEDRISK_HOST=0.0.0.0
+      - TRUSTEDRISK_DISCHARGE_PORT=8770
+      - TRUSTEDRISK_COEFFICIENTS_PATH=/app/data/coefficients.json
+      - TRUSTEDRISK_GROUNDING_INDEX_PATH=/app/data/grounding_index_mpnet.pkl
+      - TRUSTEDRISK_OOD_POLICY_TYPE=${TRUSTEDRISK_OOD_POLICY_TYPE:-topological}
+      - TRUSTEDRISK_OOD_POLICY_PATH=/app/data/abstain_policy_topological.json
+      - TRUSTEDRISK_COHORT_EMBEDDINGS_PATH=/app/data/cohort_embeddings.npz
+      - EMBEDDING_MODEL=${EMBEDDING_MODEL:-sentence-transformers/all-mpnet-base-v2}
+      - PYTHONPATH=/app/src
+    volumes:
+      - ./data:/app/data:ro
+      - ./fixtures:/app/fixtures:ro
+    restart: unless-stopped
+
+  trustedrisk-acute:
+    build: .
+    container_name: trustedrisk-acute
+    command: >
+      python -m uvicorn apps.specialist_acute.server:app
+      --host 0.0.0.0 --port 8771
+    ports:
+      - "8771:8771"
+    environment:
+      - TRUSTEDRISK_HOST=0.0.0.0
+      - TRUSTEDRISK_ACUTE_PORT=8771
+      - TRUSTEDRISK_COEFFICIENTS_PATH=/app/data/coefficients.json
+      - TRUSTEDRISK_GROUNDING_INDEX_PATH=/app/data/grounding_index_mpnet.pkl
+      - PYTHONPATH=/app/src
+    volumes:
+      - ./data:/app/data:ro
+      - ./fixtures:/app/fixtures:ro
+    restart: unless-stopped
+
+  trustedrisk-evidence:
+    build: .
+    container_name: trustedrisk-evidence
+    command: >
+      python -m uvicorn apps.specialist_evidence.server:app
+      --host 0.0.0.0 --port 8772
+    ports:
+      - "8772:8772"
+    environment:
+      - TRUSTEDRISK_HOST=0.0.0.0
+      - TRUSTEDRISK_EVIDENCE_PORT=8772
+      - TRUSTEDRISK_COEFFICIENTS_PATH=/app/data/coefficients.json
+      - TRUSTEDRISK_GROUNDING_INDEX_PATH=/app/data/grounding_index_mpnet.pkl
+      - PYTHONPATH=/app/src
+    volumes:
+      - ./data:/app/data:ro
+      - ./fixtures:/app/fixtures:ro
+    restart: unless-stopped
+
+  trustedrisk-population:
+    build: .
+    container_name: trustedrisk-population
+    command: >
+      python -m uvicorn apps.specialist_population.server:app
+      --host 0.0.0.0 --port 8773
+    ports:
+      - "8773:8773"
+    environment:
+      - TRUSTEDRISK_HOST=0.0.0.0
+      - TRUSTEDRISK_POPULATION_PORT=8773
+      - TRUSTEDRISK_COEFFICIENTS_PATH=/app/data/coefficients.json
+      - PYTHONPATH=/app/src
+    volumes:
+      - ./data:/app/data:ro
+      - ./fixtures:/app/fixtures:ro
+    restart: unless-stopped
+
+  trustedrisk-pedi-mh:
+    build: .
+    container_name: trustedrisk-pedi-mh
+    command: >
+      python -m uvicorn apps.specialist_pedi_mh.server:app
+      --host 0.0.0.0 --port 8774
+    ports:
+      - "8774:8774"
+    environment:
+      - TRUSTEDRISK_HOST=0.0.0.0
+      - TRUSTEDRISK_PEDI_MH_PORT=8774
+      - TRUSTEDRISK_COEFFICIENTS_PATH=/app/data/coefficients.json
+      - PYTHONPATH=/app/src
+    volumes:
+      - ./data:/app/data:ro
+      - ./fixtures:/app/fixtures:ro
+    restart: unless-stopped
+
+  # ─── Phase 2 pain-point specialists ─────────────────────────────────
+
+  trustedrisk-pa:
+    build: .
+    container_name: trustedrisk-pa
+    command: >
+      python -m uvicorn apps.specialist_pa.server:app
+      --host 0.0.0.0 --port 8775
+    ports:
+      - "8775:8775"
+    environment:
+      - TRUSTEDRISK_HOST=0.0.0.0
+      - TRUSTEDRISK_PA_PORT=8775
+      - TRUSTEDRISK_COEFFICIENTS_PATH=/app/data/coefficients.json
+      - TRUSTEDRISK_PA_LLM_POLISH=${TRUSTEDRISK_PA_LLM_POLISH:-0}
+      - PYTHONPATH=/app/src
+    volumes:
+      - ./data:/app/data:ro
+      - ./fixtures:/app/fixtures:ro
+    restart: unless-stopped
+
+  trustedrisk-scribe:
+    build: .
+    container_name: trustedrisk-scribe
+    command: >
+      python -m uvicorn apps.specialist_scribe.server:app
+      --host 0.0.0.0 --port 8776
+    ports:
+      - "8776:8776"
+    environment:
+      - TRUSTEDRISK_HOST=0.0.0.0
+      - TRUSTEDRISK_SCRIBE_PORT=8776
+      - TRUSTEDRISK_COEFFICIENTS_PATH=/app/data/coefficients.json
+      - TRUSTEDRISK_SCRIBE_LLM_POLISH=${TRUSTEDRISK_SCRIBE_LLM_POLISH:-0}
+      - PYTHONPATH=/app/src
+    volumes:
+      - ./data:/app/data:ro
+      - ./fixtures:/app/fixtures:ro
+    restart: unless-stopped
+
+  trustedrisk-patient:
+    build: .
+    container_name: trustedrisk-patient
+    command: >
+      python -m uvicorn apps.specialist_patient.server:app
+      --host 0.0.0.0 --port 8777
+    ports:
+      - "8777:8777"
+    environment:
+      - TRUSTEDRISK_HOST=0.0.0.0
+      - TRUSTEDRISK_PATIENT_PORT=8777
+      - TRUSTEDRISK_COEFFICIENTS_PATH=/app/data/coefficients.json
+      - TRUSTEDRISK_PATIENT_LLM_POLISH=${TRUSTEDRISK_PATIENT_LLM_POLISH:-0}
+      - PYTHONPATH=/app/src
+    volumes:
+      - ./data:/app/data:ro
+      - ./fixtures:/app/fixtures:ro
+    restart: unless-stopped
+
+  # HAPI FHIR R4 server for local dev / integration testing.
+  # `make demo-up` brings this up alongside trustedrisk-mcp; the MCP server
+  # then resolves X-FHIR-Server-URL=http://hapi:8080/fhir for in-cluster calls.
+  hapi:
+    image: hapiproject/hapi:latest
+    container_name: hapi-fhir-local
+    ports:
+      - "8081:8080"
+    environment:
+      - hapi.fhir.fhir_version=R4
+      - hapi.fhir.allow_external_references=true
+      - hapi.fhir.allow_multiple_delete=true
+      - hapi.fhir.expunge_enabled=true
+      - hapi.fhir.cors.allowed_origin=*
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8080/fhir/metadata"]
+      interval: 30s
+      timeout: 10s
+      retries: 8
+      start_period: 60s

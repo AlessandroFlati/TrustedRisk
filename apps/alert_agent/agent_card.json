@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "1.0.0",
+  "name": "trustedrisk-alert-agent",
+  "description": "Federated A2A partner that subscribes to TrustedRisk's drift_monitor and emits webhook alerts when calibration tiers escalate to warn/alert. Demonstrates the multi-agent COMPOSE-1 pattern: an upstream decision agent (TrustedRisk) feeds a specialist monitoring agent that owns alert routing + suppression policy.",
+  "version": "0.1.0",
+  "url": "http://localhost:8768/a2a/trustedrisk-alert-agent",
+  "defaultInputModes": ["application/json"],
+  "defaultOutputModes": ["application/json"],
+  "skills": [
+    {
+      "id": "subscribe_to_alerts",
+      "name": "Register a webhook to receive drift alerts",
+      "description": "POST a webhook_url + optional severity threshold. The alert agent will deliver alert_event payloads (drift KPI, severity, generated_at, source_agent) to the subscriber whenever check_drift_now or a periodic poll detects warn/alert tiers.",
+      "tags": ["subscription", "webhook", "drift", "monitoring"],
+      "examples": [
+        "Subscribe https://my-ops.example.com/webhooks/trustedrisk to alert tier",
+        "Subscribe my Slack relay endpoint, severity threshold = warn"
+      ]
+    },
+    {
+      "id": "check_drift_now",
+      "name": "Synchronously poll TrustedRisk for current drift state",
+      "description": "Hits TrustedRisk's /api/calibration/status, classifies the overall tier, and (when warn/alert) emits an alert event to all matching subscribers. Returns the alert payload it dispatched (or null when tier=ok).",
+      "tags": ["polling", "drift", "calibration", "decision-support"],
+      "examples": [
+        "Run a one-shot drift check on the past 24h DecisionCards",
+        "Poll TrustedRisk for calibration tier and dispatch alerts now"
+      ]
+    },
+    {
+      "id": "list_recent_alerts",
+      "name": "List recent dispatched alerts",
+      "description": "Returns the last N alert events the agent dispatched, with subscriber delivery status and dispatch timestamp. Useful for the playground orchestration tab and operator dashboards.",
+      "tags": ["audit", "alerts", "history"],
+      "examples": [
+        "Show me the last 10 alerts dispatched",
+        "What alerts went out in the last hour?"
+      ]
+    }
+  ],
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": true,
+    "stateTransitionHistory": false,
+    "alerting": {
+      "enabled": true,
+      "description": "In-process subscription registry + best-effort webhook delivery via httpx. Subscriptions are NOT persisted across restarts (this is a demo agent — production would back the registry with durable storage). Phase 3.4 — wired into the A2A push-notification model: clients call `CreateTaskPushNotificationConfig` with a webhook URL + optional severity threshold; the registry dispatches `TaskStatusUpdateEvent` payloads when drift fires."
+    }
+  }
+}

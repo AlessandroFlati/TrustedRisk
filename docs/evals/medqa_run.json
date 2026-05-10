@@ -1,0 +1,333 @@
+{
+  "captured_at_iso": "2026-04-30 06:50 UTC",
+  "n_items": 30,
+  "floor_accuracy": 0.967,
+  "llm_accuracy": null,
+  "by_category_floor": {
+    "anticoagulation": 0.5,
+    "stroke": 1.0,
+    "diabetes": 1.0,
+    "obstetric": 1.0,
+    "pediatric": 1.0,
+    "geriatric": 1.0,
+    "antimicrobial": 1.0,
+    "imaging": 1.0,
+    "psychiatric": 1.0,
+    "hematology": 1.0,
+    "trauma": 1.0,
+    "cardiology": 1.0,
+    "quality": 1.0,
+    "research_methods": 1.0,
+    "informatics": 1.0,
+    "ECG": 1.0,
+    "nephrology": 1.0,
+    "pharmacogenomics": 1.0,
+    "statistics": 1.0,
+    "emergency": 1.0,
+    "endocrine": 1.0,
+    "appeals": 1.0
+  },
+  "by_category_llm": {},
+  "items": [
+    {
+      "item_id": "Q01",
+      "category": "anticoagulation",
+      "correct": "B",
+      "floor_pick": "A",
+      "floor_correct": false,
+      "llm_pick": null,
+      "llm_correct": null,
+      "llm_model_id": null
+    },
+    {
+      "item_id": "Q02",
+      "category": "stroke",
+      "correct": "A",
+      "floor_pick": "A",
+      "floor_correct": true,
+      "llm_pick": null,
+      "llm_correct": null,
+      "llm_model_id": null
+    },
+    {
+      "item_id": "Q03",
+      "category": "diabetes",
+      "correct": "C",
+      "floor_pick": "C",
+      "floor_correct": true,
+      "llm_pick": null,
+      "llm_correct": null,
+      "llm_model_id": null
+    },
+    {
+      "item_id": "Q04",
+      "category": "obstetric",
+      "correct": "A",
+      "floor_pick": "A",
+      "floor_correct": true,
+      "llm_pick": null,
+      "llm_correct": null,
+      "llm_model_id": null
+    },
+    {
+      "item_id": "Q05",
+      "category": "pediatric",
+      "correct": "B",
+      "floor_pick": "B",
+      "floor_correct": true,
+      "llm_pick": null,
+      "llm_correct": null,
+      "llm_model_id": null
+    },
+    {
+      "item_id": "Q06",
+      "category": "geriatric",
+      "correct": "B",
+      "floor_pick": "B",
+      "floor_correct": true,
+      "llm_pick": null,
+      "llm_correct": null,
+      "llm_model_id": null
+    },
+    {
+      "item_id": "Q07",
+      "category": "antimicrobial",
+      "correct": "C",
+      "floor_pick": "C",
+      "floor_correct": true,
+      "llm_pick": null,
+      "llm_correct": null,
+      "llm_model_id": null
+    },
+    {
+      "item_id": "Q08",
+      "category": "imaging",
+      "correct": "B",
+      "floor_pick": "B",
+      "floor_correct": true,
+      "llm_pick": null,
+      "llm_correct": null,
+      "llm_model_id": null
+    },
+    {
+      "item_id": "Q09",
+      "category": "anticoagulation",
+      "correct": "B",
+      "floor_pick": "B",
+      "floor_correct": true,
+      "llm_pick": null,
+      "llm_correct": null,
+      "llm_model_id": null
+    },
+    {
+      "item_id": "Q10",
+      "category": "psychiatric",
+      "correct": "C",
+      "floor_pick": "C",
+      "floor_correct": true,
+      "llm_pick": null,
+      "llm_correct": null,
+      "llm_model_id": null
+    },
+    {
+      "item_id": "Q11",
+      "category": "hematology",
+      "correct": "A",
+      "floor_pick": "A",
+      "floor_correct": true,
+      "llm_pick": null,
+      "llm_correct": null,
+      "llm_model_id": null
+    },
+    {
+      "item_id": "Q12",
+      "category": "trauma",
+      "correct": "A",
+      "floor_pick": "A",
+      "floor_correct": true,
+      "llm_pick": null,
+      "llm_correct": null,
+      "llm_model_id": null
+    },
+    {
+      "item_id": "Q13",
+      "category": "cardiology",
+      "correct": "B",
+      "floor_pick": "B",
+      "floor_correct": true,
+      "llm_pick": null,
+      "llm_correct": null,
+      "llm_model_id": null
+    },
+    {
+      "item_id": "Q14",
+      "category": "quality",
+      "correct": "C",
+      "floor_pick": "C",
+      "floor_correct": true,
+      "llm_pick": null,
+      "llm_correct": null,
+      "llm_model_id": null
+    },
+    {
+      "item_id": "Q15",
+      "category": "research_methods",
+      "correct": "C",
+      "floor_pick": "C",
+      "floor_correct": true,
+      "llm_pick": null,
+      "llm_correct": null,
+      "llm_model_id": null
+    },
+    {
+      "item_id": "Q16",
+      "category": "informatics",
+      "correct": "C",
+      "floor_pick": "C",
+      "floor_correct": true,
+      "llm_pick": null,
+      "llm_correct": null,
+      "llm_model_id": null
+    },
+    {
+      "item_id": "Q17",
+      "category": "ECG",
+      "correct": "B",
+      "floor_pick": "B",
+      "floor_correct": true,
+      "llm_pick": null,
+      "llm_correct": null,
+      "llm_model_id": null
+    },
+    {
+      "item_id": "Q18",
+      "category": "informatics",
+      "correct": "B",
+      "floor_pick": "B",
+      "floor_correct": true,
+      "llm_pick": null,
+      "llm_correct": null,
+      "llm_model_id": null
+    },
+    {
+      "item_id": "Q19",
+      "category": "stroke",
+      "correct": "C",
+      "floor_pick": "C",
+      "floor_correct": true,
+      "llm_pick": null,
+      "llm_correct": null,
+      "llm_model_id": null
+    },
+    {
+      "item_id": "Q20",
+      "category": "nephrology",
+      "correct": "A",
+      "floor_pick": "A",
+      "floor_correct": true,
+      "llm_pick": null,
+      "llm_correct": null,
+      "llm_model_id": null
+    },
+    {
+      "item_id": "Q21",
+      "category": "quality",
+      "correct": "C",
+      "floor_pick": "C",
+      "floor_correct": true,
+      "llm_pick": null,
+      "llm_correct": null,
+      "llm_model_id": null
+    },
+    {
+      "item_id": "Q22",
+      "category": "pharmacogenomics",
+      "correct": "B",
+      "floor_pick": "B",
+      "floor_correct": true,
+      "llm_pick": null,
+      "llm_correct": null,
+      "llm_model_id": null
+    },
+    {
+      "item_id": "Q23",
+      "category": "imaging",
+      "correct": "A",
+      "floor_pick": "A",
+      "floor_correct": true,
+      "llm_pick": null,
+      "llm_correct": null,
+      "llm_model_id": null
+    },
+    {
+      "item_id": "Q24",
+      "category": "statistics",
+      "correct": "B",
+      "floor_pick": "B",
+      "floor_correct": true,
+      "llm_pick": null,
+      "llm_correct": null,
+      "llm_model_id": null
+    },
+    {
+      "item_id": "Q25",
+      "category": "cardiology",
+      "correct": "C",
+      "floor_pick": "C",
+      "floor_correct": true,
+      "llm_pick": null,
+      "llm_correct": null,
+      "llm_model_id": null
+    },
+    {
+      "item_id": "Q26",
+      "category": "geriatric",
+      "correct": "B",
+      "floor_pick": "B",
+      "floor_correct": true,
+      "llm_pick": null,
+      "llm_correct": null,
+      "llm_model_id": null
+    },
+    {
+      "item_id": "Q27",
+      "category": "emergency",
+      "correct": "A",
+      "floor_pick": "A",
+      "floor_correct": true,
+      "llm_pick": null,
+      "llm_correct": null,
+      "llm_model_id": null
+    },
+    {
+      "item_id": "Q28",
+      "category": "nephrology",
+      "correct": "B",
+      "floor_pick": "B",
+      "floor_correct": true,
+      "llm_pick": null,
+      "llm_correct": null,
+      "llm_model_id": null
+    },
+    {
+      "item_id": "Q29",
+      "category": "endocrine",
+      "correct": "A",
+      "floor_pick": "A",
+      "floor_correct": true,
+      "llm_pick": null,
+      "llm_correct": null,
+      "llm_model_id": null
+    },
+    {
+      "item_id": "Q30",
+      "category": "appeals",
+      "correct": "B",
+      "floor_pick": "B",
+      "floor_correct": true,
+      "llm_pick": null,
+      "llm_correct": null,
+      "llm_model_id": null
+    }
+  ]
+}

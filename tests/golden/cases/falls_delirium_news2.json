@@ -1,0 +1,84 @@
+{
+  "tool": "multi_tool",
+  "cases": [
+    {
+      "name": "falls_morse_high_classic",
+      "tool": "compute_falls_risk_morse",
+      "input": {
+        "history_of_falling_3mo": true,
+        "secondary_diagnosis_present": true,
+        "ambulatory_aid": "walker",
+        "has_iv_or_heparin_lock": true,
+        "gait": "weak",
+        "mental_status": "forgets_limitations"
+      },
+      "expected_subset": {
+        "score_total": 100, "risk_tier": "high",
+        "recommended_intervention": "high_risk_falls_protocol"
+      }
+    },
+    {
+      "name": "falls_morse_med_bumped_to_high",
+      "tool": "compute_falls_risk_morse",
+      "input": {
+        "history_of_falling_3mo": true,
+        "secondary_diagnosis_present": false,
+        "ambulatory_aid": "none",
+        "has_iv_or_heparin_lock": false,
+        "gait": "normal",
+        "mental_status": "oriented",
+        "current_medications": [
+          "lorazepam 1 mg", "oxycodone 5 mg", "diphenhydramine 25 mg"
+        ]
+      },
+      "expected_subset": {
+        "score_total": 25,
+        "risk_tier": "high"
+      }
+    },
+    {
+      "name": "cam_positive_classic",
+      "tool": "compute_delirium_screening_cam",
+      "input": {
+        "feature1_acute_onset_or_fluctuating": true,
+        "feature2_inattention": true,
+        "feature3_disorganized_thinking": true,
+        "motor_subtype": "hyperactive"
+      },
+      "expected_subset": {
+        "cam_positive": true,
+        "delirium_subtype": "hyperactive"
+      }
+    },
+    {
+      "name": "cam_negative_no_f3_no_f4",
+      "tool": "compute_delirium_screening_cam",
+      "input": {
+        "feature1_acute_onset_or_fluctuating": true,
+        "feature2_inattention": true,
+        "feature3_disorganized_thinking": false,
+        "feature4_altered_consciousness": false
+      },
+      "expected_subset": {"cam_positive": false}
+    },
+    {
+      "name": "news2_septic_picture",
+      "tool": "compute_clinical_deterioration_score",
+      "input": {
+        "vital_signs": [
+          {"type": "respiratory_rate", "value": 28, "observed_at": "2026-04-28T10:00:00Z"},
+          {"type": "spo2", "value": 91, "observed_at": "2026-04-28T10:00:00Z"},
+          {"type": "supplemental_oxygen", "value": true, "observed_at": "2026-04-28T10:00:00Z"},
+          {"type": "systolic_bp", "value": 88, "observed_at": "2026-04-28T10:00:00Z"},
+          {"type": "heart_rate", "value": 122, "observed_at": "2026-04-28T10:00:00Z"},
+          {"type": "temperature", "value": 39.2, "observed_at": "2026-04-28T10:00:00Z"},
+          {"type": "consciousness", "value": "V", "observed_at": "2026-04-28T10:00:00Z"}
+        ]
+      },
+      "expected_subset": {
+        "severity_tier": "high",
+        "recommended_response": "emergency_response"
+      }
+    }
+  ]
+}

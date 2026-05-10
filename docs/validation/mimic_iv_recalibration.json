@@ -1,0 +1,102 @@
+{
+  "calibrated_at_iso": "2026-04-30 06:20 UTC",
+  "cohort_n": 275,
+  "bin_layout": [
+    [
+      0,
+      3,
+      "lace_0_2"
+    ],
+    [
+      3,
+      6,
+      "lace_3_5"
+    ],
+    [
+      6,
+      10,
+      "lace_6_9"
+    ],
+    [
+      10,
+      13,
+      "lace_10_12"
+    ],
+    [
+      13,
+      60,
+      "lace_13_19"
+    ]
+  ],
+  "prior_alpha": 2.0,
+  "prior_beta": 18.0,
+  "per_bin": {
+    "lace_0_2": {
+      "n": 38,
+      "n_pos": 5,
+      "raw_rate": 0.13157894736842105,
+      "alpha_post": 7.0,
+      "beta_post": 51.0,
+      "p_mean": 0.1206896551724138
+    },
+    "lace_3_5": {
+      "n": 94,
+      "n_pos": 11,
+      "raw_rate": 0.11702127659574468,
+      "alpha_post": 13.0,
+      "beta_post": 101.0,
+      "p_mean": 0.11403508771929824
+    },
+    "lace_6_9": {
+      "n": 98,
+      "n_pos": 30,
+      "raw_rate": 0.30612244897959184,
+      "alpha_post": 32.0,
+      "beta_post": 86.0,
+      "p_mean": 0.2711864406779661
+    },
+    "lace_10_12": {
+      "n": 39,
+      "n_pos": 6,
+      "raw_rate": 0.15384615384615385,
+      "alpha_post": 8.0,
+      "beta_post": 51.0,
+      "p_mean": 0.13559322033898305
+    },
+    "lace_13_19": {
+      "n": 6,
+      "n_pos": 1,
+      "raw_rate": 0.16666666666666666,
+      "alpha_post": 3.0,
+      "beta_post": 23.0,
+      "p_mean": 0.11538461538461539
+    }
+  },
+  "metrics_overall": {
+    "ece": 0.01868283776678376,
+    "brier": 0.14885520883120112,
+    "auroc": 0.639937106918239
+  },
+  "w1_baseline_per_bin": {
+    "lace_0_2": {
+      "p_mean": 0.108225,
+      "n_lace_keys": 3
+    },
+    "lace_3_5": {
+      "p_mean": 0.102819,
+      "n_lace_keys": 3
+    },
+    "lace_6_9": {
+      "p_mean": 0.15398725,
+      "n_lace_keys": 4
+    },
+    "lace_10_12": {
+      "p_mean": 0.21696366666666667,
+      "n_lace_keys": 3
+    },
+    "lace_13_19": {
+      "p_mean": 0.281979,
+      "n_lace_keys": 7
+    }
+  }
+}

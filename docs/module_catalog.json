@@ -1,0 +1,1170 @@
+[
+  {
+    "module": "a2a_agent.a2a_messaging",
+    "loc": 418,
+    "summary": "A2A v1 JSON-RPC messaging shared by every TrustedRisk agent endpoint.",
+    "models": [],
+    "functions": [
+      "build_composer_handler",
+      "build_root_handler",
+      "build_specialist_handler",
+      "handle_jsonrpc"
+    ]
+  },
+  {
+    "module": "a2a_agent.a2a_streaming",
+    "loc": 119,
+    "summary": "Phase 17.AJ - A2A streaming SSE + cancellation + resume.",
+    "models": [
+      "StreamEvent"
+    ],
+    "functions": [
+      "collect_stream",
+      "render_sse",
+      "stream_decision_card"
+    ]
+  },
+  {
+    "module": "a2a_agent.active_learning",
+    "loc": 136,
+    "summary": "Phase 17.AX - Active learning acquisition functions.",
+    "models": [
+      "ActiveLearningPick",
+      "ActiveLearningReport"
+    ],
+    "functions": [
+      "select_top_k_by_committee",
+      "select_top_k_to_label"
+    ]
+  },
+  {
+    "module": "a2a_agent.agent",
+    "loc": 139,
+    "summary": "TrustedRisk A2A agent composer -- Option C hybrid.",
+    "models": [],
+    "functions": [
+      "root_agent",
+      "to_a2a_app"
+    ]
+  },
+  {
+    "module": "a2a_agent.agent_card_normalizer",
+    "loc": 45,
+    "summary": "Normalize on-disk agent cards to the A2A v1 proto-schema served shape.",
+    "models": [],
+    "functions": [
+      "normalize_agent_card"
+    ]
+  },
+  {
+    "module": "a2a_agent.audit",
+    "loc": 305,
+    "summary": "HIPAA-style structured audit logging + reproducibility (AUDIT-1, AUDIT-2).",
+    "models": [],
+    "functions": [
+      "append_audit_event",
+      "archive_decision",
+      "check_reproducibility",
+      "fetch_archived_decision",
+      "list_archived_decisions",
+      "log_tool_call",
+      "read_audit_log"
+    ]
+  },
+  {
+    "module": "a2a_agent.batch",
+    "loc": 166,
+    "summary": "Deterministic batch composer for POST /api/batch/decision-cards.",
+    "models": [],
+    "functions": [
+      "compose_decision_for_patient",
+      "parse_batch_request",
+      "process_batch",
+      "recommend_action_from_risk",
+      "serialize_batch_response"
+    ]
+  },
+  {
+    "module": "a2a_agent.bayes_net",
+    "loc": 210,
+    "summary": "Phase 17.AL - Bayesian network inference for patient state.",
+    "models": [
+      "BNNode",
+      "BayesianNetwork",
+      "InferenceResult"
+    ],
+    "functions": [
+      "build_network",
+      "build_readmission_network",
+      "cpt_lookup",
+      "infer"
+    ]
+  },
+  {
+    "module": "a2a_agent.bulk_fhir",
+    "loc": 141,
+    "summary": "Phase 16.H1 - Bulk FHIR $export consumer.",
+    "models": [
+      "BulkFhirSummary"
+    ],
+    "functions": [
+      "consume_bulk_fhir_lines",
+      "consume_bulk_fhir_path"
+    ]
+  },
+  {
+    "module": "a2a_agent.bundle_orchestrator",
+    "loc": 252,
+    "summary": "Bundle composition orchestrator (SAFE-2).",
+    "models": [],
+    "functions": [
+      "suggest_bundles"
+    ]
+  },
+  {
+    "module": "a2a_agent.causal_depth",
+    "loc": 315,
+    "summary": "Phase 17.M - Causal + counterfactual depth.",
+    "models": [
+      "FrontDoorReport",
+      "RosenbaumSensitivityReport",
+      "WachterCounterfactualReport",
+      "WaldIVReport"
+    ],
+    "functions": [
+      "find_min_distance_counterfactual",
+      "front_door_adjustment",
+      "rosenbaum_gamma_bound",
+      "wald_iv_estimate"
+    ]
+  },
+  {
+    "module": "a2a_agent.causal_forest",
+    "loc": 235,
+    "summary": "Phase 17.AS - Causal forest for conditional ATE (Athey & Wager 2019).",
+    "models": [
+      "CausalForest",
+      "CausalForestReport"
+    ],
+    "functions": [
+      "fit_causal_forest",
+      "overall_ate",
+      "predict_cate",
+      "report_causal_forest"
+    ]
+  },
+  {
+    "module": "a2a_agent.causal_inference",
+    "loc": 236,
+    "summary": "SCALE-2 -- Causal-inference Average Treatment Effect via DoWhy.",
+    "models": [],
+    "functions": [
+      "compute_average_treatment_effect"
+    ]
+  },
+  {
+    "module": "a2a_agent.cds_hooks_card",
+    "loc": 169,
+    "summary": "Phase 16.H3 - CDS Hooks v1.1 Card builder.",
+    "models": [
+      "CDSHooksAction",
+      "CDSHooksCard",
+      "CDSHooksLink",
+      "CDSHooksOverrideReason",
+      "CDSHooksResponse",
+      "CDSHooksSuggestion"
+    ],
+    "functions": [
+      "build_decision_card",
+      "build_response"
+    ]
+  },
+  {
+    "module": "a2a_agent.clinical_scenarios",
+    "loc": 502,
+    "summary": "Phase 11.6 -- 5 end-to-end clinical scenario runners.",
+    "models": [],
+    "functions": [
+      "list_scenarios",
+      "run_all_scenarios",
+      "run_scenario",
+      "scenario_acute_stroke",
+      "scenario_geriatric_polypharmacy",
+      "scenario_mental_health_crisis",
+      "scenario_polytrauma_mtp",
+      "scenario_sepsis_bundle"
+    ]
+  },
+  {
+    "module": "a2a_agent.coin",
+    "loc": 308,
+    "summary": "COIN -- Conversational Interoperability between A2A agents.",
+    "models": [],
+    "functions": [
+      "dialog_with_partner",
+      "match_skill_to_prompt"
+    ]
+  },
+  {
+    "module": "a2a_agent.concept_drift",
+    "loc": 193,
+    "summary": "Phase 17.AT - Concept-drift online detection.",
+    "models": [
+      "ADWINReport",
+      "DDMReport"
+    ],
+    "functions": [
+      "detect_drifts_adwin",
+      "detect_drifts_ddm"
+    ]
+  },
+  {
+    "module": "a2a_agent.conformal",
+    "loc": 166,
+    "summary": "Phase 10.9 -- Split conformal prediction with marginal coverage.",
+    "models": [],
+    "functions": [
+      "fit_split_conformal",
+      "predict_interval",
+      "predict_set"
+    ]
+  },
+  {
+    "module": "a2a_agent.conversational_orchestrator",
+    "loc": 430,
+    "summary": "GENAI-5 -- Conversational orchestrator across the 4-agent registry.",
+    "models": [],
+    "functions": [
+      "execute_workflow",
+      "plan_workflow"
+    ]
+  },
+  {
+    "module": "a2a_agent.cost_effectiveness_ladder",
+    "loc": 149,
+    "summary": "SIM-3 -- Cost-effectiveness ladder vs published literature benchmarks.",
+    "models": [],
+    "functions": [
+      "build_cost_effectiveness_ladder"
+    ]
+  },
+  {
+    "module": "a2a_agent.cost_simulator",
+    "loc": 183,
+    "summary": "Phase 17.AA - Cost simulator vs LACE-only baseline.",
+    "models": [
+      "CostBreakdown",
+      "CostSimulationReport"
+    ],
+    "functions": [
+      "simulate_cost_impact"
+    ]
+  },
+  {
+    "module": "a2a_agent.counterfactual_fairness",
+    "loc": 173,
+    "summary": "Phase 17.AR - Counterfactual fairness audit (Kusner 2017).",
+    "models": [
+      "CFFairnessFinding",
+      "CFFairnessReport",
+      "StructuralCausalModel"
+    ],
+    "functions": [
+      "audit_counterfactual_fairness",
+      "flip_protected_attribute"
+    ]
+  },
+  {
+    "module": "a2a_agent.cqr",
+    "loc": 180,
+    "summary": "Phase 17.AY - Conformalised quantile regression (Romano 2019).",
+    "models": [
+      "CQRReport",
+      "LinearQuantileModel"
+    ],
+    "functions": [
+      "fit_cqr",
+      "fit_linear_quantile",
+      "predict_quantile"
+    ]
+  },
+  {
+    "module": "a2a_agent.critique",
+    "loc": 289,
+    "summary": "Self-critique stage applied to a candidate DecisionCard.",
+    "models": [],
+    "functions": [
+      "aggregate_critic_verdicts",
+      "apply_critique",
+      "collapse_ensemble_to_single_critique"
+    ]
+  },
+  {
+    "module": "a2a_agent.data_lineage",
+    "loc": 236,
+    "summary": "CMP-3 -- Data lineage tracker.",
+    "models": [],
+    "functions": [
+      "compute_data_lineage"
+    ]
+  },
+  {
+    "module": "a2a_agent.decision_card_pdf",
+    "loc": 152,
+    "summary": "Phase 14.10 N1 -- PDF export of DecisionCard.",
+    "models": [],
+    "functions": [
+      "render_decision_card_pdf"
+    ]
+  },
+  {
+    "module": "a2a_agent.deterioration_nowcast",
+    "loc": 158,
+    "summary": "TIME-3 -- Real-time deterioration nowcasting.",
+    "models": [],
+    "functions": [
+      "nowcast_deterioration"
+    ]
+  },
+  {
+    "module": "a2a_agent.dicom_sr",
+    "loc": 263,
+    "summary": "Phase 16.H3 - DICOM SR (Structured Report) parser.",
+    "models": [
+      "DICOMSRItem",
+      "DICOMSRReport"
+    ],
+    "functions": [
+      "build_minimal_dicom_sr_bytes",
+      "parse_dicom_sr_bytes"
+    ]
+  },
+  {
+    "module": "a2a_agent.distribution_shift",
+    "loc": 241,
+    "summary": "Phase 17.N - Distribution shift formalism.",
+    "models": [
+      "BBSELabelShiftReport",
+      "EnergyOODReport",
+      "KSTestReport"
+    ],
+    "functions": [
+      "energy_based_ood_score",
+      "lipton_bbse_label_shift",
+      "two_sample_ks_test"
+    ]
+  },
+  {
+    "module": "a2a_agent.doubly_robust",
+    "loc": 102,
+    "summary": "Phase 17.AU - Doubly-robust ATE estimators.",
+    "models": [
+      "DoublyRobustReport"
+    ],
+    "functions": [
+      "estimate_ate_doubly_robust"
+    ]
+  },
+  {
+    "module": "a2a_agent.dp_equity",
+    "loc": 105,
+    "summary": "AUDIT-2 -- Differential privacy on the population equity dashboard.",
+    "models": [],
+    "functions": [
+      "compute_dp_equity_dashboard",
+      "math_log"
+    ]
+  },
+  {
+    "module": "a2a_agent.drift_monitor",
+    "loc": 312,
+    "summary": "Calibration drift monitor (SCI-3).",
+    "models": [],
+    "functions": [
+      "compute_drift_report"
+    ]
+  },
+  {
+    "module": "a2a_agent.ehr_integrations",
+    "loc": 494,
+    "summary": "EHR-1/2/3 -- Legacy-system integrations.",
+    "models": [],
+    "functions": [
+      "compute_sdoh_score",
+      "parse_ccda_document",
+      "parse_hl7v2_adt"
+    ]
+  },
+  {
+    "module": "a2a_agent.equity_dashboard",
+    "loc": 190,
+    "summary": "SIM-2 -- Population equity dashboard.",
+    "models": [],
+    "functions": [
+      "compute_equity_dashboard"
+    ]
+  },
+  {
+    "module": "a2a_agent.eval_quality",
+    "loc": 597,
+    "summary": "EVAL-1/2/3/4 -- Quality benchmarks and comparative-effectiveness.",
+    "models": [],
+    "functions": [
+      "compute_comparative_effectiveness",
+      "compute_hedis_score",
+      "compute_hospital_compare_benchmark",
+      "compute_schwartz_quality_score"
+    ]
+  },
+  {
+    "module": "a2a_agent.event_sourced_log",
+    "loc": 194,
+    "summary": "TIME-1 -- Event-sourced patient state log.",
+    "models": [],
+    "functions": [
+      "append_event",
+      "list_events",
+      "replay_to_state",
+      "truncate_log"
+    ]
+  },
+  {
+    "module": "a2a_agent.explainability",
+    "loc": 488,
+    "summary": "Phase 7.4 -- Explainability depth.",
+    "models": [],
+    "functions": [
+      "compute_ale_plot",
+      "compute_concept_bottleneck_rationale",
+      "compute_constitutional_critic_check",
+      "compute_lace_shap_attribution"
+    ]
+  },
+  {
+    "module": "a2a_agent.fairness_advanced",
+    "loc": 257,
+    "summary": "Phase 13.2 I1 -- Equalized Odds + Demographic Parity audit.",
+    "models": [],
+    "functions": [
+      "compute_fairness_advanced"
+    ]
+  },
+  {
+    "module": "a2a_agent.federated_learning",
+    "loc": 459,
+    "summary": "Phase 17.AN - Federated Learning simulator.",
+    "models": [
+      "BBPosterior",
+      "FederatedRound",
+      "FederatedTrainingReport",
+      "PrivacyUtilityPoint",
+      "PrivacyUtilityReport",
+      "SiteCohort"
+    ],
+    "functions": [
+      "add_laplace_noise",
+      "fedavg_aggregate",
+      "generate_site_cohort",
+      "local_update",
+      "privacy_utility_curve",
+      "run_federated_training"
+    ]
+  },
+  {
+    "module": "a2a_agent.federation_chain",
+    "loc": 242,
+    "summary": "Phase 17.U - Federation chained-call orchestrator.",
+    "models": [
+      "ChainHop",
+      "FederationChainTrace"
+    ],
+    "functions": [
+      "run_federation_chain"
+    ]
+  },
+  {
+    "module": "a2a_agent.federation_registry",
+    "loc": 219,
+    "summary": "Phase 17.AI - Federation marketplace registry + bundle coverage audit.",
+    "models": [
+      "FederationRegistry",
+      "SpecialistEntry"
+    ],
+    "functions": [
+      "build_federation_registry",
+      "render_marketplace_manifest",
+      "render_registry_md"
+    ]
+  },
+  {
+    "module": "a2a_agent.fedprox",
+    "loc": 163,
+    "summary": "Phase 17.AO - FedProx for heterogeneous federated clients.",
+    "models": [
+      "FedProxRound",
+      "FedProxTrainingReport"
+    ],
+    "functions": [
+      "run_fedprox_training"
+    ]
+  },
+  {
+    "module": "a2a_agent.fgsm_attack",
+    "loc": 206,
+    "summary": "Phase 17.AK - FGSM-style adversarial attack.",
+    "models": [
+      "FGSMReport",
+      "RobustnessReport"
+    ],
+    "functions": [
+      "adversarial_robustness_sweep",
+      "fgsm_attack"
+    ]
+  },
+  {
+    "module": "a2a_agent.fine_gray",
+    "loc": 241,
+    "summary": "Phase 17.AQ - Survival analysis with competing risks (Fine-Gray).",
+    "models": [
+      "FineGrayReport"
+    ],
+    "functions": [
+      "fit_fine_gray"
+    ]
+  },
+  {
+    "module": "a2a_agent.framework_crosswalks",
+    "loc": 355,
+    "summary": "Phase 16.G2 - NIST AI RMF 1.0 + OECD AI Principles 2019 crosswalks.",
+    "models": [
+      "CrosswalkRow",
+      "FrameworkCrosswalkReport"
+    ],
+    "functions": [
+      "build_framework_crosswalks",
+      "render_crosswalks_md"
+    ]
+  },
+  {
+    "module": "a2a_agent.guideline_crosswalk",
+    "loc": 531,
+    "summary": "Phase 17.P - Clinical guideline crosswalk for the 145-tool surface.",
+    "models": [
+      "GuidelineCrosswalkReport",
+      "GuidelineRow"
+    ],
+    "functions": [
+      "build_guideline_crosswalk",
+      "render_guideline_crosswalk_md"
+    ]
+  },
+  {
+    "module": "a2a_agent.hospital_year_simulator",
+    "loc": 108,
+    "summary": "Phase 17.AH - Monte Carlo hospital-year outcomes simulator.",
+    "models": [
+      "HospitalYearReport",
+      "TrajectoryStat"
+    ],
+    "functions": [
+      "simulate_hospital_year"
+    ]
+  },
+  {
+    "module": "a2a_agent.hrrp_benchmark",
+    "loc": 191,
+    "summary": "Phase 17.S - HRRP literature benchmark.",
+    "models": [
+      "HRRPBenchmarkReport",
+      "HRRPBin",
+      "HRRPSubgroupRow"
+    ],
+    "functions": [
+      "benchmark_against_hrrp",
+      "render_hrrp_md"
+    ]
+  },
+  {
+    "module": "a2a_agent.impact_aggregator",
+    "loc": 180,
+    "summary": "IMPACT-2 -- aggregate impact KPIs across a cohort of DecisionCards.",
+    "models": [],
+    "functions": [
+      "aggregate_impact_kpis",
+      "load_archived_decisions"
+    ]
+  },
+  {
+    "module": "a2a_agent.incremental_risk",
+    "loc": 118,
+    "summary": "TIME-2 -- Incremental risk recompute.",
+    "models": [],
+    "functions": [
+      "recompute_with_observation"
+    ]
+  },
+  {
+    "module": "a2a_agent.kalman_vitals",
+    "loc": 239,
+    "summary": "Phase 17.AF - Kalman filter for vitals time-series.",
+    "models": [
+      "Kalman1DReport",
+      "KalmanStep",
+      "MultiKalmanReport",
+      "MultiKalmanStep"
+    ],
+    "functions": [
+      "kalman_filter_1d",
+      "kalman_filter_multivariate"
+    ]
+  },
+  {
+    "module": "a2a_agent.llm_critic",
+    "loc": 171,
+    "summary": "GENAI-3 -- LLM-driven critic for the multi-critic ensemble.",
+    "models": [],
+    "functions": [
+      "llm_judge_critic"
+    ]
+  },
+  {
+    "module": "a2a_agent.llm_polish",
+    "loc": 395,
+    "summary": "Phase 6.2 -- Real LLM polish client.",
+    "models": [],
+    "functions": [
+      "find_preserved_tokens",
+      "post_check_preserved_tokens",
+      "reset_client_cache",
+      "resolve_polish_client"
+    ]
+  },
+  {
+    "module": "a2a_agent.local_explainer",
+    "loc": 240,
+    "summary": "Phase 17.AG - Anchors + LIME local explanations.",
+    "models": [
+      "AnchorReport",
+      "LIMEAttribution",
+      "LIMEReport"
+    ],
+    "functions": [
+      "anchors_explain",
+      "lime_explain"
+    ]
+  },
+  {
+    "module": "a2a_agent.mdp_decision",
+    "loc": 221,
+    "summary": "SCALE-3 -- Sequential decision modeling via finite-horizon MDP.",
+    "models": [],
+    "functions": [
+      "compute_sequential_mdp_value"
+    ]
+  },
+  {
+    "module": "a2a_agent.medqa_eval",
+    "loc": 617,
+    "summary": "Phase 11.8 -- MedQA-USMLE-style eval harness.",
+    "models": [],
+    "functions": [
+      "list_bench",
+      "main",
+      "run_medqa"
+    ]
+  },
+  {
+    "module": "a2a_agent.memory",
+    "loc": 308,
+    "summary": "Patient-history memory layer.",
+    "models": [],
+    "functions": [
+      "detect_recommendation_drift"
+    ]
+  },
+  {
+    "module": "a2a_agent.merkle_audit",
+    "loc": 219,
+    "summary": "AUDIT-1 -- Merkle audit chain.",
+    "models": [],
+    "functions": [
+      "build_inclusion_proof",
+      "compute_merkle_audit_root",
+      "verify_audit_chain",
+      "verify_inclusion"
+    ]
+  },
+  {
+    "module": "a2a_agent.milp_staffing",
+    "loc": 192,
+    "summary": "Phase 17.AV - Mixed-integer program for nurse-staffing.",
+    "models": [
+      "MILPStaffingPlan"
+    ],
+    "functions": [
+      "solve_milp_nurse_staffing"
+    ]
+  },
+  {
+    "module": "a2a_agent.model_card",
+    "loc": 386,
+    "summary": "Phase 16.F1 - Model Card (Mitchell 2019) + Datasheet (Gebru 2021).",
+    "models": [
+      "Datasheet",
+      "DatasheetSection",
+      "ModelCard",
+      "ModelCardSection"
+    ],
+    "functions": [
+      "build_datasheet",
+      "build_model_card",
+      "render_datasheet_md",
+      "render_model_card_md"
+    ]
+  },
+  {
+    "module": "a2a_agent.multi_agent_debate",
+    "loc": 220,
+    "summary": "Phase 14.16 Q1 -- Multi-agent debate / round-table.",
+    "models": [
+      "DebateInput",
+      "DebateOutcome",
+      "DebateVote"
+    ],
+    "functions": [
+      "run_debate"
+    ]
+  },
+  {
+    "module": "a2a_agent.neural_ode",
+    "loc": 155,
+    "summary": "Phase 17.AW - Neural-ODE-style trajectory model.",
+    "models": [
+      "NODEParams",
+      "NODETrajectoryReport",
+      "TrajectoryStep"
+    ],
+    "functions": [
+      "euler_step",
+      "init_node_params",
+      "integrate_trajectory",
+      "rk4_step",
+      "vector_field"
+    ]
+  },
+  {
+    "module": "a2a_agent.notification_formatter",
+    "loc": 169,
+    "summary": "PATIENT-4 -- Multi-channel notification formatter.",
+    "models": [],
+    "functions": [
+      "format_discharge_notifications"
+    ]
+  },
+  {
+    "module": "a2a_agent.observability",
+    "loc": 211,
+    "summary": "Phase 6.3 -- Observability primitives (Prometheus + OpenTelemetry).",
+    "models": [],
+    "functions": [
+      "default_rate_limiter",
+      "maybe_init_otel",
+      "rate_key_for_request",
+      "render_prometheus_metrics",
+      "time_tool"
+    ]
+  },
+  {
+    "module": "a2a_agent.omop_cdm",
+    "loc": 217,
+    "summary": "Phase 16.H2 - OMOP CDM v5.4 exporter.",
+    "models": [
+      "OMOPExportReport",
+      "OMOPRow"
+    ],
+    "functions": [
+      "export_to_omop"
+    ]
+  },
+  {
+    "module": "a2a_agent.openapi_generator",
+    "loc": 384,
+    "summary": "Phase 17.V - OpenAPI 3.1 spec generator.",
+    "models": [
+      "OpenAPISpec"
+    ],
+    "functions": [
+      "build_openapi"
+    ]
+  },
+  {
+    "module": "a2a_agent.openapi_surface",
+    "loc": 224,
+    "summary": "Phase 12.9 A2 -- OpenAPI 3.1 surface for the federation.",
+    "models": [],
+    "functions": [
+      "build_openapi_spec",
+      "make_docs_route",
+      "make_openapi_route"
+    ]
+  },
+  {
+    "module": "a2a_agent.outcomes_simulator",
+    "loc": 253,
+    "summary": "SIM-1 -- Monte Carlo hospital outcomes simulator.",
+    "models": [],
+    "functions": [
+      "simulate_hospital_year"
+    ]
+  },
+  {
+    "module": "a2a_agent.patient_advocate",
+    "loc": 223,
+    "summary": "Phase 16.J1 - Patient-advocate A2A specialist.",
+    "models": [
+      "AxisFinding",
+      "PatientAdvocateInput",
+      "SecondOpinionCard"
+    ],
+    "functions": [
+      "evaluate_patient_advocate"
+    ]
+  },
+  {
+    "module": "a2a_agent.patient_audit_summary",
+    "loc": 154,
+    "summary": "AUDIT-4 -- Patient-facing audit summary.",
+    "models": [],
+    "functions": [
+      "compute_patient_audit_summary"
+    ]
+  },
+  {
+    "module": "a2a_agent.plan_revision",
+    "loc": 119,
+    "summary": "Plan revision orchestrator (AMB-5.2).",
+    "models": [],
+    "functions": [
+      "run_with_plan_revision"
+    ]
+  },
+  {
+    "module": "a2a_agent.planner",
+    "loc": 378,
+    "summary": "Phase 10.8 -- Tool-use planner brain.",
+    "models": [],
+    "functions": [
+      "plan_tool_use"
+    ]
+  },
+  {
+    "module": "a2a_agent.planner_revision",
+    "loc": 282,
+    "summary": "Phase 14.15 Q2 -- Planner revision feedback loop.",
+    "models": [
+      "PlannerCritique",
+      "PlannerIssue"
+    ],
+    "functions": [
+      "critique_plan",
+      "revise_plan",
+      "run_with_planner_revision"
+    ]
+  },
+  {
+    "module": "a2a_agent.po_fhir_context",
+    "loc": 121,
+    "summary": "A2A v1 FHIR-context extension reader.",
+    "models": [],
+    "functions": [
+      "bind_po_fhir_context",
+      "extract_po_fhir_context",
+      "release_po_fhir_context",
+      "to_fhir_context"
+    ]
+  },
+  {
+    "module": "a2a_agent.prospective_eval",
+    "loc": 301,
+    "summary": "Phase 15.C -- Synthetic prospective evaluation harness.",
+    "models": [
+      "ProspectiveSummary"
+    ],
+    "functions": [
+      "run_prospective_eval"
+    ]
+  },
+  {
+    "module": "a2a_agent.push_notifications",
+    "loc": 173,
+    "summary": "Phase 3.4 -- A2A Push notification config registry + dispatcher.",
+    "models": [],
+    "functions": [
+      "default_registry",
+      "dispatch_task_artifact_update",
+      "dispatch_task_status_update"
+    ]
+  },
+  {
+    "module": "a2a_agent.redteam_v2",
+    "loc": 247,
+    "summary": "Phase 10.4 -- Adversarial evaluation suite v2.",
+    "models": [],
+    "functions": [
+      "load_corpus",
+      "run_redteam_corpus"
+    ]
+  },
+  {
+    "module": "a2a_agent.redteam_v3",
+    "loc": 223,
+    "summary": "Phase 12.7 B2 -- Adversarial v3 multi-target campaign.",
+    "models": [],
+    "functions": [
+      "run_redteam_multi_target"
+    ]
+  },
+  {
+    "module": "a2a_agent.redteam_v4",
+    "loc": 341,
+    "summary": "Phase 16.I1 - Red-team v4: indirect prompt injection + adversarial.",
+    "models": [
+      "RedTeamV4Case",
+      "RedTeamV4Report",
+      "RedTeamV4Result"
+    ],
+    "functions": [
+      "build_redteam_v4_corpus",
+      "run_redteam_v4",
+      "run_redteam_v4_sync"
+    ]
+  },
+  {
+    "module": "a2a_agent.refusal_classifier",
+    "loc": 188,
+    "summary": "Pure-Python refusal classifier mirroring the A2A root agent's safety policy.",
+    "models": [],
+    "functions": [
+      "classify_query"
+    ]
+  },
+  {
+    "module": "a2a_agent.registry",
+    "loc": 115,
+    "summary": "COMPOSE-3 -- A2A agent registry.",
+    "models": [],
+    "functions": [
+      "find_agent",
+      "list_agents",
+      "serialize_registry"
+    ]
+  },
+  {
+    "module": "a2a_agent.regulatory_pack",
+    "loc": 513,
+    "summary": "Phase 14.17 P1 -- Regulatory pack generator.",
+    "models": [
+      "RegulatoryPack",
+      "RegulatoryPackSection"
+    ],
+    "functions": [
+      "build_regulatory_pack",
+      "render_regulatory_pack_md"
+    ]
+  },
+  {
+    "module": "a2a_agent.right_to_explanation",
+    "loc": 174,
+    "summary": "AUDIT-3 -- Right-to-explanation generator (GDPR Art. 22 / EU AI Act).",
+    "models": [],
+    "functions": [
+      "compute_right_to_explanation"
+    ]
+  },
+  {
+    "module": "a2a_agent.safety_redteam",
+    "loc": 381,
+    "summary": "SAFE-1/2/3/4 -- red-team / OOD / pen-test / chaos engineering.",
+    "models": [],
+    "functions": [
+      "compute_adversarial_fragility",
+      "compute_chaos_run",
+      "compute_ood_detector",
+      "compute_pentest_suite"
+    ]
+  },
+  {
+    "module": "a2a_agent.saga_composer",
+    "loc": 209,
+    "summary": "Phase 13.13 G2 -- Saga composer cross-agent.",
+    "models": [],
+    "functions": [
+      "build_discharge_saga",
+      "run_saga"
+    ]
+  },
+  {
+    "module": "a2a_agent.scenario_counterfactuals",
+    "loc": 452,
+    "summary": "Phase 12.5 -- per-scenario counterfactual analysis.",
+    "models": [],
+    "functions": [
+      "list_counterfactuals",
+      "run_all_counterfactuals",
+      "run_counterfactual"
+    ]
+  },
+  {
+    "module": "a2a_agent.scheduler",
+    "loc": 140,
+    "summary": "Phase 14.12 L3 -- Background scheduler.",
+    "models": [],
+    "functions": [
+      "get_history",
+      "list_jobs",
+      "register_default_jobs",
+      "register_job",
+      "reset_registry",
+      "tick"
+    ]
+  },
+  {
+    "module": "a2a_agent.smart_on_fhir",
+    "loc": 182,
+    "summary": "Phase 16.H3 - SMART-on-FHIR EHR launch flow.",
+    "models": [
+      "SmartLaunchContext",
+      "SmartLaunchTrace",
+      "SmartTokenResponse"
+    ],
+    "functions": [
+      "begin_smart_launch",
+      "code_challenge_for",
+      "decode_id_token_unsafe",
+      "generate_code_verifier",
+      "load_smart_configuration",
+      "simulate_ehr_token_exchange"
+    ]
+  },
+  {
+    "module": "a2a_agent.stigma_linter",
+    "loc": 274,
+    "summary": "Phase 17.Z - Stigma + reading-level linter.",
+    "models": [
+      "PatientFacingTextAudit",
+      "ReadabilityReport",
+      "StigmaFinding",
+      "StigmaLintReport"
+    ],
+    "functions": [
+      "assess_readability",
+      "audit_patient_facing_text",
+      "lint_stigma"
+    ]
+  },
+  {
+    "module": "a2a_agent.streaming",
+    "loc": 208,
+    "summary": "Phase 3.3 -- Server-Sent Events (SSE) streaming utilities.",
+    "models": [],
+    "functions": [
+      "sse_artifact_update",
+      "sse_done",
+      "sse_event",
+      "sse_status_update",
+      "stream_llm_polish",
+      "stream_outcomes_simulation"
+    ]
+  },
+  {
+    "module": "a2a_agent.synthea_bundles",
+    "loc": 254,
+    "summary": "Phase 10.5 -- Synthea-style FHIR R4 Bundle generator.",
+    "models": [],
+    "functions": [
+      "generate_bundle",
+      "generate_cohort"
+    ]
+  },
+  {
+    "module": "a2a_agent.synthea_evaluator",
+    "loc": 225,
+    "summary": "SCALE-1 -- Evaluate the calibrated readmission model against a Synthea cohort.",
+    "models": [],
+    "functions": [
+      "derive_readmission_label",
+      "evaluate_synthea_cohort"
+    ]
+  },
+  {
+    "module": "a2a_agent.thompson_sampling",
+    "loc": 175,
+    "summary": "Phase 17.AP - Multi-armed bandits + Thompson sampling.",
+    "models": [
+      "ArmPosterior",
+      "BanditTrace"
+    ],
+    "functions": [
+      "regret_bound_o_sqrt_n_log_k",
+      "simulate_bandit_run"
+    ]
+  },
+  {
+    "module": "a2a_agent.tool_discovery",
+    "loc": 187,
+    "summary": "GENAI-4 -- Semantic tool discovery across the 40 MCP tools.",
+    "models": [],
+    "functions": [
+      "semantic_search_tools"
+    ]
+  },
+  {
+    "module": "a2a_agent.tool_retrieval_tfidf",
+    "loc": 204,
+    "summary": "Phase 14.14 Q3 -- Pure-Python TF-IDF tool retrieval.",
+    "models": [
+      "ToolRetrievalHit",
+      "ToolRetrievalResult"
+    ],
+    "functions": [
+      "retrieve_tools_by_query"
+    ]
+  },
+  {
+    "module": "a2a_agent.trajectory_predictor",
+    "loc": 97,
+    "summary": "TIME-4 -- Bayesian state-space trajectory predictor.",
+    "models": [],
+    "functions": [
+      "predict_trajectory"
+    ]
+  },
+  {
+    "module": "a2a_agent.trustworthy_ml",
+    "loc": 280,
+    "summary": "Phase 16.F2 - Trustworthy-ML formalisms.",
+    "models": [
+      "ConformalMultiClassReport",
+      "SelectiveClassificationPoint",
+      "SelectiveClassificationReport",
+      "SubgroupCalibrationReport"
+    ],
+    "functions": [
+      "per_subgroup_calibration_tension",
+      "selective_classification_curve",
+      "split_conformal_multiclass"
+    ]
+  },
+  {
+    "module": "a2a_agent.ws_chat",
+    "loc": 154,
+    "summary": "Phase 13.12 G1 -- WebSocket A2A streaming + multi-turn chat.",
+    "models": [],
+    "functions": [
+      "get_session_state",
+      "handle_user_message",
+      "reset_session",
+      "ws_chat_endpoint"
+    ]
+  }
+]

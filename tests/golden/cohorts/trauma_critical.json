@@ -1,0 +1,1051 @@
+{
+  "bundle_id": "trauma_critical",
+  "tool": "compute_trauma_severity_score",
+  "n_cases": 50,
+  "cases": [
+    {
+      "name": "trauma_case_000",
+      "input": {
+        "injuries": [
+          {
+            "body_region": "external",
+            "ais_severity": 2
+          },
+          {
+            "body_region": "head_neck",
+            "ais_severity": 5
+          },
+          {
+            "body_region": "head_neck",
+            "ais_severity": 5
+          }
+        ],
+        "glasgow_coma_score": 13,
+        "systolic_bp": 127,
+        "respiratory_rate": 25,
+        "has_active_hemorrhage": true
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_001",
+      "input": {
+        "injuries": [
+          {
+            "body_region": "external",
+            "ais_severity": 1
+          },
+          {
+            "body_region": "external",
+            "ais_severity": 3
+          },
+          {
+            "body_region": "head_neck",
+            "ais_severity": 4
+          },
+          {
+            "body_region": "external",
+            "ais_severity": 1
+          }
+        ],
+        "glasgow_coma_score": 10,
+        "systolic_bp": 105,
+        "respiratory_rate": 36,
+        "has_active_hemorrhage": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_002",
+      "input": {
+        "injuries": [
+          {
+            "body_region": "head_neck",
+            "ais_severity": 3
+          },
+          {
+            "body_region": "chest",
+            "ais_severity": 2
+          },
+          {
+            "body_region": "external",
+            "ais_severity": 3
+          }
+        ],
+        "glasgow_coma_score": 4,
+        "systolic_bp": 69,
+        "respiratory_rate": 30,
+        "has_active_hemorrhage": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_003",
+      "input": {
+        "injuries": [
+          {
+            "body_region": "chest",
+            "ais_severity": 2
+          }
+        ],
+        "glasgow_coma_score": 14,
+        "systolic_bp": 127,
+        "respiratory_rate": 16,
+        "has_active_hemorrhage": true
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_004",
+      "input": {
+        "injuries": [
+          {
+            "body_region": "abdomen_pelvis",
+            "ais_severity": 2
+          }
+        ],
+        "glasgow_coma_score": 6,
+        "systolic_bp": 71,
+        "respiratory_rate": 31,
+        "has_active_hemorrhage": true
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_005",
+      "input": {
+        "injuries": [
+          {
+            "body_region": "extremities_pelvic_girdle",
+            "ais_severity": 2
+          },
+          {
+            "body_region": "extremities_pelvic_girdle",
+            "ais_severity": 5
+          }
+        ],
+        "glasgow_coma_score": 7,
+        "systolic_bp": 104,
+        "respiratory_rate": 27,
+        "has_active_hemorrhage": true
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_006",
+      "input": {
+        "injuries": [],
+        "glasgow_coma_score": 11,
+        "systolic_bp": 180,
+        "respiratory_rate": 30,
+        "has_active_hemorrhage": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_007",
+      "input": {
+        "injuries": [
+          {
+            "body_region": "face",
+            "ais_severity": 3
+          }
+        ],
+        "glasgow_coma_score": 8,
+        "systolic_bp": 163,
+        "respiratory_rate": 23,
+        "has_active_hemorrhage": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_008",
+      "input": {
+        "injuries": [
+          {
+            "body_region": "extremities_pelvic_girdle",
+            "ais_severity": 1
+          },
+          {
+            "body_region": "abdomen_pelvis",
+            "ais_severity": 5
+          },
+          {
+            "body_region": "face",
+            "ais_severity": 5
+          }
+        ],
+        "glasgow_coma_score": 6,
+        "systolic_bp": 116,
+        "respiratory_rate": 15,
+        "has_active_hemorrhage": true
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_009",
+      "input": {
+        "injuries": [
+          {
+            "body_region": "abdomen_pelvis",
+            "ais_severity": 4
+          },
+          {
+            "body_region": "abdomen_pelvis",
+            "ais_severity": 1
+          },
+          {
+            "body_region": "chest",
+            "ais_severity": 3
+          },
+          {
+            "body_region": "head_neck",
+            "ais_severity": 4
+          }
+        ],
+        "glasgow_coma_score": 4,
+        "systolic_bp": 130,
+        "respiratory_rate": 39,
+        "has_active_hemorrhage": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_010",
+      "input": {
+        "injuries": [
+          {
+            "body_region": "external",
+            "ais_severity": 2
+          }
+        ],
+        "glasgow_coma_score": 10,
+        "systolic_bp": 70,
+        "respiratory_rate": 37,
+        "has_active_hemorrhage": true
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_011",
+      "input": {
+        "injuries": [
+          {
+            "body_region": "extremities_pelvic_girdle",
+            "ais_severity": 1
+          }
+        ],
+        "glasgow_coma_score": 15,
+        "systolic_bp": 99,
+        "respiratory_rate": 24,
+        "has_active_hemorrhage": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_012",
+      "input": {
+        "injuries": [
+          {
+            "body_region": "head_neck",
+            "ais_severity": 3
+          }
+        ],
+        "glasgow_coma_score": 4,
+        "systolic_bp": 89,
+        "respiratory_rate": 24,
+        "has_active_hemorrhage": true
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_013",
+      "input": {
+        "injuries": [
+          {
+            "body_region": "head_neck",
+            "ais_severity": 2
+          },
+          {
+            "body_region": "face",
+            "ais_severity": 2
+          }
+        ],
+        "glasgow_coma_score": 5,
+        "systolic_bp": 193,
+        "respiratory_rate": 37,
+        "has_active_hemorrhage": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_014",
+      "input": {
+        "injuries": [
+          {
+            "body_region": "face",
+            "ais_severity": 2
+          }
+        ],
+        "glasgow_coma_score": 9,
+        "systolic_bp": 116,
+        "respiratory_rate": 38,
+        "has_active_hemorrhage": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_015",
+      "input": {
+        "injuries": [
+          {
+            "body_region": "face",
+            "ais_severity": 3
+          },
+          {
+            "body_region": "face",
+            "ais_severity": 5
+          },
+          {
+            "body_region": "chest",
+            "ais_severity": 2
+          },
+          {
+            "body_region": "face",
+            "ais_severity": 3
+          }
+        ],
+        "glasgow_coma_score": 8,
+        "systolic_bp": 88,
+        "respiratory_rate": 12,
+        "has_active_hemorrhage": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_016",
+      "input": {
+        "injuries": [
+          {
+            "body_region": "external",
+            "ais_severity": 2
+          },
+          {
+            "body_region": "extremities_pelvic_girdle",
+            "ais_severity": 1
+          },
+          {
+            "body_region": "chest",
+            "ais_severity": 1
+          },
+          {
+            "body_region": "abdomen_pelvis",
+            "ais_severity": 2
+          }
+        ],
+        "glasgow_coma_score": 5,
+        "systolic_bp": 89,
+        "respiratory_rate": 29,
+        "has_active_hemorrhage": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_017",
+      "input": {
+        "injuries": [
+          {
+            "body_region": "head_neck",
+            "ais_severity": 3
+          },
+          {
+            "body_region": "head_neck",
+            "ais_severity": 5
+          },
+          {
+            "body_region": "face",
+            "ais_severity": 4
+          },
+          {
+            "body_region": "chest",
+            "ais_severity": 2
+          }
+        ],
+        "glasgow_coma_score": 5,
+        "systolic_bp": 118,
+        "respiratory_rate": 21,
+        "has_active_hemorrhage": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_018",
+      "input": {
+        "injuries": [
+          {
+            "body_region": "chest",
+            "ais_severity": 2
+          },
+          {
+            "body_region": "chest",
+            "ais_severity": 5
+          }
+        ],
+        "glasgow_coma_score": 3,
+        "systolic_bp": 196,
+        "respiratory_rate": 8,
+        "has_active_hemorrhage": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_019",
+      "input": {
+        "injuries": [
+          {
+            "body_region": "face",
+            "ais_severity": 1
+          },
+          {
+            "body_region": "abdomen_pelvis",
+            "ais_severity": 5
+          }
+        ],
+        "glasgow_coma_score": 13,
+        "systolic_bp": 99,
+        "respiratory_rate": 34,
+        "has_active_hemorrhage": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_020",
+      "input": {
+        "injuries": [
+          {
+            "body_region": "external",
+            "ais_severity": 1
+          },
+          {
+            "body_region": "chest",
+            "ais_severity": 5
+          }
+        ],
+        "glasgow_coma_score": 14,
+        "systolic_bp": 94,
+        "respiratory_rate": 14,
+        "has_active_hemorrhage": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_021",
+      "input": {
+        "injuries": [
+          {
+            "body_region": "chest",
+            "ais_severity": 1
+          }
+        ],
+        "glasgow_coma_score": 10,
+        "systolic_bp": 72,
+        "respiratory_rate": 31,
+        "has_active_hemorrhage": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_022",
+      "input": {
+        "injuries": [],
+        "glasgow_coma_score": 10,
+        "systolic_bp": 155,
+        "respiratory_rate": 40,
+        "has_active_hemorrhage": true
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_023",
+      "input": {
+        "injuries": [
+          {
+            "body_region": "face",
+            "ais_severity": 4
+          },
+          {
+            "body_region": "external",
+            "ais_severity": 3
+          },
+          {
+            "body_region": "abdomen_pelvis",
+            "ais_severity": 4
+          },
+          {
+            "body_region": "head_neck",
+            "ais_severity": 4
+          }
+        ],
+        "glasgow_coma_score": 11,
+        "systolic_bp": 66,
+        "respiratory_rate": 35,
+        "has_active_hemorrhage": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_024",
+      "input": {
+        "injuries": [
+          {
+            "body_region": "extremities_pelvic_girdle",
+            "ais_severity": 1
+          },
+          {
+            "body_region": "head_neck",
+            "ais_severity": 3
+          },
+          {
+            "body_region": "extremities_pelvic_girdle",
+            "ais_severity": 1
+          },
+          {
+            "body_region": "abdomen_pelvis",
+            "ais_severity": 3
+          }
+        ],
+        "glasgow_coma_score": 14,
+        "systolic_bp": 131,
+        "respiratory_rate": 36,
+        "has_active_hemorrhage": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_025",
+      "input": {
+        "injuries": [
+          {
+            "body_region": "abdomen_pelvis",
+            "ais_severity": 3
+          },
+          {
+            "body_region": "external",
+            "ais_severity": 2
+          },
+          {
+            "body_region": "chest",
+            "ais_severity": 1
+          },
+          {
+            "body_region": "abdomen_pelvis",
+            "ais_severity": 3
+          }
+        ],
+        "glasgow_coma_score": 6,
+        "systolic_bp": 174,
+        "respiratory_rate": 20,
+        "has_active_hemorrhage": true
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_026",
+      "input": {
+        "injuries": [],
+        "glasgow_coma_score": 4,
+        "systolic_bp": 83,
+        "respiratory_rate": 24,
+        "has_active_hemorrhage": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_027",
+      "input": {
+        "injuries": [
+          {
+            "body_region": "face",
+            "ais_severity": 2
+          },
+          {
+            "body_region": "chest",
+            "ais_severity": 5
+          }
+        ],
+        "glasgow_coma_score": 7,
+        "systolic_bp": 193,
+        "respiratory_rate": 38,
+        "has_active_hemorrhage": true
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_028",
+      "input": {
+        "injuries": [
+          {
+            "body_region": "head_neck",
+            "ais_severity": 3
+          },
+          {
+            "body_region": "head_neck",
+            "ais_severity": 2
+          }
+        ],
+        "glasgow_coma_score": 15,
+        "systolic_bp": 64,
+        "respiratory_rate": 23,
+        "has_active_hemorrhage": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_029",
+      "input": {
+        "injuries": [],
+        "glasgow_coma_score": 8,
+        "systolic_bp": 161,
+        "respiratory_rate": 17,
+        "has_active_hemorrhage": true
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_030",
+      "input": {
+        "injuries": [],
+        "glasgow_coma_score": 11,
+        "systolic_bp": 155,
+        "respiratory_rate": 11,
+        "has_active_hemorrhage": true
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_031",
+      "input": {
+        "injuries": [
+          {
+            "body_region": "face",
+            "ais_severity": 1
+          },
+          {
+            "body_region": "abdomen_pelvis",
+            "ais_severity": 2
+          },
+          {
+            "body_region": "chest",
+            "ais_severity": 2
+          }
+        ],
+        "glasgow_coma_score": 5,
+        "systolic_bp": 79,
+        "respiratory_rate": 38,
+        "has_active_hemorrhage": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_032",
+      "input": {
+        "injuries": [],
+        "glasgow_coma_score": 10,
+        "systolic_bp": 185,
+        "respiratory_rate": 35,
+        "has_active_hemorrhage": true
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_033",
+      "input": {
+        "injuries": [
+          {
+            "body_region": "external",
+            "ais_severity": 3
+          },
+          {
+            "body_region": "external",
+            "ais_severity": 1
+          },
+          {
+            "body_region": "external",
+            "ais_severity": 2
+          },
+          {
+            "body_region": "face",
+            "ais_severity": 4
+          }
+        ],
+        "glasgow_coma_score": 14,
+        "systolic_bp": 60,
+        "respiratory_rate": 13,
+        "has_active_hemorrhage": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_034",
+      "input": {
+        "injuries": [
+          {
+            "body_region": "extremities_pelvic_girdle",
+            "ais_severity": 5
+          },
+          {
+            "body_region": "head_neck",
+            "ais_severity": 3
+          },
+          {
+            "body_region": "chest",
+            "ais_severity": 2
+          },
+          {
+            "body_region": "chest",
+            "ais_severity": 4
+          }
+        ],
+        "glasgow_coma_score": 5,
+        "systolic_bp": 62,
+        "respiratory_rate": 35,
+        "has_active_hemorrhage": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_035",
+      "input": {
+        "injuries": [
+          {
+            "body_region": "chest",
+            "ais_severity": 2
+          },
+          {
+            "body_region": "chest",
+            "ais_severity": 2
+          },
+          {
+            "body_region": "chest",
+            "ais_severity": 1
+          },
+          {
+            "body_region": "head_neck",
+            "ais_severity": 3
+          }
+        ],
+        "glasgow_coma_score": 5,
+        "systolic_bp": 185,
+        "respiratory_rate": 18,
+        "has_active_hemorrhage": true
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_036",
+      "input": {
+        "injuries": [
+          {
+            "body_region": "chest",
+            "ais_severity": 3
+          },
+          {
+            "body_region": "extremities_pelvic_girdle",
+            "ais_severity": 4
+          },
+          {
+            "body_region": "face",
+            "ais_severity": 4
+          },
+          {
+            "body_region": "face",
+            "ais_severity": 4
+          }
+        ],
+        "glasgow_coma_score": 15,
+        "systolic_bp": 73,
+        "respiratory_rate": 34,
+        "has_active_hemorrhage": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_037",
+      "input": {
+        "injuries": [],
+        "glasgow_coma_score": 9,
+        "systolic_bp": 104,
+        "respiratory_rate": 37,
+        "has_active_hemorrhage": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_038",
+      "input": {
+        "injuries": [
+          {
+            "body_region": "face",
+            "ais_severity": 2
+          },
+          {
+            "body_region": "head_neck",
+            "ais_severity": 2
+          },
+          {
+            "body_region": "face",
+            "ais_severity": 2
+          }
+        ],
+        "glasgow_coma_score": 14,
+        "systolic_bp": 148,
+        "respiratory_rate": 27,
+        "has_active_hemorrhage": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_039",
+      "input": {
+        "injuries": [
+          {
+            "body_region": "chest",
+            "ais_severity": 3
+          },
+          {
+            "body_region": "face",
+            "ais_severity": 2
+          },
+          {
+            "body_region": "external",
+            "ais_severity": 5
+          },
+          {
+            "body_region": "abdomen_pelvis",
+            "ais_severity": 4
+          }
+        ],
+        "glasgow_coma_score": 14,
+        "systolic_bp": 111,
+        "respiratory_rate": 32,
+        "has_active_hemorrhage": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_040",
+      "input": {
+        "injuries": [
+          {
+            "body_region": "abdomen_pelvis",
+            "ais_severity": 1
+          },
+          {
+            "body_region": "face",
+            "ais_severity": 1
+          },
+          {
+            "body_region": "head_neck",
+            "ais_severity": 5
+          },
+          {
+            "body_region": "abdomen_pelvis",
+            "ais_severity": 3
+          }
+        ],
+        "glasgow_coma_score": 5,
+        "systolic_bp": 166,
+        "respiratory_rate": 36,
+        "has_active_hemorrhage": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_041",
+      "input": {
+        "injuries": [],
+        "glasgow_coma_score": 8,
+        "systolic_bp": 175,
+        "respiratory_rate": 31,
+        "has_active_hemorrhage": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_042",
+      "input": {
+        "injuries": [
+          {
+            "body_region": "extremities_pelvic_girdle",
+            "ais_severity": 3
+          },
+          {
+            "body_region": "external",
+            "ais_severity": 4
+          },
+          {
+            "body_region": "extremities_pelvic_girdle",
+            "ais_severity": 3
+          }
+        ],
+        "glasgow_coma_score": 9,
+        "systolic_bp": 190,
+        "respiratory_rate": 26,
+        "has_active_hemorrhage": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_043",
+      "input": {
+        "injuries": [
+          {
+            "body_region": "face",
+            "ais_severity": 2
+          }
+        ],
+        "glasgow_coma_score": 14,
+        "systolic_bp": 61,
+        "respiratory_rate": 31,
+        "has_active_hemorrhage": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_044",
+      "input": {
+        "injuries": [
+          {
+            "body_region": "chest",
+            "ais_severity": 3
+          },
+          {
+            "body_region": "chest",
+            "ais_severity": 5
+          },
+          {
+            "body_region": "external",
+            "ais_severity": 2
+          }
+        ],
+        "glasgow_coma_score": 14,
+        "systolic_bp": 63,
+        "respiratory_rate": 34,
+        "has_active_hemorrhage": true
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_045",
+      "input": {
+        "injuries": [
+          {
+            "body_region": "face",
+            "ais_severity": 5
+          }
+        ],
+        "glasgow_coma_score": 13,
+        "systolic_bp": 136,
+        "respiratory_rate": 32,
+        "has_active_hemorrhage": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_046",
+      "input": {
+        "injuries": [
+          {
+            "body_region": "face",
+            "ais_severity": 3
+          },
+          {
+            "body_region": "external",
+            "ais_severity": 4
+          }
+        ],
+        "glasgow_coma_score": 13,
+        "systolic_bp": 170,
+        "respiratory_rate": 20,
+        "has_active_hemorrhage": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_047",
+      "input": {
+        "injuries": [
+          {
+            "body_region": "extremities_pelvic_girdle",
+            "ais_severity": 5
+          },
+          {
+            "body_region": "extremities_pelvic_girdle",
+            "ais_severity": 2
+          },
+          {
+            "body_region": "face",
+            "ais_severity": 4
+          }
+        ],
+        "glasgow_coma_score": 13,
+        "systolic_bp": 92,
+        "respiratory_rate": 31,
+        "has_active_hemorrhage": false
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_048",
+      "input": {
+        "injuries": [
+          {
+            "body_region": "face",
+            "ais_severity": 4
+          },
+          {
+            "body_region": "head_neck",
+            "ais_severity": 5
+          },
+          {
+            "body_region": "face",
+            "ais_severity": 3
+          },
+          {
+            "body_region": "extremities_pelvic_girdle",
+            "ais_severity": 3
+          }
+        ],
+        "glasgow_coma_score": 8,
+        "systolic_bp": 135,
+        "respiratory_rate": 14,
+        "has_active_hemorrhage": true
+      },
+      "schema_only": true
+    },
+    {
+      "name": "trauma_case_049",
+      "input": {
+        "injuries": [
+          {
+            "body_region": "head_neck",
+            "ais_severity": 2
+          },
+          {
+            "body_region": "face",
+            "ais_severity": 3
+          },
+          {
+            "body_region": "chest",
+            "ais_severity": 5
+          }
+        ],
+        "glasgow_coma_score": 9,
+        "systolic_bp": 63,
+        "respiratory_rate": 13,
+        "has_active_hemorrhage": false
+      },
+      "schema_only": true
+    }
+  ]
+}

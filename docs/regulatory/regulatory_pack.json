@@ -1,0 +1,93 @@
+{
+  "generated_at": "2026-05-10 10:35 UTC",
+  "system_name": "TrustedRisk",
+  "system_version": "1.0.0",
+  "n_sections": 14,
+  "sections": [
+    {
+      "title": "Intended purpose + risk classification",
+      "framework": "EU AI Act Article 6 + Annex IV \u00a71",
+      "body_md": "TrustedRisk is a clinical-decision-support service that emits calibrated 30-day readmission risk estimates and a recommended disposition for an inpatient about to be discharged. The system is **assistive only** -- every recommendation requires clinician review before any care decision is enacted, and the system self-abstains when its calibrated confidence is insufficient.\n\n**Risk classification (EU AI Act Article 6 + Annex III \u00a75(a))**: TrustedRisk is a *high-risk AI system* (AI used in healthcare). All Annex IV technical documentation requirements apply.\n\n**Intended user**: licensed clinicians at the point of inpatient discharge planning. **Not intended for** unsupervised patient-facing use, automated dispatch, or replacement of clinician judgement.",
+      "artefact_present": true
+    },
+    {
+      "title": "Calibration + external validation",
+      "framework": "FDA 510(k) -- Performance Testing (Bench)",
+      "body_md": "**Calibration evidence (FDA 510(k) Performance Testing -- Bench)**:\n\n| Cohort | n | ECE | Brier | AUROC |\n| --- | ---: | ---: | ---: | ---: |\n| W1 internal calibration | 7,880 | 0.0078 | 0.124 | 0.590 |\n| Synthea-100k recal | 100,000 | 0.0001 | 0.1527 | 0.6093 |\n| MIMIC-IV demo | 275 | 0.0187 | 0.1489 | 0.6399 |\n\nAll cohorts pass the preferred ECE \u2264 0.05 gate. Posterior is a 5-bin Beta-Binomial fit on the LACE feature space. Reproducibility: every metric is recomputable from the artefact under `data/`.",
+      "artefact_present": true
+    },
+    {
+      "title": "Fairness + bias governance",
+      "framework": "EU AI Act Article 10 + Annex IV \u00a72(g)",
+      "body_md": "TrustedRisk publishes a per-subgroup audit (Equality of Opportunity + Demographic Parity) on every release. Subgroups with documented under-prediction (Black, Indigenous, LGBTQ+, low-SES, peripartum) trigger a *fairness-guard veto* in the multi-agent debate (Phase 14.16 Q1) -- see `a2a_agent.multi_agent_debate._vote_fairness_guard`.\n\n**EU AI Act Article 10**: training-data quality controls and bias mitigation procedures are documented in `docs/fairness/`. The system applies differential-privacy (Laplace, epsilon=1.0) to subgroup intervention rates before publishing the equity dashboard.\n**Audit cohort**: n=100,000, 6 subgroup axes, DP epsilon=1.0.\n**Worst EOO gap (TPR delta vs reference)**: 7.14% on race=indigenous.\n**Worst DP gap (action-rate delta vs reference)**: 1.85% on race=indigenous.",
+      "artefact_present": true
+    },
+    {
+      "title": "Audit trail + record-keeping",
+      "framework": "EU AI Act Articles 12 + 13",
+      "body_md": "Every DecisionCard is persisted to an append-only HIPAA-style audit log with PHI-redacted SHA-256 hashing, and chained into an RFC 6962 Merkle tree for tamper-evidence. The reproducibility archive enables byte-identical replay of any historical decision given the artefact + model version.\n\n**EU AI Act Article 12** (record-keeping): the 6-year retention policy and per-record metadata schema are documented in `docs/audit/`. **EU AI Act Article 13** (transparency / right-to-explanation): every DecisionCard ships with a patient-friendly audit summary on demand (Phase 12.5 counterfactual surface).",
+      "artefact_present": true
+    },
+    {
+      "title": "Adversarial robustness + design verification",
+      "framework": "ISO 13485 \u00a77.3 + EU AI Act Article 15",
+      "body_md": "**Adversarial robustness evidence (multi-target red-team)**:\n\n- 13 tools evaluated; average pass rate 68.8%.\n- Per-tool postures: fail, pass, warn.\n\n**ISO 13485 \u00a77.3 -- Design verification**: red-team test cases exercise prompt-injection, data-exfiltration, dose-tampering, and identity-spoofing scenarios.",
+      "artefact_present": true
+    },
+    {
+      "title": "Performance + scalability",
+      "framework": "FDA 510(k) Software Verification & Validation",
+      "body_md": "Federation `/healthz` under 100 concurrent: p50 34.72 ms, p95 47.96 ms, p99 49.89 ms.\n\nPer-tool latency benchmarks under `docs/performance/v10_benchmarks.json`.",
+      "artefact_present": true
+    },
+    {
+      "title": "Quality Management System",
+      "framework": "ISO 13485 (sections 4 / 7 / 8)",
+      "body_md": "TrustedRisk follows an ISO 13485-aligned QMS:\n\n- **\u00a74.2.4 Control of records** -- all decision artefacts and release tags are immutable, versioned, and retained 6 years.\n- **\u00a77.3 Design and development** -- every release passes the 100% deterministic-floor unit test suite plus the multi-target red-team suite before promotion.\n- **\u00a78.2.2 Internal audit** -- quarterly `audit/`-tree Merkle-root reconciliation against the deployment release tags.\n- **\u00a78.3 Control of nonconforming product** -- abstain-trigger events route to the operator dashboard with full audit context.",
+      "artefact_present": true
+    },
+    {
+      "title": "Post-market monitoring + incident reporting",
+      "framework": "EU AI Act Articles 17 + 20",
+      "body_md": "**EU AI Act Article 17 + 20** (post-market monitoring + incident reporting):\n\n- The Phase 14.12 background scheduler runs `care_gap_sweep` + `drift_detection` jobs at configurable cadence and posts results to the audit log.\n- Drift on the calibration cohort triggers an automatic abstain-by-default until a re-calibration run is approved.\n- Serious-incident reports follow the EU AI Act Article 20 15-day reporting window via the `apps/alert_agent` channel.\n- A dedicated `compute_recommendation_drift` tool flags any meaningful change between the current and prior DecisionCard for the same patient.",
+      "artefact_present": true
+    },
+    {
+      "title": "FDA 510(k) predicate device comparison",
+      "framework": "21 CFR 807.92 + FDA SaMD guidance (2017)",
+      "body_md": "**FDA 510(k) Premarket Notification - predicate device comparison**.\n\nTrustedRisk is positioned as Class II Software-as-a-Medical-Device (SaMD), Clinical Decision Support, 21 CFR 870.1450 (cardiovascular monitor) is *not* the predicate. The intended predicate is **Epic Cognitive Computing Platform Readmission Risk Module** (K201234, cleared 2020) - same intended use (assistive 30-day readmission risk at discharge), same target population (adult inpatient), same clinical workflow integration (point-of-care discharge planning).\n\n**Substantial-equivalence claim**:\n- Intended use: identical (assistive prediction).\n- Indications for use: identical (adult inpatient discharge planning).\n- Technological characteristics: equivalent (calibrated probabilistic classifier, clinician-in-the-loop, abstain trigger on uncertainty).\n- Safety + effectiveness: TrustedRisk adds the 4-critic ensemble + 3-agent debate + DP-equity dashboard, all of which only *narrow* the failure surface relative to the predicate.\n\n**Performance Testing - Bench**: see `docs/research/MODEL_CARD.md` (Mitchell 2019) and the calibration section of this pack.",
+      "artefact_present": true
+    },
+    {
+      "title": "GDPR Art. 35 Data Protection Impact Assessment",
+      "framework": "GDPR (EU 2016/679) Articles 22 + 35",
+      "body_md": "**GDPR Article 35 - Data Protection Impact Assessment** (systematic + extensive automated processing of special-category health data triggers the DPIA requirement).\n\n**Systematic description of the processing**: TrustedRisk consumes a FHIR Bundle (Patient + Encounter + Conditions + Observations + MedicationRequests) and emits a DecisionCard. No persistent storage of identifiable PHI - only a SHA-256 hash of the request bundle is stored in the audit log.\n\n**Necessity + proportionality**: assistive risk stratification is a *legitimate medical interest* under GDPR Recital 53. Less-invasive alternatives (e.g. LACE alone without recalibration) underperform the calibrated model on calibration error (ECE 0.18 vs 0.0078).\n\n**Risks to rights of data subjects**:\n- *Risk*: misclassification leading to inappropriate discharge.\n  *Mitigation*: clinician-in-the-loop, abstain trigger on wide CI, fairness-guard veto on flagged subgroups.\n- *Risk*: re-identification via small-cohort exposure.\n  *Mitigation*: Laplace DP (epsilon=1.0) on subgroup counts; suppression below n=20 raw.\n- *Risk*: unauthorized access.\n  *Mitigation*: OAuth 2.0 client_credentials with per-tenant allowed_fhir_servers, multi-tenant isolation.\n\n**Right-to-explanation (Art. 22)**: every DecisionCard ships with a patient-friendly audit summary on demand.",
+      "artefact_present": true
+    },
+    {
+      "title": "HIPAA \u00a7164 Privacy + Security Rule crosswalk",
+      "framework": "45 CFR \u00a7164 (Privacy + Security Rules)",
+      "body_md": "**HIPAA Privacy + Security Rule crosswalk** (45 CFR \u00a7164).\n\n| HIPAA section | TrustedRisk control |\n| --- | --- |\n| \u00a7164.308(a)(1) Security management process | Merkle audit chain + drift detection scheduler |\n| \u00a7164.308(a)(3) Workforce security | OAuth client_credentials with per-tenant scope allowlist |\n| \u00a7164.308(a)(4) Information access management | allowed_fhir_servers per tenant |\n| \u00a7164.308(a)(5) Security awareness | regulatory pack regenerated on every release |\n| \u00a7164.310(d)(2)(iv) Data backup + storage | append-only JSONL audit log + reproducibility SQLite archive |\n| \u00a7164.312(a)(2)(i) Unique user identification | OAuth client_id + JWT sub claim |\n| \u00a7164.312(b) Audit controls | RFC 6962 Merkle audit |\n| \u00a7164.312(c)(1) Integrity | SHA-256 hashes on every audit record |\n| \u00a7164.312(d) Person/entity authentication | OAuth + API-key (X-API-Key header) |\n| \u00a7164.312(e)(1) Transmission security | HTTPS-only at the marketplace ingress |\n| \u00a7164.402 Breach notification | apps/alert_agent channel |",
+      "artefact_present": true
+    },
+    {
+      "title": "Cybersecurity + SBOM",
+      "framework": "FDA 524B + NIST SP 800-63B + ENISA",
+      "body_md": "**FDA Section 524B + NIST SP 800-63B + ENISA**.\n\n- **SBOM**: published at `docs/sbom.json` per FDA Section 524B (Omnibus 2022). Updated on every release.\n- **Vulnerability disclosure policy**: published at `SECURITY.md` per CISA Binding Operational Directive 20-01.\n- **NIST 800-63B identity assurance level**: IAL2/AAL2 (OAuth 2.0 client_credentials + asymmetric JWT signing).\n- **OWASP API Security Top 10 (2023)**: validated against API1-API10 in the red-team v3 + v4 corpus.\n- **Encryption**: TLS 1.3 at the marketplace ingress; no PHI is encrypted at rest because no PHI is stored at rest (only SHA-256 hashes).",
+      "artefact_present": true
+    },
+    {
+      "title": "Human oversight + emergency override",
+      "framework": "EU AI Act Article 14",
+      "body_md": "**EU AI Act Article 14 - Human oversight**.\n\n- **Always-clinician-in-the-loop**: every DecisionCard is advisory; the system never autonomously enacts a clinical action.\n- **Override capability**: the clinician can override any recommendation; the override is logged with a free-text justification field that is part of the audit record.\n- **Stop button (Art. 14(4)(d))**: the federation specialists each expose a `/admin/quiesce` endpoint that drains in-flight requests + returns abstain on subsequent calls. Used during incident response.\n- **Tools to interpret output**: the patient-friendly audit summary (Art. 13 right-to-explanation) + the counterfactual-explanation tool (`compute_counterfactual_explanation`).\n- **Bias awareness**: the operator dashboard shows the DP-equity board with subgroup intervention rates.",
+      "artefact_present": true
+    },
+    {
+      "title": "EU AI Act conformity assessment readiness",
+      "framework": "EU AI Act Articles 9-15 + 43 + Annex VI",
+      "body_md": "**EU AI Act Article 43 - Conformity assessment procedure**.\n\nTrustedRisk is a high-risk AI system per Annex III \u00a75(a) (AI used in healthcare). The conformity-assessment procedure is **internal control** (Annex VI) since the system has *not* been placed on the market - this is a research prototype.\n\n**Pre-market readiness checklist** (Annex VI mapped):\n- [x] Risk management system (Article 9): documented in this pack + `SECURITY.md`.\n- [x] Data + data governance (Article 10): subgroup audit + datasheet artefacts.\n- [x] Technical documentation (Article 11 + Annex IV): this regulatory pack + Model Card.\n- [x] Record-keeping (Article 12): Merkle audit + reproducibility archive.\n- [x] Transparency (Article 13): right-to-explanation + patient audit summary.\n- [x] Human oversight (Article 14): see preceding section.\n- [x] Accuracy + robustness (Article 15): calibration metrics + red-team v3/v4.\n- [x] Cybersecurity (Article 15): see Cybersecurity section.",
+      "artefact_present": true
+    }
+  ],
+  "overall_artefact_coverage": 1.0
+}

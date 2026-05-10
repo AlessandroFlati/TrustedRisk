@@ -1,0 +1,74 @@
+{
+  "calibrated_at_iso": "2026-04-30 07:17 UTC",
+  "cohort_n": 100000,
+  "elapsed_seconds": 0.32,
+  "prior_alpha": 2.0,
+  "prior_beta": 18.0,
+  "per_bin": {
+    "lace_0_2": {
+      "n": 986,
+      "n_pos": 68,
+      "raw_rate": 0.06896551724137931,
+      "alpha_post": 70.0,
+      "beta_post": 936.0,
+      "p_mean": 0.06958250497017893
+    },
+    "lace_3_5": {
+      "n": 11520,
+      "n_pos": 1194,
+      "raw_rate": 0.10364583333333334,
+      "alpha_post": 1196.0,
+      "beta_post": 10344.0,
+      "p_mean": 0.10363951473136915
+    },
+    "lace_6_9": {
+      "n": 45215,
+      "n_pos": 7242,
+      "raw_rate": 0.16016808581223047,
+      "alpha_post": 7244.0,
+      "beta_post": 37991.0,
+      "p_mean": 0.16014148336465125
+    },
+    "lace_10_12": {
+      "n": 30665,
+      "n_pos": 7162,
+      "raw_rate": 0.23355617153106148,
+      "alpha_post": 7164.0,
+      "beta_post": 23521.0,
+      "p_mean": 0.23346912172071044
+    },
+    "lace_13_19": {
+      "n": 11614,
+      "n_pos": 3829,
+      "raw_rate": 0.32968830721542963,
+      "alpha_post": 3831.0,
+      "beta_post": 7803.0,
+      "p_mean": 0.3292934502320784
+    }
+  },
+  "metrics_overall": {
+    "ece": 9.13922130157316e-05,
+    "brier": 0.15271516564476276,
+    "auroc": 0.6092770895010193
+  },
+  "comparison": {
+    "w1_published": {
+      "n": 7880,
+      "ece": 0.0078,
+      "brier": 0.124,
+      "auroc": 0.59
+    },
+    "synthea_10k_validation": {
+      "n": 10000,
+      "ece": 0.0056,
+      "brier": 0.118,
+      "auroc": 0.601
+    },
+    "mimic_iv_demo": {
+      "n": 275,
+      "ece": 0.0187,
+      "brier": 0.149,
+      "auroc": 0.64
+    }
+  }
+}

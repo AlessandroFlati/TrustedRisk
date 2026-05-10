@@ -1,0 +1,165 @@
+{
+  "schemaVersion": "1.0.0",
+  "name": "Population Surveillance",
+  "_legacy_name": "trustedrisk-pophealth",
+  "description": "Population health + outbreak detection (Phase 10.2 POPHEALTH-1/2/3). Marketplace-publishable A2A specialist sharing the TrustedRisk MCP backend. Advertises 2 skills: Population health: syndromic surveillance + vaccine reminders + DP outbreak heatmap (POPHEALTH-1/2/3), PHI leakage check. FHIR context propagated via the A2A v1 FHIR-context extension; tools see the FHIRContext via the shared ContextVar without ever surfacing the bearer token to the LLM prompt. Every recommendation surfaces a calibrated CI when applicable, a deterministic safety gate, an abstain trigger when uncertainty or demographic bias is high, a 4-critic ensemble vote (clinical_safety + fairness + evidence + llm_judge) with bounded plan revision, a fairness audit by demographic subgroup, and a longitudinal patient timeline that surfaces drift across encounters.",
+  "version": "1.0.0",
+  "_bundles": {
+    "_doc": "Thematic groupings for client-side discovery. Tools may appear in multiple bundles (e.g. ground_claim, fairness_audit). The runtime exposes BUNDLES via the tools package (mcp_server.tools.list_bundles()).",
+    "population_health": [
+      "compute_syndromic_surveillance",
+      "compute_vaccine_reminder_cohort",
+      "compute_outbreak_heatmap"
+    ]
+  },
+  "_specialist": "specialist_pophealth",
+  "url": "https://<deploy-url>/a2a/trustedrisk-pophealth",
+  "supportedInterfaces": [
+    {
+      "url": "https://<deploy-url>/a2a/trustedrisk-pophealth",
+      "protocolBinding": "A2A",
+      "protocolVersion": "1.0"
+    }
+  ],
+  "defaultInputModes": [
+    "text/plain",
+    "application/json"
+  ],
+  "defaultOutputModes": [
+    "application/json"
+  ],
+  "skills": [
+    {
+      "id": "population_health",
+      "name": "Population health: syndromic surveillance + vaccine reminders + DP outbreak heatmap (POPHEALTH-1/2/3)",
+      "description": "Three Phase-10.2 population-health tools for ACO + public-health surveillance: (1) compute_syndromic_surveillance — Poisson z-score detection of presenting-complaint clusters vs a pre-supplied seasonal baseline, with severity tiers (informational / watch / alert / outbreak) following CDC NSSP / ESSENCE; (2) compute_vaccine_reminder_cohort — per-vaccine cohort builder over the ACIP 2025 schedule (FLU, PNEUMO, ZOSTER, TDAP, HPV, COVID-19, RSV, MMR, VARICELLA, MenACWY) with per-channel uptake estimates (phone 30%, postcard 18%, ehr_portal 25%, sms 22%, email 15%); (3) compute_outbreak_heatmap — DP-noised geographic × syndrome heatmap using Laplace mechanism (configurable ε, sensitivity 1) suitable for public release without re-identification risk.",
+      "tags": [
+        "population-health",
+        "ACO",
+        "syndromic-surveillance",
+        "ESSENCE",
+        "ACIP",
+        "vaccine-reminders",
+        "differential-privacy",
+        "Laplace",
+        "outbreak",
+        "CDC-NSSP"
+      ],
+      "examples": [
+        "Detect clusters in this 7-day ED chief-complaint summary against the 5-year seasonal baseline.",
+        "Build vaccine reminder cohorts: 1240 overdue FLU, 380 overdue PNEUMO, 95 overdue ZOSTER.",
+        "Publish a DP-noised outbreak heatmap (ε = 1.0) for ILI + GI cases across 12 ZIP buckets."
+      ]
+    },
+    {
+      "id": "phi_check",
+      "name": "PHI leakage check",
+      "description": "Scan arbitrary clinical text for PHI entities and produce a redaction map. Does not require FHIR patient context.",
+      "tags": [
+        "phi",
+        "safety",
+        "privacy",
+        "redaction"
+      ],
+      "examples": [
+        "Scan this discharge summary for PHI.",
+        "Does this note contain any protected information?"
+      ]
+    }
+  ],
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": true,
+    "stateTransitionHistory": false,
+    "extensions": [
+      {
+        "uri": "https://app.promptopinion.ai/schemas/a2a/v1/fhir-context",
+        "description": "A2A v1 FHIR-context extension. The platform delivers FHIR credentials in `Message.metadata` keyed by this URI, with camelCase fields {fhirUrl, fhirToken, patientId, fhirRefreshToken?, fhirRefreshTokenUrl?}. TrustedRisk consumes the metadata in its before-model hook, populates the shared FHIRContext ContextVar, and never lets the credentials reach the LLM prompt. See https://docs.promptopinion.ai/fhir-context/a2a-fhir-context.html.",
+        "required": false,
+        "params": {
+          "scopes": [
+            {
+              "name": "patient/Patient.rs",
+              "required": true
+            },
+            {
+              "name": "patient/Condition.rs"
+            },
+            {
+              "name": "patient/Encounter.rs"
+            },
+            {
+              "name": "patient/Immunization.rs"
+            },
+            {
+              "name": "patient/Observation.rs"
+            }
+          ]
+        }
+      }
+    ],
+    "selfCritique": {
+      "enabled": true,
+      "description": "Every clinical recommendation passes through a 4-critic ensemble (clinical_safety + fairness + evidence + llm_judge) that may downgrade confidence, force abstain, or request a replay before the response is emitted. The LLM critic has a deterministic floor (pass-through approval) so it never blocks unilaterally."
+    },
+    "memoryLayer": {
+      "enabled": true,
+      "description": "Prior DecisionCards for the same patient are retrieved from a SQLite-backed memory store. When a valid (non-expired, same-model-version) card is found, it can serve directly; otherwise a fresh tool chain runs and detect_recommendation_drift flags any meaningful change vs the prior."
+    },
+    "temporalValidity": {
+      "enabled": true,
+      "description": "Every RiskEstimate carries a valid_until timestamp scaled by clinical-risk severity (high LACE → 4h, moderate → 12h, low → 24h). Expired cards force a re-call."
+    },
+    "fairnessAuditCalibration": {
+      "enabled": true,
+      "description": "Subgroup-multiplier baseline is calibrated on the receiving cohort (internal calibration workflow output) and falls back to literature defaults (HRRP/HCUP/JAMA) when the calibrated artifact is absent."
+    },
+    "counterfactualExplanation": {
+      "enabled": true,
+      "description": "Per-factor what-if sweep shows how each LACE component contributes to the predicted risk and identifies a minimum-modification path that would flip the recommendation tier."
+    },
+    "multiTenant": {
+      "enabled": true,
+      "description": "Optional OAuth 2.0 client_credentials grant (RFC 6749 §4.4) with per-client allowed_fhir_servers allowlist enforces tenant isolation: a token issued for tenant A cannot be used to query tenant B's FHIR endpoint."
+    },
+    "auditTrail": {
+      "enabled": true,
+      "description": "Append-only HIPAA-style audit log (PHI-redacted SHA-256 hashing) plus an RFC 6962 Merkle audit chain for tamper-evidence; reproducibility archive enables byte-identical replay of any historical decision."
+    },
+    "rightToExplanation": {
+      "enabled": true,
+      "description": "GDPR Art. 22 / EU AI Act Art. 13 right-to-explanation surface — every DecisionCard is paired with a patient-friendly audit summary on demand."
+    },
+    "differentialPrivacyEquity": {
+      "enabled": true,
+      "description": "Equity dashboard publishes subgroup intervention / abstain / risk rates with Laplace-mechanism differential privacy."
+    }
+  },
+  "securitySchemes": {
+    "oauth_client_credentials": {
+      "oauth2SecurityScheme": {
+        "type": "oauth2",
+        "description": "Optional bearer-token authentication (RFC 6749 §4.4). Disabled by default; enable via TRUSTEDRISK_OAUTH_ENABLED=1.",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://<deploy-url>/oauth/token",
+            "scopes": {
+              "discharge.read": "Invoke compute_readmission_risk + decision_utility",
+              "discharge.execute": "Above plus medication_reconciliation + fairness_audit",
+              "phi.scan": "Invoke detect_phi only",
+              "grounding.read": "Invoke ground_claim only"
+            }
+          }
+        }
+      }
+    },
+    "x_api_key": {
+      "apiKeySecurityScheme": {
+        "type": "apiKey",
+        "description": "Static API-key authentication for marketplace-mediated A2A calls. Configured via TRUSTEDRISK_API_KEYS env var (comma-separated). When set, every A2A call must carry `X-API-Key` matching one of the configured values.",
+        "location": "header",
+        "name": "X-API-Key"
+      }
+    }
+  }
+}

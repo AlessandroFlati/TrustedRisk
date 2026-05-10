@@ -1,0 +1,418 @@
+{
+  "cohort_n": 2000,
+  "seed": 20260430,
+  "fairness_audit_present": true,
+  "overall": {
+    "n": 2000,
+    "abstain_rate": 0.0,
+    "downgrade_rate": 0.641,
+    "approve_rate": 0.359,
+    "observed_outcome_rate": 0.225,
+    "mean_predicted_rate": 0.19463,
+    "calibration_gap_abs": 0.030370000000000008,
+    "fairness_flagged_share": 0.3575,
+    "action_distribution": {
+      "discharge_with_homecare": 1135,
+      "continued_admission": 855,
+      "discharge_home": 10
+    }
+  },
+  "per_subgroup": {
+    "age_band": {
+      "40-64": {
+        "n": 707,
+        "abstain_rate": 0.0,
+        "downgrade_rate": 0.669024045261669,
+        "approve_rate": 0.33097595473833097,
+        "observed_outcome_rate": 0.2065063649222065,
+        "mean_predicted_rate": 0.19776520509193776,
+        "calibration_gap_abs": 0.008741159830268741,
+        "fairness_flagged_share": 0.38472418670438474,
+        "action_distribution": {
+          "discharge_with_homecare": 390,
+          "continued_admission": 314,
+          "discharge_home": 3
+        }
+      },
+      "65-74": {
+        "n": 504,
+        "abstain_rate": 0.0,
+        "downgrade_rate": 0.6130952380952381,
+        "approve_rate": 0.3869047619047619,
+        "observed_outcome_rate": 0.19642857142857142,
+        "mean_predicted_rate": 0.18836309523809525,
+        "calibration_gap_abs": 0.008065476190476178,
+        "fairness_flagged_share": 0.35119047619047616,
+        "action_distribution": {
+          "discharge_with_homecare": 307,
+          "continued_admission": 193,
+          "discharge_home": 4
+        }
+      },
+      "18-39": {
+        "n": 182,
+        "abstain_rate": 0.0,
+        "downgrade_rate": 0.6813186813186813,
+        "approve_rate": 0.31868131868131866,
+        "observed_outcome_rate": 0.25824175824175827,
+        "mean_predicted_rate": 0.20300549450549452,
+        "calibration_gap_abs": 0.05523626373626375,
+        "fairness_flagged_share": 0.34065934065934067,
+        "action_distribution": {
+          "discharge_with_homecare": 94,
+          "continued_admission": 88
+        }
+      },
+      "75-84": {
+        "n": 413,
+        "abstain_rate": 0.0,
+        "downgrade_rate": 0.6174334140435835,
+        "approve_rate": 0.38256658595641646,
+        "observed_outcome_rate": 0.2566585956416465,
+        "mean_predicted_rate": 0.19405326876513318,
+        "calibration_gap_abs": 0.06260532687651332,
+        "fairness_flagged_share": 0.34382566585956414,
+        "action_distribution": {
+          "discharge_with_homecare": 234,
+          "continued_admission": 176,
+          "discharge_home": 3
+        }
+      },
+      "85+": {
+        "n": 194,
+        "abstain_rate": 0.0,
+        "downgrade_rate": 0.6237113402061856,
+        "approve_rate": 0.37628865979381443,
+        "observed_outcome_rate": 0.26804123711340205,
+        "mean_predicted_rate": 0.1928556701030928,
+        "calibration_gap_abs": 0.07518556701030926,
+        "fairness_flagged_share": 0.31958762886597936,
+        "action_distribution": {
+          "continued_admission": 84,
+          "discharge_with_homecare": 110
+        }
+      }
+    },
+    "sex": {
+      "male": {
+        "n": 963,
+        "abstain_rate": 0.0,
+        "downgrade_rate": 0.6365524402907581,
+        "approve_rate": 0.363447559709242,
+        "observed_outcome_rate": 0.23156801661474558,
+        "mean_predicted_rate": 0.1941765316718588,
+        "calibration_gap_abs": 0.03739148494288677,
+        "fairness_flagged_share": 0.3406022845275182,
+        "action_distribution": {
+          "discharge_with_homecare": 540,
+          "continued_admission": 417,
+          "discharge_home": 6
+        }
+      },
+      "female": {
+        "n": 1037,
+        "abstain_rate": 0.0,
+        "downgrade_rate": 0.6451301832208293,
+        "approve_rate": 0.3548698167791707,
+        "observed_outcome_rate": 0.218900675024108,
+        "mean_predicted_rate": 0.19505110896817743,
+        "calibration_gap_abs": 0.023849566055930582,
+        "fairness_flagged_share": 0.37319189971070393,
+        "action_distribution": {
+          "discharge_with_homecare": 595,
+          "continued_admission": 438,
+          "discharge_home": 4
+        }
+      }
+    },
+    "race": {
+      "white": {
+        "n": 1228,
+        "abstain_rate": 0.0,
+        "downgrade_rate": 0.5928338762214984,
+        "approve_rate": 0.40716612377850164,
+        "observed_outcome_rate": 0.2182410423452769,
+        "mean_predicted_rate": 0.19640960912052116,
+        "calibration_gap_abs": 0.021831433224755725,
+        "fairness_flagged_share": 0.251628664495114,
+        "action_distribution": {
+          "discharge_with_homecare": 679,
+          "continued_admission": 543,
+          "discharge_home": 6
+        }
+      },
+      "other": {
+        "n": 43,
+        "abstain_rate": 0.0,
+        "downgrade_rate": 0.5581395348837209,
+        "approve_rate": 0.4418604651162791,
+        "observed_outcome_rate": 0.18604651162790697,
+        "mean_predicted_rate": 0.18883720930232561,
+        "calibration_gap_abs": 0.0027906976744186407,
+        "fairness_flagged_share": 0.32558139534883723,
+        "action_distribution": {
+          "discharge_with_homecare": 29,
+          "continued_admission": 14
+        }
+      },
+      "hispanic": {
+        "n": 347,
+        "abstain_rate": 0.0,
+        "downgrade_rate": 0.5619596541786743,
+        "approve_rate": 0.43804034582132567,
+        "observed_outcome_rate": 0.2420749279538905,
+        "mean_predicted_rate": 0.19182420749279538,
+        "calibration_gap_abs": 0.050250720461095105,
+        "fairness_flagged_share": 0.2564841498559078,
+        "action_distribution": {
+          "discharge_with_homecare": 205,
+          "continued_admission": 139,
+          "discharge_home": 3
+        }
+      },
+      "black": {
+        "n": 258,
+        "abstain_rate": 0.0,
+        "downgrade_rate": 1.0,
+        "approve_rate": 0.0,
+        "observed_outcome_rate": 0.2596899224806202,
+        "mean_predicted_rate": 0.1911356589147287,
+        "calibration_gap_abs": 0.06855426356589148,
+        "fairness_flagged_share": 1.0,
+        "action_distribution": {
+          "discharge_with_homecare": 152,
+          "continued_admission": 106
+        }
+      },
+      "asian": {
+        "n": 108,
+        "abstain_rate": 0.0,
+        "downgrade_rate": 0.5648148148148148,
+        "approve_rate": 0.4351851851851852,
+        "observed_outcome_rate": 0.17592592592592593,
+        "mean_predicted_rate": 0.193,
+        "calibration_gap_abs": 0.017074074074074075,
+        "fairness_flagged_share": 0.26851851851851855,
+        "action_distribution": {
+          "discharge_with_homecare": 61,
+          "continued_admission": 46,
+          "discharge_home": 1
+        }
+      },
+      "indigenous": {
+        "n": 16,
+        "abstain_rate": 0.0,
+        "downgrade_rate": 1.0,
+        "approve_rate": 0.0,
+        "observed_outcome_rate": 0.25,
+        "mean_predicted_rate": 0.2018125,
+        "calibration_gap_abs": 0.048187499999999994,
+        "fairness_flagged_share": 1.0,
+        "action_distribution": {
+          "continued_admission": 7,
+          "discharge_with_homecare": 9
+        }
+      }
+    },
+    "ethnicity": {
+      "non_hispanic": {
+        "n": 1652,
+        "abstain_rate": 0.0,
+        "downgrade_rate": 0.637409200968523,
+        "approve_rate": 0.362590799031477,
+        "observed_outcome_rate": 0.22094430992736078,
+        "mean_predicted_rate": 0.19507687651331718,
+        "calibration_gap_abs": 0.0258674334140436,
+        "fairness_flagged_share": 0.3553268765133172,
+        "action_distribution": {
+          "discharge_with_homecare": 940,
+          "continued_admission": 704,
+          "discharge_home": 8
+        }
+      },
+      "hispanic": {
+        "n": 348,
+        "abstain_rate": 0.0,
+        "downgrade_rate": 0.6580459770114943,
+        "approve_rate": 0.34195402298850575,
+        "observed_outcome_rate": 0.2442528735632184,
+        "mean_predicted_rate": 0.19250862068965516,
+        "calibration_gap_abs": 0.05174425287356324,
+        "fairness_flagged_share": 0.367816091954023,
+        "action_distribution": {
+          "continued_admission": 151,
+          "discharge_with_homecare": 195,
+          "discharge_home": 2
+        }
+      }
+    },
+    "insurance_type": {
+      "medicare": {
+        "n": 621,
+        "abstain_rate": 0.0,
+        "downgrade_rate": 0.5088566827697263,
+        "approve_rate": 0.49114331723027377,
+        "observed_outcome_rate": 0.22061191626409019,
+        "mean_predicted_rate": 0.19521739130434784,
+        "calibration_gap_abs": 0.025394524959742343,
+        "fairness_flagged_share": 0.13043478260869565,
+        "action_distribution": {
+          "discharge_with_homecare": 349,
+          "continued_admission": 270,
+          "discharge_home": 2
+        }
+      },
+      "commercial": {
+        "n": 786,
+        "abstain_rate": 0.0,
+        "downgrade_rate": 0.5254452926208651,
+        "approve_rate": 0.47455470737913485,
+        "observed_outcome_rate": 0.18193384223918574,
+        "mean_predicted_rate": 0.19614631043256997,
+        "calibration_gap_abs": 0.014212468193384231,
+        "fairness_flagged_share": 0.13740458015267176,
+        "action_distribution": {
+          "discharge_with_homecare": 428,
+          "continued_admission": 351,
+          "discharge_home": 7
+        }
+      },
+      "medicaid": {
+        "n": 342,
+        "abstain_rate": 0.0,
+        "downgrade_rate": 1.0,
+        "approve_rate": 0.0,
+        "observed_outcome_rate": 0.26608187134502925,
+        "mean_predicted_rate": 0.19089766081871345,
+        "calibration_gap_abs": 0.0751842105263158,
+        "fairness_flagged_share": 1.0,
+        "action_distribution": {
+          "continued_admission": 127,
+          "discharge_with_homecare": 215
+        }
+      },
+      "uninsured": {
+        "n": 173,
+        "abstain_rate": 0.0,
+        "downgrade_rate": 1.0,
+        "approve_rate": 0.0,
+        "observed_outcome_rate": 0.31213872832369943,
+        "mean_predicted_rate": 0.1946242774566474,
+        "calibration_gap_abs": 0.11751445086705203,
+        "fairness_flagged_share": 1.0,
+        "action_distribution": {
+          "continued_admission": 75,
+          "discharge_with_homecare": 98
+        }
+      },
+      "tricare": {
+        "n": 78,
+        "abstain_rate": 0.0,
+        "downgrade_rate": 0.48717948717948717,
+        "approve_rate": 0.5128205128205128,
+        "observed_outcome_rate": 0.32051282051282054,
+        "mean_predicted_rate": 0.19105128205128205,
+        "calibration_gap_abs": 0.1294615384615385,
+        "fairness_flagged_share": 0.14102564102564102,
+        "action_distribution": {
+          "continued_admission": 32,
+          "discharge_with_homecare": 45,
+          "discharge_home": 1
+        }
+      }
+    },
+    "language": {
+      "english": {
+        "n": 1548,
+        "abstain_rate": 0.0,
+        "downgrade_rate": 0.6388888888888888,
+        "approve_rate": 0.3611111111111111,
+        "observed_outcome_rate": 0.21511627906976744,
+        "mean_predicted_rate": 0.1940826873385013,
+        "calibration_gap_abs": 0.02103359173126615,
+        "fairness_flagged_share": 0.3624031007751938,
+        "action_distribution": {
+          "discharge_with_homecare": 888,
+          "continued_admission": 652,
+          "discharge_home": 8
+        }
+      },
+      "spanish": {
+        "n": 253,
+        "abstain_rate": 0.0,
+        "downgrade_rate": 0.6245059288537549,
+        "approve_rate": 0.37549407114624506,
+        "observed_outcome_rate": 0.233201581027668,
+        "mean_predicted_rate": 0.19582213438735177,
+        "calibration_gap_abs": 0.03737944664031623,
+        "fairness_flagged_share": 0.3201581027667984,
+        "action_distribution": {
+          "discharge_with_homecare": 141,
+          "continued_admission": 110,
+          "discharge_home": 2
+        }
+      },
+      "chinese": {
+        "n": 110,
+        "abstain_rate": 0.0,
+        "downgrade_rate": 0.6818181818181818,
+        "approve_rate": 0.3181818181818182,
+        "observed_outcome_rate": 0.23636363636363636,
+        "mean_predicted_rate": 0.2045636363636364,
+        "calibration_gap_abs": 0.03179999999999997,
+        "fairness_flagged_share": 0.35454545454545455,
+        "action_distribution": {
+          "continued_admission": 58,
+          "discharge_with_homecare": 52
+        }
+      },
+      "vietnamese": {
+        "n": 39,
+        "abstain_rate": 0.0,
+        "downgrade_rate": 0.5641025641025641,
+        "approve_rate": 0.4358974358974359,
+        "observed_outcome_rate": 0.38461538461538464,
+        "mean_predicted_rate": 0.18051282051282053,
+        "calibration_gap_abs": 0.2041025641025641,
+        "fairness_flagged_share": 0.358974358974359,
+        "action_distribution": {
+          "discharge_with_homecare": 27,
+          "continued_admission": 12
+        }
+      },
+      "arabic": {
+        "n": 50,
+        "abstain_rate": 0.0,
+        "downgrade_rate": 0.76,
+        "approve_rate": 0.24,
+        "observed_outcome_rate": 0.34,
+        "mean_predicted_rate": 0.19469999999999998,
+        "calibration_gap_abs": 0.14530000000000004,
+        "fairness_flagged_share": 0.4,
+        "action_distribution": {
+          "continued_admission": 23,
+          "discharge_with_homecare": 27
+        }
+      }
+    }
+  },
+  "baseline_lace_only": {
+    "n": 2000,
+    "proposed_distribution": {
+      "discharge_with_homecare": 1128,
+      "continued_admission": 855,
+      "discharge_home": 17
+    },
+    "abstain_rate": 0.0,
+    "downgrade_rate": 0.0,
+    "approve_rate": 1.0,
+    "observed_outcome_rate": 0.225,
+    "mean_predicted_rate": 0.19463,
+    "calibration_gap_abs": 0.030370000000000008
+  },
+  "references": [
+    "TrustedRisk Phase 15.C - synthetic prospective evaluation.",
+    "Multi-agent debate: a2a_agent.multi_agent_debate (Phase 14.16 Q1).",
+    "Calibration: W1 spec_002 5-bin Beta-Binomial, AUROC 0.590, ECE 0.0078."
+  ]
+}

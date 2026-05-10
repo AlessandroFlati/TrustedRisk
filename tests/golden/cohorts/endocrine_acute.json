@@ -1,0 +1,657 @@
+{
+  "bundle_id": "endocrine_acute",
+  "tool": "compute_dka_severity",
+  "n_cases": 50,
+  "cases": [
+    {
+      "name": "dka_case_000_moderate",
+      "input": {
+        "ph": 7.22,
+        "bicarbonate_meq_l": 13.0,
+        "glucose_mg_dl": 563,
+        "ketones_present": true,
+        "mental_status": "alert",
+        "potassium_meq_l": 3.4,
+        "weight_kg": 61
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_001_moderate",
+      "input": {
+        "ph": 7.24,
+        "bicarbonate_meq_l": 10.2,
+        "glucose_mg_dl": 551,
+        "ketones_present": true,
+        "mental_status": "drowsy",
+        "potassium_meq_l": 4.1,
+        "weight_kg": 81
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_002_not_dka",
+      "input": {
+        "ph": 7.36,
+        "bicarbonate_meq_l": 23.6,
+        "glucose_mg_dl": 144,
+        "ketones_present": false,
+        "mental_status": "alert",
+        "potassium_meq_l": 4.8,
+        "weight_kg": 55
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_003_severe",
+      "input": {
+        "ph": 6.88,
+        "bicarbonate_meq_l": 4.3,
+        "glucose_mg_dl": 590,
+        "ketones_present": true,
+        "mental_status": "drowsy",
+        "potassium_meq_l": 3.5,
+        "weight_kg": 84
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_004_moderate",
+      "input": {
+        "ph": 7.12,
+        "bicarbonate_meq_l": 10.0,
+        "glucose_mg_dl": 622,
+        "ketones_present": true,
+        "mental_status": "alert",
+        "potassium_meq_l": 4.9,
+        "weight_kg": 65
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_005_severe",
+      "input": {
+        "ph": 6.9,
+        "bicarbonate_meq_l": 8.0,
+        "glucose_mg_dl": 679,
+        "ketones_present": true,
+        "mental_status": "stupor",
+        "potassium_meq_l": 4.4,
+        "weight_kg": 96
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_006_moderate",
+      "input": {
+        "ph": 7.09,
+        "bicarbonate_meq_l": 12.2,
+        "glucose_mg_dl": 699,
+        "ketones_present": true,
+        "mental_status": "alert",
+        "potassium_meq_l": 5.3,
+        "weight_kg": 94
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_007_not_dka",
+      "input": {
+        "ph": 7.4,
+        "bicarbonate_meq_l": 22.9,
+        "glucose_mg_dl": 146,
+        "ketones_present": false,
+        "mental_status": "alert",
+        "potassium_meq_l": 5.1,
+        "weight_kg": 57
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_008_not_dka",
+      "input": {
+        "ph": 7.34,
+        "bicarbonate_meq_l": 24.2,
+        "glucose_mg_dl": 182,
+        "ketones_present": false,
+        "mental_status": "alert",
+        "potassium_meq_l": 3.8,
+        "weight_kg": 87
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_009_not_dka",
+      "input": {
+        "ph": 7.33,
+        "bicarbonate_meq_l": 22.8,
+        "glucose_mg_dl": 151,
+        "ketones_present": false,
+        "mental_status": "alert",
+        "potassium_meq_l": 5.2,
+        "weight_kg": 81
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_010_not_dka",
+      "input": {
+        "ph": 7.34,
+        "bicarbonate_meq_l": 22.5,
+        "glucose_mg_dl": 174,
+        "ketones_present": false,
+        "mental_status": "alert",
+        "potassium_meq_l": 4.1,
+        "weight_kg": 85
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_011_mild",
+      "input": {
+        "ph": 7.29,
+        "bicarbonate_meq_l": 15.1,
+        "glucose_mg_dl": 505,
+        "ketones_present": true,
+        "mental_status": "alert",
+        "potassium_meq_l": 4.5,
+        "weight_kg": 96
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_012_moderate",
+      "input": {
+        "ph": 7.03,
+        "bicarbonate_meq_l": 10.2,
+        "glucose_mg_dl": 314,
+        "ketones_present": true,
+        "mental_status": "alert",
+        "potassium_meq_l": 3.3,
+        "weight_kg": 64
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_013_mild",
+      "input": {
+        "ph": 7.27,
+        "bicarbonate_meq_l": 16.1,
+        "glucose_mg_dl": 530,
+        "ketones_present": true,
+        "mental_status": "alert",
+        "potassium_meq_l": 5.5,
+        "weight_kg": 79
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_014_moderate",
+      "input": {
+        "ph": 7.18,
+        "bicarbonate_meq_l": 13.9,
+        "glucose_mg_dl": 301,
+        "ketones_present": true,
+        "mental_status": "alert",
+        "potassium_meq_l": 3.4,
+        "weight_kg": 70
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_015_severe",
+      "input": {
+        "ph": 6.91,
+        "bicarbonate_meq_l": 4.3,
+        "glucose_mg_dl": 424,
+        "ketones_present": true,
+        "mental_status": "stupor",
+        "potassium_meq_l": 3.4,
+        "weight_kg": 91
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_016_severe",
+      "input": {
+        "ph": 6.94,
+        "bicarbonate_meq_l": 5.5,
+        "glucose_mg_dl": 664,
+        "ketones_present": true,
+        "mental_status": "stupor",
+        "potassium_meq_l": 3.9,
+        "weight_kg": 89
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_017_not_dka",
+      "input": {
+        "ph": 7.39,
+        "bicarbonate_meq_l": 22.7,
+        "glucose_mg_dl": 198,
+        "ketones_present": false,
+        "mental_status": "alert",
+        "potassium_meq_l": 5.2,
+        "weight_kg": 67
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_018_not_dka",
+      "input": {
+        "ph": 7.42,
+        "bicarbonate_meq_l": 23.6,
+        "glucose_mg_dl": 162,
+        "ketones_present": false,
+        "mental_status": "alert",
+        "potassium_meq_l": 4.2,
+        "weight_kg": 96
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_019_not_dka",
+      "input": {
+        "ph": 7.33,
+        "bicarbonate_meq_l": 22.0,
+        "glucose_mg_dl": 136,
+        "ketones_present": false,
+        "mental_status": "alert",
+        "potassium_meq_l": 4.0,
+        "weight_kg": 81
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_020_severe",
+      "input": {
+        "ph": 6.91,
+        "bicarbonate_meq_l": 7.8,
+        "glucose_mg_dl": 416,
+        "ketones_present": true,
+        "mental_status": "drowsy",
+        "potassium_meq_l": 5.4,
+        "weight_kg": 69
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_021_mild",
+      "input": {
+        "ph": 7.29,
+        "bicarbonate_meq_l": 15.7,
+        "glucose_mg_dl": 472,
+        "ketones_present": true,
+        "mental_status": "alert",
+        "potassium_meq_l": 4.7,
+        "weight_kg": 100
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_022_not_dka",
+      "input": {
+        "ph": 7.39,
+        "bicarbonate_meq_l": 23.8,
+        "glucose_mg_dl": 145,
+        "ketones_present": false,
+        "mental_status": "alert",
+        "potassium_meq_l": 3.2,
+        "weight_kg": 70
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_023_mild",
+      "input": {
+        "ph": 7.28,
+        "bicarbonate_meq_l": 16.6,
+        "glucose_mg_dl": 594,
+        "ketones_present": true,
+        "mental_status": "alert",
+        "potassium_meq_l": 3.2,
+        "weight_kg": 76
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_024_not_dka",
+      "input": {
+        "ph": 7.38,
+        "bicarbonate_meq_l": 22.8,
+        "glucose_mg_dl": 143,
+        "ketones_present": false,
+        "mental_status": "alert",
+        "potassium_meq_l": 5.1,
+        "weight_kg": 51
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_025_moderate",
+      "input": {
+        "ph": 7.2,
+        "bicarbonate_meq_l": 12.5,
+        "glucose_mg_dl": 470,
+        "ketones_present": true,
+        "mental_status": "alert",
+        "potassium_meq_l": 3.1,
+        "weight_kg": 57
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_026_severe",
+      "input": {
+        "ph": 6.89,
+        "bicarbonate_meq_l": 8.9,
+        "glucose_mg_dl": 536,
+        "ketones_present": true,
+        "mental_status": "stupor",
+        "potassium_meq_l": 4.4,
+        "weight_kg": 64
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_027_mild",
+      "input": {
+        "ph": 7.27,
+        "bicarbonate_meq_l": 16.3,
+        "glucose_mg_dl": 331,
+        "ketones_present": true,
+        "mental_status": "alert",
+        "potassium_meq_l": 5.3,
+        "weight_kg": 66
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_028_not_dka",
+      "input": {
+        "ph": 7.4,
+        "bicarbonate_meq_l": 23.2,
+        "glucose_mg_dl": 154,
+        "ketones_present": false,
+        "mental_status": "alert",
+        "potassium_meq_l": 4.1,
+        "weight_kg": 75
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_029_moderate",
+      "input": {
+        "ph": 7.11,
+        "bicarbonate_meq_l": 13.3,
+        "glucose_mg_dl": 562,
+        "ketones_present": true,
+        "mental_status": "alert",
+        "potassium_meq_l": 3.0,
+        "weight_kg": 100
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_030_not_dka",
+      "input": {
+        "ph": 7.32,
+        "bicarbonate_meq_l": 23.7,
+        "glucose_mg_dl": 161,
+        "ketones_present": false,
+        "mental_status": "alert",
+        "potassium_meq_l": 4.5,
+        "weight_kg": 59
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_031_not_dka",
+      "input": {
+        "ph": 7.39,
+        "bicarbonate_meq_l": 23.7,
+        "glucose_mg_dl": 195,
+        "ketones_present": false,
+        "mental_status": "alert",
+        "potassium_meq_l": 4.3,
+        "weight_kg": 68
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_032_not_dka",
+      "input": {
+        "ph": 7.32,
+        "bicarbonate_meq_l": 25.2,
+        "glucose_mg_dl": 151,
+        "ketones_present": false,
+        "mental_status": "alert",
+        "potassium_meq_l": 4.3,
+        "weight_kg": 94
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_033_not_dka",
+      "input": {
+        "ph": 7.35,
+        "bicarbonate_meq_l": 25.8,
+        "glucose_mg_dl": 179,
+        "ketones_present": false,
+        "mental_status": "alert",
+        "potassium_meq_l": 3.7,
+        "weight_kg": 98
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_034_mild",
+      "input": {
+        "ph": 7.25,
+        "bicarbonate_meq_l": 16.6,
+        "glucose_mg_dl": 568,
+        "ketones_present": true,
+        "mental_status": "alert",
+        "potassium_meq_l": 5.0,
+        "weight_kg": 61
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_035_moderate",
+      "input": {
+        "ph": 7.07,
+        "bicarbonate_meq_l": 12.8,
+        "glucose_mg_dl": 424,
+        "ketones_present": true,
+        "mental_status": "alert",
+        "potassium_meq_l": 4.0,
+        "weight_kg": 56
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_036_severe",
+      "input": {
+        "ph": 6.89,
+        "bicarbonate_meq_l": 4.6,
+        "glucose_mg_dl": 679,
+        "ketones_present": true,
+        "mental_status": "drowsy",
+        "potassium_meq_l": 4.3,
+        "weight_kg": 80
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_037_mild",
+      "input": {
+        "ph": 7.3,
+        "bicarbonate_meq_l": 15.7,
+        "glucose_mg_dl": 672,
+        "ketones_present": true,
+        "mental_status": "alert",
+        "potassium_meq_l": 3.1,
+        "weight_kg": 77
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_038_not_dka",
+      "input": {
+        "ph": 7.36,
+        "bicarbonate_meq_l": 24.4,
+        "glucose_mg_dl": 189,
+        "ketones_present": false,
+        "mental_status": "alert",
+        "potassium_meq_l": 4.2,
+        "weight_kg": 51
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_039_moderate",
+      "input": {
+        "ph": 7.06,
+        "bicarbonate_meq_l": 12.7,
+        "glucose_mg_dl": 315,
+        "ketones_present": true,
+        "mental_status": "alert",
+        "potassium_meq_l": 3.1,
+        "weight_kg": 63
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_040_moderate",
+      "input": {
+        "ph": 7.16,
+        "bicarbonate_meq_l": 10.6,
+        "glucose_mg_dl": 490,
+        "ketones_present": true,
+        "mental_status": "drowsy",
+        "potassium_meq_l": 3.0,
+        "weight_kg": 94
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_041_severe",
+      "input": {
+        "ph": 6.91,
+        "bicarbonate_meq_l": 6.9,
+        "glucose_mg_dl": 439,
+        "ketones_present": true,
+        "mental_status": "stupor",
+        "potassium_meq_l": 4.1,
+        "weight_kg": 97
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_042_mild",
+      "input": {
+        "ph": 7.29,
+        "bicarbonate_meq_l": 16.7,
+        "glucose_mg_dl": 528,
+        "ketones_present": true,
+        "mental_status": "alert",
+        "potassium_meq_l": 4.3,
+        "weight_kg": 61
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_043_severe",
+      "input": {
+        "ph": 6.99,
+        "bicarbonate_meq_l": 5.1,
+        "glucose_mg_dl": 415,
+        "ketones_present": true,
+        "mental_status": "drowsy",
+        "potassium_meq_l": 3.9,
+        "weight_kg": 92
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_044_not_dka",
+      "input": {
+        "ph": 7.39,
+        "bicarbonate_meq_l": 22.0,
+        "glucose_mg_dl": 152,
+        "ketones_present": false,
+        "mental_status": "alert",
+        "potassium_meq_l": 4.4,
+        "weight_kg": 59
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_045_mild",
+      "input": {
+        "ph": 7.29,
+        "bicarbonate_meq_l": 15.6,
+        "glucose_mg_dl": 312,
+        "ketones_present": true,
+        "mental_status": "alert",
+        "potassium_meq_l": 4.3,
+        "weight_kg": 77
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_046_not_dka",
+      "input": {
+        "ph": 7.34,
+        "bicarbonate_meq_l": 24.6,
+        "glucose_mg_dl": 180,
+        "ketones_present": false,
+        "mental_status": "alert",
+        "potassium_meq_l": 3.4,
+        "weight_kg": 66
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_047_mild",
+      "input": {
+        "ph": 7.29,
+        "bicarbonate_meq_l": 17.8,
+        "glucose_mg_dl": 420,
+        "ketones_present": true,
+        "mental_status": "alert",
+        "potassium_meq_l": 4.2,
+        "weight_kg": 83
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_048_mild",
+      "input": {
+        "ph": 7.28,
+        "bicarbonate_meq_l": 17.5,
+        "glucose_mg_dl": 464,
+        "ketones_present": true,
+        "mental_status": "alert",
+        "potassium_meq_l": 2.9,
+        "weight_kg": 58
+      },
+      "schema_only": true
+    },
+    {
+      "name": "dka_case_049_severe",
+      "input": {
+        "ph": 6.94,
+        "bicarbonate_meq_l": 3.2,
+        "glucose_mg_dl": 616,
+        "ketones_present": true,
+        "mental_status": "drowsy",
+        "potassium_meq_l": 3.1,
+        "weight_kg": 85
+      },
+      "schema_only": true
+    }
+  ]
+}

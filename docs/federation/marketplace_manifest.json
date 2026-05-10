@@ -1,0 +1,193 @@
+{
+  "schemaVersion": "1.0.0",
+  "name": "trustedrisk-federation",
+  "description": "TrustedRisk federation - 15 specialist agents sharing a common 145-tool / 47-bundle MCP backend.",
+  "marketplaceVersion": "v1",
+  "n_specialists": 16,
+  "n_bundles_covered": 47,
+  "n_bundles_missing": 0,
+  "specialists": [
+    {
+      "name": "trustedrisk-acute",
+      "agent_card_url": "https://trustedrisk.local/apps/specialist_acute/agent_card.json",
+      "port": 8771,
+      "n_bundles": 17,
+      "n_skills": 11,
+      "summary": "Emergency department + acute / critical-care decision support"
+    },
+    {
+      "name": "trustedrisk-appeals",
+      "agent_card_url": "https://trustedrisk.local/apps/specialist_appeals/agent_card.json",
+      "port": 8784,
+      "n_bundles": 1,
+      "n_skills": 2,
+      "summary": "Insurance appeals: denial parse + letter draft + escalation (Phase 10"
+    },
+    {
+      "name": "trustedrisk-coder",
+      "agent_card_url": "https://trustedrisk.local/apps/specialist_coder/agent_card.json",
+      "port": 8778,
+      "n_bundles": 1,
+      "n_skills": 2,
+      "summary": "Auto-coding agent (Phase 7"
+    },
+    {
+      "name": "trustedrisk-discharge",
+      "agent_card_url": "https://trustedrisk.local/apps/specialist_discharge/agent_card.json",
+      "port": 8770,
+      "n_bundles": 8,
+      "n_skills": 9,
+      "summary": "Adult inpatient discharge planning + outpatient medication review"
+    },
+    {
+      "name": "trustedrisk-evidence",
+      "agent_card_url": "https://trustedrisk.local/apps/specialist_evidence/agent_card.json",
+      "port": 8772,
+      "n_bundles": 9,
+      "n_skills": 6,
+      "summary": "Clinician evidence retrieval + grounded differential diagnosis"
+    },
+    {
+      "name": "trustedrisk-mental-health",
+      "agent_card_url": "https://trustedrisk.local/apps/specialist_mental_health/agent_card.json",
+      "port": 8785,
+      "n_bundles": 1,
+      "n_skills": 2,
+      "summary": "Suicide risk screening + psychiatric admission decision"
+    },
+    {
+      "name": "trustedrisk-multimodal",
+      "agent_card_url": "https://trustedrisk.local/apps/specialist_multimodal/agent_card.json",
+      "port": 8786,
+      "n_bundles": 1,
+      "n_skills": 2,
+      "summary": "Multi-modal: ECG QT analyzer + DICOM SR ingest (Phase 11"
+    },
+    {
+      "name": "trustedrisk-pa",
+      "agent_card_url": "https://trustedrisk.local/apps/specialist_pa/agent_card.json",
+      "port": 8775,
+      "n_bundles": 1,
+      "n_skills": 2,
+      "summary": "Prior Authorization evidence + letter + appeal-likelihood (Phase 2"
+    },
+    {
+      "name": "trustedrisk-patient",
+      "agent_card_url": "https://trustedrisk.local/apps/specialist_patient/agent_card.json",
+      "port": 8777,
+      "n_bundles": 2,
+      "n_skills": 2,
+      "summary": "Post-discharge Q&A + caregiver hand-off (Phase 2"
+    },
+    {
+      "name": "trustedrisk-pediatric",
+      "agent_card_url": "https://trustedrisk.local/apps/specialist_pediatric/agent_card.json",
+      "port": 8774,
+      "n_bundles": 1,
+      "n_skills": 2,
+      "summary": "Pediatric early warning + weight-based dosing"
+    },
+    {
+      "name": "trustedrisk-pgx",
+      "agent_card_url": "https://trustedrisk.local/apps/specialist_pgx/agent_card.json",
+      "port": 8779,
+      "n_bundles": 1,
+      "n_skills": 2,
+      "summary": "Pharmacogenomic DSS (Phase 7"
+    },
+    {
+      "name": "trustedrisk-pophealth",
+      "agent_card_url": "https://trustedrisk.local/apps/specialist_pophealth/agent_card.json",
+      "port": 8783,
+      "n_bundles": 1,
+      "n_skills": 2,
+      "summary": "Population health + outbreak detection (Phase 10"
+    },
+    {
+      "name": "trustedrisk-population",
+      "agent_card_url": "https://trustedrisk.local/apps/specialist_population/agent_card.json",
+      "port": 8773,
+      "n_bundles": 1,
+      "n_skills": 2,
+      "summary": "Cost-effectiveness + subgroup fairness + DP equity dashboard"
+    },
+    {
+      "name": "trustedrisk-preadmit",
+      "agent_card_url": "https://trustedrisk.local/apps/specialist_preadmit/agent_card.json",
+      "port": 8781,
+      "n_bundles": 1,
+      "n_skills": 2,
+      "summary": "Pre-arrival triage agent (Phase 7"
+    },
+    {
+      "name": "trustedrisk-quality",
+      "agent_card_url": "https://trustedrisk.local/apps/specialist_quality/agent_card.json",
+      "port": 8782,
+      "n_bundles": 1,
+      "n_skills": 2,
+      "summary": "HEDIS / CMS Stars Rating + care-gap prioritisation (Phase 10"
+    },
+    {
+      "name": "trustedrisk-scribe",
+      "agent_card_url": "https://trustedrisk.local/apps/specialist_scribe/agent_card.json",
+      "port": 8776,
+      "n_bundles": 1,
+      "n_skills": 2,
+      "summary": "Clinical documentation drafting (Phase 2"
+    }
+  ],
+  "bundle_coverage": {
+    "covered": [
+      "antimicrobial",
+      "auto_coding",
+      "cardiology_depth",
+      "chart_intelligence",
+      "clinical_documentation",
+      "clinical_workflow",
+      "context_resolution",
+      "core_discharge",
+      "critical_care",
+      "data_normalization",
+      "diagnosis",
+      "economics",
+      "ed_acute",
+      "endocrine_acute",
+      "endocrinology_advanced",
+      "external_knowledge",
+      "fhir_writeback",
+      "gi_hepatology_depth",
+      "heme_onc_depth",
+      "imaging",
+      "infectious_disease",
+      "insurance_appeals",
+      "legacy_ehr_parsers",
+      "mental_health",
+      "model_research",
+      "multimodal",
+      "nephrology",
+      "neurology_depth",
+      "ob_peds_advanced",
+      "obstetric_geriatric",
+      "oncology",
+      "patient_facing",
+      "patient_qa",
+      "pediatric",
+      "peri_op_risk",
+      "pharmacogenomics",
+      "population_health",
+      "preadmit_triage",
+      "prior_authorization",
+      "quality_stars",
+      "research_design",
+      "rheumatology",
+      "sleep_pain",
+      "specialty_clinics",
+      "stroke_acs",
+      "transplant",
+      "trauma_critical"
+    ],
+    "missing": [],
+    "coverage_percent": 100.0
+  },
+  "proposed_owner_for_missing": {}
+}

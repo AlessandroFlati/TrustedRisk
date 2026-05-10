@@ -1,0 +1,861 @@
+{
+  "resourceType": "Bundle",
+  "id": "demo-sofia-ramirez-bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:2ed896b2-4b89-5c6a-b5b5-25910280b45c",
+      "resource": {
+        "resourceType": "Patient",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"
+          ]
+        },
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race",
+            "extension": [
+              {
+                "url": "ombCategory",
+                "valueCoding": {
+                  "system": "urn:oid:2.16.840.1.113883.6.238",
+                  "code": "2106-3",
+                  "display": "White"
+                }
+              },
+              {
+                "url": "text",
+                "valueString": "White"
+              }
+            ]
+          },
+          {
+            "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity",
+            "extension": [
+              {
+                "url": "ombCategory",
+                "valueCoding": {
+                  "system": "urn:oid:2.16.840.1.113883.6.238",
+                  "code": "2135-2",
+                  "display": "Hispanic or Latino"
+                }
+              },
+              {
+                "url": "text",
+                "valueString": "Hispanic or Latino"
+              }
+            ]
+          }
+        ],
+        "name": [
+          {
+            "use": "official",
+            "family": "Ramirez",
+            "given": [
+              "Sofia",
+              "Isabel"
+            ]
+          }
+        ],
+        "gender": "female",
+        "birthDate": "2018-08-30",
+        "address": [
+          {
+            "line": [
+              "52 Maple Ln"
+            ],
+            "city": "Lawrence",
+            "state": "MA",
+            "postalCode": "01841",
+            "country": "US"
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "555-203-1119",
+            "use": "home"
+          }
+        ],
+        "communication": [
+          {
+            "language": {
+              "coding": [
+                {
+                  "system": "urn:ietf:bcp:47",
+                  "code": "es",
+                  "display": "Spanish"
+                }
+              ]
+            },
+            "preferred": true
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "Patient"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:2892d14b-b978-5ae8-a063-6c7630f15aa6",
+      "resource": {
+        "resourceType": "Encounter",
+        "status": "finished",
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "AMB",
+          "display": "ambulatory"
+        },
+        "type": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "410620009",
+                "display": "Well child visit"
+              }
+            ]
+          }
+        ],
+        "subject": {
+          "reference": "urn:uuid:2ed896b2-4b89-5c6a-b5b5-25910280b45c"
+        },
+        "period": {
+          "start": "2026-04-18T10:00:00-04:00",
+          "end": "2026-04-18T10:30:00-04:00"
+        },
+        "reasonCode": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "410620009",
+                "display": "Well child visit"
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "Encounter"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:0d6fc3ca-8cc8-56e3-8944-517dbab75073",
+      "resource": {
+        "resourceType": "Encounter",
+        "status": "finished",
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "AMB",
+          "display": "ambulatory"
+        },
+        "subject": {
+          "reference": "urn:uuid:2ed896b2-4b89-5c6a-b5b5-25910280b45c"
+        },
+        "period": {
+          "start": "2025-09-22T15:00:00-04:00",
+          "end": "2025-09-22T15:25:00-04:00"
+        },
+        "reasonCode": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "65363002",
+                "display": "Otitis media"
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "Encounter"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:14962622-4318-53f7-b7ed-0ccf816b7dae",
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "problem-list-item"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "195967001",
+              "display": "Asthma"
+            }
+          ],
+          "text": "Mild intermittent asthma"
+        },
+        "subject": {
+          "reference": "urn:uuid:2ed896b2-4b89-5c6a-b5b5-25910280b45c"
+        },
+        "onsetDateTime": "2024-03-12"
+      },
+      "request": {
+        "method": "POST",
+        "url": "Condition"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:3e2c8287-6c12-5232-b456-70dc8a478173",
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8302-2",
+              "display": "Body height"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "urn:uuid:2ed896b2-4b89-5c6a-b5b5-25910280b45c"
+        },
+        "encounter": {
+          "reference": "urn:uuid:2892d14b-b978-5ae8-a063-6c7630f15aa6"
+        },
+        "effectiveDateTime": "2026-04-18T10:05:00-04:00",
+        "valueQuantity": {
+          "value": 122.5,
+          "unit": "cm",
+          "system": "http://unitsofmeasure.org",
+          "code": "cm"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:e0a28046-db3c-5d72-a17b-07d92d618490",
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "29463-7",
+              "display": "Body weight"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "urn:uuid:2ed896b2-4b89-5c6a-b5b5-25910280b45c"
+        },
+        "encounter": {
+          "reference": "urn:uuid:2892d14b-b978-5ae8-a063-6c7630f15aa6"
+        },
+        "effectiveDateTime": "2026-04-18T10:05:00-04:00",
+        "valueQuantity": {
+          "value": 24.7,
+          "unit": "kg",
+          "system": "http://unitsofmeasure.org",
+          "code": "kg"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:c4c08ebd-b9f4-523d-bd8f-4f726f2e84d2",
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "59576-9",
+              "display": "Body mass index (BMI) [Percentile] Per age and sex"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "urn:uuid:2ed896b2-4b89-5c6a-b5b5-25910280b45c"
+        },
+        "encounter": {
+          "reference": "urn:uuid:2892d14b-b978-5ae8-a063-6c7630f15aa6"
+        },
+        "effectiveDateTime": "2026-04-18T10:05:00-04:00",
+        "valueQuantity": {
+          "value": 62,
+          "unit": "%"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:62cd8e3d-e4a1-567f-ab32-30e132ffee6a",
+      "resource": {
+        "resourceType": "Immunization",
+        "status": "completed",
+        "vaccineCode": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/cvx",
+              "code": "03",
+              "display": "MMR"
+            }
+          ],
+          "text": "MMR (12-15 mo dose)"
+        },
+        "patient": {
+          "reference": "urn:uuid:2ed896b2-4b89-5c6a-b5b5-25910280b45c"
+        },
+        "occurrenceDateTime": "2019-09-12"
+      },
+      "request": {
+        "method": "POST",
+        "url": "Immunization"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:e05ce4c1-6afa-5b83-8e57-168fed841d84",
+      "resource": {
+        "resourceType": "Immunization",
+        "status": "completed",
+        "vaccineCode": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/cvx",
+              "code": "20",
+              "display": "DTaP"
+            }
+          ],
+          "text": "DTaP (15-18 mo dose)"
+        },
+        "patient": {
+          "reference": "urn:uuid:2ed896b2-4b89-5c6a-b5b5-25910280b45c"
+        },
+        "occurrenceDateTime": "2019-12-04"
+      },
+      "request": {
+        "method": "POST",
+        "url": "Immunization"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:26e25a59-abcb-5ea1-978a-00775ed7192c",
+      "resource": {
+        "resourceType": "Immunization",
+        "status": "completed",
+        "vaccineCode": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/cvx",
+              "code": "150",
+              "display": "Influenza, injectable, quadrivalent"
+            }
+          ],
+          "text": "Influenza (2024-25 season)"
+        },
+        "patient": {
+          "reference": "urn:uuid:2ed896b2-4b89-5c6a-b5b5-25910280b45c"
+        },
+        "occurrenceDateTime": "2024-10-15"
+      },
+      "request": {
+        "method": "POST",
+        "url": "Immunization"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:382168a2-a230-5aae-a8cf-850f498725b6",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "subject": {
+          "reference": "urn:uuid:2ed896b2-4b89-5c6a-b5b5-25910280b45c"
+        },
+        "authoredOn": "2024-03-12",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "351137",
+              "display": "Albuterol 0.09 MG/ACTUAT Metered Dose Inhaler"
+            }
+          ],
+          "text": "Albuterol HFA 90 mcg/actuation, 2 puffs PRN q4-6h"
+        },
+        "dosageInstruction": [
+          {
+            "text": "2 puffs inhaled every 4 to 6 hours as needed for wheezing."
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:5d4d4d5d-b933-5475-a1c1-7ce0a86d7013",
+      "resource": {
+        "resourceType": "Coverage",
+        "status": "active",
+        "beneficiary": {
+          "reference": "urn:uuid:2ed896b2-4b89-5c6a-b5b5-25910280b45c"
+        },
+        "payor": [
+          {
+            "display": "MassHealth (Medicaid)"
+          }
+        ],
+        "subscriberId": "MH-2018-08-30-SR",
+        "class": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/coverage-class",
+                  "code": "plan"
+                }
+              ]
+            },
+            "value": "MASSHEALTH-STD",
+            "name": "MassHealth Standard"
+          }
+        ],
+        "period": {
+          "start": "2018-09-01"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Coverage"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:7aadb4b8-ca7a-5cc4-a4cb-71bc0bf93c84",
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "urn:uuid:2ed896b2-4b89-5c6a-b5b5-25910280b45c"
+        },
+        "encounter": {
+          "reference": "urn:uuid:2892d14b-b978-5ae8-a063-6c7630f15aa6"
+        },
+        "effectiveDateTime": "2026-04-18T10:05:00-04:00",
+        "valueQuantity": {
+          "value": 92,
+          "unit": "/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:c0ea02a3-24ca-56f8-8455-f73a62e4fccb",
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "9279-1",
+              "display": "Respiratory rate"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "urn:uuid:2ed896b2-4b89-5c6a-b5b5-25910280b45c"
+        },
+        "encounter": {
+          "reference": "urn:uuid:2892d14b-b978-5ae8-a063-6c7630f15aa6"
+        },
+        "effectiveDateTime": "2026-04-18T10:05:00-04:00",
+        "valueQuantity": {
+          "value": 22,
+          "unit": "/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:96776a37-93c3-5082-afd1-0fe6a81e38c3",
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "59408-5",
+              "display": "Oxygen saturation"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "urn:uuid:2ed896b2-4b89-5c6a-b5b5-25910280b45c"
+        },
+        "encounter": {
+          "reference": "urn:uuid:2892d14b-b978-5ae8-a063-6c7630f15aa6"
+        },
+        "effectiveDateTime": "2026-04-18T10:05:00-04:00",
+        "valueQuantity": {
+          "value": 99,
+          "unit": "%",
+          "system": "http://unitsofmeasure.org",
+          "code": "%"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:b1173759-fe66-52d2-a709-078e65c67b9f",
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5",
+              "display": "Body temperature"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "urn:uuid:2ed896b2-4b89-5c6a-b5b5-25910280b45c"
+        },
+        "encounter": {
+          "reference": "urn:uuid:2892d14b-b978-5ae8-a063-6c7630f15aa6"
+        },
+        "effectiveDateTime": "2026-04-18T10:05:00-04:00",
+        "valueQuantity": {
+          "value": 36.8,
+          "unit": "Cel",
+          "system": "http://unitsofmeasure.org",
+          "code": "Cel"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:357779fe-f849-527e-b4f2-c442b0007599",
+      "resource": {
+        "resourceType": "Immunization",
+        "status": "completed",
+        "vaccineCode": {
+          "coding": [{ "system": "http://hl7.org/fhir/sid/cvx", "code": "08", "display": "HepB" }],
+          "text": "Hepatitis B (birth dose)"
+        },
+        "patient": { "reference": "urn:uuid:2ed896b2-4b89-5c6a-b5b5-25910280b45c" },
+        "occurrenceDateTime": "2018-08-30"
+      },
+      "request": { "method": "POST", "url": "Immunization" }
+    },
+    {
+      "fullUrl": "urn:uuid:54a4ca79-49ee-5b86-919f-f69473800951",
+      "resource": {
+        "resourceType": "Immunization",
+        "status": "completed",
+        "vaccineCode": {
+          "coding": [{ "system": "http://hl7.org/fhir/sid/cvx", "code": "08", "display": "HepB" }],
+          "text": "Hepatitis B (2nd dose, 1-2 mo)"
+        },
+        "patient": { "reference": "urn:uuid:2ed896b2-4b89-5c6a-b5b5-25910280b45c" },
+        "occurrenceDateTime": "2018-10-15"
+      },
+      "request": { "method": "POST", "url": "Immunization" }
+    },
+    {
+      "fullUrl": "urn:uuid:20d446e6-b478-54a6-82ea-0eddcb8a5039",
+      "resource": {
+        "resourceType": "Immunization",
+        "status": "completed",
+        "vaccineCode": {
+          "coding": [{ "system": "http://hl7.org/fhir/sid/cvx", "code": "08", "display": "HepB" }],
+          "text": "Hepatitis B (3rd dose, 6 mo)"
+        },
+        "patient": { "reference": "urn:uuid:2ed896b2-4b89-5c6a-b5b5-25910280b45c" },
+        "occurrenceDateTime": "2019-03-04"
+      },
+      "request": { "method": "POST", "url": "Immunization" }
+    },
+    {
+      "fullUrl": "urn:uuid:0af2832a-3b14-5319-a445-afc72bd53dca",
+      "resource": {
+        "resourceType": "Immunization",
+        "status": "completed",
+        "vaccineCode": {
+          "coding": [{ "system": "http://hl7.org/fhir/sid/cvx", "code": "10", "display": "IPV" }],
+          "text": "Inactivated polio (2 mo dose)"
+        },
+        "patient": { "reference": "urn:uuid:2ed896b2-4b89-5c6a-b5b5-25910280b45c" },
+        "occurrenceDateTime": "2018-11-02"
+      },
+      "request": { "method": "POST", "url": "Immunization" }
+    },
+    {
+      "fullUrl": "urn:uuid:eb90bee8-94db-5474-8fac-9e92862566c0",
+      "resource": {
+        "resourceType": "Immunization",
+        "status": "completed",
+        "vaccineCode": {
+          "coding": [{ "system": "http://hl7.org/fhir/sid/cvx", "code": "10", "display": "IPV" }],
+          "text": "Inactivated polio (4 mo dose)"
+        },
+        "patient": { "reference": "urn:uuid:2ed896b2-4b89-5c6a-b5b5-25910280b45c" },
+        "occurrenceDateTime": "2019-01-08"
+      },
+      "request": { "method": "POST", "url": "Immunization" }
+    },
+    {
+      "fullUrl": "urn:uuid:da3520ce-fb86-5ed7-9806-fcdc37021c51",
+      "resource": {
+        "resourceType": "Immunization",
+        "status": "completed",
+        "vaccineCode": {
+          "coding": [{ "system": "http://hl7.org/fhir/sid/cvx", "code": "10", "display": "IPV" }],
+          "text": "Inactivated polio (6-18 mo dose)"
+        },
+        "patient": { "reference": "urn:uuid:2ed896b2-4b89-5c6a-b5b5-25910280b45c" },
+        "occurrenceDateTime": "2019-09-12"
+      },
+      "request": { "method": "POST", "url": "Immunization" }
+    },
+    {
+      "fullUrl": "urn:uuid:25988cad-b640-53a9-9fcd-6668033c1145",
+      "resource": {
+        "resourceType": "Immunization",
+        "status": "completed",
+        "vaccineCode": {
+          "coding": [{ "system": "http://hl7.org/fhir/sid/cvx", "code": "21", "display": "Varicella" }],
+          "text": "Varicella (12-15 mo dose)"
+        },
+        "patient": { "reference": "urn:uuid:2ed896b2-4b89-5c6a-b5b5-25910280b45c" },
+        "occurrenceDateTime": "2019-09-12"
+      },
+      "request": { "method": "POST", "url": "Immunization" }
+    },
+    {
+      "fullUrl": "urn:uuid:27e514c2-b174-50ec-a346-ef1fba7f9abc",
+      "resource": {
+        "resourceType": "Immunization",
+        "status": "completed",
+        "vaccineCode": {
+          "coding": [{ "system": "http://hl7.org/fhir/sid/cvx", "code": "17", "display": "Hib" }],
+          "text": "Haemophilus influenzae b (2 mo)"
+        },
+        "patient": { "reference": "urn:uuid:2ed896b2-4b89-5c6a-b5b5-25910280b45c" },
+        "occurrenceDateTime": "2018-11-02"
+      },
+      "request": { "method": "POST", "url": "Immunization" }
+    },
+    {
+      "fullUrl": "urn:uuid:252dddce-b9bb-576f-9b22-792dfeb6caab",
+      "resource": {
+        "resourceType": "Immunization",
+        "status": "completed",
+        "vaccineCode": {
+          "coding": [{ "system": "http://hl7.org/fhir/sid/cvx", "code": "17", "display": "Hib" }],
+          "text": "Haemophilus influenzae b (4 mo)"
+        },
+        "patient": { "reference": "urn:uuid:2ed896b2-4b89-5c6a-b5b5-25910280b45c" },
+        "occurrenceDateTime": "2019-01-08"
+      },
+      "request": { "method": "POST", "url": "Immunization" }
+    },
+    {
+      "fullUrl": "urn:uuid:41959a0e-0bca-55cb-bfbe-0fbf71b6fe65",
+      "resource": {
+        "resourceType": "Immunization",
+        "status": "completed",
+        "vaccineCode": {
+          "coding": [{ "system": "http://hl7.org/fhir/sid/cvx", "code": "17", "display": "Hib" }],
+          "text": "Haemophilus influenzae b (12-15 mo)"
+        },
+        "patient": { "reference": "urn:uuid:2ed896b2-4b89-5c6a-b5b5-25910280b45c" },
+        "occurrenceDateTime": "2019-09-12"
+      },
+      "request": { "method": "POST", "url": "Immunization" }
+    },
+    {
+      "fullUrl": "urn:uuid:d78327ba-6f5a-5303-87af-da455730864b",
+      "resource": {
+        "resourceType": "Immunization",
+        "status": "completed",
+        "vaccineCode": {
+          "coding": [{ "system": "http://hl7.org/fhir/sid/cvx", "code": "133", "display": "PCV13" }],
+          "text": "Pneumococcal conjugate (2 mo)"
+        },
+        "patient": { "reference": "urn:uuid:2ed896b2-4b89-5c6a-b5b5-25910280b45c" },
+        "occurrenceDateTime": "2018-11-02"
+      },
+      "request": { "method": "POST", "url": "Immunization" }
+    },
+    {
+      "fullUrl": "urn:uuid:e7483f00-8925-5976-bf17-a8a118f81489",
+      "resource": {
+        "resourceType": "Immunization",
+        "status": "completed",
+        "vaccineCode": {
+          "coding": [{ "system": "http://hl7.org/fhir/sid/cvx", "code": "133", "display": "PCV13" }],
+          "text": "Pneumococcal conjugate (4 mo)"
+        },
+        "patient": { "reference": "urn:uuid:2ed896b2-4b89-5c6a-b5b5-25910280b45c" },
+        "occurrenceDateTime": "2019-01-08"
+      },
+      "request": { "method": "POST", "url": "Immunization" }
+    },
+    {
+      "fullUrl": "urn:uuid:47999121-d29c-5c27-9ec8-f4f64cbbcacd",
+      "resource": {
+        "resourceType": "Immunization",
+        "status": "completed",
+        "vaccineCode": {
+          "coding": [{ "system": "http://hl7.org/fhir/sid/cvx", "code": "133", "display": "PCV13" }],
+          "text": "Pneumococcal conjugate (12-15 mo)"
+        },
+        "patient": { "reference": "urn:uuid:2ed896b2-4b89-5c6a-b5b5-25910280b45c" },
+        "occurrenceDateTime": "2019-09-12"
+      },
+      "request": { "method": "POST", "url": "Immunization" }
+    },
+    {
+      "fullUrl": "urn:uuid:51966a01-89b1-52e7-a611-f0d176a1092c",
+      "resource": {
+        "resourceType": "Immunization",
+        "status": "completed",
+        "vaccineCode": {
+          "coding": [{ "system": "http://hl7.org/fhir/sid/cvx", "code": "150", "display": "Influenza, injectable, quadrivalent" }],
+          "text": "Influenza (2025-26 season)"
+        },
+        "patient": { "reference": "urn:uuid:2ed896b2-4b89-5c6a-b5b5-25910280b45c" },
+        "occurrenceDateTime": "2025-10-08"
+      },
+      "request": { "method": "POST", "url": "Immunization" }
+    }
+  ]
+}

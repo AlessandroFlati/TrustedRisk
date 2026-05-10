@@ -1,0 +1,179 @@
+{
+  "manifestVersion": "1.0",
+  "id": "trustedrisk-agent",
+  "name": "TrustedRisk",
+  "tagline": "Calibrated clinical decision support across the inpatient + outpatient lifecycle.",
+  "version": "1.0.0",
+  "publisher": {
+    "name": "Alessandro Flati",
+    "contact": "alessandro.flati@gmail.com"
+  },
+  "license": "MIT",
+  "pricing": {
+    "model": "free",
+    "tier": "open-source"
+  },
+  "category": "clinical-decision-support",
+  "tags": [
+    "clinical-decision-support",
+    "MCP",
+    "A2A",
+    "SHARP-on-MCP",
+    "FHIR",
+    "CDS-Hooks",
+    "calibrated-risk",
+    "fairness-audit",
+    "abstain-on-uncertainty",
+    "healthcare"
+  ],
+  "summary": {
+    "what": "Composes 145 MCP tools across 47 thematic clinical bundles into a single auditable DecisionCard per patient encounter. Every recommendation is gated by a deterministic safety threshold, vetted by a 4-critic LLM ensemble (clinical_safety, fairness, evidence, llm_judge), and grounded against published guidelines.",
+    "who": "Hospitals (ED, ward, ICU, L&D, outpatient), regional health systems integrating multiple specialty agents into a single composer, EHR vendors building Clinical Decision Support modules.",
+    "why": "Existing CDS tools either oversimplify (pure rule-based scores miss context) or oversell (pure LLMs hallucinate dosages and lose audit trail). TrustedRisk pairs calibrated probabilistic models (LACE Beta-Binomial, ECE 0.082 on real MIMIC-IV demo) with a deterministic safety gate that an LLM cannot relax — so the LLM gets to write fluent clinician-facing reasoning while the gate guarantees no over-discharge, no missed bias, no unsupported claim."
+  },
+  "deliveryModes": ["mcp", "a2a", "cds-hooks", "rest-batch"],
+  "endpoints": {
+    "mcp": "/mcp",
+    "a2a_agent_card": "/.well-known/agent-card.json",
+    "marketplace": "/.well-known/marketplace.json",
+    "health": "/healthz",
+    "ready": "/readyz",
+    "batch_decisions": "/api/batch/decision-cards",
+    "cds_hooks_discovery": "/cds-services",
+    "playground_ui": "http://localhost:8765/",
+    "federation_partner_demo": "http://localhost:8766/",
+    "cds_hooks_server": "http://localhost:8767/"
+  },
+  "supportedHooks": [
+    "patient-view",
+    "medication-prescribe",
+    "order-review"
+  ],
+  "supportedFhirResources": [
+    "Patient",
+    "Encounter",
+    "Condition",
+    "MedicationRequest",
+    "Observation",
+    "Procedure"
+  ],
+  "fhirVersions": ["R4"],
+  "auth": {
+    "modes": ["oauth2-client-credentials", "anonymous-single-tenant"],
+    "oauth_token_endpoint": "/oauth/token",
+    "scopes": [
+      "discharge.read",
+      "discharge.execute",
+      "phi.scan",
+      "grounding.read"
+    ],
+    "multi_tenant": true,
+    "tenant_isolation": "per_client_fhir_allowlist"
+  },
+  "sharpExtension": {
+    "enabled": true,
+    "specReference": "https://www.sharponmcp.com/key-components.html",
+    "headersRequired": [
+      "X-FHIR-Server-URL",
+      "X-FHIR-Access-Token"
+    ],
+    "headersOptional": [
+      "X-Patient-ID"
+    ]
+  },
+  "capabilities": {
+    "calibrated_risk_estimation": {
+      "enabled": true,
+      "ci_width_default": 0.30,
+      "abstain_triggers": [
+        "confidence_interval_too_wide",
+        "evidence_insufficient",
+        "out_of_distribution"
+      ]
+    },
+    "deterministic_safety_gate": {
+      "enabled": true,
+      "description": "Every LLM-mediated recommendation is constrained by a rule-based gate the LLM cannot relax. The LLM may match the gate or escalate to a more conservative action, but never relax it."
+    },
+    "multi_critic_ensemble": {
+      "enabled": true,
+      "critics": ["clinical_safety", "fairness", "evidence"],
+      "aggregation": "most-conservative-wins",
+      "max_replays": 2
+    },
+    "fairness_audit": {
+      "enabled": true,
+      "subgroups": ["race", "insurance_type", "age_band"],
+      "literature_baselines": ["AHRQ HCUP 2022", "JAMA 2018", "JGIM 2014"],
+      "demographic_bias_guards": [
+        "C-SSRS bias guard for Black/Indigenous/LGBTQ+/low-SES"
+      ]
+    },
+    "longitudinal_memory": {
+      "enabled": true,
+      "drift_signals": [
+        "action_escalation",
+        "probability_worsening",
+        "confidence_drop_2_tiers",
+        "abstain_emergence"
+      ]
+    },
+    "cds_hooks": {
+      "enabled": true,
+      "spec_version": "1.1"
+    },
+    "audit_log": {
+      "enabled": true,
+      "phi_scrubbed_hashing": true,
+      "reproducibility_archive": true
+    },
+    "validation_evidence": {
+      "external_cohort_validation": "MIMIC-IV demo 2.2 (n=275, ECE 0.082)",
+      "synthetic_cohort_validation": "n=500 cross-shifted",
+      "golden_case_regression": "36 hand-authored + 600 generated cases",
+      "property_based_tests": "16 invariant tests (Hypothesis)",
+      "global_test_coverage_pct": 92,
+      "n_unit_tests": 1603
+    }
+  },
+  "examples": [
+    {
+      "title": "Adult discharge review",
+      "input_summary": "75y F, Black, Medicare, post-CHF admission with AKI",
+      "calls_bundle": "core_discharge",
+      "scenario_id": "A"
+    },
+    {
+      "title": "ED chest pain triage",
+      "input_summary": "58y M, crushing chest pain radiating to left arm",
+      "calls_bundle": "stroke_acs",
+      "scenario_id": "N"
+    },
+    {
+      "title": "Pediatric ED — sepsis screen",
+      "input_summary": "4-month-old infant, fever 39.2, lethargic",
+      "calls_bundle": "pediatric",
+      "scenario_id": "I"
+    },
+    {
+      "title": "Antibiotic stewardship — ESBL UTI",
+      "input_summary": "65y M complicated UTI, ESBL positive cultures",
+      "calls_bundle": "antimicrobial",
+      "scenario_id": "K"
+    },
+    {
+      "title": "Cross-bundle: severe preeclampsia → C-section → PPH → discharge",
+      "input_summary": "34y G1P0 32wk preeclampsia + emergency CS + PPH",
+      "calls_bundles": ["obstetric_geriatric", "trauma_critical", "core_discharge"],
+      "scenario_id": "S"
+    }
+  ],
+  "agent_composition": {
+    "supports_federation": true,
+    "federation_partners_demonstrated": [
+      "darena-data-agent (chart data ingestion)",
+      "alert-agent (drift monitoring + webhook)",
+      "scheduler-agent (follow-up planning)"
+    ]
+  }
+}

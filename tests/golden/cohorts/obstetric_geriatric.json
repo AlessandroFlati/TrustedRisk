@@ -1,0 +1,793 @@
+{
+  "bundle_id": "obstetric_geriatric",
+  "tool": "compute_falls_risk_morse",
+  "n_cases": 50,
+  "cases": [
+    {
+      "name": "falls_case_000",
+      "input": {
+        "history_of_falling_3mo": false,
+        "secondary_diagnosis_present": true,
+        "ambulatory_aid": "none",
+        "has_iv_or_heparin_lock": false,
+        "gait": "normal",
+        "mental_status": "oriented",
+        "current_medications": [
+          "lisinopril 10 mg",
+          "calcium 600 mg",
+          "metformin 1000 mg",
+          "atorvastatin 40 mg"
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_001",
+      "input": {
+        "history_of_falling_3mo": false,
+        "secondary_diagnosis_present": true,
+        "ambulatory_aid": "cane",
+        "has_iv_or_heparin_lock": false,
+        "gait": "weak",
+        "mental_status": "forgets_limitations",
+        "current_medications": [
+          "vitamin d",
+          "calcium 600 mg",
+          "metformin 1000 mg"
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_002",
+      "input": {
+        "history_of_falling_3mo": false,
+        "secondary_diagnosis_present": false,
+        "ambulatory_aid": "none",
+        "has_iv_or_heparin_lock": true,
+        "gait": "normal",
+        "mental_status": "oriented",
+        "current_medications": [
+          "calcium 600 mg",
+          "atorvastatin 40 mg",
+          "lisinopril 10 mg"
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_003",
+      "input": {
+        "history_of_falling_3mo": false,
+        "secondary_diagnosis_present": true,
+        "ambulatory_aid": "none",
+        "has_iv_or_heparin_lock": true,
+        "gait": "normal",
+        "mental_status": "forgets_limitations",
+        "current_medications": [
+          "calcium 600 mg",
+          "lisinopril 10 mg"
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_004",
+      "input": {
+        "history_of_falling_3mo": false,
+        "secondary_diagnosis_present": true,
+        "ambulatory_aid": "none",
+        "has_iv_or_heparin_lock": true,
+        "gait": "normal",
+        "mental_status": "forgets_limitations",
+        "current_medications": [
+          "atorvastatin 40 mg",
+          "lisinopril 10 mg",
+          "metformin 1000 mg",
+          "calcium 600 mg"
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_005",
+      "input": {
+        "history_of_falling_3mo": true,
+        "secondary_diagnosis_present": false,
+        "ambulatory_aid": "furniture",
+        "has_iv_or_heparin_lock": false,
+        "gait": "impaired",
+        "mental_status": "forgets_limitations",
+        "current_medications": [
+          "lorazepam 1 mg",
+          "zolpidem 10 mg",
+          "diphenhydramine 25 mg",
+          "tramadol 50 mg"
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_006",
+      "input": {
+        "history_of_falling_3mo": true,
+        "secondary_diagnosis_present": false,
+        "ambulatory_aid": "furniture",
+        "has_iv_or_heparin_lock": false,
+        "gait": "impaired",
+        "mental_status": "forgets_limitations",
+        "current_medications": []
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_007",
+      "input": {
+        "history_of_falling_3mo": false,
+        "secondary_diagnosis_present": true,
+        "ambulatory_aid": "walker",
+        "has_iv_or_heparin_lock": true,
+        "gait": "weak",
+        "mental_status": "forgets_limitations",
+        "current_medications": [
+          "diazepam 5 mg"
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_008",
+      "input": {
+        "history_of_falling_3mo": false,
+        "secondary_diagnosis_present": false,
+        "ambulatory_aid": "none",
+        "has_iv_or_heparin_lock": false,
+        "gait": "weak",
+        "mental_status": "oriented",
+        "current_medications": []
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_009",
+      "input": {
+        "history_of_falling_3mo": false,
+        "secondary_diagnosis_present": false,
+        "ambulatory_aid": "none",
+        "has_iv_or_heparin_lock": false,
+        "gait": "weak",
+        "mental_status": "forgets_limitations",
+        "current_medications": [
+          "atorvastatin 40 mg",
+          "vitamin d",
+          "calcium 600 mg",
+          "metformin 1000 mg"
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_010",
+      "input": {
+        "history_of_falling_3mo": false,
+        "secondary_diagnosis_present": true,
+        "ambulatory_aid": "cane",
+        "has_iv_or_heparin_lock": true,
+        "gait": "weak",
+        "mental_status": "forgets_limitations",
+        "current_medications": [
+          "atorvastatin 40 mg"
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_011",
+      "input": {
+        "history_of_falling_3mo": false,
+        "secondary_diagnosis_present": false,
+        "ambulatory_aid": "none",
+        "has_iv_or_heparin_lock": false,
+        "gait": "normal",
+        "mental_status": "oriented",
+        "current_medications": [
+          "vitamin d",
+          "atorvastatin 40 mg",
+          "calcium 600 mg"
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_012",
+      "input": {
+        "history_of_falling_3mo": false,
+        "secondary_diagnosis_present": true,
+        "ambulatory_aid": "none",
+        "has_iv_or_heparin_lock": true,
+        "gait": "weak",
+        "mental_status": "oriented",
+        "current_medications": [
+          "calcium 600 mg",
+          "lisinopril 10 mg",
+          "metformin 1000 mg"
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_013",
+      "input": {
+        "history_of_falling_3mo": false,
+        "secondary_diagnosis_present": false,
+        "ambulatory_aid": "walker",
+        "has_iv_or_heparin_lock": false,
+        "gait": "impaired",
+        "mental_status": "forgets_limitations",
+        "current_medications": [
+          "diphenhydramine 25 mg",
+          "oxycodone 5 mg",
+          "tramadol 50 mg"
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_014",
+      "input": {
+        "history_of_falling_3mo": false,
+        "secondary_diagnosis_present": true,
+        "ambulatory_aid": "cane",
+        "has_iv_or_heparin_lock": false,
+        "gait": "weak",
+        "mental_status": "oriented",
+        "current_medications": []
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_015",
+      "input": {
+        "history_of_falling_3mo": false,
+        "secondary_diagnosis_present": false,
+        "ambulatory_aid": "walker",
+        "has_iv_or_heparin_lock": false,
+        "gait": "weak",
+        "mental_status": "forgets_limitations",
+        "current_medications": []
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_016",
+      "input": {
+        "history_of_falling_3mo": false,
+        "secondary_diagnosis_present": true,
+        "ambulatory_aid": "cane",
+        "has_iv_or_heparin_lock": false,
+        "gait": "normal",
+        "mental_status": "oriented",
+        "current_medications": [
+          "metformin 1000 mg",
+          "lisinopril 10 mg",
+          "calcium 600 mg"
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_017",
+      "input": {
+        "history_of_falling_3mo": false,
+        "secondary_diagnosis_present": true,
+        "ambulatory_aid": "cane",
+        "has_iv_or_heparin_lock": false,
+        "gait": "weak",
+        "mental_status": "oriented",
+        "current_medications": [
+          "calcium 600 mg",
+          "atorvastatin 40 mg",
+          "vitamin d"
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_018",
+      "input": {
+        "history_of_falling_3mo": true,
+        "secondary_diagnosis_present": true,
+        "ambulatory_aid": "walker",
+        "has_iv_or_heparin_lock": true,
+        "gait": "weak",
+        "mental_status": "forgets_limitations",
+        "current_medications": [
+          "oxycodone 5 mg",
+          "diazepam 5 mg"
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_019",
+      "input": {
+        "history_of_falling_3mo": false,
+        "secondary_diagnosis_present": true,
+        "ambulatory_aid": "cane",
+        "has_iv_or_heparin_lock": false,
+        "gait": "normal",
+        "mental_status": "oriented",
+        "current_medications": [
+          "vitamin d"
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_020",
+      "input": {
+        "history_of_falling_3mo": true,
+        "secondary_diagnosis_present": false,
+        "ambulatory_aid": "furniture",
+        "has_iv_or_heparin_lock": false,
+        "gait": "impaired",
+        "mental_status": "forgets_limitations",
+        "current_medications": [
+          "amitriptyline 25 mg",
+          "tramadol 50 mg",
+          "zolpidem 10 mg"
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_021",
+      "input": {
+        "history_of_falling_3mo": true,
+        "secondary_diagnosis_present": true,
+        "ambulatory_aid": "furniture",
+        "has_iv_or_heparin_lock": false,
+        "gait": "weak",
+        "mental_status": "forgets_limitations",
+        "current_medications": [
+          "amitriptyline 25 mg",
+          "haloperidol 1 mg",
+          "diphenhydramine 25 mg",
+          "tramadol 50 mg"
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_022",
+      "input": {
+        "history_of_falling_3mo": false,
+        "secondary_diagnosis_present": true,
+        "ambulatory_aid": "walker",
+        "has_iv_or_heparin_lock": true,
+        "gait": "impaired",
+        "mental_status": "forgets_limitations",
+        "current_medications": [
+          "amitriptyline 25 mg",
+          "diazepam 5 mg",
+          "zolpidem 10 mg"
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_023",
+      "input": {
+        "history_of_falling_3mo": true,
+        "secondary_diagnosis_present": true,
+        "ambulatory_aid": "walker",
+        "has_iv_or_heparin_lock": true,
+        "gait": "impaired",
+        "mental_status": "forgets_limitations",
+        "current_medications": []
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_024",
+      "input": {
+        "history_of_falling_3mo": true,
+        "secondary_diagnosis_present": true,
+        "ambulatory_aid": "furniture",
+        "has_iv_or_heparin_lock": true,
+        "gait": "weak",
+        "mental_status": "forgets_limitations",
+        "current_medications": []
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_025",
+      "input": {
+        "history_of_falling_3mo": false,
+        "secondary_diagnosis_present": true,
+        "ambulatory_aid": "none",
+        "has_iv_or_heparin_lock": true,
+        "gait": "weak",
+        "mental_status": "oriented",
+        "current_medications": [
+          "calcium 600 mg",
+          "vitamin d"
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_026",
+      "input": {
+        "history_of_falling_3mo": false,
+        "secondary_diagnosis_present": false,
+        "ambulatory_aid": "cane",
+        "has_iv_or_heparin_lock": true,
+        "gait": "normal",
+        "mental_status": "oriented",
+        "current_medications": [
+          "vitamin d",
+          "lisinopril 10 mg",
+          "calcium 600 mg",
+          "metformin 1000 mg"
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_027",
+      "input": {
+        "history_of_falling_3mo": false,
+        "secondary_diagnosis_present": true,
+        "ambulatory_aid": "cane",
+        "has_iv_or_heparin_lock": true,
+        "gait": "normal",
+        "mental_status": "oriented",
+        "current_medications": [
+          "vitamin d",
+          "atorvastatin 40 mg",
+          "calcium 600 mg",
+          "lisinopril 10 mg"
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_028",
+      "input": {
+        "history_of_falling_3mo": false,
+        "secondary_diagnosis_present": true,
+        "ambulatory_aid": "none",
+        "has_iv_or_heparin_lock": true,
+        "gait": "weak",
+        "mental_status": "oriented",
+        "current_medications": [
+          "atorvastatin 40 mg",
+          "lisinopril 10 mg"
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_029",
+      "input": {
+        "history_of_falling_3mo": false,
+        "secondary_diagnosis_present": false,
+        "ambulatory_aid": "cane",
+        "has_iv_or_heparin_lock": true,
+        "gait": "normal",
+        "mental_status": "oriented",
+        "current_medications": [
+          "metformin 1000 mg"
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_030",
+      "input": {
+        "history_of_falling_3mo": false,
+        "secondary_diagnosis_present": true,
+        "ambulatory_aid": "cane",
+        "has_iv_or_heparin_lock": true,
+        "gait": "weak",
+        "mental_status": "oriented",
+        "current_medications": [
+          "calcium 600 mg",
+          "metformin 1000 mg",
+          "lisinopril 10 mg"
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_031",
+      "input": {
+        "history_of_falling_3mo": false,
+        "secondary_diagnosis_present": true,
+        "ambulatory_aid": "cane",
+        "has_iv_or_heparin_lock": false,
+        "gait": "normal",
+        "mental_status": "oriented",
+        "current_medications": []
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_032",
+      "input": {
+        "history_of_falling_3mo": false,
+        "secondary_diagnosis_present": true,
+        "ambulatory_aid": "cane",
+        "has_iv_or_heparin_lock": false,
+        "gait": "weak",
+        "mental_status": "oriented",
+        "current_medications": [
+          "vitamin d",
+          "calcium 600 mg",
+          "atorvastatin 40 mg"
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_033",
+      "input": {
+        "history_of_falling_3mo": false,
+        "secondary_diagnosis_present": true,
+        "ambulatory_aid": "cane",
+        "has_iv_or_heparin_lock": true,
+        "gait": "normal",
+        "mental_status": "oriented",
+        "current_medications": [
+          "lisinopril 10 mg"
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_034",
+      "input": {
+        "history_of_falling_3mo": false,
+        "secondary_diagnosis_present": false,
+        "ambulatory_aid": "cane",
+        "has_iv_or_heparin_lock": false,
+        "gait": "normal",
+        "mental_status": "oriented",
+        "current_medications": []
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_035",
+      "input": {
+        "history_of_falling_3mo": false,
+        "secondary_diagnosis_present": true,
+        "ambulatory_aid": "none",
+        "has_iv_or_heparin_lock": true,
+        "gait": "normal",
+        "mental_status": "oriented",
+        "current_medications": [
+          "metformin 1000 mg",
+          "vitamin d",
+          "lisinopril 10 mg",
+          "atorvastatin 40 mg"
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_036",
+      "input": {
+        "history_of_falling_3mo": true,
+        "secondary_diagnosis_present": false,
+        "ambulatory_aid": "walker",
+        "has_iv_or_heparin_lock": true,
+        "gait": "weak",
+        "mental_status": "forgets_limitations",
+        "current_medications": []
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_037",
+      "input": {
+        "history_of_falling_3mo": false,
+        "secondary_diagnosis_present": true,
+        "ambulatory_aid": "none",
+        "has_iv_or_heparin_lock": false,
+        "gait": "normal",
+        "mental_status": "forgets_limitations",
+        "current_medications": [
+          "atorvastatin 40 mg",
+          "lisinopril 10 mg"
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_038",
+      "input": {
+        "history_of_falling_3mo": true,
+        "secondary_diagnosis_present": true,
+        "ambulatory_aid": "walker",
+        "has_iv_or_heparin_lock": true,
+        "gait": "weak",
+        "mental_status": "forgets_limitations",
+        "current_medications": [
+          "diphenhydramine 25 mg",
+          "zolpidem 10 mg",
+          "tramadol 50 mg",
+          "haloperidol 1 mg"
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_039",
+      "input": {
+        "history_of_falling_3mo": false,
+        "secondary_diagnosis_present": false,
+        "ambulatory_aid": "none",
+        "has_iv_or_heparin_lock": true,
+        "gait": "weak",
+        "mental_status": "forgets_limitations",
+        "current_medications": [
+          "calcium 600 mg",
+          "vitamin d"
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_040",
+      "input": {
+        "history_of_falling_3mo": false,
+        "secondary_diagnosis_present": true,
+        "ambulatory_aid": "cane",
+        "has_iv_or_heparin_lock": false,
+        "gait": "normal",
+        "mental_status": "oriented",
+        "current_medications": []
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_041",
+      "input": {
+        "history_of_falling_3mo": false,
+        "secondary_diagnosis_present": true,
+        "ambulatory_aid": "none",
+        "has_iv_or_heparin_lock": false,
+        "gait": "normal",
+        "mental_status": "oriented",
+        "current_medications": [
+          "calcium 600 mg"
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_042",
+      "input": {
+        "history_of_falling_3mo": false,
+        "secondary_diagnosis_present": false,
+        "ambulatory_aid": "cane",
+        "has_iv_or_heparin_lock": false,
+        "gait": "weak",
+        "mental_status": "forgets_limitations",
+        "current_medications": []
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_043",
+      "input": {
+        "history_of_falling_3mo": false,
+        "secondary_diagnosis_present": true,
+        "ambulatory_aid": "walker",
+        "has_iv_or_heparin_lock": false,
+        "gait": "weak",
+        "mental_status": "forgets_limitations",
+        "current_medications": []
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_044",
+      "input": {
+        "history_of_falling_3mo": false,
+        "secondary_diagnosis_present": true,
+        "ambulatory_aid": "cane",
+        "has_iv_or_heparin_lock": true,
+        "gait": "weak",
+        "mental_status": "forgets_limitations",
+        "current_medications": [
+          "calcium 600 mg",
+          "vitamin d",
+          "metformin 1000 mg",
+          "lisinopril 10 mg"
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_045",
+      "input": {
+        "history_of_falling_3mo": false,
+        "secondary_diagnosis_present": false,
+        "ambulatory_aid": "furniture",
+        "has_iv_or_heparin_lock": true,
+        "gait": "weak",
+        "mental_status": "forgets_limitations",
+        "current_medications": [
+          "oxycodone 5 mg",
+          "lorazepam 1 mg"
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_046",
+      "input": {
+        "history_of_falling_3mo": true,
+        "secondary_diagnosis_present": true,
+        "ambulatory_aid": "furniture",
+        "has_iv_or_heparin_lock": true,
+        "gait": "weak",
+        "mental_status": "forgets_limitations",
+        "current_medications": [
+          "haloperidol 1 mg",
+          "diphenhydramine 25 mg",
+          "zolpidem 10 mg",
+          "diazepam 5 mg"
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_047",
+      "input": {
+        "history_of_falling_3mo": false,
+        "secondary_diagnosis_present": true,
+        "ambulatory_aid": "none",
+        "has_iv_or_heparin_lock": true,
+        "gait": "weak",
+        "mental_status": "oriented",
+        "current_medications": [
+          "lisinopril 10 mg"
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_048",
+      "input": {
+        "history_of_falling_3mo": false,
+        "secondary_diagnosis_present": false,
+        "ambulatory_aid": "none",
+        "has_iv_or_heparin_lock": false,
+        "gait": "weak",
+        "mental_status": "oriented",
+        "current_medications": [
+          "lisinopril 10 mg"
+        ]
+      },
+      "schema_only": true
+    },
+    {
+      "name": "falls_case_049",
+      "input": {
+        "history_of_falling_3mo": false,
+        "secondary_diagnosis_present": true,
+        "ambulatory_aid": "cane",
+        "has_iv_or_heparin_lock": false,
+        "gait": "normal",
+        "mental_status": "forgets_limitations",
+        "current_medications": []
+      },
+      "schema_only": true
+    }
+  ]
+}

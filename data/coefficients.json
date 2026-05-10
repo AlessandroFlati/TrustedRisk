@@ -1,0 +1,225 @@
+{
+  "_provenance": {
+    "workflow_name": "fhir-readmission-calibration",
+    "workflow_version": "1.0.0",
+    "plurics_version": "git:79f9bff",
+    "run_id": "run-1777055367773-4204d20e",
+    "started_at": "2026-04-24T18:29:27.792Z",
+    "completed_at": "2026-04-24T18:52:23Z",
+    "input_hashes": {
+      "synthea_cohort": "sha256:unavailable_at_critic_node",
+      "mimic_demo": "sha256:unavailable_at_critic_node"
+    },
+    "tool_versions_used": {
+      "healthcare.io.load_synthea_cohort": "1.0.0",
+      "healthcare.io.load_mimic_demo": "1.0.0",
+      "healthcare.io.fhir_extract_features": "1.0.0",
+      "healthcare.clinical.compute_lace_score": "1.0.0",
+      "stats.kfold_evaluate_beta_binomial": "1.0.0"
+    },
+    "upstream_signal_ids": {
+      "profiler": "sig-20260424183944-profiler-a1-9e87",
+      "feature_analyzer": "sig-20260424184522-feature_analyzer-a1-6fa1",
+      "model_evaluator": "sig-20260424185039-model_evaluator-a1-3671"
+    }
+  },
+
+  "model_name": "lace-plus-bayesian-v1",
+  "model_version": "readmission-calibration-run-1777055367773-4204d20e",
+  "model_family": "beta_binomial_lace_stratified",
+
+  "selected_model": "spec_002",
+  "selected_spec_name": "lace_finer_5bin_beta_binomial",
+  "confidence": "preferred",
+  "hypothesis_outcome": "confirmed",
+
+  "selection_rationale": "All three candidate Beta-Binomial specifications cleared the preferred ECE gate (mean cross-validated ECE ≤ 0.05) by a wide margin. spec_001 (van Walraven 2010 3-bin priors) achieved ECE 0.0137, spec_002 (5-bin finer-granularity) achieved ECE 0.0078, and spec_003 (AHRQ 2022 3-bin priors) achieved ECE 0.0136. The preferred gate exists to enforce that the model's predicted probabilities are reliable as decision support inputs; a model that fails calibration produces systematically biased risk estimates that would mislead clinicians regardless of how well it ranked patients. With all candidates safely under the 0.05 target, calibration was non-binding for the choice and discrimination became the deciding criterion.\n\nspec_002 was promoted on the strength of its discrimination metrics: AUROC 0.5899 (vs 0.5663 for both 3-bin variants) and AUPRC 0.2174 (vs 0.1995). The AUROC margin of 0.0237 over the runner-up exceeds the 0.01 threshold at which the workflow's tiebreaker logic would invoke AUPRC as a secondary criterion, so no tiebreaker was needed. The 5-bin granularity confirmed the feature_analyzer's hypothesis that the 3-bin top-bin aggregate (LACE 10-19, observed rate 23.5%) was masking a meaningful within-bin gradient: at 5-bin resolution, LACE 12-19 alone has an observed rate of 29.2%, and the finer prior structure allowed the model to discriminate the highest-risk subgroup more precisely.\n\nProcess quality is uniformly strong across the candidate set. All three specs completed 5/5 cross-validation folds with zero empty-bin imputations, zero fold failures, and zero convergence warnings. spec_002's calibration slope (0.983) is within 0.02 of the ideal 1.0, confirming that the feature_analyzer's stated risk — that the small lace_0_2 bin (n=131) might destabilise the slope through over-fitting — did not materialise on this cohort. The AHRQ 2022 hypothesis (spec_003) was only partially confirmed: AUROC matched spec_001 as predicted and the calibration slope did move closer to 1.0 (1.001 vs 1.020), but the predicted ECE improvement of 0.005-0.015 over spec_001 did not materialise (observed delta was 0.0001). The van Walraven hypothesis (spec_001) was disconfirmed on its central claim of being the best-calibrated candidate; spec_002 surpassed it on every primary metric. None of these process-quality signals override the mechanical ranking, but they are surfaced for downstream auditability.\n\nThe promoted calibration carries three known limitations into production. (1) The runtime lookup table for LACE 0-2 returns a posterior mean of 0.108, which is slightly higher than for LACE 3-5 (0.103) — a non-monotonic step that reflects an empirical anomaly in the lace_0_2 bin (only n=131 encounters with an observed rate of 16.8%, likely small-sample noise per the feature_analyzer's risk note). Clinicians and downstream consumers should be aware that the lowest LACE band's predictions may be slightly conservative relative to LACE 3-5. (2) Calibration was assessed on the Synthea synthetic cohort (n=7780) with only a 100-encounter qualitative MIMIC-IV demo cross-check; generalisation to a real EHR has not been validated. (3) Demographic stratification was not introduced (profiler clean; age rate-ratio 1.108, p=0.065 below the alpha threshold; race categories too sparse), so fairness across age 65+ and minority race subgroups must be monitored in deployment via the TrustedRisk regression suite.",
+
+  "candidate_models_evaluated": [
+    {
+      "spec_id": "spec_001",
+      "name": "lace_vanwalraven_3bin_beta_binomial",
+      "family": "beta_binomial",
+      "feature_set": ["lace_total"],
+      "stratification": "none",
+      "lace_bins": [[0, 4], [5, 9], [10, 19]],
+      "priors_source": "van Walraven et al. 2010 (CMAJ) Table 3 — 30-day readmission-or-death rates by LACE stratum (n=48,594, Canada).",
+      "priors": {
+        "lace_0_4":  {"alpha": 4,  "beta": 96, "source_readmit_rate": 0.04},
+        "lace_5_9":  {"alpha": 8,  "beta": 92, "source_readmit_rate": 0.08},
+        "lace_10_19":{"alpha": 12, "beta": 88, "source_readmit_rate": 0.12}
+      },
+      "metrics_cv_folds_5": {
+        "ece":                  {"mean": 0.01372379454057866,  "std": 0.005033492113628288, "per_fold": [0.014085799776104482, 0.018487511487924775, 0.004434443201881204, 0.017914662837275008, 0.013696555399707834]},
+        "brier":                {"mean": 0.14160414163389956,  "std": 0.0010395287573327647, "per_fold": [0.14017319588661875, 0.1427032892974946, 0.14184155968119616, 0.14062992386287745, 0.14267273944131081]},
+        "auroc":                {"mean": 0.5662577558129039,   "std": 0.02248628385657462,  "per_fold": [0.592743481595092, 0.5388891081739443, 0.5629879202404146, 0.5913375445225024, 0.5453307245325664]},
+        "auprc":                {"mean": 0.19949255215527117,  "std": 0.010833719397602687, "per_fold": [0.21074950534727804, 0.1861497528787945, 0.19805780734364734, 0.2129541791392432, 0.18955151606739287]},
+        "calibration_slope":    {"mean": 1.019716760933059,    "std": 0.4215683690833869,   "per_fold": [1.4905860179139094, 0.5186373493848556, 0.8952783730150106, 1.5376985051504442, 0.6563835592010753]},
+        "calibration_intercept":{"mean": 0.05493482936610015,  "std": 0.6590530597686449,   "per_fold": [0.7810492457239957, -0.7375268932172822, -0.1331345856769947, 0.8709040017646408, -0.5066176217638589]}
+      },
+      "folds_successful": 5,
+      "imputation_log": [],
+      "preferred_promotable": true,
+      "degraded_promotable": true,
+      "rank": 3,
+      "hypothesis_outcome": "disconfirmed",
+      "hypothesis_outcome_notes": "Predicted best ECE and best calibration slope; observed third-best ECE (0.014 vs winner 0.008) and slope farthest from 1.0 (1.020). AUROC (0.566) below the predicted 0.60-0.62 range."
+    },
+    {
+      "spec_id": "spec_002",
+      "name": "lace_finer_5bin_beta_binomial",
+      "family": "beta_binomial",
+      "feature_set": ["lace_total"],
+      "stratification": "none",
+      "lace_bins": [[0, 2], [3, 5], [6, 8], [9, 11], [12, 19]],
+      "priors_source": "van Walraven et al. 2010 Table 3, monotonic-interpolated at 5-bin grid; cross-referenced AHRQ HCUP Statistical Brief #278 (2022).",
+      "priors": {
+        "lace_0_2":  {"alpha": 3,  "beta": 97, "source_readmit_rate": 0.03},
+        "lace_3_5":  {"alpha": 5,  "beta": 95, "source_readmit_rate": 0.05},
+        "lace_6_8":  {"alpha": 8,  "beta": 92, "source_readmit_rate": 0.08},
+        "lace_9_11": {"alpha": 12, "beta": 88, "source_readmit_rate": 0.12},
+        "lace_12_19":{"alpha": 18, "beta": 82, "source_readmit_rate": 0.18}
+      },
+      "metrics_cv_folds_5": {
+        "ece":                  {"mean": 0.007828170445928467, "std": 0.0027621835176951516, "per_fold": [0.005167525436597138, 0.007899550464817235, 0.00688752116110136, 0.0061326945556074465, 0.01305356061151916]},
+        "brier":                {"mean": 0.14053966156492045,  "std": 0.0010347658024693492, "per_fold": [0.1393512695130594, 0.14117039586930585, 0.14037236338616146, 0.13962682963039771, 0.14217744942567792]},
+        "auroc":                {"mean": 0.5899231517579768,   "std": 0.018912859364390352,  "per_fold": [0.6094976429989173, 0.5727216595994225, 0.5902580407568896, 0.6120814463101493, 0.5650569691245055]},
+        "auprc":                {"mean": 0.2173618687965276,   "std": 0.01099555975241624,   "per_fold": [0.22550156873698735, 0.20678617148501666, 0.22080263744472894, 0.2312481577155555, 0.2024708086003496]},
+        "calibration_slope":    {"mean": 0.9834742947397223,   "std": 0.23200371741614847,   "per_fold": [1.1710852854257123, 0.7721582921573021, 1.02837916845582, 1.2786807755897822, 0.667067952069995]},
+        "calibration_intercept":{"mean": 0.012129434016794338, "std": 0.3614633012593345,    "per_fold": [0.2938207616424846, -0.3238235086083533, 0.09460237365713853, 0.4743978273902698, -0.47835028399756796]}
+      },
+      "folds_successful": 5,
+      "imputation_log": [],
+      "preferred_promotable": true,
+      "degraded_promotable": true,
+      "rank": 1,
+      "hypothesis_outcome": "confirmed",
+      "hypothesis_outcome_notes": "Predicted better ECE than spec_001 (especially in the top LACE decile) with potential slope degradation from small lace_0_2 bin. Observed best ECE (0.008 vs spec_001 0.014) and slope intact at 0.983; risk of slope degradation did not materialise."
+    },
+    {
+      "spec_id": "spec_003",
+      "name": "lace_ahrq2022_3bin_beta_binomial",
+      "family": "beta_binomial",
+      "feature_set": ["lace_total"],
+      "stratification": "none",
+      "lace_bins": [[0, 4], [5, 9], [10, 19]],
+      "priors_source": "AHRQ HCUP Statistical Brief #278 (2022) — all-cause 30-day readmission rates for US hospital discharges.",
+      "priors": {
+        "lace_0_4":  {"alpha": 3.5, "beta": 96.5, "source_readmit_rate": 0.035},
+        "lace_5_9":  {"alpha": 9,   "beta": 91,   "source_readmit_rate": 0.09},
+        "lace_10_19":{"alpha": 15,  "beta": 85,   "source_readmit_rate": 0.15}
+      },
+      "metrics_cv_folds_5": {
+        "ece":                  {"mean": 0.013612206491204041, "std": 0.005249923504090522, "per_fold": [0.013692488856640686, 0.018867312181641102, 0.0039021136541669537, 0.017578741145228775, 0.014020376618342687]},
+        "brier":                {"mean": 0.14160033182982054,  "std": 0.0010629801367020477, "per_fold": [0.1401436631384759, 0.14273230883443727, 0.1418415248202477, 0.1405969213421043, 0.1426872410138376]},
+        "auroc":                {"mean": 0.5662577558129039,   "std": 0.02248628385657462,  "per_fold": [0.592743481595092, 0.5388891081739443, 0.5629879202404146, 0.5913375445225024, 0.5453307245325664]},
+        "auprc":                {"mean": 0.19949255215527117,  "std": 0.010833719397602687, "per_fold": [0.21074950534727804, 0.1861497528787945, 0.19805780734364734, 0.2129541791392432, 0.18955151606739287]},
+        "calibration_slope":    {"mean": 1.0011743554682848,   "std": 0.41254210020247406,  "per_fold": [1.460645910595152, 0.5100673572922247, 0.8798110415585971, 1.5090792072501138, 0.6462682606453368]},
+        "calibration_intercept":{"mean": 0.021992878394076286, "std": 0.6432967420287778,   "per_fold": [0.7285333121172745, -0.7529738332232642, -0.16075724724077006, 0.8200534965664891, -0.5248913362493479]}
+      },
+      "folds_successful": 5,
+      "imputation_log": [],
+      "preferred_promotable": true,
+      "degraded_promotable": true,
+      "rank": 2,
+      "hypothesis_outcome": "partially_confirmed",
+      "hypothesis_outcome_notes": "Predicted marginally better ECE (~0.005-0.015) than spec_001, identical AUROC, slope closer to 1.0. Observed: AUROC identical (0.566) [confirmed], slope closer to 1.0 (1.001 vs 1.020) [confirmed], ECE delta was only 0.0001 vs predicted range 0.005-0.015 [not confirmed]."
+    }
+  ],
+
+  "runtime_coefficients": {
+    "lookup_table": {
+      "0":  {"alpha_posterior": 25.0,  "beta_posterior": 206.0,  "prob_mean": 0.108225, "prob_ci95": [0.071588, 0.151276], "ci_width": 0.079687, "lace_bin": "lace_0_2"},
+      "1":  {"alpha_posterior": 25.0,  "beta_posterior": 206.0,  "prob_mean": 0.108225, "prob_ci95": [0.071588, 0.151276], "ci_width": 0.079687, "lace_bin": "lace_0_2"},
+      "2":  {"alpha_posterior": 25.0,  "beta_posterior": 206.0,  "prob_mean": 0.108225, "prob_ci95": [0.071588, 0.151276], "ci_width": 0.079687, "lace_bin": "lace_0_2"},
+      "3":  {"alpha_posterior": 124.0, "beta_posterior": 1082.0, "prob_mean": 0.102819, "prob_ci95": [0.086320, 0.120566], "ci_width": 0.034246, "lace_bin": "lace_3_5"},
+      "4":  {"alpha_posterior": 124.0, "beta_posterior": 1082.0, "prob_mean": 0.102819, "prob_ci95": [0.086320, 0.120566], "ci_width": 0.034246, "lace_bin": "lace_3_5"},
+      "5":  {"alpha_posterior": 124.0, "beta_posterior": 1082.0, "prob_mean": 0.102819, "prob_ci95": [0.086320, 0.120566], "ci_width": 0.034246, "lace_bin": "lace_3_5"},
+      "6":  {"alpha_posterior": 443.0, "beta_posterior": 2637.0, "prob_mean": 0.143831, "prob_ci95": [0.131661, 0.156439], "ci_width": 0.024778, "lace_bin": "lace_6_8"},
+      "7":  {"alpha_posterior": 443.0, "beta_posterior": 2637.0, "prob_mean": 0.143831, "prob_ci95": [0.131661, 0.156439], "ci_width": 0.024778, "lace_bin": "lace_6_8"},
+      "8":  {"alpha_posterior": 443.0, "beta_posterior": 2637.0, "prob_mean": 0.143831, "prob_ci95": [0.131661, 0.156439], "ci_width": 0.024778, "lace_bin": "lace_6_8"},
+      "9":  {"alpha_posterior": 515.0, "beta_posterior": 2277.0, "prob_mean": 0.184456, "prob_ci95": [0.170288, 0.199051], "ci_width": 0.028764, "lace_bin": "lace_9_11"},
+      "10": {"alpha_posterior": 515.0, "beta_posterior": 2277.0, "prob_mean": 0.184456, "prob_ci95": [0.170288, 0.199051], "ci_width": 0.028764, "lace_bin": "lace_9_11"},
+      "11": {"alpha_posterior": 515.0, "beta_posterior": 2277.0, "prob_mean": 0.184456, "prob_ci95": [0.170288, 0.199051], "ci_width": 0.028764, "lace_bin": "lace_9_11"},
+      "12": {"alpha_posterior": 302.0, "beta_posterior": 769.0,  "prob_mean": 0.281979, "prob_ci95": [0.255437, 0.309293], "ci_width": 0.053857, "lace_bin": "lace_12_19"},
+      "13": {"alpha_posterior": 302.0, "beta_posterior": 769.0,  "prob_mean": 0.281979, "prob_ci95": [0.255437, 0.309293], "ci_width": 0.053857, "lace_bin": "lace_12_19"},
+      "14": {"alpha_posterior": 302.0, "beta_posterior": 769.0,  "prob_mean": 0.281979, "prob_ci95": [0.255437, 0.309293], "ci_width": 0.053857, "lace_bin": "lace_12_19"},
+      "15": {"alpha_posterior": 302.0, "beta_posterior": 769.0,  "prob_mean": 0.281979, "prob_ci95": [0.255437, 0.309293], "ci_width": 0.053857, "lace_bin": "lace_12_19"},
+      "16": {"alpha_posterior": 302.0, "beta_posterior": 769.0,  "prob_mean": 0.281979, "prob_ci95": [0.255437, 0.309293], "ci_width": 0.053857, "lace_bin": "lace_12_19"},
+      "17": {"alpha_posterior": 302.0, "beta_posterior": 769.0,  "prob_mean": 0.281979, "prob_ci95": [0.255437, 0.309293], "ci_width": 0.053857, "lace_bin": "lace_12_19"},
+      "18": {"alpha_posterior": 302.0, "beta_posterior": 769.0,  "prob_mean": 0.281979, "prob_ci95": [0.255437, 0.309293], "ci_width": 0.053857, "lace_bin": "lace_12_19"},
+      "19": {"alpha_posterior": 302.0, "beta_posterior": 769.0,  "prob_mean": 0.281979, "prob_ci95": [0.255437, 0.309293], "ci_width": 0.053857, "lace_bin": "lace_12_19"}
+    },
+    "ci_level": 0.95,
+    "horizon_days": 30,
+    "lace_to_bin_mapping": {
+      "0_2":   [0, 1, 2],
+      "3_5":   [3, 4, 5],
+      "6_8":   [6, 7, 8],
+      "9_11":  [9, 10, 11],
+      "12_19": [12, 13, 14, 15, 16, 17, 18, 19]
+    },
+    "posterior_method": "conjugate_beta_binomial_full_cohort",
+    "posterior_data_source": "feature_analyzer.signal.outputs[0].value.feature_analysis_summary.lace_bin5_observed_rates (n=7880 Synthea cohort)"
+  },
+
+  "calibration_metrics_final": {
+    "ece": 0.007828170445928467,
+    "ece_std_across_folds": 0.0027621835176951516,
+    "brier": 0.14053966156492045,
+    "auroc": 0.5899231517579768,
+    "auprc": 0.2173618687965276,
+    "calibration_slope": 0.9834742947397223,
+    "calibration_intercept": 0.012129434016794338,
+    "n_folds_evaluated": 5,
+    "n_folds_successful": 5,
+    "reliability_diagram_asset": "report_assets/reliability_diagram_spec_002.png",
+    "reliability_diagram_asset_source_workspace": "model_evaluator-1/output/report_assets/reliability_diagram_spec_002.png"
+  },
+
+  "fairness_metrics_summary": {
+    "stratified_metrics_provided_by_evaluator": false,
+    "by_age_group": null,
+    "by_sex": null,
+    "by_race": null,
+    "disparity_flags": [],
+    "rationale_for_no_stratified_metrics": "model_evaluator did not produce stratified_metrics for spec_002 (`stratified_metrics: null` in evaluation_results.json). Profiler verdict was clean (0 findings). feature_analyzer's chi-square age_group x outcome p=0.065 (RR 1.108) below the alpha=0.05 threshold for stratification. Race categories sparse (only `white` n>6000). Fairness must be monitored downstream via TrustedRisk regression suite."
+  },
+
+  "mimic_sanity_check_summary": {
+    "available": false,
+    "reason": "MIMIC-IV demo cohort was loaded upstream (n=100 of total cohort 7880) but no mimic-only sanity-check artifact was emitted by upstream nodes; not in critic's input scope. The 100 MIMIC encounters were included in the 7880-encounter calibration cohort and contribute to the overall ECE/AUROC metrics.",
+    "qualitative_verdict": null,
+    "notes_ref": null
+  },
+
+  "utility_fn": {
+    "qaly_weights": {
+      "home_90d_full_recovery": 1.0,
+      "home_90d_readmit_recoverable": 0.7,
+      "home_90d_readmit_severe": 0.4,
+      "home_90d_death": 0.0,
+      "snf_90d_recovery": 0.9,
+      "snf_90d_readmit": 0.65,
+      "snf_90d_death": 0.0,
+      "continued_admission_recovery": 0.85,
+      "continued_admission_death": 0.0
+    },
+    "cost_usd_per_day": {
+      "discharge_home": 0,
+      "home_with_care": 80,
+      "snf": 200,
+      "continued_admission": 2400
+    },
+    "time_horizon_days": 90,
+    "source": "Canonical defaults per OUTPUT_SCHEMA_fhir-readmission-calibration.md §4.2 (design doc). Not selected-spec-dependent."
+  },
+
+  "known_limitations": [
+    "Validated on Synthea synthetic cohort (n=7780 of total 7880) plus 100 MIMIC-IV demo encounters; not validated on any production EHR. Generalisation to real clinical populations is unverified.",
+    "Lookup-table posterior mean for LACE 0-2 (0.108) is non-monotonically higher than for LACE 3-5 (0.103). This reflects an empirical anomaly in the small lace_0_2 bin (n=131, observed rate 16.8%) flagged by feature_analyzer as likely small-sample noise. Predictions in the lowest LACE band may therefore be slightly conservative relative to LACE 3-5 patients.",
+    "No demographic stratification implemented in the promoted spec (profiler clean; age 65+ rate-ratio 1.108 with chi-square p=0.065 below the alpha=0.05 flag threshold; race categories too sparse for reliable stratum-wise posteriors). Fairness across age 65+ and minority race subgroups must be monitored in deployment via the TrustedRisk regression suite.",
+    "AUROC on the Synthea cohort is modest (0.590), consistent with the LACE-outcome point-biserial correlation r=0.135. The model is calibrated for trustworthy probability estimates rather than strong discrimination; expect downstream risk thresholds to be set conservatively.",
+    "Utility function coefficients (qaly_weights, cost_usd_per_day) are reasonable defaults from the design doc, not institution-specific. Should be re-calibrated against local data before production deployment in a specific care setting."
+  ]
+}
