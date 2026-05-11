@@ -462,8 +462,15 @@ async def compute_discharge_counseling(
     meds = _coerce_meds(medications)
 
     sec_meds, n_meds = _section_medications(meds)
+    # `lace_score` is declared int=0, but workflow chain references can
+    # resolve to an empty string when the upstream step abstained or
+    # produced no numeric output. Coerce defensively before clamping.
+    try:
+        _lace_int = int(lace_score) if lace_score not in (None, "") else 0
+    except (TypeError, ValueError):
+        _lace_int = 0
     sec_follow, window = _section_follow_up(
-        max(0, min(19, int(lace_score))), recommendation_action,
+        max(0, min(19, _lace_int)), recommendation_action,
     )
     sec_warn, n_red = _section_warning_signs(meds, extra_red_flags=extra_red_flags)
     sec_activities = _section_activities()

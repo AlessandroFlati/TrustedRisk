@@ -211,11 +211,111 @@ def _format_bundle_provenance(sub_results: list) -> str:
     )
 
 
+# Clinical fields to surface at the very top of the status message when a
+# macro workflow yields nested sub-results. Order matters: the chat client
+# truncates its own LLM output at a low max_tokens budget, so the most
+# decision-relevant signals come first.
+_HEADLINE_FIELDS: tuple[str, ...] = (
+    "esi_level", "priority", "disposition", "recommended_unit",
+    "severity_tier", "severity", "score_total", "level", "risk_level",
+    "recommended_response", "recommended_action", "top_pick_id",
+    "de_escalation_recommended", "target_regimen",
+    "discharge_contract_satisfied", "n_admission_meds", "n_discharge_meds",
+    "n_gaps_found", "n_high_priority_gaps", "n_concerns",
+    "n_red_flags", "follow_up_window_days",
+    "decision", "recommendation", "verdict",
+)
+
+
+def _scalar_str(v: Any) -> str | None:
+    """Format a primitive for a compact headline line; skip non-scalars."""
+    if v is None or isinstance(v, bool):
+        return str(v).lower() if isinstance(v, bool) else None
+    if isinstance(v, (int, float, str)):
+        s = str(v)
+        return s if len(s) <= 60 else s[:57] + "..."
+    if isinstance(v, list) and all(isinstance(x, (int, float, str)) for x in v):
+        s = ", ".join(str(x) for x in v[:4])
+        return s if len(s) <= 60 else s[:57] + "..."
+    return None
+
+
+def _format_macro_headlines(output_dump: dict | None) -> str:
+    """Build a compact bullet list of headline findings per inner step.
+
+    Macro workflows return `steps[i].output_dump` shaped as
+    `{inner_step_id: inner_dump}`. We pick the first 2 - 3 decision-
+    relevant fields per inner dump and inline them. The chat-LLM in the
+    upstream client truncates aggressively (observed at 153 output
+    tokens), so loading headline numbers into the first lines of our
+    response lets the user see disposition / severity / top antibiotic
+    even when the LLM's own summary gets cut mid-sentence.
+    """
+    if not isinstance(output_dump, dict):
+        return ""
+    steps = output_dump.get("steps") or []
+    if not isinstance(steps, list):
+        return ""
+    lines: list[str] = []
+    for s in steps:
+        if not isinstance(s, dict):
+            continue
+        outer_id = str(s.get("step_id") or "")
+        # Trim the "hop_N_" prefix added by `_make_macro`.
+        outer_short = outer_id
+        if outer_short.startswith("hop_"):
+            parts = outer_short.split("_", 2)
+            if len(parts) == 3:
+                outer_short = parts[2]
+        od = s.get("output_dump")
+        if not isinstance(od, dict):
+            continue
+        # Detect macro hop (dict of dicts) vs single-tool step (flat dict).
+        inner_items = [
+            (k, v) for k, v in od.items()
+            if isinstance(v, dict) and not k.startswith("_")
+        ]
+        if not inner_items:
+            # Single-tool: treat the outer dump itself as one inner.
+            inner_items = [(outer_short, od)]
+        for inner_id, inner in inner_items:
+            picks: list[str] = []
+            for field in _HEADLINE_FIELDS:
+                if field in inner:
+                    fmt = _scalar_str(inner[field])
+                    if fmt is not None:
+                        picks.append(f"{field}={fmt}")
+                        if len(picks) >= 3:
+                            break
+            if not picks:
+                # Fall back to first 2 non-meta scalar fields.
+                for k, v in inner.items():
+                    if k.startswith("_") or k in (
+                        "abstain_recommended", "abstain_reason",
+                        "patient_id", "rationale", "references",
+                    ):
+                        continue
+                    fmt = _scalar_str(v)
+                    if fmt is not None:
+                        picks.append(f"{k}={fmt}")
+                        if len(picks) >= 2:
+                            break
+            if picks:
+                lines.append(f"- {outer_short}/{inner_id}: {', '.join(picks)}")
+    if not lines:
+        return ""
+    return "Headline findings:\n" + "\n".join(lines) + "\n\n"
+
+
 async def _orchestrator_handler(prompt: str, msg: dict) -> tuple[str, list[dict]]:
     from a2a_agent.po_fhir_context import (
         bind_po_fhir_context,
         extract_po_fhir_context,
         release_po_fhir_context,
+    )
+    from mcp_server.fhir.client import (
+        begin_bundle_cache,
+        reset_bundle_cache,
     )
 
     metadata = _extract_fhir_metadata(msg)
@@ -228,9 +328,19 @@ async def _orchestrator_handler(prompt: str, msg: dict) -> tuple[str, list[dict]
     except ValueError:
         po_ctx = None
     ctx_token = bind_po_fhir_context(po_ctx) if po_ctx is not None else None
+    # Open a request-scoped FHIR bundle cache. Every `fetch_patient_bundle`
+    # call inside this handler -- whether from the dispatcher's own
+    # demographics extraction or from the dozen tool invocations a macro
+    # workflow runs -- shares one fetch per patient_id. On a chart with
+    # zero non-Patient resources (the deliberate negative-example case)
+    # the underlying probe touches ~30 endpoints, all latency-dominated,
+    # so cutting the multiplier from N steps to 1 saves the worst-case
+    # tail.
+    cache_token = begin_bundle_cache()
     try:
         result = await dispatch(prompt, metadata=metadata)
     finally:
+        reset_bundle_cache(cache_token)
         if ctx_token is not None:
             release_po_fhir_context(ctx_token)
 
@@ -309,8 +419,13 @@ async def _orchestrator_handler(prompt: str, msg: dict) -> tuple[str, list[dict]
     abstain_banner = _format_abstain_banner(
         [result] if result.output_dump else []
     )
+    # Headline findings front-load decision-relevant numbers (ESI level,
+    # top antibiotic pick, gap counts, etc.) so they survive the chat
+    # client's aggressive output truncation. Empty string when the
+    # workflow has no nested sub-results worth highlighting.
+    headline = _format_macro_headlines(result.output_dump)
     text = (
-        f"{abstain_banner}Done. Ran {result.target_label} on this "
+        f"{abstain_banner}{headline}Done. Ran {result.target_label} on this "
         f"patient and the call has already returned. "
         f"{result.rationale}{prov_summary} "
         f"The full structured result is in the attached artifact; "

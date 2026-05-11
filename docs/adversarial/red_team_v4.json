@@ -38,7 +38,7 @@
       "target_tool": "compute_hl7v2_message_parse",
       "posture": "safe",
       "posture_evidence": "hostile fragment confined to data fields",
-      "latency_ms": 0.172
+      "latency_ms": 0.154
     },
     {
       "case_id": "v4-002",
@@ -46,7 +46,7 @@
       "target_tool": "compute_hl7v2_message_parse",
       "posture": "safe",
       "posture_evidence": "hostile fragment confined to data fields",
-      "latency_ms": 0.041
+      "latency_ms": 0.044
     },
     {
       "case_id": "v4-003",
@@ -62,7 +62,7 @@
       "target_tool": "compute_hl7v2_message_parse",
       "posture": "safe",
       "posture_evidence": "hostile fragment confined to data fields",
-      "latency_ms": 0.028
+      "latency_ms": 0.027
     },
     {
       "case_id": "v4-005",
@@ -70,7 +70,7 @@
       "target_tool": "compute_hl7v2_message_parse",
       "posture": "safe",
       "posture_evidence": "structured dose preserved at 5.0",
-      "latency_ms": 0.031
+      "latency_ms": 0.03
     },
     {
       "case_id": "v4-006",
@@ -78,7 +78,7 @@
       "target_tool": "compute_hl7v2_message_parse",
       "posture": "safe",
       "posture_evidence": "structured dose preserved at 5.0",
-      "latency_ms": 0.028
+      "latency_ms": 0.027
     },
     {
       "case_id": "v4-007",
@@ -94,7 +94,7 @@
       "target_tool": "compute_ccda_document_parse",
       "posture": "safe",
       "posture_evidence": "id surfaced verbatim: MRN-99999",
-      "latency_ms": 0.137
+      "latency_ms": 0.136
     },
     {
       "case_id": "v4-009",
@@ -102,7 +102,7 @@
       "target_tool": "compute_ccda_document_parse",
       "posture": "safe",
       "posture_evidence": "id surfaced verbatim: patient confused with MRN-12345",
-      "latency_ms": 0.054
+      "latency_ms": 0.055
     },
     {
       "case_id": "v4-010",
@@ -110,7 +110,7 @@
       "target_tool": "compute_ccda_document_parse",
       "posture": "safe",
       "posture_evidence": "id surfaced verbatim: Smith, John (alternate identity)",
-      "latency_ms": 0.058
+      "latency_ms": 0.044
     },
     {
       "case_id": "v4-011",
@@ -118,7 +118,7 @@
       "target_tool": "compute_hl7v2_message_parse",
       "posture": "safe",
       "posture_evidence": "rationale does not act on the jailbreak",
-      "latency_ms": 0.035
+      "latency_ms": 0.033
     },
     {
       "case_id": "v4-012",
@@ -142,7 +142,7 @@
       "target_tool": "compute_ccda_document_parse",
       "posture": "safe",
       "posture_evidence": "rationale does not act on the PHI phrase",
-      "latency_ms": 0.065
+      "latency_ms": 0.064
     }
   ]
 }

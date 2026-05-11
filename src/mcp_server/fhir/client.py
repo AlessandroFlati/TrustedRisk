@@ -6,9 +6,34 @@ the bearer token is propagated from X-FHIR-Access-Token via the SHARP context.
 
 from __future__ import annotations
 
+import contextvars
 from typing import Any
 
 from ..sharp.headers import get_fhir_context
+
+
+# Request-scoped bundle cache. The orchestrator handler binds an empty
+# dict at the start of each HTTP request and resets it on return, so
+# multiple workflow steps that each call `fetch_patient_bundle(pid)` for
+# the same patient share one network roundtrip instead of N. On a chart
+# with N resource types each missing, the underlying client probes the
+# server with two `patient=` shapes per type -- that is 30+ HTTP calls
+# per fetch, all latency-dominated, and the macro fan-out multiplies it.
+# When the cache is unset (e.g. a direct MCP tool call outside the
+# orchestrator), the function falls through to a fresh fetch.
+_bundle_cache: contextvars.ContextVar[dict[str, dict[str, Any]] | None] = (
+    contextvars.ContextVar("_fhir_bundle_cache", default=None)
+)
+
+
+def begin_bundle_cache() -> contextvars.Token:
+    """Open a fresh per-request bundle cache. Pair with reset_bundle_cache."""
+    return _bundle_cache.set({})
+
+
+def reset_bundle_cache(token: contextvars.Token) -> None:
+    """Release the per-request bundle cache."""
+    _bundle_cache.reset(token)
 
 
 async def get_fhir_client():
@@ -46,7 +71,16 @@ async def fetch_patient_bundle(patient_id: str) -> dict[str, Any]:
 
     Structure matches what `healthcare.io.fhir_bundle_inspect` expects:
       {"resourceType": "Bundle", "type": "collection", "entry": [...]}
+
+    Result is cached for the duration of the current request when a
+    bundle cache is bound (see `begin_bundle_cache`). Multiple workflow
+    steps that all need the same chart share one fetch.
     """
+    cache = _bundle_cache.get()
+    if cache is not None:
+        cached = cache.get(patient_id)
+        if cached is not None:
+            return cached
     client = await get_fhir_client()
     entries: list[dict[str, Any]] = []
 
@@ -107,11 +141,14 @@ async def fetch_patient_bundle(patient_id: str) -> dict[str, Any]:
         for r in resources:
             entries.append({"resource": _to_dict(r)})
 
-    return {
+    bundle = {
         "resourceType": "Bundle",
         "type": "collection",
         "entry": entries,
     }
+    if cache is not None:
+        cache[patient_id] = bundle
+    return bundle
 
 
 def _to_dict(resource: Any) -> dict[str, Any]:

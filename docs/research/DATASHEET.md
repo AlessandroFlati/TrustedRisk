@@ -1,6 +1,6 @@
 # Datasheet: TrustedRisk synthetic cohorts (W1 + Synthea-100k + subgroup-audit + prospective-eval)
 
-**Generated**: 2026-05-11 08:37 UTC - **Sections**: 7
+**Generated**: 2026-05-11 17:12 UTC - **Sections**: 7
 
 Format: Gebru et al. 2021 (CACM) Datasheets for Datasets.
 

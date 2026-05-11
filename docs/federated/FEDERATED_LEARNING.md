@@ -1,6 +1,6 @@
 # TrustedRisk - Federated Learning report
 
-**Generated**: 2026-05-11 08:37 UTC - **Sites**: 5 - **Rounds**: 10 - **Centralized baseline ECE**: 0.0020
+**Generated**: 2026-05-11 17:12 UTC - **Sites**: 5 - **Rounds**: 10 - **Centralized baseline ECE**: 0.0020
 
 Simulates McMahan 2017 FedAvg over five biased hospital sites with no raw-data sharing. Each round broadcasts only the Beta-Binomial parameters (alpha_post, beta_post per LACE bin).
 

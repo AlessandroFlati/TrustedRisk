@@ -3,21 +3,25 @@
 Single entry-point that takes a clinical free-form prompt and decides
 which underlying capability to invoke. Two layers, in order:
 
-1. **LLM-driven** (when an API key is configured): a small Gemini /
+1. **Deterministic keyword router** (always available, sub-ms): scans
+   the prompt for the longest matching keyword across the prebuilt
+   workflow registry first, then across SPECIALIST_ROUTES. Demo macro
+   pipelines are first-class entries, so prompts like "complete sepsis
+   pipeline" route directly to the composer macro without an LLM call.
+
+2. **LLM-driven** (when an API key is configured): a small Gemini /
    Anthropic / OpenAI call ranks the full catalog (specialists +
    workflow templates, including macro and parametric variants)
    against the prompt and returns the chosen target plus a one-line
-   rationale. Routed via LiteLLM through ADK.
-
-2. **Deterministic keyword router** (always available): scans the
-   prompt for the longest matching keyword across the prebuilt
-   workflow registry first, then across SPECIALIST_ROUTES. Falls
-   back to a discovery summary when nothing matches.
+   rationale. Routed via LiteLLM through ADK. Only consulted when the
+   keyword router finds no match -- which is the case for free-form
+   prose that doesn't name a known clinical phrase.
 
 Both layers ultimately invoke the same underlying tools (or workflow
 orchestrator) the per-specialist handlers and the composer already use,
 so we get one consistent execution path independent of whether an LLM
-is available.
+is available. Falls back to a discovery summary when neither layer
+matches.
 """
 
 from __future__ import annotations
@@ -46,6 +50,24 @@ class DispatchResult:
 # ------------------------------------------------------------------ keyword
 
 _WORKFLOW_KEYWORDS = (
+    # Macro pipelines (composer-level): listed first so the longest-match
+    # router picks the full pipeline over a single-leg workflow when the
+    # prompt explicitly asks for the complete arc.
+    ("complete_sepsis_pipeline", ("complete sepsis pipeline",
+                                      "full sepsis pipeline",
+                                      "sepsis pipeline",
+                                      "complete sepsis arc",
+                                      "full sepsis arc")),
+    ("discharge_full",      ("full discharge bundle",
+                                 "complete discharge bundle",
+                                 "full discharge handoff",
+                                 "complete discharge handoff",
+                                 "full discharge arc",
+                                 "complete discharge arc")),
+    ("complete_chf_admission", ("complete chf admission",
+                                     "full chf admission",
+                                     "complete chf arc",
+                                     "full chf arc")),
     ("chf_admission",       ("chf admission", "chf inpatient",
                                  "heart failure admission",
                                  "admit for chf", "admit for heart failure")),
@@ -242,11 +264,24 @@ _WORKFLOW_KEYWORDS = (
 
 
 def _match_workflow(prompt: str) -> str | None:
+    """Return the workflow whose LONGEST keyword matches the prompt.
+
+    Longest-match is required for the demo macros to win over their
+    single-leg components: "complete sepsis pipeline" contains the
+    substring "sepsis" but must route to `complete_sepsis_pipeline`,
+    not to `sepsis_workup`. We score by the length of the matched
+    keyword (a proxy for specificity) and return the highest-scoring
+    workflow id.
+    """
     p = prompt.lower()
+    best: tuple[int, str] | None = None
     for wid, kws in _WORKFLOW_KEYWORDS:
-        if any(k in p for k in kws):
-            return wid
-    return None
+        for k in kws:
+            if k in p:
+                if best is None or len(k) > best[0]:
+                    best = (len(k), wid)
+                break
+    return None if best is None else best[1]
 
 
 def _match_specialist_route(prompt: str) -> tuple[str, Route] | None:
@@ -1541,31 +1576,33 @@ async def _run_pick(pick: tuple[str, str, str],
 
 
 async def dispatch(prompt: str, metadata: dict | None = None) -> DispatchResult:
-    """Single entry-point used by the orchestrator's A2A handler."""
+    """Single entry-point used by the orchestrator's A2A handler.
+
+    Order:
+      1. Deterministic keyword router (sub-millisecond). When the prompt
+         contains a specific clinical phrase or a demo macro keyword,
+         routing is unambiguous and the LLM would add latency without
+         improving the pick. The keyword table is precision-tuned for
+         the catalog, and longest-match guarantees that the most
+         specific workflow wins.
+      2. LLM-driven ranker (1 - 3 picks, fan-out merge). Only consulted
+         when the keyword router has nothing to say -- which is the
+         case for free-form prose that doesn't name a known clinical
+         phrase. This is where the LLM's flexibility actually helps.
+      3. Discovery fallback when neither layer matches.
+
+    PO's chat client times out external agent responses on a tight
+    budget, and the LLM has a 2 - 3 s cold-start floor. Doing the
+    cheap path first keeps demo prompts well under that budget while
+    preserving LLM intelligence for the long tail of free-form
+    requests.
+    """
     if not (prompt or "").strip():
         return _discovery()
 
-    # Layer 1: LLM picks 1-3 targets in priority order.
-    llm_picks = await _llm_dispatch(prompt)
-    if llm_picks:
-        import asyncio as _asyncio
-        sub_results: list[DispatchResult] = []
-        for r in await _asyncio.gather(
-            *[_run_pick(p, metadata) for p in llm_picks],
-            return_exceptions=False,
-        ):
-            if r is not None:
-                sub_results.append(r)
-        if len(sub_results) == 1:
-            return sub_results[0]
-        if sub_results:
-            return _merge_fanout(sub_results)
-
-    # Layer 2: deterministic keyword routing. Supports fan-out: if the
-    # prompt names both a workflow and a specialist skill (e.g. "two
-    # things in parallel: discharge planning + biologic appeal letter"),
-    # run both. Single-pick when only one matches.
     import asyncio as _asyncio
+
+    # Layer 1: keyword router (fan-out supported).
     wid = _match_workflow(prompt)
     sm = _match_specialist_route(prompt)
     coros: list = []
@@ -1579,6 +1616,21 @@ async def dispatch(prompt: str, metadata: dict | None = None) -> DispatchResult:
         return _merge_fanout(sub_results)
     if coros:
         return await coros[0]
+
+    # Layer 2: LLM picks 1-3 targets in priority order.
+    llm_picks = await _llm_dispatch(prompt)
+    if llm_picks:
+        sub_results: list[DispatchResult] = []
+        for r in await _asyncio.gather(
+            *[_run_pick(p, metadata) for p in llm_picks],
+            return_exceptions=False,
+        ):
+            if r is not None:
+                sub_results.append(r)
+        if len(sub_results) == 1:
+            return sub_results[0]
+        if sub_results:
+            return _merge_fanout(sub_results)
 
     # Layer 3: discovery.
     return _discovery()

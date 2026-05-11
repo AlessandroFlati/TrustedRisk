@@ -127,6 +127,70 @@ async def compute_readmission_risk(
 
     bundle = await fetch_patient_bundle(pid)
 
+    # Chart-authoritative guard. LACE requires at least one Encounter (for
+    # length-of-stay / acuity / ED-visit count) and ideally one Condition
+    # (for Charlson comorbidity). When BOTH are absent the bundle has no
+    # signal: every LACE component collapses to 0 and the lookup table
+    # returns the LACE=0 bucket mean as if it were a calibrated estimate
+    # for a "healthy" patient -- it is not, it is a "no chart" patient
+    # and any downstream presenter would silently render the bucket mean
+    # as a clinical probability. We abstain explicitly with a structured
+    # reason and keep the zeroed components in `contributing_factors`
+    # for transparency.
+    entries = bundle.get("entry") or []
+    n_encounters = sum(1 for e in entries if _rtype(e) == "Encounter")
+    n_conditions = sum(1 for e in entries if _rtype(e) == "Condition")
+    if n_encounters == 0 and n_conditions == 0:
+        empty_components = {
+            "l": 0, "l_raw": 0, "a": 0, "a_raw": 0,
+            "c": 0, "c_raw": 0, "e": 0, "e_raw": 0,
+        }
+        chart_abstain_reason = (
+            "missing_chart_data_for_lace: the SHARP-bound FHIR Bundle "
+            "for this patient has zero Encounter and zero Condition "
+            "resources, so the LACE feature space (length-of-stay, "
+            "acuity, Charlson comorbidity, ED visits) cannot be "
+            "derived. A LACE_total of 0 in this regime does NOT mean "
+            "'healthy patient' -- it means 'no chart'. The lookup "
+            "table would return the LACE=0 bucket mean (around 11%) "
+            "as if it were a calibrated probability; we refuse to "
+            "publish that. Re-evaluate once an Encounter or Condition "
+            "is attached to the chart."
+        )
+        contributing_zero = [
+            Factor(name="LACE_length_of_stay", raw_value=0.0,
+                   lace_points=0, weight=0.0),
+            Factor(name="LACE_acuity", raw_value=0.0,
+                   lace_points=0, weight=0.0),
+            Factor(name="LACE_comorbidity", raw_value=0.0,
+                   lace_points=0, weight=0.0),
+            Factor(name="LACE_ed_visits_6mo", raw_value=0.0,
+                   lace_points=0, weight=0.0),
+        ]
+        computed_at_empty = datetime.now(timezone.utc)
+        return RiskEstimate(
+            model_name="lace-plus-bayesian-v1",
+            model_version=str(coef.get("model_version", "unknown")),
+            outcome_id=outcome,  # type: ignore[arg-type]
+            horizon_days=horizon_days,
+            lace_raw_score=0,
+            probability_mean=0.0,
+            probability_ci95=(0.0, 1.0),
+            probability_ci_width=1.0,
+            contributing_factors=contributing_zero,
+            fhir_observations_used=[],
+            computed_at=computed_at_empty,
+            confidence="degraded",  # type: ignore[arg-type]
+            valid_for_minutes=0,
+            valid_until=computed_at_empty,
+            conformal_interval_lower=None,
+            conformal_interval_upper=None,
+            conformal_prediction_set=None,
+            conformal_target_coverage=None,
+            abstain_recommended=True,
+            abstain_reason=chart_abstain_reason,
+        )
+
     # Extract LACE features + observation IDs used
     lace_components = _compute_lace_components(bundle)
     lace_total = sum(lace_components[k] for k in ("l", "a", "c", "e"))

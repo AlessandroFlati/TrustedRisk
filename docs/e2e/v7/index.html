@@ -27,10 +27,10 @@
 </style></head>
 <body>
 <h1>TrustedRisk - E2E Showcase v7</h1>
-<p class=latency>Generated 2026-05-11 08:37 UTC - 8 scenarios, 53 tool calls,
+<p class=latency>Generated 2026-05-11 17:12 UTC - 8 scenarios, 53 tool calls,
 16 distinct bundles touched.</p>
 <h2>Scenario index</h2><table><thead><tr><th>Scenario</th><th>Tool calls</th><th>Bundles</th></tr></thead><tbody><tr><td>S1 - ICU Sepsis cascade</td><td>6</td><td>critical_care, infectious_disease</td></tr><tr><td>S2 - Cardiology AFib + ACS rule-out</td><td>5</td><td>cardiology_depth, stroke_acs</td></tr><tr><td>S3 - Heme/Onc staging</td><td>4</td><td>heme_onc_depth</td></tr><tr><td>S4 - Peri-op rheumatology pre-arthroplasty</td><td>6</td><td>peri_op_risk, rheumatology</td></tr><tr><td>S5 - Neuro emergency triage</td><td>5</td><td>neurology_depth, stroke_acs</td></tr><tr><td>S6 - OB/Peds advanced</td><td>4</td><td>ob_peds_advanced</td></tr><tr><td>S7 - GI/Hepatology + ID screen</td><td>6</td><td>gi_hepatology_depth, infectious_disease</td></tr><tr><td>S8 - Outpatient panel + research models + EHR ingest</td><td>17</td><td>endocrinology_advanced, legacy_ehr_parsers, model_research, sleep_pain, specialty_clinics, transplant</td></tr></tbody></table><p>Bundles covered (16): cardiology_depth, critical_care, endocrinology_advanced, gi_hepatology_depth, heme_onc_depth, infectious_disease, legacy_ehr_parsers, model_research, neurology_depth, ob_peds_advanced, peri_op_risk, rheumatology, sleep_pain, specialty_clinics, stroke_acs, transplant.</p>
-<h2>S1 - ICU Sepsis cascade</h2><p>62y M presents with altered mentation, RR 28, SBP 86. Lactate 4.2 mmol/L on arrival, 3.1 mmol/L at 2h. Pipeline: qSOFA -&gt; lactate clearance -&gt; SOFA -&gt; APACHE II -&gt; MELD (liver) -&gt; RIFLE (kidney).</p><p><span class=pill>critical_care</span> <span class=pill>infectious_disease</span></p><details><summary>compute_qsofa_score <span class=pill>infectious_disease</span> <span class=latency>0.019 ms</span></summary><h3>Inputs</h3><pre>{
+<h2>S1 - ICU Sepsis cascade</h2><p>62y M presents with altered mentation, RR 28, SBP 86. Lactate 4.2 mmol/L on arrival, 3.1 mmol/L at 2h. Pipeline: qSOFA -&gt; lactate clearance -&gt; SOFA -&gt; APACHE II -&gt; MELD (liver) -&gt; RIFLE (kidney).</p><p><span class=pill>critical_care</span> <span class=pill>infectious_disease</span></p><details><summary>compute_qsofa_score <span class=pill>infectious_disease</span> <span class=latency>0.018 ms</span></summary><h3>Inputs</h3><pre>{
   &quot;altered_mentation_gcs_lt_15&quot;: true,
   &quot;respiratory_rate_ge_22&quot;: true,
   &quot;systolic_bp_le_100&quot;: true
@@ -42,7 +42,7 @@
   &quot;references&quot;: [
     &quot;Singer M et al. JAMA 2016;315(8):762-774.&quot;
   ]
-}</pre></details><details><summary>compute_lactate_clearance <span class=pill>infectious_disease</span> <span class=latency>0.013 ms</span></summary><h3>Inputs</h3><pre>{
+}</pre></details><details><summary>compute_lactate_clearance <span class=pill>infectious_disease</span> <span class=latency>0.01 ms</span></summary><h3>Inputs</h3><pre>{
   &quot;initial_lactate_mmol_l&quot;: 4.2,
   &quot;repeat_lactate_mmol_l&quot;: 3.1
 }</pre><h3>Outputs</h3><pre>{
@@ -83,7 +83,7 @@
   ],
   &quot;abstain_recommended&quot;: false,
   &quot;abstain_reason&quot;: null
-}</pre></details><details><summary>compute_apache_ii_score <span class=pill>critical_care</span> <span class=latency>0.023 ms</span></summary><h3>Inputs</h3><pre>{
+}</pre></details><details><summary>compute_apache_ii_score <span class=pill>critical_care</span> <span class=latency>0.021 ms</span></summary><h3>Inputs</h3><pre>{
   &quot;age&quot;: 62,
   &quot;temperature_c&quot;: 39.1,
   &quot;mean_arterial_pressure_mmHg&quot;: 62,
@@ -114,7 +114,7 @@
   ],
   &quot;abstain_recommended&quot;: false,
   &quot;abstain_reason&quot;: null
-}</pre></details><details><summary>compute_meld_score <span class=pill>critical_care</span> <span class=latency>0.023 ms</span></summary><h3>Inputs</h3><pre>{
+}</pre></details><details><summary>compute_meld_score <span class=pill>critical_care</span> <span class=latency>0.028 ms</span></summary><h3>Inputs</h3><pre>{
   &quot;bilirubin_mg_dl&quot;: 1.5,
   &quot;creatinine_mg_dl&quot;: 2.1,
   &quot;inr&quot;: 1.5,
@@ -138,7 +138,7 @@
   ],
   &quot;abstain_recommended&quot;: false,
   &quot;abstain_reason&quot;: null
-}</pre></details><details><summary>compute_rifle_aki_classification <span class=pill>critical_care</span> <span class=latency>0.011 ms</span></summary><h3>Inputs</h3><pre>{
+}</pre></details><details><summary>compute_rifle_aki_classification <span class=pill>critical_care</span> <span class=latency>0.014 ms</span></summary><h3>Inputs</h3><pre>{
   &quot;serum_creatinine_baseline_mg_dl&quot;: 1.0,
   &quot;serum_creatinine_current_mg_dl&quot;: 2.1,
   &quot;urine_output_ml_per_kg_per_hour&quot;: 0.4
@@ -189,7 +189,7 @@
   &quot;references&quot;: [
     &quot;Pisters R et al. Chest 2010;138(5):1093-1100.&quot;
   ]
-}</pre></details><details><summary>compute_heart_score <span class=pill>stroke_acs</span> <span class=latency>0.02 ms</span></summary><h3>Inputs</h3><pre>{
+}</pre></details><details><summary>compute_heart_score <span class=pill>stroke_acs</span> <span class=latency>0.017 ms</span></summary><h3>Inputs</h3><pre>{
   &quot;history_descriptor&quot;: &quot;moderately_suspicious&quot;,
   &quot;ecg_descriptor&quot;: &quot;non_specific_repolarisation&quot;,
   &quot;age&quot;: 74,
@@ -229,7 +229,7 @@
   &quot;references&quot;: [
     &quot;Antman EM et al. JAMA 2000;284(7):835-842.&quot;
   ]
-}</pre></details><details><summary>compute_grace_acs_score <span class=pill>cardiology_depth</span> <span class=latency>0.01 ms</span></summary><h3>Inputs</h3><pre>{
+}</pre></details><details><summary>compute_grace_acs_score <span class=pill>cardiology_depth</span> <span class=latency>0.009 ms</span></summary><h3>Inputs</h3><pre>{
   &quot;age&quot;: 74,
   &quot;heart_rate&quot;: 98,
   &quot;systolic_bp&quot;: 128,
@@ -257,7 +257,7 @@
   &quot;references&quot;: [
     &quot;Greipp PR et al. JCO 2005;23:3412-20.&quot;
   ]
-}</pre></details><details><summary>compute_ipss_r_mds_score <span class=pill>heme_onc_depth</span> <span class=latency>0.014 ms</span></summary><h3>Inputs</h3><pre>{
+}</pre></details><details><summary>compute_ipss_r_mds_score <span class=pill>heme_onc_depth</span> <span class=latency>0.013 ms</span></summary><h3>Inputs</h3><pre>{
   &quot;cytogenetic_category&quot;: &quot;intermediate&quot;,
   &quot;bm_blast_pct&quot;: 4.5,
   &quot;hemoglobin_g_dl&quot;: 9.5,
@@ -276,7 +276,7 @@
   &quot;references&quot;: [
     &quot;Greenberg PL et al. Blood 2012;120(12):2454-65.&quot;
   ]
-}</pre></details><details><summary>compute_ecog_performance_status <span class=pill>heme_onc_depth</span> <span class=latency>0.006 ms</span></summary><h3>Inputs</h3><pre>{
+}</pre></details><details><summary>compute_ecog_performance_status <span class=pill>heme_onc_depth</span> <span class=latency>0.005 ms</span></summary><h3>Inputs</h3><pre>{
   &quot;grade&quot;: 2
 }</pre><h3>Outputs</h3><pre>{
   &quot;grade&quot;: 2,
@@ -286,7 +286,7 @@
   &quot;references&quot;: [
     &quot;Oken MM et al. AJCO 1982;5:649-655.&quot;
   ]
-}</pre></details><details><summary>compute_karnofsky_performance <span class=pill>heme_onc_depth</span> <span class=latency>0.007 ms</span></summary><h3>Inputs</h3><pre>{
+}</pre></details><details><summary>compute_karnofsky_performance <span class=pill>heme_onc_depth</span> <span class=latency>0.006 ms</span></summary><h3>Inputs</h3><pre>{
   &quot;score&quot;: 70
 }</pre><h3>Outputs</h3><pre>{
   &quot;score&quot;: 70,
@@ -298,7 +298,7 @@
     &quot;Karnofsky DA, Burchenal JH. 1949.&quot;
   ]
 }</pre></details>
-<h2>S4 - Peri-op rheumatology pre-arthroplasty</h2><p>62y F seropositive RA on methotrexate + prednisone. Pre-op work-up before elective right total knee arthroplasty: DAS28, ASDAS, ACR/EULAR + RCRI + ARISCAT + Caprini.</p><p><span class=pill>peri_op_risk</span> <span class=pill>rheumatology</span></p><details><summary>compute_das28_rheumatoid_arthritis <span class=pill>rheumatology</span> <span class=latency>0.008 ms</span></summary><h3>Inputs</h3><pre>{
+<h2>S4 - Peri-op rheumatology pre-arthroplasty</h2><p>62y F seropositive RA on methotrexate + prednisone. Pre-op work-up before elective right total knee arthroplasty: DAS28, ASDAS, ACR/EULAR + RCRI + ARISCAT + Caprini.</p><p><span class=pill>peri_op_risk</span> <span class=pill>rheumatology</span></p><details><summary>compute_das28_rheumatoid_arthritis <span class=pill>rheumatology</span> <span class=latency>0.007 ms</span></summary><h3>Inputs</h3><pre>{
   &quot;tender_joint_count_28&quot;: 8,
   &quot;swollen_joint_count_28&quot;: 6,
   &quot;esr_mm_per_hour&quot;: 42,
@@ -311,7 +311,7 @@
   &quot;references&quot;: [
     &quot;Prevoo MLL et al. Arthritis Rheum 1995;38:44-48.&quot;
   ]
-}</pre></details><details><summary>compute_asdas_axspa <span class=pill>rheumatology</span> <span class=latency>0.007 ms</span></summary><h3>Inputs</h3><pre>{
+}</pre></details><details><summary>compute_asdas_axspa <span class=pill>rheumatology</span> <span class=latency>0.006 ms</span></summary><h3>Inputs</h3><pre>{
   &quot;back_pain_vas_0_10&quot;: 4.5,
   &quot;duration_morning_stiffness_vas_0_10&quot;: 5.0,
   &quot;patient_global_vas_0_10&quot;: 5.5,
@@ -325,7 +325,7 @@
   &quot;references&quot;: [
     &quot;Lukas C et al. Ann Rheum Dis 2009;68:18-24.&quot;
   ]
-}</pre></details><details><summary>compute_acr_eular_ra_classification <span class=pill>rheumatology</span> <span class=latency>0.007 ms</span></summary><h3>Inputs</h3><pre>{
+}</pre></details><details><summary>compute_acr_eular_ra_classification <span class=pill>rheumatology</span> <span class=latency>0.006 ms</span></summary><h3>Inputs</h3><pre>{
   &quot;n_small_joints_involved&quot;: 8,
   &quot;n_large_joints_involved&quot;: 2,
   &quot;rf_or_acpa_positive&quot;: true,
@@ -343,7 +343,7 @@
   &quot;references&quot;: [
     &quot;Aletaha D et al. ACR/EULAR. Ann Rheum Dis 2010;69:1580-1588.&quot;
   ]
-}</pre></details><details><summary>compute_rcri_cardiac_risk <span class=pill>peri_op_risk</span> <span class=latency>0.008 ms</span></summary><h3>Inputs</h3><pre>{
+}</pre></details><details><summary>compute_rcri_cardiac_risk <span class=pill>peri_op_risk</span> <span class=latency>0.007 ms</span></summary><h3>Inputs</h3><pre>{
   &quot;high_risk_surgery&quot;: false,
   &quot;history_ischemic_heart_disease&quot;: false,
   &quot;history_congestive_heart_failure&quot;: false,
@@ -359,7 +359,7 @@
   &quot;references&quot;: [
     &quot;Lee TH et al. Circulation 1999;100:1043-9.&quot;
   ]
-}</pre></details><details><summary>compute_ariscat_pulmonary_risk <span class=pill>peri_op_risk</span> <span class=latency>0.009 ms</span></summary><h3>Inputs</h3><pre>{
+}</pre></details><details><summary>compute_ariscat_pulmonary_risk <span class=pill>peri_op_risk</span> <span class=latency>0.008 ms</span></summary><h3>Inputs</h3><pre>{
   &quot;age&quot;: 62,
   &quot;preop_spo2_pct&quot;: 96.0,
   &quot;surgical_incision_site&quot;: &quot;lower_extremity&quot;,
@@ -373,7 +373,7 @@
   &quot;references&quot;: [
     &quot;Canet J et al. Anesthesiology 2010;113:1338-1350.&quot;
   ]
-}</pre></details><details><summary>compute_caprini_vte_risk <span class=pill>peri_op_risk</span> <span class=latency>0.007 ms</span></summary><h3>Inputs</h3><pre>{
+}</pre></details><details><summary>compute_caprini_vte_risk <span class=pill>peri_op_risk</span> <span class=latency>0.006 ms</span></summary><h3>Inputs</h3><pre>{
   &quot;age&quot;: 62,
   &quot;bmi_gt_25&quot;: true,
   &quot;major_surgery_planned&quot;: true,
@@ -388,7 +388,7 @@
     &quot;Caprini JA. Semin Thromb Hemost 1991;17 Suppl 3:304-12.&quot;
   ]
 }</pre></details>
-<h2>S5 - Neuro emergency triage</h2><p>Two patients: SAH grade-III on imaging; spontaneous ICH with GCS 11 and 35 mL volume. NIHSS for the SAH patient + Hunt-Hess + ICH score + modified Rankin + Hauser.</p><p><span class=pill>neurology_depth</span> <span class=pill>stroke_acs</span></p><details><summary>compute_stroke_severity <span class=pill>stroke_acs</span> <span class=latency>0.04 ms</span></summary><h3>Inputs</h3><pre>{
+<h2>S5 - Neuro emergency triage</h2><p>Two patients: SAH grade-III on imaging; spontaneous ICH with GCS 11 and 35 mL volume. NIHSS for the SAH patient + Hunt-Hess + ICH score + modified Rankin + Hauser.</p><p><span class=pill>neurology_depth</span> <span class=pill>stroke_acs</span></p><details><summary>compute_stroke_severity <span class=pill>stroke_acs</span> <span class=latency>0.037 ms</span></summary><h3>Inputs</h3><pre>{
   &quot;item_scores&quot;: {
     &quot;facial_palsy&quot;: 2,
     &quot;motor_arm_left&quot;: 3,
@@ -495,7 +495,7 @@
     &quot;Brott T et al. Measurements of acute cerebral infarction: a clinical examination scale. Stroke 1989;20:864-870.&quot;,
     &quot;AHA/ASA 2019 Guidelines for the Early Management of Patients with Acute Ischemic Stroke (Powers WJ et al., Stroke 2019;50:e344).&quot;
   ]
-}</pre></details><details><summary>compute_hunt_hess_sah <span class=pill>neurology_depth</span> <span class=latency>0.007 ms</span></summary><h3>Inputs</h3><pre>{
+}</pre></details><details><summary>compute_hunt_hess_sah <span class=pill>neurology_depth</span> <span class=latency>0.006 ms</span></summary><h3>Inputs</h3><pre>{
   &quot;grade&quot;: 3
 }</pre><h3>Outputs</h3><pre>{
   &quot;grade&quot;: 3,
@@ -506,7 +506,7 @@
   &quot;references&quot;: [
     &quot;Hunt WE, Hess RM. J Neurosurg 1968;28:14-20.&quot;
   ]
-}</pre></details><details><summary>compute_ich_score <span class=pill>neurology_depth</span> <span class=latency>0.006 ms</span></summary><h3>Inputs</h3><pre>{
+}</pre></details><details><summary>compute_ich_score <span class=pill>neurology_depth</span> <span class=latency>0.005 ms</span></summary><h3>Inputs</h3><pre>{
   &quot;glasgow_coma_scale&quot;: 11,
   &quot;ich_volume_ml&quot;: 35,
   &quot;intraventricular_hemorrhage&quot;: true,
@@ -520,7 +520,7 @@
   &quot;references&quot;: [
     &quot;Hemphill JC et al. Stroke 2001;32:891-7.&quot;
   ]
-}</pre></details><details><summary>compute_modified_rankin <span class=pill>neurology_depth</span> <span class=latency>0.007 ms</span></summary><h3>Inputs</h3><pre>{
+}</pre></details><details><summary>compute_modified_rankin <span class=pill>neurology_depth</span> <span class=latency>0.004 ms</span></summary><h3>Inputs</h3><pre>{
   &quot;grade&quot;: 3
 }</pre><h3>Outputs</h3><pre>{
   &quot;grade&quot;: 3,
@@ -553,7 +553,7 @@
   &quot;references&quot;: [
     &quot;Bishop EH. Obstet Gynecol 1964;24:266-8.&quot;
   ]
-}</pre></details><details><summary>compute_apgar_score <span class=pill>ob_peds_advanced</span> <span class=latency>0.007 ms</span></summary><h3>Inputs</h3><pre>{
+}</pre></details><details><summary>compute_apgar_score <span class=pill>ob_peds_advanced</span> <span class=latency>0.006 ms</span></summary><h3>Inputs</h3><pre>{
   &quot;one_min_appearance&quot;: 1,
   &quot;one_min_pulse&quot;: 2,
   &quot;one_min_grimace&quot;: 1,
@@ -573,7 +573,7 @@
   &quot;references&quot;: [
     &quot;Apgar V. NEJM 1953;249:485-90.&quot;
   ]
-}</pre></details><details><summary>compute_bell_nec_stage <span class=pill>ob_peds_advanced</span> <span class=latency>0.006 ms</span></summary><h3>Inputs</h3><pre>{
+}</pre></details><details><summary>compute_bell_nec_stage <span class=pill>ob_peds_advanced</span> <span class=latency>0.004 ms</span></summary><h3>Inputs</h3><pre>{
   &quot;abdominal_distension&quot;: true,
   &quot;occult_blood_in_stool&quot;: true,
   &quot;radiographic_pneumatosis_intestinalis&quot;: true,
@@ -589,7 +589,7 @@
   &quot;references&quot;: [
     &quot;Bell MJ et al. Ann Surg 1978;187:1-7.&quot;
   ]
-}</pre></details><details><summary>compute_bilirubin_nomogram <span class=pill>ob_peds_advanced</span> <span class=latency>0.009 ms</span></summary><h3>Inputs</h3><pre>{
+}</pre></details><details><summary>compute_bilirubin_nomogram <span class=pill>ob_peds_advanced</span> <span class=latency>0.008 ms</span></summary><h3>Inputs</h3><pre>{
   &quot;age_hours&quot;: 60,
   &quot;total_bilirubin_mg_dl&quot;: 13.5,
   &quot;gestational_age_weeks&quot;: 39,
@@ -662,7 +662,7 @@
   &quot;references&quot;: [
     &quot;Lacy BE et al. Gastroenterology 2016;150:1393-1407.&quot;
   ]
-}</pre></details><details><summary>compute_hiv_management_tier <span class=pill>infectious_disease</span> <span class=latency>0.008 ms</span></summary><h3>Inputs</h3><pre>{
+}</pre></details><details><summary>compute_hiv_management_tier <span class=pill>infectious_disease</span> <span class=latency>0.007 ms</span></summary><h3>Inputs</h3><pre>{
   &quot;cd4_count&quot;: 380,
   &quot;viral_load_copies_ml&quot;: 120,
   &quot;on_art&quot;: true
@@ -690,7 +690,7 @@
     &quot;CDC LTBI Treatment Regimens 2020.&quot;
   ]
 }</pre></details>
-<h2>S8 - Outpatient panel + research models + EHR ingest</h2><p>Outpatient panel of 4 patients: sleep / pain / endocrine screen, kidney transplant donor + recipient pairing, specialty clinic referrals (derm + ophtho + pulmo). Research models on cohort data + HL7 v2 ingestion + C-CDA chart parse.</p><p><span class=pill>endocrinology_advanced</span> <span class=pill>legacy_ehr_parsers</span> <span class=pill>model_research</span> <span class=pill>sleep_pain</span> <span class=pill>specialty_clinics</span> <span class=pill>transplant</span></p><details><summary>compute_epworth_sleepiness_scale <span class=pill>sleep_pain</span> <span class=latency>0.005 ms</span></summary><h3>Inputs</h3><pre>{
+<h2>S8 - Outpatient panel + research models + EHR ingest</h2><p>Outpatient panel of 4 patients: sleep / pain / endocrine screen, kidney transplant donor + recipient pairing, specialty clinic referrals (derm + ophtho + pulmo). Research models on cohort data + HL7 v2 ingestion + C-CDA chart parse.</p><p><span class=pill>endocrinology_advanced</span> <span class=pill>legacy_ehr_parsers</span> <span class=pill>model_research</span> <span class=pill>sleep_pain</span> <span class=pill>specialty_clinics</span> <span class=pill>transplant</span></p><details><summary>compute_epworth_sleepiness_scale <span class=pill>sleep_pain</span> <span class=latency>0.004 ms</span></summary><h3>Inputs</h3><pre>{
   &quot;sitting_reading&quot;: 2,
   &quot;watching_tv&quot;: 3,
   &quot;sitting_inactive_in_public&quot;: 2,
@@ -744,7 +744,7 @@
   &quot;references&quot;: [
     &quot;Bouhassira D et al. Pain 2005;114:29-36.&quot;
   ]
-}</pre></details><details><summary>compute_thyroid_management <span class=pill>endocrinology_advanced</span> <span class=latency>0.007 ms</span></summary><h3>Inputs</h3><pre>{
+}</pre></details><details><summary>compute_thyroid_management <span class=pill>endocrinology_advanced</span> <span class=latency>0.006 ms</span></summary><h3>Inputs</h3><pre>{
   &quot;tsh_mU_L&quot;: 8.5,
   &quot;free_t4_ng_dl&quot;: 0.8,
   &quot;current_levothyroxine_dose_mcg&quot;: 75,
@@ -757,7 +757,7 @@
   &quot;references&quot;: [
     &quot;Jonklaas J et al. Thyroid 2014;24(12):1670-1751.&quot;
   ]
-}</pre></details><details><summary>compute_adrenal_insufficiency_workup <span class=pill>endocrinology_advanced</span> <span class=latency>0.008 ms</span></summary><h3>Inputs</h3><pre>{
+}</pre></details><details><summary>compute_adrenal_insufficiency_workup <span class=pill>endocrinology_advanced</span> <span class=latency>0.007 ms</span></summary><h3>Inputs</h3><pre>{
   &quot;morning_cortisol_ug_dl&quot;: 4.2,
   &quot;cortisol_after_acth_stim_ug_dl&quot;: 12.0,
   &quot;acth_pg_ml&quot;: 85
@@ -771,7 +771,7 @@
   &quot;references&quot;: [
     &quot;Bornstein SR et al. Endocrine Society 2016.&quot;
   ]
-}</pre></details><details><summary>compute_hypocalcemia_severity <span class=pill>endocrinology_advanced</span> <span class=latency>0.007 ms</span></summary><h3>Inputs</h3><pre>{
+}</pre></details><details><summary>compute_hypocalcemia_severity <span class=pill>endocrinology_advanced</span> <span class=latency>0.006 ms</span></summary><h3>Inputs</h3><pre>{
   &quot;serum_calcium_mg_dl&quot;: 7.4,
   &quot;serum_albumin_g_dl&quot;: 3.4,
   &quot;qtc_ms&quot;: 470,
@@ -785,7 +785,7 @@
   &quot;references&quot;: [
     &quot;Cooper MS, Gittoes NJ. BMJ 2008;336:1298-302.&quot;
   ]
-}</pre></details><details><summary>compute_kdpi_kidney_donor <span class=pill>transplant</span> <span class=latency>0.009 ms</span></summary><h3>Inputs</h3><pre>{
+}</pre></details><details><summary>compute_kdpi_kidney_donor <span class=pill>transplant</span> <span class=latency>0.007 ms</span></summary><h3>Inputs</h3><pre>{
   &quot;age&quot;: 42,
   &quot;height_cm&quot;: 178,
   &quot;weight_kg&quot;: 82,
@@ -802,7 +802,7 @@
   &quot;references&quot;: [
     &quot;Rao PS et al. Transplantation 2009;88:231-236.&quot;
   ]
-}</pre></details><details><summary>compute_epts_recipient_score <span class=pill>transplant</span> <span class=latency>0.007 ms</span></summary><h3>Inputs</h3><pre>{
+}</pre></details><details><summary>compute_epts_recipient_score <span class=pill>transplant</span> <span class=latency>0.006 ms</span></summary><h3>Inputs</h3><pre>{
   &quot;age&quot;: 58,
   &quot;time_on_dialysis_years&quot;: 3.5,
   &quot;prior_solid_organ_transplant&quot;: false,
@@ -815,7 +815,7 @@
   &quot;references&quot;: [
     &quot;Friedewald JJ et al. Am J Transplant 2013;13(8):2115-23.&quot;
   ]
-}</pre></details><details><summary>compute_immunosuppression_dose_check <span class=pill>transplant</span> <span class=latency>0.009 ms</span></summary><h3>Inputs</h3><pre>{
+}</pre></details><details><summary>compute_immunosuppression_dose_check <span class=pill>transplant</span> <span class=latency>0.007 ms</span></summary><h3>Inputs</h3><pre>{
   &quot;drug&quot;: &quot;tacrolimus&quot;,
   &quot;weight_kg&quot;: 82,
   &quot;cyp3a5_phenotype&quot;: &quot;poor_metabolizer&quot;,
@@ -832,7 +832,7 @@
     &quot;Birdwell KA et al. CPIC tacrolimus + CYP3A5. CPT 2015.&quot;,
     &quot;OPTN immunosuppression management protocols.&quot;
   ]
-}</pre></details><details><summary>compute_lesion_triage <span class=pill>specialty_clinics</span> <span class=latency>0.006 ms</span></summary><h3>Inputs</h3><pre>{
+}</pre></details><details><summary>compute_lesion_triage <span class=pill>specialty_clinics</span> <span class=latency>0.005 ms</span></summary><h3>Inputs</h3><pre>{
   &quot;asymmetry&quot;: true,
   &quot;border_irregularity&quot;: true,
   &quot;color_variegated&quot;: true,
@@ -851,7 +851,7 @@
     &quot;Friedman RJ et al. ABCDE rule. CA Cancer J Clin 1985.&quot;,
     &quot;MacKie RM. 7-point checklist. BMJ 1989.&quot;
   ]
-}</pre></details><details><summary>compute_diabetic_retinopathy_severity <span class=pill>specialty_clinics</span> <span class=latency>0.004 ms</span></summary><h3>Inputs</h3><pre>{
+}</pre></details><details><summary>compute_diabetic_retinopathy_severity <span class=pill>specialty_clinics</span> <span class=latency>0.003 ms</span></summary><h3>Inputs</h3><pre>{
   &quot;microaneurysms&quot;: true,
   &quot;retinal_hemorrhages_count&quot;: 4,
   &quot;venous_beading&quot;: true,
@@ -868,7 +868,7 @@
     &quot;Wilkinson CP et al. ETDRS scale. Ophthalmology 2003.&quot;,
     &quot;ICO Diabetic Eye Care Guidelines (2024).&quot;
   ]
-}</pre></details><details><summary>compute_pft_interpretation <span class=pill>specialty_clinics</span> <span class=latency>0.007 ms</span></summary><h3>Inputs</h3><pre>{
+}</pre></details><details><summary>compute_pft_interpretation <span class=pill>specialty_clinics</span> <span class=latency>0.005 ms</span></summary><h3>Inputs</h3><pre>{
   &quot;fev1_l&quot;: 2.05,
   &quot;fvc_l&quot;: 3.1,
   &quot;fev1_pct_predicted&quot;: 62,
@@ -885,7 +885,7 @@
     &quot;GOLD 2024 Report -- COPD diagnosis + staging.&quot;,
     &quot;Nathan RA et al. Asthma Control Test. JACI 2004;113:59-65.&quot;
   ]
-}</pre></details><details><summary>compute_cox_proportional_hazards <span class=pill>model_research</span> <span class=latency>0.151 ms</span></summary><h3>Inputs</h3><pre>{
+}</pre></details><details><summary>compute_cox_proportional_hazards <span class=pill>model_research</span> <span class=latency>0.146 ms</span></summary><h3>Inputs</h3><pre>{
   &quot;durations&quot;: [
     5.0,
     8.0,
@@ -974,7 +974,7 @@
     &quot;Cox DR. JRSS-B 1972;34:187-220.&quot;,
     &quot;Harrell FE et al. Stat Med 1996;15:361-87.&quot;
   ]
-}</pre></details><details><summary>compute_shap_attribution <span class=pill>model_research</span> <span class=latency>0.012 ms</span></summary><h3>Inputs</h3><pre>{
+}</pre></details><details><summary>compute_shap_attribution <span class=pill>model_research</span> <span class=latency>0.01 ms</span></summary><h3>Inputs</h3><pre>{
   &quot;feature_values&quot;: {
     &quot;L_los&quot;: 4,
     &quot;A_acuity&quot;: 3,
@@ -1008,7 +1008,7 @@
   &quot;references&quot;: [
     &quot;Lundberg SM, Lee SI. NeurIPS 2017.&quot;
   ]
-}</pre></details><details><summary>compute_ensemble_stacking <span class=pill>model_research</span> <span class=latency>1.016 ms</span></summary><h3>Inputs</h3><pre>{
+}</pre></details><details><summary>compute_ensemble_stacking <span class=pill>model_research</span> <span class=latency>1.036 ms</span></summary><h3>Inputs</h3><pre>{
   &quot;base_predictions&quot;: {
     &quot;betabin&quot;: [
       0.1,
@@ -1095,7 +1095,7 @@
   &quot;references&quot;: [
     &quot;Wolpert DH. Stacked generalization. Neural Networks 1992;5:241-259.&quot;
   ]
-}</pre></details><details><summary>compute_hl7v2_message_parse <span class=pill>legacy_ehr_parsers</span> <span class=latency>0.071 ms</span></summary><h3>Inputs</h3><pre>{
+}</pre></details><details><summary>compute_hl7v2_message_parse <span class=pill>legacy_ehr_parsers</span> <span class=latency>0.065 ms</span></summary><h3>Inputs</h3><pre>{
   &quot;message&quot;: &quot;MSH|^~\\&amp;|EPIC|HOSP|RECV|FAC|20260430090000||ADT^A01|MID01|P|2.5\rPID|1||MRN-V7^^^HOSP^MR||DOE^JOHN||19601115|M\rPV1|1|I|3W^301^A||||||MED\rOBX|1|NM|718-7^Hemoglobin^LN||10.1|g/dL|13.0-17.0|L|||F\r&quot;
 }</pre><h3>Outputs</h3><pre>{
   &quot;message_type&quot;: &quot;ADT^A01&quot;,
@@ -1131,7 +1131,7 @@
   ],
   &quot;abstain_recommended&quot;: false,
   &quot;abstain_reason&quot;: null
-}</pre></details><details><summary>compute_ccda_document_parse <span class=pill>legacy_ehr_parsers</span> <span class=latency>0.131 ms</span></summary><h3>Inputs</h3><pre>{
+}</pre></details><details><summary>compute_ccda_document_parse <span class=pill>legacy_ehr_parsers</span> <span class=latency>0.129 ms</span></summary><h3>Inputs</h3><pre>{
   &quot;xml_text&quot;: &quot;&lt;?xml version=\&quot;1.0\&quot;?&gt;\n&lt;ClinicalDocument xmlns=\&quot;urn:hl7-org:v3\&quot;&gt;\n  &lt;recordTarget&gt;&lt;patientRole&gt;&lt;id extension=\&quot;MRN-V7\&quot;/&gt;\n    &lt;patient&gt;&lt;name&gt;&lt;family&gt;DOE&lt;/family&gt;&lt;given&gt;JOHN&lt;/given&gt;&lt;/name&gt;\n    &lt;administrativeGenderCode code=\&quot;M\&quot;/&gt;\n    &lt;birthTime value=\&quot;19601115\&quot;/&gt;&lt;/patient&gt;\n  &lt;/patientRole&gt;&lt;/recordTarget&gt;\n  &lt;component&gt;&lt;structuredBody&gt;&lt;component&gt;\n    &lt;section&gt;\n      &lt;templateId root=\&quot;2.16.840.1.113883.10.20.22.2.5.1\&quot;/&gt;\n      &lt;entry&gt;&lt;act&gt;&lt;code code=\&quot;I50.9\&quot; displayName=\&quot;Heart failure\&quot;/&gt;&lt;/act&gt;&lt;/entry&gt;\n    &lt;/section&gt;\n  &lt;/component&gt;&lt;/structuredBody&gt;&lt;/component&gt;\n&lt;/ClinicalDocument&gt;&quot;
 }</pre><h3>Outputs</h3><pre>{
   &quot;document_template_id&quot;: null,

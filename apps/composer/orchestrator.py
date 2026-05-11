@@ -332,6 +332,76 @@ async def execute_workflow(
     abstain_recommended = False
     abstain_reason: str | None = None
 
+    # ---- Pure-macro fast path: parallel sub-workflows ------------------
+    # A macro built by `_make_macro` has every step shaped as a macro hop
+    # with `inputs={}`, no `callable`, and `sub_workflow_id` set. There
+    # is no chain reference between hops by construction (each hop only
+    # inherits the macro-level inputs), so the hops are independent and
+    # can be run concurrently. PO's chat client times out external tool
+    # responses on a tight budget (~30 s observed), and a serial macro
+    # of 3 sub-workflows easily exceeds 60 s when each sub-workflow
+    # itself fetches a FHIR bundle and runs 5 - 10 tool calls.
+    # Parallelising the hops brings the wall-clock down to the slowest
+    # single sub-workflow, which keeps PO inside its budget.
+    is_pure_macro = (
+        len(workflow.steps) > 1
+        and all(
+            s.sub_workflow_id is not None and not s.inputs
+            for s in workflow.steps
+        )
+    )
+    if is_pure_macro:
+        import asyncio as _asyncio
+
+        async def _run_one_hop(step: WorkflowStep) -> WorkflowStepResult:
+            hop_t0 = time.perf_counter()
+            try:
+                output = await _execute_macro_hop(
+                    step.sub_workflow_id, dict(inputs), backend,
+                )
+            except Exception as exc:
+                return WorkflowStepResult(
+                    step_id=step.id, specialist=step.specialist,
+                    tool_name=step.tool_name,
+                    duration_ms=round((time.perf_counter() - hop_t0) * 1000.0, 2),
+                    output=None,
+                    error=f"{type(exc).__name__}: {exc}",
+                )
+            dt = (time.perf_counter() - hop_t0) * 1000.0
+            dump = _to_dump(output)
+            return WorkflowStepResult(
+                step_id=step.id, specialist=step.specialist,
+                tool_name=step.tool_name, duration_ms=round(dt, 2),
+                output=output, output_dump=dump,
+            )
+
+        step_results = list(await _asyncio.gather(
+            *[_run_one_hop(s) for s in workflow.steps],
+            return_exceptions=False,
+        ))
+        # Macro hops are constructed with optional=True, so an inner
+        # abstain does not flip the top-level flag (matches the serial
+        # path's optional-step contract). Stash dumps into step_outputs
+        # for downstream consumers that introspect the WorkflowExecution.
+        for sr in step_results:
+            if sr.output_dump is not None:
+                step_outputs[sr.step_id] = sr.output_dump
+            elif sr.output is not None:
+                step_outputs[sr.step_id] = sr.output
+
+        completed = time.perf_counter()
+        return WorkflowExecution(
+            workflow_id=workflow.id,
+            started_at_ms=round(started_iso, 2),
+            completed_at_ms=round(completed * 1000.0, 2),
+            duration_ms=round((completed - started) * 1000.0, 2),
+            inputs=inputs,
+            steps=step_results,
+            abstain_recommended=False,
+            abstain_reason=None,
+        )
+
+    # ---- Serial path (single workflow with chained step inputs) --------
     for step in workflow.steps:
         try:
             resolved = _resolve_inputs(step.inputs, inputs, step_outputs)
