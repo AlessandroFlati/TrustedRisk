@@ -99,8 +99,17 @@ async def compute_fetch_patient_documents(
 ) -> PatientDocumentsReport:
     """Fetch DocumentReference clinical notes for the active patient.
 
+    The patient is taken from the SHARP-on-MCP X-Patient-ID header, NOT
+    from the chat prompt. Leave `patient_id` null in every normal call.
+
     Args:
-        patient_id: explicit patient handle (default = SHARP X-Patient-ID).
+        patient_id: LEAVE NULL / OMIT for normal use. The tool reads the
+            patient from the X-Patient-ID header on the MCP request. This
+            argument exists ONLY as an explicit override for advanced
+            multi-patient orchestration; passing a free-text label from
+            the prompt (e.g. "Marcus") will fail because real FHIR
+            servers index Patient by their canonical resource id (usually
+            a UUID), not by display name.
         max_documents: cap on returned documents (default 5, most recent
             first). Keep low to fit the LLM context budget.
         keyword_filter: optional case-insensitive substring; only notes

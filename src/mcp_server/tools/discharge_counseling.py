@@ -38,6 +38,7 @@ from shared.schemas import (
     Medication,
 )
 
+from ._chart_inputs import harden_clinical_inputs
 from .medication_reconciliation import _classify_drug
 
 
@@ -421,6 +422,16 @@ async def compute_discharge_counseling(
     if locale != "en":
         # Defensive fallback: never fail open in a different language.
         locale = "en"
+
+    _r, _sb, _ = await harden_clinical_inputs(
+        {"medications": medications},
+        chart_derivable={"medications"},
+    )
+    if _sb and _r.get("medications"):
+        # Chart returns flat list of name strings; counseling tool
+        # accepts either list[str] or list[dict] / Medication shapes.
+        medications = [{"name": n, "status": "active"} for n in _r["medications"]] \
+            if all(isinstance(m, str) for m in _r["medications"]) else _r["medications"]
 
     # noqa: ABSTAIN-GUARD -- fail-fast when the medication list is None (not provided).
     # A None medications argument means the caller did not supply the discharge

@@ -29,6 +29,8 @@ from typing import Literal
 
 from shared.schemas import PreeclampsiaReport
 
+from ._chart_inputs import harden_clinical_inputs
+
 
 # ─────────────────────────────────────────────────────────────────────
 # Severe-feature checks
@@ -104,6 +106,16 @@ async def compute_preeclampsia_assessment(
     Returns:
         PreeclampsiaReport with classification + disposition.
     """
+    _r, _sb, _ = await harden_clinical_inputs(
+        {"gestational_age_weeks": gestational_age_weeks,
+         "systolic_bp": systolic_bp, "diastolic_bp": diastolic_bp},
+        chart_derivable={"gestational_age_weeks", "systolic_bp",
+                          "diastolic_bp"},
+    )
+    if _sb:
+        gestational_age_weeks = _r.get("gestational_age_weeks") if _r.get("gestational_age_weeks") is not None else gestational_age_weeks
+        systolic_bp = _r.get("systolic_bp") if _r.get("systolic_bp") is not None else systolic_bp
+        diastolic_bp = _r.get("diastolic_bp") if _r.get("diastolic_bp") is not None else diastolic_bp
     factors = clinical_factors or {}
     abstain_reasons: list[str] = []
     if gestational_age_weeks < 20:

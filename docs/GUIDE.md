@@ -19,7 +19,7 @@
 3. [Architecture in five layers](#3-architecture-in-five-layers)
 4. [Layer 1: the federation marketplace + 15 specialists](#4-layer-1-federation--15-specialists)
 5. [Layer 2: 145 MCP tools across 47 bundles](#5-layer-2-145-mcp-tools--47-bundles)
-6. [Layer 3: the 96-module a2a_agent governance layer](#6-layer-3-the-96-module-a2a_agent-layer)
+6. [Layer 3: the 98-module a2a_agent governance layer](#6-layer-3-the-98-module-a2a_agent-layer)
 7. [Layer 4: calibrated artefacts + the regulatory pack](#7-layer-4-calibrated-artefacts--regulatory-pack)
 8. [Layer 5: testing, reproducibility + the build pipeline](#8-layer-5-testing--reproducibility)
 9. [The decision flow end-to-end](#9-the-decision-flow-end-to-end)
@@ -218,10 +218,10 @@ PYTHONPATH=src pytest tests/integration/test_full_federation_smoke.py -q
 
 ---
 
-## 6. Layer 3: the 96-module a2a_agent layer
+## 6. Layer 3: the 98-module a2a_agent layer
 
 The `src/a2a_agent/` package is the heart of TrustedRisk. It contains
-96 modules organised by concern:
+98 modules organised by concern:
 
 ### 6.1 Calibration + risk
 - `coefficients` -- read W1 spec_002 5-bin Beta-Binomial.

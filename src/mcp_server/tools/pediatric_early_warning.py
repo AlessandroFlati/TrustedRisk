@@ -23,6 +23,8 @@ from shared.schemas import (
     PEWSReport,
 )
 
+from ._chart_inputs import harden_clinical_inputs
+
 
 # ─────────────────────────────────────────────────────────────────────
 # Age-band reference ranges (heart rate / respiratory rate / SBP)
@@ -221,6 +223,19 @@ async def compute_pediatric_early_warning(
             softer-signal predictor that consistently outperforms isolated
             vital trends in the pediatric literature).
     """
+    _r, _sb, _ = await harden_clinical_inputs(
+        {"age_months": age_months, "heart_rate": heart_rate,
+         "respiratory_rate": respiratory_rate, "spo2": spo2,
+         "systolic_bp": systolic_bp},
+        chart_derivable={"age_months", "heart_rate", "respiratory_rate",
+                          "spo2", "systolic_bp"},
+    )
+    if _sb:
+        age_months = _r.get("age_months") if _r.get("age_months") is not None else age_months
+        heart_rate = _r.get("heart_rate") if _r.get("heart_rate") is not None else heart_rate
+        respiratory_rate = _r.get("respiratory_rate") if _r.get("respiratory_rate") is not None else respiratory_rate
+        spo2 = _r.get("spo2") if _r.get("spo2") is not None else spo2
+        systolic_bp = _r.get("systolic_bp") if _r.get("systolic_bp") is not None else systolic_bp
     # Clamp to the PEWSReport schema bounds (0-216) to avoid Pydantic
     # validation errors on adversarial inputs (negative or >18y).
     age_months = max(0, min(216, age_months))

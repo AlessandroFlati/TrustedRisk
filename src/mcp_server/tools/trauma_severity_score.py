@@ -28,6 +28,8 @@ from typing import Any, Literal
 
 from shared.schemas import TraumaInjury, TraumaSeverityReport
 
+from ._chart_inputs import harden_clinical_inputs
+
 
 # ─────────────────────────────────────────────────────────────────────
 # RTS coded weights
@@ -163,6 +165,16 @@ async def compute_trauma_severity_score(
     Returns:
         TraumaSeverityReport with ISS, RTS, bands, triage priority.
     """
+    _r, _sb, _ = await harden_clinical_inputs(
+        {"systolic_bp": systolic_bp, "respiratory_rate": respiratory_rate,
+         "glasgow_coma_score": glasgow_coma_score},
+        chart_derivable={"systolic_bp", "respiratory_rate",
+                          "glasgow_coma_score"},
+    )
+    if _sb:
+        systolic_bp = _r.get("systolic_bp") if _r.get("systolic_bp") is not None else systolic_bp
+        respiratory_rate = _r.get("respiratory_rate") if _r.get("respiratory_rate") is not None else respiratory_rate
+        glasgow_coma_score = _r.get("glasgow_coma_score") if _r.get("glasgow_coma_score") is not None else glasgow_coma_score
     parsed_injuries: list[TraumaInjury] = []
     for inj in injuries or []:
         try:

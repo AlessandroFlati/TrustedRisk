@@ -1,6 +1,6 @@
 # TrustedRisk - Synthetic Prospective Evaluation
 
-**Generated**: 2026-05-10 10:35 UTC - **Cohort n**: 2,000 - **Seed**: 20260430 - **Fairness audit present**: True
+**Generated**: 2026-05-11 08:37 UTC - **Cohort n**: 2,000 - **Seed**: 20260430 - **Fairness audit present**: True
 
 Counterfactual 'if we had deployed' analysis: every synthetic encounter is run through the calibrated readmission risk model -> 4-critic ensemble (deterministic-floor approximation) -> 3-agent debate. The cohort + per-encounter demographics are sampled from the same distribution the subgroup-audit builder uses (Phase 15.B1).
 

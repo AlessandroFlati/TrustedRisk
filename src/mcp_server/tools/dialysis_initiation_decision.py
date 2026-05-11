@@ -26,6 +26,8 @@ from typing import Any, Literal
 
 from shared.schemas import DialysisInitiationReport
 
+from ._chart_inputs import harden_clinical_inputs
+
 
 # ─────────────────────────────────────────────────────────────────────
 # AEIOU evaluator
@@ -103,6 +105,15 @@ async def compute_dialysis_initiation_decision(
         dialyzable_toxin: free-text toxin name; matched against a curated list.
         hemodynamically_unstable: drives modality (CRRT vs intermittent HD).
     """
+    _r, _sb, _ = await harden_clinical_inputs(
+        {"ph": ph, "bicarbonate_meq_l": bicarbonate_meq_l,
+         "potassium_meq_l": potassium_meq_l},
+        chart_derivable={"ph", "bicarbonate_meq_l", "potassium_meq_l"},
+    )
+    if _sb:
+        ph = _r.get("ph") if _r.get("ph") is not None else ph
+        bicarbonate_meq_l = _r.get("bicarbonate_meq_l") if _r.get("bicarbonate_meq_l") is not None else bicarbonate_meq_l
+        potassium_meq_l = _r.get("potassium_meq_l") if _r.get("potassium_meq_l") is not None else potassium_meq_l
     indications = _evaluate_aeiou(
         ph, bicarbonate_meq_l, potassium_meq_l, refractory_hyperkalemia,
         dialyzable_toxin, volume_overload_refractory, uremic_encephalopathy,

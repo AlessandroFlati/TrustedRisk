@@ -1,6 +1,6 @@
 # TrustedRisk -- Subgroup Fairness Audit
 
-**Generated**: 2026-05-10 10:35 UTC - **Cohort n**: 100,000 - **DP**: epsilon=1.0
+**Generated**: 2026-05-11 08:37 UTC - **Cohort n**: 100,000 - **DP**: epsilon=1.0
 
 Per-subgroup calibration + Equality-of-Opportunity + Demographic-Parity gaps. Reference categories per subgroup are marked with `*`. DP-noised counts are published separately for external release.
 

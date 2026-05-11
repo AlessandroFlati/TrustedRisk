@@ -15,6 +15,8 @@ from typing import Literal
 
 from pydantic import BaseModel, Field
 
+from ._chart_inputs import harden_clinical_inputs
+
 
 class BishopReport(BaseModel):
     score: int = Field(ge=0, le=13)
@@ -255,6 +257,15 @@ async def compute_bilirubin_nomogram(
     """Bhutani 1999 hour-specific bilirubin nomogram for term/late-
     preterm neonates. Returns risk zone + AAP 2004 phototherapy /
     exchange-transfusion indications."""
+    _r, _sb, _ = await harden_clinical_inputs(
+        {"gestational_age_weeks": gestational_age_weeks,
+         "total_bilirubin_mg_dl": total_bilirubin_mg_dl},
+        chart_derivable={"gestational_age_weeks",
+                          "total_bilirubin_mg_dl"},
+    )
+    if _sb:
+        gestational_age_weeks = _r.get("gestational_age_weeks") if _r.get("gestational_age_weeks") is not None else gestational_age_weeks
+        total_bilirubin_mg_dl = _r.get("total_bilirubin_mg_dl") if _r.get("total_bilirubin_mg_dl") is not None else total_bilirubin_mg_dl
     if age_hours < 0:
         raise ValueError("age_hours must be ≥ 0")
     zone = _bhutani_zone(age_hours, total_bilirubin_mg_dl)

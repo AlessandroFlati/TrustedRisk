@@ -22,6 +22,7 @@ from typing import Any
 
 from shared.schemas import ClinicalNoteDraft, ClinicalNoteSection
 
+from ..fhir.client import fetch_patient_bundle, resolve_patient_id
 from ._scribe_helpers import (
     coverage_pct,
     estimate_reading_minutes,
@@ -68,6 +69,17 @@ async def compute_admission_hnp_draft(
     Returns:
         ClinicalNoteDraft with the H&P sections.
     """
+    # SHARP-on-MCP fallback: when the caller does not pass a bundle, fetch
+    # the bound patient's bundle directly from the FHIR server using
+    # X-Patient-ID + X-FHIR-Server-URL. patient_reference is treated as a
+    # display label only.
+    if not fhir_bundle or not fhir_bundle.get("entry"):
+        try:
+            _pid = await resolve_patient_id(None)
+            fhir_bundle = await fetch_patient_bundle(_pid)
+        except Exception:
+            pass
+
     # noqa: ABSTAIN-GUARD -- fail-fast when the FHIR bundle is absent or empty.
     # An H&P without structured patient data would produce a note whose every
     # section is a placeholder; an orchestrator upstream cannot distinguish that

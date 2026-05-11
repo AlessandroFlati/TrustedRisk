@@ -31,6 +31,8 @@ from shared.schemas import (
     PARequestedService,
 )
 
+from ..fhir.client import fetch_patient_bundle, resolve_patient_id
+
 
 # ─────────────────────────────────────────────────────────────────────
 # Evidence extraction helpers
@@ -236,6 +238,17 @@ async def compute_pa_evidence_pack(
     """
     if isinstance(requested_service, dict):
         requested_service = PARequestedService.model_validate(requested_service)
+
+    # SHARP-on-MCP fallback: when the caller does not pass a bundle, fetch
+    # the bound patient's bundle directly from the FHIR server using
+    # X-Patient-ID + X-FHIR-Server-URL. patient_reference is treated as a
+    # display label only.
+    if not fhir_bundle or not fhir_bundle.get("entry"):
+        try:
+            _pid = await resolve_patient_id(None)
+            fhir_bundle = await fetch_patient_bundle(_pid)
+        except Exception:
+            pass
 
     # noqa: ABSTAIN-GUARD -- fail-fast when the FHIR bundle is absent or empty.
     # A PA evidence pack without a FHIR Bundle has no diagnoses, observations,

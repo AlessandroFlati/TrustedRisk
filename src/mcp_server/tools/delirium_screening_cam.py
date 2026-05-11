@@ -31,6 +31,8 @@ from typing import Any, Literal
 
 from shared.schemas import CAMReport
 
+from ._chart_inputs import harden_clinical_inputs
+
 
 # ─────────────────────────────────────────────────────────────────────
 # Drug-class patterns commonly precipitating delirium (DELIRIUM mnemonic)
@@ -100,6 +102,12 @@ async def compute_delirium_screening_cam(
         CAMReport with cam_positive, subtype, contributing_factors,
         next_steps.
     """
+    _r, _sb, _ = await harden_clinical_inputs(
+        {"current_medications": current_medications},
+        chart_derivable={"current_medications"},
+    )
+    if _sb and _r.get("current_medications"):
+        current_medications = _r["current_medications"]
     # CAM requires F3 OR F4. If both are missing the assessment is
     # incomplete -- a missing feature cannot be silently mapped to
     # False, since that would let an unassessed patient fail CAM and

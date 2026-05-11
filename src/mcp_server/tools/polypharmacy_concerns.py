@@ -22,6 +22,8 @@ from collections import Counter
 
 from shared.schemas import DrugInteraction, PolypharmacyReport
 
+from ._chart_inputs import chart_abstain_reason, harden_clinical_inputs
+
 # Reuse the drug-class taxonomy from medication_reconciliation so the two
 # tools agree on what "high-risk" means.
 from .medication_reconciliation import (
@@ -139,14 +141,43 @@ async def detect_polypharmacy_concerns(
 ) -> PolypharmacyReport:
     """Stateless polypharmacy + DDI scan.
 
+    When SHARP-on-MCP context is bound, the medication list is sourced
+    from FHIR MedicationRequest / MedicationAdministration / chart-note
+    medication sections; caller-supplied `medications` are DISCARDED in
+    that mode. In offline / unit-test mode (no SHARP context) the
+    caller-supplied list is honoured.
+
     Args:
-        medications: list of medication names (str) or dicts with `name` key.
-            Names are matched case-insensitively against a curated taxonomy.
+        medications: LEAVE NULL / OMIT in production. Mediation names
+            are auto-resolved from the SHARP-bound patient's chart.
+            This parameter is honoured only for offline / unit-test
+            invocations.
 
     Returns:
-        PolypharmacyReport with class_counts, interactions list,
-        and an overall severity label.
+        PolypharmacyReport with class_counts, interactions list, and an
+        overall severity label.
     """
+    resolved, sharp_bound, missing = await harden_clinical_inputs(
+        {"medications": medications},
+        chart_derivable={"medications"},
+    )
+    if sharp_bound and missing:
+        return PolypharmacyReport(
+            n_medications=0, n_high_risk=0,
+            class_counts={}, interactions=[],
+            polypharmacy_severity="none",
+            rationale=(
+                "Polypharmacy scan abstained -- no MedicationRequest, "
+                "MedicationAdministration, or chart-note medication "
+                "section was found in the SHARP-bound patient's bundle. "
+                "The caller-supplied medication list (if any) was "
+                "discarded to prevent the chat-side LLM from injecting "
+                "fabricated medications."
+            ),
+            abstain_recommended=True,
+            abstain_reason=chart_abstain_reason(missing),
+        )
+    medications = resolved.get("medications")
     if not medications:
         # Empty med list cannot be distinguished from "patient is on no
         # meds" vs "caller didn't supply the list" -- the safe default

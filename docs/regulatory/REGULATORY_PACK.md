@@ -1,6 +1,6 @@
 # TrustedRisk -- Regulatory Pack
 
-**Generated**: 2026-05-10 10:35 UTC • **Version**: 1.0.0 • **Sections**: 14 • **Artefact coverage**: 100.0%
+**Generated**: 2026-05-11 08:37 UTC • **Version**: 1.0.0 • **Sections**: 14 • **Artefact coverage**: 100.0%
 
 Aggregated from the existing audit / fairness / calibration / performance artefacts under `data/` + `docs/`. Coverage gaps are flagged inline rather than papered over.
 

@@ -25,6 +25,8 @@ from typing import Literal
 
 from shared.schemas import DKASeverityReport
 
+from ._chart_inputs import harden_clinical_inputs
+
 
 # ─────────────────────────────────────────────────────────────────────
 # Severity classification
@@ -83,6 +85,22 @@ async def compute_dka_severity(
         DKASeverityReport with severity, ICU recommendation, and a textual
         protocol for fluid / insulin / K+ / bicarbonate.
     """
+    _r, _sb, _ = await harden_clinical_inputs(
+        {
+            "ph": ph, "bicarbonate_meq_l": bicarbonate_meq_l,
+            "glucose_mg_dl": glucose_mg_dl, "anion_gap": anion_gap,
+            "potassium_meq_l": potassium_meq_l, "weight_kg": weight_kg,
+        },
+        chart_derivable={"ph", "bicarbonate_meq_l", "glucose_mg_dl",
+                          "anion_gap", "potassium_meq_l", "weight_kg"},
+    )
+    if _sb:
+        ph = _r.get("ph") if _r.get("ph") is not None else ph
+        bicarbonate_meq_l = _r.get("bicarbonate_meq_l") if _r.get("bicarbonate_meq_l") is not None else bicarbonate_meq_l
+        glucose_mg_dl = _r.get("glucose_mg_dl") if _r.get("glucose_mg_dl") is not None else glucose_mg_dl
+        anion_gap = _r.get("anion_gap") if _r.get("anion_gap") is not None else anion_gap
+        potassium_meq_l = _r.get("potassium_meq_l") if _r.get("potassium_meq_l") is not None else potassium_meq_l
+        weight_kg = _r.get("weight_kg") if _r.get("weight_kg") is not None else weight_kg
     ms_norm: Literal["alert", "drowsy", "stupor_coma"]
     abstain_reasons: list[str] = []
     if mental_status is None or not mental_status.strip():

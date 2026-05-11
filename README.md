@@ -87,7 +87,7 @@ explanation app launch URL.
 └──────────────────────────────┬──────────────────────────────────────┘
                                │
 ┌──────────────────────────────▼──────────────────────────────────────┐
-│  a2a_agent layer (96 modules, ML formalisms + governance)           │
+│  a2a_agent layer (98 modules, ML formalisms + governance)           │
 │    risk: Cox PH, SHAP, ensemble stacking, conformal multi-class     │
 │    causal: Wachter cf, Rosenbaum bounds, IV, front-door, AIPW       │
 │    fairness: subgroup audit, Pleiss tension, counterfactual         │
@@ -337,7 +337,7 @@ trustedrisk/
 ├── fixtures/                      # PO demo bundles (eleanor, marcus, nadia, sofia)
 ├── scripts/                       # 17 generator scripts + 3 smoke harnesses
 ├── src/
-│   ├── a2a_agent/                 # 96 modules -- ML formalisms + governance
+│   ├── a2a_agent/                 # 98 modules -- ML formalisms + governance
 │   ├── mcp_server/                # 145 MCP tools + bundle registry
 │   └── shared/                    # Pydantic schemas
 └── tests/                         # 4224 unit + integration + golden + adversarial

@@ -19,6 +19,8 @@ from typing import Literal
 
 from pydantic import BaseModel, Field
 
+from ._chart_inputs import harden_clinical_inputs
+
 
 # ─────────────────────────────────────────────────────────────────────
 # Schemas
@@ -83,6 +85,14 @@ async def compute_cha2ds2_vasc(
     vascular_disease: bool = False,
 ) -> CHA2DS2VAScReport:
     """CHA₂DS₂-VASc for non-valvular AF stroke risk."""
+    _r, _sb, _ = await harden_clinical_inputs(
+        {"age": age, "sex_female": sex_female},
+        chart_derivable={"age", "sex_female"},
+    )
+    if _sb:
+        age = _r.get("age") if _r.get("age") is not None else age
+        if _r.get("sex_female") is not None:
+            sex_female = _r["sex_female"]
     s = 0
     s += int(congestive_heart_failure)        # C
     s += int(hypertension)                    # H
@@ -293,6 +303,17 @@ async def compute_grace_acs_score(
     elevated_cardiac_enzymes: bool = False,
 ) -> GRACEACSReport:
     """GRACE risk score for in-hospital ACS mortality."""
+    _r, _sb, _ = await harden_clinical_inputs(
+        {"age": age, "heart_rate": heart_rate, "systolic_bp": systolic_bp,
+         "creatinine_mg_dl": creatinine_mg_dl},
+        chart_derivable={"age", "heart_rate", "systolic_bp",
+                          "creatinine_mg_dl"},
+    )
+    if _sb:
+        age = _r.get("age") if _r.get("age") is not None else age
+        heart_rate = _r.get("heart_rate") if _r.get("heart_rate") is not None else heart_rate
+        systolic_bp = _r.get("systolic_bp") if _r.get("systolic_bp") is not None else systolic_bp
+        creatinine_mg_dl = _r.get("creatinine_mg_dl") if _r.get("creatinine_mg_dl") is not None else creatinine_mg_dl
     s = (
         _grace_age_pts(age)
         + _grace_hr_pts(heart_rate)

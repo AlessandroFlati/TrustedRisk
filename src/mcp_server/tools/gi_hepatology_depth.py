@@ -16,6 +16,8 @@ from typing import Literal
 
 from pydantic import BaseModel, Field
 
+from ._chart_inputs import harden_clinical_inputs
+
 
 class MaddreyReport(BaseModel):
     discriminant_function: float
@@ -107,6 +109,17 @@ async def compute_fib4_liver_fibrosis(
 ) -> FIB4Report:
     """FIB-4 = (age × AST) / (PLT × √ALT). Sterling 2006 cut-offs:
     < 1.45 -> F0/F1; > 3.25 -> F3/F4."""
+    _r, _sb, _ = await harden_clinical_inputs(
+        {"age": age, "ast_iu_l": ast_iu_l, "alt_iu_l": alt_iu_l,
+         "platelets_thousands_per_uL": platelets_thousands_per_uL},
+        chart_derivable={"age", "ast_iu_l", "alt_iu_l",
+                          "platelets_thousands_per_uL"},
+    )
+    if _sb:
+        age = _r.get("age") if _r.get("age") is not None else age
+        ast_iu_l = _r.get("ast_iu_l") if _r.get("ast_iu_l") is not None else ast_iu_l
+        alt_iu_l = _r.get("alt_iu_l") if _r.get("alt_iu_l") is not None else alt_iu_l
+        platelets_thousands_per_uL = _r.get("platelets_thousands_per_uL") if _r.get("platelets_thousands_per_uL") is not None else platelets_thousands_per_uL
     if age < 18:
         raise ValueError("FIB-4 not validated < 18y")
     if alt_iu_l <= 0 or platelets_thousands_per_uL <= 0:
@@ -185,6 +198,18 @@ async def compute_glasgow_blatchford_ugib(
 
     Score 0 -> very-low risk, dischargeable from ED.
     """
+    _r, _sb, _ = await harden_clinical_inputs(
+        {"blood_urea_mmol_l": blood_urea_mmol_l,
+         "hemoglobin_g_dl": hemoglobin_g_dl, "sex": sex,
+         "systolic_bp_mmHg": systolic_bp_mmHg},
+        chart_derivable={"blood_urea_mmol_l", "hemoglobin_g_dl",
+                          "sex", "systolic_bp_mmHg"},
+    )
+    if _sb:
+        blood_urea_mmol_l = _r.get("blood_urea_mmol_l") if _r.get("blood_urea_mmol_l") is not None else blood_urea_mmol_l
+        hemoglobin_g_dl = _r.get("hemoglobin_g_dl") if _r.get("hemoglobin_g_dl") is not None else hemoglobin_g_dl
+        sex = _r.get("sex") if _r.get("sex") is not None else sex
+        systolic_bp_mmHg = _r.get("systolic_bp_mmHg") if _r.get("systolic_bp_mmHg") is not None else systolic_bp_mmHg
     s = (
         _gbs_urea(blood_urea_mmol_l)
         + (_gbs_hgb_female(hemoglobin_g_dl)

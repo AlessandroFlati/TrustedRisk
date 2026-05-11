@@ -24,6 +24,8 @@ from typing import Any, Literal
 
 from shared.schemas import PediatricDoseRecommendation
 
+from ._chart_inputs import harden_clinical_inputs
+
 
 # ─────────────────────────────────────────────────────────────────────
 # Drug database
@@ -626,6 +628,13 @@ async def compute_weight_based_dosing(
         PediatricDoseRecommendation with calculated dose, adult cap status,
         formulation volume, and any contraindications/cautions/abstain.
     """
+    _r, _sb, _ = await harden_clinical_inputs(
+        {"weight_kg": weight_kg, "age_months": age_months},
+        chart_derivable={"weight_kg", "age_months"},
+    )
+    if _sb:
+        weight_kg = _r.get("weight_kg") if _r.get("weight_kg") is not None else weight_kg
+        age_months = _r.get("age_months") if _r.get("age_months") is not None else age_months
     drug_norm = drug.strip().lower()
     spec = _DRUG_DB.get(drug_norm)
     if spec is None:

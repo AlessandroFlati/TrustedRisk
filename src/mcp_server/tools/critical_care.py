@@ -28,6 +28,8 @@ from shared.schemas import (
     SOFAReport,
 )
 
+from ._chart_inputs import harden_clinical_inputs
+
 
 # ─────────────────────────────────────────────────────────────────────
 # APACHE II
@@ -212,11 +214,50 @@ async def compute_apache_ii_score(
 ) -> APACHEIIReport:
     """APACHE II -- Knaus 1985.
 
+    Chart-authoritative inputs: when SHARP context is bound, age,
+    vitals, and labs come from the patient's FHIR chart; caller-supplied
+    values for those parameters are discarded.
+
     Returns the composite ICU severity score + predicted hospital
     mortality. The chronic-health point block adds 5 (non-operative or
     emergency post-op) or 2 (elective post-op) when severe organ
     insufficiency or immunocompromise is documented.
     """
+    _chart_keys = {
+        "age", "temperature_c", "mean_arterial_pressure_mmHg",
+        "heart_rate", "respiratory_rate", "arterial_ph",
+        "serum_sodium_mmol_l", "serum_potassium_mmol_l",
+        "serum_creatinine_mg_dl", "hematocrit_pct",
+        "wbc_thousands_per_uL", "glasgow_coma_scale",
+    }
+    _r, _sb, _ = await harden_clinical_inputs(
+        {
+            "age": age, "temperature_c": temperature_c,
+            "mean_arterial_pressure_mmHg": mean_arterial_pressure_mmHg,
+            "heart_rate": heart_rate, "respiratory_rate": respiratory_rate,
+            "arterial_ph": arterial_ph,
+            "serum_sodium_mmol_l": serum_sodium_mmol_l,
+            "serum_potassium_mmol_l": serum_potassium_mmol_l,
+            "serum_creatinine_mg_dl": serum_creatinine_mg_dl,
+            "hematocrit_pct": hematocrit_pct,
+            "wbc_thousands_per_uL": wbc_thousands_per_uL,
+            "glasgow_coma_scale": glasgow_coma_scale,
+        },
+        chart_derivable=_chart_keys,
+    )
+    if _sb:
+        age = _r["age"] if _r.get("age") is not None else age
+        temperature_c = _r["temperature_c"] if _r.get("temperature_c") is not None else temperature_c
+        mean_arterial_pressure_mmHg = _r["mean_arterial_pressure_mmHg"] if _r.get("mean_arterial_pressure_mmHg") is not None else mean_arterial_pressure_mmHg
+        heart_rate = _r["heart_rate"] if _r.get("heart_rate") is not None else heart_rate
+        respiratory_rate = _r["respiratory_rate"] if _r.get("respiratory_rate") is not None else respiratory_rate
+        arterial_ph = _r["arterial_ph"] if _r.get("arterial_ph") is not None else arterial_ph
+        serum_sodium_mmol_l = _r["serum_sodium_mmol_l"] if _r.get("serum_sodium_mmol_l") is not None else serum_sodium_mmol_l
+        serum_potassium_mmol_l = _r["serum_potassium_mmol_l"] if _r.get("serum_potassium_mmol_l") is not None else serum_potassium_mmol_l
+        serum_creatinine_mg_dl = _r["serum_creatinine_mg_dl"] if _r.get("serum_creatinine_mg_dl") is not None else serum_creatinine_mg_dl
+        hematocrit_pct = _r["hematocrit_pct"] if _r.get("hematocrit_pct") is not None else hematocrit_pct
+        wbc_thousands_per_uL = _r["wbc_thousands_per_uL"] if _r.get("wbc_thousands_per_uL") is not None else wbc_thousands_per_uL
+        glasgow_coma_scale = _r["glasgow_coma_scale"] if _r.get("glasgow_coma_scale") is not None else glasgow_coma_scale
     aps = (
         _aps_temperature(temperature_c)
         + _aps_map(mean_arterial_pressure_mmHg)
@@ -357,7 +398,32 @@ async def compute_sofa_score(
     baseline_sofa_total: int = 0,
     suspected_infection: bool = False,
 ) -> SOFAReport:
-    """Sequential Organ Failure Assessment + Sepsis-3 dysfunction flag."""
+    """Sequential Organ Failure Assessment + Sepsis-3 dysfunction flag.
+
+    Chart-authoritative inputs: when SHARP context is bound, labs and
+    vitals come from the patient's FHIR chart; caller-supplied values
+    for those parameters are discarded.
+    """
+    _r, _sb, _ = await harden_clinical_inputs(
+        {
+            "platelets_thousands_per_uL": platelets_thousands_per_uL,
+            "bilirubin_mg_dl": bilirubin_mg_dl,
+            "mean_arterial_pressure_mmHg": mean_arterial_pressure_mmHg,
+            "glasgow_coma_scale": glasgow_coma_scale,
+            "creatinine_mg_dl": creatinine_mg_dl,
+        },
+        chart_derivable={
+            "platelets_thousands_per_uL", "bilirubin_mg_dl",
+            "mean_arterial_pressure_mmHg", "glasgow_coma_scale",
+            "creatinine_mg_dl",
+        },
+    )
+    if _sb:
+        platelets_thousands_per_uL = _r.get("platelets_thousands_per_uL") if _r.get("platelets_thousands_per_uL") is not None else platelets_thousands_per_uL
+        bilirubin_mg_dl = _r.get("bilirubin_mg_dl") if _r.get("bilirubin_mg_dl") is not None else bilirubin_mg_dl
+        mean_arterial_pressure_mmHg = _r.get("mean_arterial_pressure_mmHg") if _r.get("mean_arterial_pressure_mmHg") is not None else mean_arterial_pressure_mmHg
+        glasgow_coma_scale = _r.get("glasgow_coma_scale") if _r.get("glasgow_coma_scale") is not None else glasgow_coma_scale
+        creatinine_mg_dl = _r.get("creatinine_mg_dl") if _r.get("creatinine_mg_dl") is not None else creatinine_mg_dl
     resp = _sofa_resp(pao2_fio2_ratio, mechanical_ventilation)
     coag = _sofa_coag(platelets_thousands_per_uL)
     liver = _sofa_liver(bilirubin_mg_dl)
@@ -429,7 +495,25 @@ async def compute_meld_score(
     sodium_mmol_l: float | None = None,
     on_dialysis: bool = False,
 ) -> MELDReport:
-    """MELD + MELD-Na + 3-month mortality + UNOS listing flag."""
+    """MELD + MELD-Na + 3-month mortality + UNOS listing flag.
+
+    Chart-authoritative inputs: when SHARP context is bound, labs come
+    from the patient's FHIR chart; caller-supplied values are discarded.
+    """
+    _r, _sb, _ = await harden_clinical_inputs(
+        {
+            "bilirubin_mg_dl": bilirubin_mg_dl,
+            "creatinine_mg_dl": creatinine_mg_dl,
+            "inr": inr, "sodium_mmol_l": sodium_mmol_l,
+        },
+        chart_derivable={"bilirubin_mg_dl", "creatinine_mg_dl",
+                          "inr", "sodium_mmol_l"},
+    )
+    if _sb:
+        bilirubin_mg_dl = _r.get("bilirubin_mg_dl") if _r.get("bilirubin_mg_dl") is not None else bilirubin_mg_dl
+        creatinine_mg_dl = _r.get("creatinine_mg_dl") if _r.get("creatinine_mg_dl") is not None else creatinine_mg_dl
+        inr = _r.get("inr") if _r.get("inr") is not None else inr
+        sodium_mmol_l = _r.get("sodium_mmol_l") if _r.get("sodium_mmol_l") is not None else sodium_mmol_l
     classic = _meld_classic(bilirubin_mg_dl, creatinine_mg_dl, inr,
                                   on_dialysis)
     meld_na = _meld_na_adjustment(classic, sodium_mmol_l) if sodium_mmol_l \

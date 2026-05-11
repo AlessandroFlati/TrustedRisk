@@ -14,6 +14,8 @@ from typing import Literal
 
 from pydantic import BaseModel, Field
 
+from ._chart_inputs import harden_clinical_inputs
+
 
 class KDPIReport(BaseModel):
     kdri_raw: float
@@ -111,7 +113,14 @@ async def compute_kdpi_kidney_donor(
     hcv_positive: bool = False,
     donation_after_circulatory_death: bool = False,
 ) -> KDPIReport:
-    """KDRI -> KDPI for deceased-donor kidneys (Rao 2009)."""
+    """KDRI -> KDPI for deceased-donor kidneys (Rao 2009).
+
+    Note: this tool models the DONOR profile, not the recipient. The
+    SHARP-bound chart usually represents the recipient, so chart-
+    sourcing donor demographics from the recipient's bundle is wrong.
+    The chart override is therefore not applied here; donor data is
+    accepted from the caller as the only reasonable source.
+    """
     kdri = _kdri_score(
         age=age, height_cm=height_cm, weight_kg=weight_kg,
         ethnicity_african_american=ethnicity_african_american,
@@ -175,6 +184,11 @@ async def compute_epts_recipient_score(
     diabetes: bool = False,
 ) -> EPTSReport:
     """EPTS for kidney-transplant recipients (Friedewald 2013)."""
+    _r, _sb, _ = await harden_clinical_inputs(
+        {"age": age}, chart_derivable={"age"},
+    )
+    if _sb and _r.get("age") is not None:
+        age = _r["age"]
     raw = _epts_raw(
         age, time_on_dialysis_years,
         prior_solid_organ_transplant, diabetes,
@@ -232,6 +246,13 @@ async def compute_immunosuppression_dose_check(
     """Recommend an adjusted starting dose for a transplant
     immunosuppressant given CPIC genotype + renal function +
     CYP3A4 inhibitor co-administration."""
+    _r, _sb, _ = await harden_clinical_inputs(
+        {"weight_kg": weight_kg, "egfr_ml_min": egfr_ml_min},
+        chart_derivable={"weight_kg", "egfr_ml_min"},
+    )
+    if _sb:
+        weight_kg = _r.get("weight_kg") if _r.get("weight_kg") is not None else weight_kg
+        egfr_ml_min = _r.get("egfr_ml_min") if _r.get("egfr_ml_min") is not None else egfr_ml_min
     drug = drug.lower()
     if drug not in _IMMUNO_TABLE:
         raise ValueError(f"unknown drug: {drug}")

@@ -142,6 +142,18 @@ async def compute_resolve_active_meds(
 ) -> ActiveMedListReport:
     """Resolve the active medication list for the SHARP-bound patient.
 
+    The patient is taken from the SHARP-on-MCP X-Patient-ID header, NOT
+    from the chat prompt. Leave `patient_id` null in every normal call.
+
+    Args:
+        patient_id: LEAVE NULL / OMIT for normal use. The tool reads the
+            patient from the X-Patient-ID header on the MCP request. This
+            argument exists ONLY as an explicit override for advanced
+            multi-patient orchestration; passing a free-text label from
+            the prompt (e.g. "Marcus") will fail because real FHIR
+            servers index Patient by their canonical resource id (usually
+            a UUID), not by display name.
+
     Source order:
       1. `MedicationRequest` (status=active or unspecified).
       2. `MedicationAdministration` (used by PO synthetic-patient store).

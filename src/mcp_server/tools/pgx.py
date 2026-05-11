@@ -33,6 +33,8 @@ from shared.schemas import (
     PGxGenotype,
 )
 
+from ..fhir.client import fetch_patient_bundle, resolve_patient_id
+
 
 # ─────────────────────────────────────────────────────────────────────
 # CPIC table -- (gene, phenotype, drug) -> adjustment + level
@@ -498,6 +500,169 @@ def _coerce_genotype(g: PGxGenotype | dict) -> PGxGenotype:
     return g
 
 
+# Set of PGx genes the CPIC table recognises -- used by the FHIR
+# extractor to flag an Observation as PGx-flavoured. Canonical casing
+# preserved so PGxGenotype validation accepts the value.
+_KNOWN_PGX_GENES: frozenset[str] = frozenset(
+    row["gene"] for row in _CPIC_TABLE
+)
+_PGX_GENE_BY_LOWER: dict[str, str] = {
+    g.lower(): g for g in _KNOWN_PGX_GENES
+}
+_KNOWN_PGX_PHENOTYPES: frozenset[str] = frozenset(
+    row["phenotype"] for row in _CPIC_TABLE
+)
+
+
+def _normalise_phenotype_token(raw: str) -> str | None:
+    """Map a raw value-string (e.g. 'Poor Metabolizer') to a canonical
+    `PGxPhenotype` enum value. Returns None when no canonical match."""
+    if not raw:
+        return None
+    token = raw.strip().lower().replace(" ", "_").replace("-", "_")
+    if token in _KNOWN_PGX_PHENOTYPES:
+        return token
+    # Allow case-preserved literals (mitochondrial / CFTR variants)
+    if raw.strip() in _KNOWN_PGX_PHENOTYPES:
+        return raw.strip()
+    return None
+
+
+def _detect_gene_in_text(text: str) -> str | None:
+    """Return the canonical gene symbol (casing preserved) if the input
+    string contains any known PGx gene token. Longest-match wins so
+    'HLA-B*5701' beats a partial 'HLA-B' overlap.
+    """
+    if not text:
+        return None
+    lowered = text.lower()
+    matches = [g for g_lower, g in _PGX_GENE_BY_LOWER.items()
+               if g_lower in lowered]
+    if not matches:
+        return None
+    return max(matches, key=len)
+
+
+def _extract_pgx_genotypes_from_bundle(
+    bundle: dict | None,
+) -> list[PGxGenotype]:
+    """Pull PGx genotypes from FHIR Observation resources.
+
+    Detection: an Observation is treated as PGx-flavoured when its
+    `code.text` or any `code.coding[].display` / `.code` mentions a
+    gene token from the CPIC table. The phenotype is read from
+    `valueString` first, then `valueCodeableConcept.text`, then the
+    first `interpretation[].text`. Values are normalised against the
+    canonical `PGxPhenotype` enum; rows that fail to match are
+    dropped (no fabrication).
+
+    Returns an empty list when no PGx Observations are present -- the
+    caller treats that as the abstain trigger.
+    """
+    if not isinstance(bundle, dict):
+        return []
+
+    out: list[PGxGenotype] = []
+    for entry in bundle.get("entry") or []:
+        r = entry.get("resource") if isinstance(entry, dict) else None
+        if not isinstance(r, dict):
+            continue
+        if r.get("resourceType") != "Observation":
+            continue
+
+        code_obj = r.get("code") or {}
+        gene = _detect_gene_in_text(code_obj.get("text") or "")
+        if gene is None:
+            for c in code_obj.get("coding") or []:
+                if not isinstance(c, dict):
+                    continue
+                gene = _detect_gene_in_text(
+                    (c.get("display") or "") + " " + (c.get("code") or ""),
+                )
+                if gene is not None:
+                    break
+        if gene is None:
+            continue
+
+        raw_phenotype: str | None = None
+        if isinstance(r.get("valueString"), str):
+            raw_phenotype = r["valueString"]
+        elif isinstance(r.get("valueCodeableConcept"), dict):
+            vc = r["valueCodeableConcept"]
+            raw_phenotype = vc.get("text") or ""
+            if not raw_phenotype:
+                for c in vc.get("coding") or []:
+                    if isinstance(c, dict):
+                        raw_phenotype = (
+                            c.get("display") or c.get("code") or ""
+                        )
+                        if raw_phenotype:
+                            break
+        elif isinstance(r.get("interpretation"), list) and r["interpretation"]:
+            interp = r["interpretation"][0]
+            if isinstance(interp, dict):
+                raw_phenotype = interp.get("text") or ""
+                if not raw_phenotype:
+                    for c in interp.get("coding") or []:
+                        if isinstance(c, dict):
+                            raw_phenotype = (
+                                c.get("display") or c.get("code") or ""
+                            )
+                            if raw_phenotype:
+                                break
+
+        phenotype = _normalise_phenotype_token(raw_phenotype or "")
+        if phenotype is None:
+            continue
+
+        try:
+            out.append(PGxGenotype(
+                gene=gene,                          # type: ignore[arg-type]
+                phenotype=phenotype,                # type: ignore[arg-type]
+                source_id=r.get("id"),
+            ))
+        except Exception:
+            # Belt-and-braces: drop rows that fail PGxGenotype validation
+            # (gene/phenotype outside the Literal set). Never fabricate.
+            continue
+
+    return out
+
+
+async def _resolve_genotypes_from_chart_or_caller(
+    caller_supplied: list[PGxGenotype | dict] | None,
+) -> tuple[list[PGxGenotype], bool, bool]:
+    """Decide which genotype list a PGx tool should consume.
+
+    Returns (genotypes, sharp_bound, chart_examined). `sharp_bound`
+    means the SHARP-on-MCP context was available; in that mode the
+    chart is authoritative and the caller-supplied list is IGNORED
+    (clinical data cannot be injected by a chat-side agent). When
+    SHARP context is absent (offline / unit-test mode) the
+    caller-supplied list is used as-is, preserving legacy behaviour.
+    """
+    sharp_bound = False
+    chart_genotypes: list[PGxGenotype] = []
+    try:
+        _pid = await resolve_patient_id(None)
+        bundle = await fetch_patient_bundle(_pid)
+        sharp_bound = True
+        chart_genotypes = _extract_pgx_genotypes_from_bundle(bundle)
+    except Exception:
+        # No SHARP context (or FHIR fetch failed) -- fall back to caller.
+        pass
+
+    if sharp_bound:
+        # Production path: chart is authoritative. Caller-supplied
+        # genotypes are silently discarded; the chart Observation is
+        # the only allowed source of clinical PGx data.
+        return chart_genotypes, True, True
+
+    # Offline / unit-test path: caller-supplied genotypes are accepted.
+    geno = [_coerce_genotype(g) for g in (caller_supplied or [])]
+    return geno, False, False
+
+
 # ─────────────────────────────────────────────────────────────────────
 # Public APIs
 # ─────────────────────────────────────────────────────────────────────
@@ -505,16 +670,26 @@ def _coerce_genotype(g: PGxGenotype | dict) -> PGxGenotype:
 
 async def compute_pgx_dose_adjustment(
     medications: list[str],
-    genotypes: list[PGxGenotype | dict],
+    genotypes: list[PGxGenotype | dict] | None = None,
     patient_reference: str | None = None,
 ) -> PGxDoseAdjustmentReport:
     """Match a patient's PGx genotypes against their medication list
     and emit per-drug dose-adjustment recommendations.
 
+    Genotypes are read from the FHIR chart via the SHARP-on-MCP
+    context, NOT from the caller. When the chart contains no PGx
+    Observation resources the tool abstains; clinical data cannot be
+    injected by the chat-side agent. The `genotypes` argument is
+    accepted only in offline / unit-test mode (no SHARP context bound).
+
     Args:
         medications: free-text medication names (e.g.
             "warfarin 5 mg", "clopidogrel 75 mg").
-        genotypes: list of PGxGenotype (or dicts coerced).
+        genotypes: LEAVE NULL / OMIT for normal use. Production
+            deployments source genotypes from chart-attached
+            Observation resources via the SHARP context. This argument
+            is honoured only when no SHARP context is bound (offline
+            mode used by tests + direct CLI invocation).
         patient_reference: optional FHIR Patient reference for audit.
 
     Returns:
@@ -522,7 +697,9 @@ async def compute_pgx_dose_adjustment(
         "no actionable PGx interaction" case (e.g. genotypes don't
         affect any of the listed drugs at CPIC level A/B).
     """
-    geno = [_coerce_genotype(g) for g in genotypes]
+    geno, sharp_bound, _ = await _resolve_genotypes_from_chart_or_caller(
+        genotypes,
+    )
 
     if not medications:
         return PGxDoseAdjustmentReport(
@@ -537,7 +714,17 @@ async def compute_pgx_dose_adjustment(
             patient_reference=patient_reference, genotypes=geno,
             adjustments=[], n_adjustments=0,
             abstain_recommended=True,
-            abstain_reason="no_genotypes_supplied",
+            abstain_reason=(
+                "no_pgx_observations_in_chart: no PGx Observation found "
+                "in the SHARP-bound patient's FHIR bundle. PGx "
+                "recommendations require genotype data from a "
+                "chart-attached Observation, never from caller-supplied "
+                "input."
+                if sharp_bound else
+                "no_genotypes_supplied: caller did not provide genotypes "
+                "and no SHARP-on-MCP context is bound to source them "
+                "from a chart."
+            ),
             references=["CPIC guidelines"],
         )
 
@@ -602,19 +789,58 @@ _DRUG_ALTERNATIVES: dict[str, list[tuple[str, bool, str]]] = {
 
 async def compute_pgx_drug_alternatives(
     requested_drug: str,
-    genotypes: list[PGxGenotype | dict],
+    genotypes: list[PGxGenotype | dict] | None = None,
     patient_reference: str | None = None,
 ) -> PGxAlternativesReport:
     """Return alternatives when the patient's genotype blocks the
-    requested drug at CPIC level A/B."""
-    geno = [_coerce_genotype(g) for g in genotypes]
+    requested drug at CPIC level A/B.
+
+    Genotypes are read from the FHIR chart via the SHARP-on-MCP
+    context, NOT from the caller. When the chart contains no PGx
+    Observation resources the tool abstains; clinical data cannot be
+    injected by the chat-side agent. The `genotypes` argument is
+    accepted only in offline / unit-test mode (no SHARP context bound).
+
+    Args:
+        requested_drug: free-text medication name.
+        genotypes: LEAVE NULL / OMIT for normal use. Production
+            deployments source genotypes from chart-attached
+            Observation resources via the SHARP context. This argument
+            is honoured only when no SHARP context is bound (offline
+            mode used by tests + direct CLI invocation).
+        patient_reference: optional FHIR Patient reference for audit.
+    """
+    geno, sharp_bound, _ = await _resolve_genotypes_from_chart_or_caller(
+        genotypes,
+    )
     drug_key = _norm_drug(requested_drug)
+
+    if not geno:
+        return PGxAlternativesReport(
+            requested_drug=requested_drug,
+            blocking_genotypes=[], alternatives=[],
+            n_alternatives=0,
+            abstain_recommended=True,
+            abstain_reason=(
+                "no_pgx_observations_in_chart: no PGx Observation found "
+                "in the SHARP-bound patient's FHIR bundle. PGx "
+                "recommendations require genotype data from a "
+                "chart-attached Observation, never from caller-supplied "
+                "input."
+                if sharp_bound else
+                "no_genotypes_supplied: caller did not provide genotypes "
+                "and no SHARP-on-MCP context is bound to source them "
+                "from a chart."
+            ),
+            references=[
+                "CPIC guidelines -- https://cpicpgx.org/guidelines/",
+            ],
+        )
 
     blocking: list[PGxGenotype] = []
     for row in _CPIC_TABLE:
         if row["drug"] != drug_key:
             continue
-        key = (row["gene"], row["phenotype"])
         if row["rec"] in (
             "avoid_drug", "alternative_drug_strongly_recommended",
         ):

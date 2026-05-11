@@ -21,6 +21,8 @@ from typing import Literal
 
 from shared.schemas import MEOWSReport
 
+from ._chart_inputs import harden_clinical_inputs
+
 
 # ─────────────────────────────────────────────────────────────────────
 # Pregnancy-adjusted vital thresholds (single-trigger color codes)
@@ -117,6 +119,23 @@ async def compute_maternal_early_warning(
         MEOWSReport with severity_tier (green / yellow / red) +
         recommended_response.
     """
+    _r, _sb, _ = await harden_clinical_inputs(
+        {"gestational_age_weeks": gestational_age_weeks,
+         "respiratory_rate": respiratory_rate, "spo2": spo2,
+         "heart_rate": heart_rate, "systolic_bp": systolic_bp,
+         "diastolic_bp": diastolic_bp, "temperature": temperature},
+        chart_derivable={"gestational_age_weeks", "respiratory_rate",
+                          "spo2", "heart_rate", "systolic_bp",
+                          "diastolic_bp", "temperature"},
+    )
+    if _sb:
+        gestational_age_weeks = _r.get("gestational_age_weeks") if _r.get("gestational_age_weeks") is not None else gestational_age_weeks
+        respiratory_rate = _r.get("respiratory_rate") if _r.get("respiratory_rate") is not None else respiratory_rate
+        spo2 = _r.get("spo2") if _r.get("spo2") is not None else spo2
+        heart_rate = _r.get("heart_rate") if _r.get("heart_rate") is not None else heart_rate
+        systolic_bp = _r.get("systolic_bp") if _r.get("systolic_bp") is not None else systolic_bp
+        diastolic_bp = _r.get("diastolic_bp") if _r.get("diastolic_bp") is not None else diastolic_bp
+        temperature = _r.get("temperature") if _r.get("temperature") is not None else temperature
     # Abstain when no vital signs and no obstetric red-flag bool was
     # supplied. The placeholder "green" tier would otherwise be reported
     # as a clinical reassurance with no data behind it.

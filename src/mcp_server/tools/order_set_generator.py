@@ -24,6 +24,8 @@ from shared.schemas import (
     RiskEstimate,
 )
 
+from ._chart_inputs import harden_clinical_inputs
+
 
 # ─────────────────────── Risk tier mapping ───────────────────────
 
@@ -265,6 +267,12 @@ async def compute_order_set(
     Returns:
         OrderSet with categorized orders + per-order rationale + references.
     """
+    _r, _sb, _ = await harden_clinical_inputs(
+        {"medications": medications},
+        chart_derivable={"medications"},
+    )
+    if _sb and _r.get("medications"):
+        medications = _r["medications"]
     valid_actions = {
         "discharge_home", "home_with_care", "snf", "continued_admission",
     }

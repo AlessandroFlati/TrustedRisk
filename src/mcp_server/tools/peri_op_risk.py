@@ -14,6 +14,8 @@ from typing import Literal
 
 from pydantic import BaseModel, Field
 
+from ._chart_inputs import harden_clinical_inputs
+
 
 class RCRIReport(BaseModel):
     score: int = Field(ge=0, le=6)
@@ -131,6 +133,13 @@ async def compute_ariscat_pulmonary_risk(
 ) -> ARISCATReport:
     """Canet 2010 ARISCAT score for postoperative pulmonary
     complications."""
+    _r, _sb, _ = await harden_clinical_inputs(
+        {"age": age, "preop_spo2_pct": preop_spo2_pct},
+        chart_derivable={"age", "preop_spo2_pct"},
+    )
+    if _sb:
+        age = _r.get("age") if _r.get("age") is not None else age
+        preop_spo2_pct = _r.get("preop_spo2_pct") if _r.get("preop_spo2_pct") is not None else preop_spo2_pct
     s = (
         _ariscat_age(age)
         + _ariscat_spo2(preop_spo2_pct)
@@ -182,6 +191,11 @@ async def compute_caprini_vte_risk(
     oral_contraceptive_or_hrt: bool = False,
 ) -> CapriniReport:
     """Caprini VTE risk-assessment model (the ACCP-9 version)."""
+    _r, _sb, _ = await harden_clinical_inputs(
+        {"age": age}, chart_derivable={"age"},
+    )
+    if _sb and _r.get("age") is not None:
+        age = _r["age"]
     s = 0
     # Age
     if age >= 75: s += 3

@@ -1,6 +1,6 @@
 # Model Card: TrustedRisk readmission risk + decision pipeline
 
-**Generated**: 2026-05-10 10:35 UTC - **Version**: 1.0.0 - **Sections**: 9
+**Generated**: 2026-05-11 08:37 UTC - **Version**: 1.0.0 - **Sections**: 9
 
 Format: Mitchell et al. 2019 (FAT*) Model Cards for Model Reporting.
 

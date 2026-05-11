@@ -24,6 +24,8 @@ from typing import Literal
 
 from shared.schemas import HEARTScore
 
+from ._chart_inputs import chart_abstain_reason, harden_clinical_inputs
+
 
 # ─────────────────────────────────────────────────────────────────────
 # Risk band classification
@@ -119,6 +121,29 @@ async def compute_heart_score(
         all numeric fields set to placeholder zeros -- they MUST NOT be
         used as a clinical estimate.
     """
+    _resolved, _sharp_bound, _missing_chart = await harden_clinical_inputs(
+        {"age": age},
+        chart_derivable={"age"},
+    )
+    if _sharp_bound and _missing_chart:
+        return HEARTScore(
+            patient_id=patient_id,
+            history_points=0, ecg_points=0, age_points=0,
+            risk_factors_points=0, troponin_points=0,
+            total_score=0,
+            risk_band="low",
+            estimated_30d_mace_risk_pct=0.0,
+            rationale=(
+                "HEART score abstained: patient age could not be "
+                "resolved from the SHARP-bound patient's chart. "
+                "Caller-supplied age is discarded under SHARP to "
+                "prevent fabricated demographics from driving an ED "
+                "disposition decision."
+            ),
+            abstain_recommended=True,
+            abstain_reason=chart_abstain_reason(_missing_chart),
+        )
+    age = _resolved.get("age")
     missing = [
         f for f, v in {
             "history_descriptor": history_descriptor,

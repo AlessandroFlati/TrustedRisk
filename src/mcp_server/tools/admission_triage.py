@@ -20,6 +20,8 @@ from typing import Any
 
 from shared.schemas import AdmissionTriage
 
+from ._chart_inputs import harden_clinical_inputs
+
 
 # ─────────────────────────────────────────────────────────────────────
 # Chief-complaint -> red flag rules (Manchester triage flow charts)
@@ -186,6 +188,31 @@ async def compute_admission_triage(
         AdmissionTriage with esi_level, priority, disposition,
         recommended_unit, red_flag_findings, rationale.
     """
+    _resolved, _sharp_bound, _ = await harden_clinical_inputs(
+        {"age": age}, chart_derivable={"age"},
+    )
+    if _sharp_bound:
+        age = _resolved.get("age")
+        # vital_signs: when SHARP bound, prefer chart-derived dict over
+        # caller-supplied values (which the agent may have fabricated).
+        from ._chart_inputs import (
+            extract_chart_vitals as _vc, fetch_patient_bundle as _fb,
+            resolve_patient_id as _rp,
+        )
+        try:
+            _b = await _fb(await _rp(None))
+            _chart_vs = _vc(_b)
+            if _chart_vs:
+                # Tool's internal logic accepts dict[str, value]
+                vital_signs = {
+                    k: v for k, v in _chart_vs.items()
+                    if k in {"systolic_bp", "diastolic_bp", "heart_rate",
+                              "respiratory_rate", "spo2", "temperature_c",
+                              "glasgow_coma_scale"}
+                }
+        except Exception:
+            pass
+
     if not chief_complaint or not isinstance(chief_complaint, str):
         return AdmissionTriage(
             patient_id=patient_id,

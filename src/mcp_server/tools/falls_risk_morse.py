@@ -19,6 +19,8 @@ from typing import Any, Literal
 
 from shared.schemas import MorseFallsReport
 
+from ._chart_inputs import harden_clinical_inputs
+
 
 # ─────────────────────────────────────────────────────────────────────
 # Beers-criteria fall-risk medication patterns
@@ -89,6 +91,12 @@ async def compute_falls_risk_morse(
         MorseFallsReport with score_total, risk_tier, recommended_intervention,
         and contributing_medications_flagged.
     """
+    _r, _sb, _ = await harden_clinical_inputs(
+        {"current_medications": current_medications},
+        chart_derivable={"current_medications"},
+    )
+    if _sb and _r.get("current_medications"):
+        current_medications = _r["current_medications"]
     # The 6 Morse axes must be assessed by the bedside clinician. A
     # missing value cannot be silently mapped to the benign band -- the
     # absence of an assessment is NOT equivalent to an assessment of

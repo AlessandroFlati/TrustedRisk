@@ -216,7 +216,7 @@ dependency in any of them.
 - `docs/adversarial/{red_team_v4.json,RED_TEAM_V4.md}`.
 - `docs/ui/counterfactual.html` (interactive UI).
 - `docs/e2e/v7/index.html` (8 cross-bundle scenarios).
-- `docs/MODULE_CATALOG.md` (96 modules).
+- `docs/MODULE_CATALOG.md` (98 modules).
 
 ### Changed
 
